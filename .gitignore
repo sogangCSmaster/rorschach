@@ -1,6 +1,9 @@
 # Config
 config.json
 
+# Useless
+.DS_Store
+
 # Logs
 logs
 *.log
