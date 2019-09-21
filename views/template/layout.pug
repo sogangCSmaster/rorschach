@@ -1,0 +1,23 @@
+html
+    head
+        include ./head
+        block head
+    body.top-navigation.pace-done
+        div#wrapper
+            div#page-wrapper.gray-bg
+                div.row.border-bottom.white-bg
+                    nav.navbar.navbar-static-top(role="navigation")
+                        div.navbar-header
+                            button(aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button")
+                                i.fa.fa-reorder
+                            a(href="#" class="navbar-brand") Koreapsy
+                        div#navbar.navbar-collapse.collapse
+                
+                .wrapper.wrapper-content
+                    .container
+                        block content
+
+                            
+        
+        include ./script
+        block script

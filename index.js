@@ -47,6 +47,11 @@ app.use((req,res,next) => {
     next();
 });
 
+
+const main = require('./routes/main');
+app.use(main);
+
+
 app.get('*', (req, res, next) => {
     res.status(404).send('404 Error');
 });

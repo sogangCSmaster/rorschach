@@ -1,0 +1,99 @@
+extends ../template/layout
+
+block head
+    link(href="/css/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet")
+    link(href="/css/plugins/datapicker/datepicker3.css" rel="stylesheet")
+    link(href="/css/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet")
+
+block script
+    script(src="/js/plugins/fullcalendar/moment.min.js")
+    script(src="/js/plugins/datapicker/bootstrap-datepicker.js")
+    script(src="/js/plugins/daterangepicker/daterangepicker.js")
+    script(src="/js/plugins/clockpicker/clockpicker.js")
+    script.
+        $(document).ready(function(){
+            $('#daterange .input-daterange').datepicker({
+                keyboardNavigation: false,
+                forceParse: false,
+                autoclose: true
+            });
+        })
+        
+
+block content
+
+    .row
+        .col-lg-12
+            .ibox
+                .ibox-content.text-center
+                    .row
+                        .col-lg-6
+                            a.btn.btn-w-m.btn-primary.btn-block(href="#") 검사실시 (구조요약)
+                            a.btn.btn-w-m.btn-primary.btn-block.btn-outline(href="#") 검사실시 (구조요약 & 해석보고서)
+                        .col-lg-6
+                            br
+                            p RIASTM는 The Rorschach Test의 구조적 요약과 자동해석을 제공합니다. 이 프로그램에서 제공하는 해석은 가설적인 것이므로 다른 정보와 통합하여 사용해 주시기 바랍니다.
+
+    .row
+        .col-lg-12
+            .ibox.float-e-margins
+                .ibox-title
+                    h5 검사
+                .ibox-content
+                    .row.form-group
+                        .col-lg-3.col-lg-offset-3.form-group#daterange
+                            .input-daterange.input-group#datepicker
+                                input.input-sm.form-control(type="text" name="start" value="05/14/2014")
+                                span.input-group-addon ~
+                                input.input-sm.form-control(type="text" name="end" value="05/20/2014")
+                        .col-lg-2
+                            select.form-control(name="searchfor")
+                                option 수검자
+                                option 검사기관
+                        .col-lg-3
+                            input.form-control(name="searchtext" type="text" placeholder="검색")
+                        .col-lg-1
+                            button.btn.btn-primary.btn-block 검색
+
+                    .row
+                        table.table.table-striped.table-sm
+                            thead
+                                tr
+                                    th.text-center(scope="col") 번호
+                                    th.text-center(scope="col") 수검자
+                                    th.text-center(scope="col") 검사일
+                                    th.text-center(scope="col")="구조요약 & 해석보고서"
+                                    th.text-center(scope="col") 검사기관
+                                    th.text-center(scope="col") 해석
+                                    th.text-center(scope="col") 삭제
+                            tbody
+                                tr
+                                    td.text-center(scope="row") 1
+                                    td.text-center 유승재
+                                    td.text-center 이모부
+                                    td.text-center 구조요약
+                                    td.text-center 한국심리연구소
+                                    td.text-center
+                                        a.btn.btn-info.btn-sm 해석
+                                    td.text-center
+                                        a.btn.btn-danger.btn-sm 삭제
+                                tr
+                                    td.text-center(scope="row") 2
+                                    td.text-center 유승재
+                                    td.text-center 이모부
+                                    td.text-center 구조요약
+                                    td.text-center 한국심리연구소
+                                    td.text-center
+                                        a.btn.btn-info.btn-sm 해석
+                                    td.text-center
+                                        a.btn.btn-danger.btn-sm 삭제
+                                tr
+                                    td.text-center(scope="row") 3
+                                    td.text-center 유승재
+                                    td.text-center 이모부
+                                    td.text-center 구조요약
+                                    td.text-center 한국심리연구소
+                                    td.text-center
+                                        a.btn.btn-info.btn-sm 해석
+                                    td.text-center
+                                        a.btn.btn-danger.btn-sm 삭제
