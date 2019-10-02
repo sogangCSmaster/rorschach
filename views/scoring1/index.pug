@@ -1,0 +1,126 @@
+doctype html
+html
+    head
+        meta(charset="utf-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        title Rorschach
+        link(href="/css/bootstrap.min.css" rel="stylesheet")
+        link(href="/font-awesome/css/font-awesome.css" rel="stylesheet")
+        link(href="/css/animate.css" rel="stylesheet")
+        link(href="/css/style.css" rel="stylesheet")
+        link(href="/css/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet")
+        link(href="/css/plugins/datapicker/datepicker3.css" rel="stylesheet")
+        link(href="/css/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet")
+    body.gray-bg
+        .container-fluid.animated.fadeInDown.m-t-lg
+            .row
+                .col-md-12
+                    .ibox-title
+                        h5 등록번호 : #{session.insertId}   
+                    .ibox-content
+                        table.table.table-sm.table-striped.table-bordered
+                            thead
+                                tr
+                                    th.text-center(scope="col") 카드
+                                    th.text-center(scope="col") 번호
+                                    th.text-center(scope="col") 영역
+                                    th.text-center(scope="col") DQ
+                                    th.text-center(scope="col") 결정인
+                                    th.text-center(scope="col") FQ
+                                    th.text-center(scope="col") (2)
+                                    th.text-center(scope="col") 내용
+                                    th.text-center(scope="col") P
+                                    th.text-center(scope="col") Z
+                                    th.text-center(scope="col") 특수점수
+                            tbody#score-table
+                                tr
+                                    th.form-group.text-center(scope="row")
+                                        select.form-control(name="card")
+                                            option Ⅰ
+                                            option Ⅱ
+                                            option Ⅲ
+                                            option Ⅳ
+                                            option Ⅴ
+                                            option Ⅵ
+                                            option Ⅶ
+                                            option Ⅷ
+                                            option Ⅸ
+                                            option Ⅹ
+                                    td.text-center.form-group
+                                        input.form-control(type="number")
+                                    td.text-center.form-group
+                                        select.form-control(name="loc")
+                                            option W
+                                            option D
+                                            option Dd
+                                            option WS
+                                            option DS
+                                            option DdS
+                                    td.text-center.form-group
+                                        select.form-control(name="dq")
+                                            option +
+                                            option o
+                                            option v/+
+                                            option v
+                                    td.text-center
+                                    td.text-center.form-group
+                                        select.form-control
+                                            option +
+                                            option o
+                                            option u
+                                            option -
+                                            option None
+                                    td.text-center.form-group
+                                        select.form-control
+                                            option
+                                            option (2)
+                                    td.text-center
+                                    td.text-center.form-group
+                                        select.form-control
+                                            option
+                                            option P
+                                    td.text-center
+                                    td.text-center
+
+                        .form-group
+                            button.btn.btn-info 반응추가
+                        .hr-line-dashed
+                        .row
+                            .col-lg-1.col-lg-offset-11
+                                button.btn.btn-primary 채 점
+                        
+
+                            
+        script(src="/js/jquery-2.1.1.js")
+        script(src="/js/bootstrap.min.js")
+        script(src="/js/plugins/metisMenu/jquery.metisMenu.js")
+        script(src="/js/plugins/slimscroll/jquery.slimscroll.min.js")
+        script(src="/js/inspinia.js")
+        script(src="/js/plugins/pace/pace.min.js")
+        script(src="/js/plugins/flot/jquery.flot.js")
+        script(src="/js/plugins/flot/jquery.flot.tooltip.min.js")
+        script(src="/js/plugins/flot/jquery.flot.resize.js")
+        script(src="/js/plugins/chartJs/Chart.min.js")
+        script(src="/js/plugins/peity/jquery.peity.min.js")
+        script(src="/js/demo/peity-demo.js")
+        script(src="/js/plugins/fullcalendar/moment.min.js")
+        script(src="/js/plugins/datapicker/bootstrap-datepicker.js")
+        script(src="/js/plugins/daterangepicker/daterangepicker.js")
+        script(src="/js/plugins/clockpicker/clockpicker.js")
+        script.
+            $(document).ready(function(){
+                $("#birthday").datepicker({
+                    todayBtn: "linked",
+                    keyboardNavigation: false,
+                    forceParse: false,
+                    calendarWeeks: true,
+                    autoclose: true
+                })
+                $("#today").datepicker({
+                    todayBtn: "linked",
+                    keyboardNavigation: false,
+                    forceParse: false,
+                    calendarWeeks: true,
+                    autoclose: true
+                })
+            })

@@ -1,0 +1,24 @@
+doctype html
+html
+    head
+        meta(charset="utf-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        title Rorschach
+        link(href="/css/bootstrap.min.css" rel="stylesheet")
+        link(href="/font-awesome/css/font-awesome.css" rel="stylesheet")
+        link(href="/css/animate.css" rel="stylesheet")
+        link(href="/css/style.css" rel="stylesheet")
+    body.gray-bg
+        .loginColumns.animated.fadeInDown
+            .row
+                .col-md-6.col-md-offset-3
+                    .ibox-title
+                        h5 로르샤하 채점 프로그램
+                    .ibox-content
+                        form.m-t(role="form" action="/login" method="POST")
+                            .form-group
+                                input(type="text" class="form-control" placeholder="계정 입력" required="" name="user")
+                            .form-group
+                                input(type="password" class="form-control" placeholder="비밀번호 입력" required="" name="password")
+                            button(type="submit" class="btn btn-primary block full-width m-b") 로그인
+                            

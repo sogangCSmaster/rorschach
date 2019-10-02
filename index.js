@@ -22,8 +22,8 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     store: new MYSQLStore({
-        host: config.database,
-        port: 3306,
+        host: config.host,
+        port: config.port,
         user: config.user,
         password: config.password,
         database: config.database
@@ -49,6 +49,14 @@ app.use((req,res,next) => {
 
 
 const main = require('./routes/main');
+const redirect = require('./routes/redirect');
+const login = require('./routes/login');
+const test1 = require('./routes/test1');
+const scoring1 = require('./routes/scoring1');
+app.use(scoring1);
+app.use(test1);
+app.use(login);
+app.use(redirect);
 app.use(main);
 
 

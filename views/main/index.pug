@@ -18,9 +18,75 @@ block script
                 autoclose: true
             });
         })
+    script.
+        $("#rors1button").on('click', function(){
+            var user = !{JSON.stringify(session)};
+            user = user.user;
+            var coin1 = user.coin1;
+            var useCount1 = user.useCount1;
+
+            coin1 = Number(coin1);
+            useCount1 = Number(useCount1);
+            if(useCount1>=coin1){
+                return alert('코인1이 부족합니다.');
+            } else {
+                return location.href = '/test1';
+            }
+        })
+    script.
+        $("#rors2button").on('click', function(){
+            alert('개발 진행 중');
+            //- var user = !{JSON.stringify(session)};
+            //- user = user.user;
+            //- var coin2 = user.coin2;
+            //- var useCount2 = user.useCount2;
+
+            //- coin2 = Number(coin2);
+            //- useCount2 = Number(useCount2);
+
+            //- if(useCount2>=coin2){
+            //-     return alert('코인2이 부족합니다.');
+            //- } else {
+            //-     return location.href = '/test2';
+            //- }
+        })
+
         
 
 block content
+    .row
+        .col-lg-3
+            .ibox.float-e-margins
+                .ibox-title
+                    h5=session.user.memberID
+                .ibox-content
+                    h1.no-margins=session.user.name
+        .col-lg-3
+            .ibox.float-e-margins
+                .ibox-title
+                    h5 상호
+                .ibox-content
+                    h1.no-margins=session.user.comName
+        .col-lg-3
+            .ibox.float-e-margins
+                .ibox-title
+                    span.label.label-success.pull-right=session.user.coin1
+                    h5 RORS 코인
+                .ibox-content
+                    h2.no-margins=session.user.useCount1
+                    small 사용현황
+                    .progress.progress-mini
+                        .progress-bar(style='width:'+(Math.ceil(Number(session.user.useCount1)/Number(session.user.coin1))).toString()+"%;")
+        .col-lg-3
+            .ibox.float-e-margins
+                .ibox-title
+                    span.label.label-info.pull-right=session.user.coin2
+                    h5 RORS2 코인
+                .ibox-content
+                    h2.no-margins=session.user.useCount2
+                    small 사용현황
+                    .progress.progress-mini
+                        .progress-bar(style='width:'+(Math.ceil(Number(session.user.useCount2)/Number(session.user.coin2))).toString()+"%;")
 
     .row
         .col-lg-12
@@ -28,7 +94,7 @@ block content
                 .ibox-content.text-center
                     .row
                         .col-lg-6
-                            a.btn.btn-w-m.btn-primary.btn-block(href="#") 검사실시 (구조요약)
+                            button#rors1button.btn.btn-w-m.btn-primary.btn-block(type="button") 검사실시 (구조요약)
                             a.btn.btn-w-m.btn-primary.btn-block.btn-outline(href="#") 검사실시 (구조요약 & 해석보고서)
                         .col-lg-6
                             br
@@ -67,33 +133,3 @@ block content
                                     th.text-center(scope="col") 해석
                                     th.text-center(scope="col") 삭제
                             tbody
-                                tr
-                                    td.text-center(scope="row") 1
-                                    td.text-center 유승재
-                                    td.text-center 이모부
-                                    td.text-center 구조요약
-                                    td.text-center 한국심리연구소
-                                    td.text-center
-                                        a.btn.btn-info.btn-sm 해석
-                                    td.text-center
-                                        a.btn.btn-danger.btn-sm 삭제
-                                tr
-                                    td.text-center(scope="row") 2
-                                    td.text-center 유승재
-                                    td.text-center 이모부
-                                    td.text-center 구조요약
-                                    td.text-center 한국심리연구소
-                                    td.text-center
-                                        a.btn.btn-info.btn-sm 해석
-                                    td.text-center
-                                        a.btn.btn-danger.btn-sm 삭제
-                                tr
-                                    td.text-center(scope="row") 3
-                                    td.text-center 유승재
-                                    td.text-center 이모부
-                                    td.text-center 구조요약
-                                    td.text-center 한국심리연구소
-                                    td.text-center
-                                        a.btn.btn-info.btn-sm 해석
-                                    td.text-center
-                                        a.btn.btn-danger.btn-sm 삭제

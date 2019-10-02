@@ -1,0 +1,112 @@
+doctype html
+html
+    head
+        meta(charset="utf-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        title Rorschach
+        link(href="/css/bootstrap.min.css" rel="stylesheet")
+        link(href="/font-awesome/css/font-awesome.css" rel="stylesheet")
+        link(href="/css/animate.css" rel="stylesheet")
+        link(href="/css/style.css" rel="stylesheet")
+        link(href="/css/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet")
+        link(href="/css/plugins/datapicker/datepicker3.css" rel="stylesheet")
+        link(href="/css/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet")
+    body.gray-bg
+        .container.animated.fadeInDown.m-t-lg
+            .row
+                .col-md-12
+                    .ibox-title
+                        h5 수검자 인적사항
+                    .ibox-content
+                        form.m-t.form-horizontal(role="form" action="/test1" method="POST")
+                            .hr-line-dashed
+                            .form-group
+                                label.col-sm-1.control-label 이름
+                                .col-sm-2
+                                    input.form-control(type="text" placeholder="이름" name="name" required)
+                                label.col-sm-1.control-label 성별
+                                .col-sm-2
+                                    select.form-control(name="sex")
+                                        option(value="male") 남
+                                        option(value="female") 여
+                                label.col-sm-2.control-label 채점방식
+                                .col-sm-4
+                                    select.form-control(disabled)
+                                        option 요약
+                            
+                            .form-group
+                                label.col-sm-1.control-label 학력
+                                .col-sm-3
+                                    select.form-control(name="graduate")
+                                        option(value="elementary") 초등학교 졸업 6년
+                                        option(value="middle") 중학교 졸업 9년
+                                        option(value="high") 고등학교 졸업 12년
+                                        option(value="univers") 4년제 대학교 졸업 16년
+                                        option(value="master") 대학원 졸업(석사) 18년
+                                        option(value="doctor") 대학원 졸업(박사) 20년
+                                label.col-sm-1.control-label 직업
+                                .col-sm-3
+                                    input.form-control(type="text" placeholder="직업" name="job" required)
+                                label.col-sm-1.control-label 진단명
+                                .col-sm-3
+                                    input.form-control(type="text" placeholder="진단명" name="diagnosis" required)
+                            .form-group
+                                label.col-sm-1.control-label 생년월일
+                                .col-sm-2
+                                    #birthday.input-group.date
+                                        span.input-group-addon
+                                            i.fa.fa-calendar
+                                        input.form-control(type="text" readonly="readonly" required name="birthday")
+                                label.col-sm-1.control-label 검사일자
+                                .col-sm-2
+                                    #today.input-group.date
+                                        span.input-group-addon
+                                            i.fa.fa-calendar
+                                        input.form-control(type="text" readonly="readonly" value=moment().format('DD/MM/YYYY') name="testdate")
+                                label.col-sm-1.control-label 검사기관
+                                .col-sm-2
+                                    input.form-control(type="text" placeholder="검사기관" value=session.user.comName name="comName_input" required)
+                                label.col-sm-1.control-label 검사자
+                                .col-sm-2
+                                    input.form-control(type="text" placeholder="검사자" value=session.user.name name="inspector" required)
+                            .hr-line-dashed
+                            .form-group
+                                .col-sm-4.col-sm-offset-1
+                                    a.btn.btn-white(href="/") 취소
+                                    button.btn.btn-primary(type="submit") 저장 후 다음
+                                
+
+                            
+        script(src="/js/jquery-2.1.1.js")
+        script(src="/js/bootstrap.min.js")
+        script(src="/js/plugins/metisMenu/jquery.metisMenu.js")
+        script(src="/js/plugins/slimscroll/jquery.slimscroll.min.js")
+        script(src="/js/inspinia.js")
+        script(src="/js/plugins/pace/pace.min.js")
+        script(src="/js/plugins/flot/jquery.flot.js")
+        script(src="/js/plugins/flot/jquery.flot.tooltip.min.js")
+        script(src="/js/plugins/flot/jquery.flot.resize.js")
+        script(src="/js/plugins/chartJs/Chart.min.js")
+        script(src="/js/plugins/peity/jquery.peity.min.js")
+        script(src="/js/demo/peity-demo.js")
+        script(src="/js/plugins/fullcalendar/moment.min.js")
+        script(src="/js/plugins/datapicker/bootstrap-datepicker.js")
+        script(src="/js/plugins/daterangepicker/daterangepicker.js")
+        script(src="/js/plugins/clockpicker/clockpicker.js")
+        script.
+            $(document).ready(function(){
+                $("#birthday").datepicker({
+                    todayBtn: "linked",
+                    keyboardNavigation: false,
+                    forceParse: false,
+                    calendarWeeks: true,
+                    autoclose: true
+                })
+                $("#today").datepicker({
+                    todayBtn: "linked",
+                    keyboardNavigation: false,
+                    forceParse: false,
+                    calendarWeeks: true,
+                    autoclose: true
+                })
+            })
