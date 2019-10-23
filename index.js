@@ -7,7 +7,7 @@ const methodOverride = require('method-override');
 const session = require('express-session');
 const MYSQLStore = require('express-mysql-session')(session);
 const config = require('./config.json');
-const port = 80;
+const port = 3000;
 
 
 console.log(config);
