@@ -33,64 +33,184 @@ html
                                     th.text-center.col-xs-1(scope="col") Z
                                     th.text-center(scope="col") 특수점수
                             tbody#score-table
-                                tr
-                                    th.form-group.text-center(scope="row")
-                                        select.form-control(name="card")
-                                            option Ⅰ
-                                            option Ⅱ
-                                            option Ⅲ
-                                            option Ⅳ
-                                            option Ⅴ
-                                            option Ⅵ
-                                            option Ⅶ
-                                            option Ⅷ
-                                            option Ⅸ
-                                            option Ⅹ
-                                    td.text-center.form-group
-                                        input.form-control(type="number")
-                                    td.text-center.form-group
-                                        select.form-control(name="loc")
-                                            option W
-                                            option D
-                                            option Dd
-                                            option WS
-                                            option DS
-                                            option DdS
-                                    td.text-center.form-group
-                                        select.form-control(name="dq")
-                                            option +
-                                            option o
-                                            option v/+
-                                            option v
-                                    td.text-center
-                                    td.text-center.form-group
-                                        select.form-control
-                                            option +
-                                            option o
-                                            option u
-                                            option -
-                                            option None
-                                    td.text-center.form-group
-                                        select.form-control
-                                            option
-                                            option (2)
-                                    td.text-center
-                                    td.text-center.form-group
-                                        select.form-control
-                                            option
-                                            option P
-                                    td.text-center
-                                    td.text-center
+                                mixin card-tr(display)
+                                    tr(style='display: ' + (display == 'hidden' ? 'none' : ''))
+                                        th.form-group.text-center(scope="row")
+                                            select.form-control(name="card")
+                                                option Ⅰ
+                                                option Ⅱ
+                                                option Ⅲ
+                                                option Ⅳ
+                                                option Ⅴ
+                                                option Ⅵ
+                                                option Ⅶ
+                                                option Ⅷ
+                                                option Ⅸ
+                                                option Ⅹ
+                                        td.text-center.form-group.number &#9312;
+                                        td.text-center.form-group
+                                            select.form-control(name="loc")
+                                                option W
+                                                option D
+                                                option Dd
+                                                option WS
+                                                option DS
+                                                option DdS
+                                        td.text-center.form-group
+                                            select.form-control(name="dq")
+                                                option +
+                                                option o
+                                                option v/+
+                                                option v
+                                        td.text-center
+                                            button.btn.btn-primary.btn-sm.determinant 선택
+                                        td.text-center.form-group
+                                            select.form-control
+                                                option +
+                                                option o
+                                                option u
+                                                option -
+                                                option None
+                                        td.text-center.form-group
+                                            select.form-control.select2
+                                                option
+                                                option (2)
+                                        td.text-center
+                                        td.text-center.form-group
+                                            select.form-control
+                                                option
+                                                option P
+                                        td.text-center
+                                        td.text-center
+                                +card-tr('hidden')
+                                +card-tr('show')
 
                         .form-group
-                            button.btn.btn-info 반응추가
+                            button.btn.btn-info#addReact 반응추가
                         .hr-line-dashed
                         .row
                             .col-lg-1.col-lg-offset-11
                                 button.btn.btn-primary 채 점
                         
 
+        .modal.fade#detModal(tabindex='-1', role='dialog')
+            .modal-dialog.modal-lg(role='document')
+                .modal-content
+                    .modal-header
+                        h5.modal-title 결정인
+                        button.close(type='button', data-dismiss='modal', aria-label='Close')
+                            span(aria-hidden='true') ×
+                    .modal-body
+                        .row
+                            .col-lg-6
+                                table.table.table-striped.table-bordered
+                                    thead
+                                        tr
+                                            th.text-center(colspan="2")  형태 반응 (Form)
+                                            th.text-center(colspan="3") (2)/반사 (Reflection)
+                                            
+                                    tbody
+                                        tr
+                                            td.text-center 순수 (Pure)
+                                            td.text-center 차원 (Dimension)
+                                            td.text-center 쌍 반응
+                                            td.text-center(colspan="2") 반사
+
+                                        tr
+                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='form1', data-dvalue='F') F
+                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='form2', data-dvalue='FD') FD
+                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='(2)', data-dvalue='(2)') (2)
+                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='reflection1', data-dvalue='Fr') Fr
+                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='reflection2', data-dvalue='rF') rF
+
+                                table.table.table-striped.table-bordered
+                                    thead
+                                        tr
+                                            th.text-center(colspan="5")  운동 반응
+    
+                                            
+                                    tbody
+                                        tr
+                                            td(colspan="2")
+                                            td.text-center 능동 (Active)
+                                            td.text-center 수동 (Passive)
+                                            td.text-center a-p  
+
+                                        tr
+                                            td(colspan="2") 사람 (Human)
+                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='active1', data-dvalue='M<sup>a</sup>', data-dfirst) M<sup>a</sup>
+                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='passive1', data-dvalue='M<sup>p</sup>') M<sup>p</sup>
+                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='a-p1', data-dvalue='M<sup>a-p</sup>') M<sup>a-p</sup>
+                                        tr
+                                            td(colspan="2") 동물 (Animal)
+                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='active2', data-dvalue='FM<sup>a</sup>', data-dfirst) FM<sup>a</sup>
+                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='passive2', data-dvalue='FM<sup>p</sup>') FM<sup>p</sup>
+                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='a-p2', data-dvalue='FM<sup>a-p</sup>') FM<sup>a-p</sup>
+                                        tr
+                                            td(colspan="2") 무생물 (Inaminate)
+                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='active3', data-dvalue='m<sup>a</sup>', data-dfirst) m<sup>a</sup>
+                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='passive3', data-dvalue='m<sup>p</sup>') m<sup>p</sup>
+                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='a-p3', data-dvalue='m<sup>a-p</sup>') m<sup>a-p</sup>
                             
+                            .col-lg-6   
+                                table.table.table-striped.table-bordered
+                                    thead
+                                        tr
+                                            th.text-center(colspan="4")  유채색 반응 (Chromatic Color)
+    
+                                            
+                                    tbody
+                                        tr
+                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='chromatic1', data-dvalue='FC') FC
+                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='chromatic2', data-dvalue='CF') CF
+                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='chromatic3', data-dvalue='C') C
+                                             td.text-center.d-form(style='cursor: pointer;', data-dkey='chromatic4', data-dvalue='Cn') Cn
+
+                                table.table.table-striped.table-bordered
+                                    thead
+                                        tr
+                                            th.text-center(colspan="3")  무채색 반응 (Achromatic Color)
+    
+                                            
+                                    tbody
+                                        tr
+                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='achromatic1', data-dvalue='C\'') C'
+                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='achromatic2', data-dvalue='C\'F') C'F
+                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='achromatic3', data-dvalue='FC\'') FC'
+                                
+                                table.table.table-striped.table-bordered
+                                    thead
+                                        tr
+                                            th.text-center(colspan="5")  운동 반응
+    
+                                            
+                                    tbody
+                                        tr
+                                            td(colspan="2") 재질 (Texture)
+                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='texture1', data-dvalue='T') T
+                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='texture2', data-dvalue='TF') TF
+                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='texture3', data-dvalue='FT') FT
+                                        tr
+                                            td(colspan="2") 깊이 (Vista)
+                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='vista1', data-dvalue='V') V
+                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='vista2', data-dvalue='VF') VF
+                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='vista3', data-dvalue='FV') FV
+                                        tr
+                                            td(colspan="2") 확산 (Diffuse)
+                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='diffuse1', data-dvalue='Y') Y
+                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='diffuse2', data-dvalue='YF') YF
+                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='diffuse3', data-dvalue='FY') FY
+                            
+                            
+                        .row
+                            .col-lg-12
+                                .form-group
+                                    label 선택한 결정인
+                                    #selectedDet
+                    .modal-footer
+                        //- button.btn.btn-primary(type='button') Save changes
+                        button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+                    
         script(src="/js/jquery-2.1.1.js")
         script(src="/js/bootstrap.min.js")
         script(src="/js/plugins/metisMenu/jquery.metisMenu.js")
@@ -109,6 +229,7 @@ html
         script(src="/js/plugins/clockpicker/clockpicker.js")
         script.
             $(document).ready(function(){
+
                 $("#birthday").datepicker({
                     todayBtn: "linked",
                     keyboardNavigation: false,
@@ -123,4 +244,74 @@ html
                     calendarWeeks: true,
                     autoclose: true
                 })
+                //- $(".determinant").click(function() {
+                //-     var idx = $(this).index();
+                //-     console.log(idx);
+                //-     $('#detModal').modal('show');
+                //- })
+
+                // 카드 추가 버튼
+                $("#addReact").on('click', function(){
+                    var a = $('#score-table').find('tr:eq(0)').clone()
+                    $('#score-table').append(a);
+                    a.show();
+                    var index = $('#score-table tr').length - 1;
+                    $('#score-table tr:eq(' + index + ') .number').html('&#93' + (11 + index) + ';');
+                });
             })
+
+        script.
+
+            var dets = [ ]
+            var currentModalIndex = -1;
+
+
+            $(document).on('click', '.determinant', function(){
+                var idx = $(this).closest('tr').index();
+                $('#detModal').modal('show');
+                currentModalIndex = idx;
+            })
+        
+            $('.d-form').on('click', function() {
+
+                var key = $(this).attr('data-dkey'); 
+                var value = $(this).attr('data-dvalue');
+                var first = $(this).attr('data-dfirst') == '';
+                if (!dets[currentModalIndex]) {
+                    dets[currentModalIndex] = { };
+                }
+                if (dets[currentModalIndex][key] && dets[currentModalIndex][key].value == value) {
+                    delete dets[currentModalIndex][key];
+                } else {
+                    dets[currentModalIndex][key] = {value : value, first: first};
+                }
+                
+                parseDet(dets[currentModalIndex], currentModalIndex);
+            })
+            function parse2(det, index) {
+                if (det['(2)']) {
+                    $('#score-table').find('tr').eq(index).find('.select2').val('(2)');
+                } else {
+                    $('#score-table').find('tr').eq(index).find('.select2').val('');
+                }
+            }
+            function parseDetButton(html, index) {
+                $('#score-table').find('tr').eq(index).find('.determinant').html(html);
+            }
+            function parseDet(det, index) {
+                var first = Object.keys(det).filter(function(key) {
+                    return det[key].first;
+                }).map(function(key) {
+                    return det[key].value;
+                }).join(',');
+                var selected = Object.keys(det).filter(function(key) {
+                    return !det[key].first;
+                }).map(function(key) {
+                    return det[key].value;
+                }).join(',');
+
+                var merged = [first, selected].filter(function(str) { return str; }).join(',');
+                $('#selectedDet').html(merged); 
+                parse2(det, index);       
+                parseDetButton(merged, index);
+            }
