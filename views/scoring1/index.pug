@@ -66,7 +66,7 @@ html
                                         td.text-center
                                             button.btn.btn-primary.btn-sm.determinant 선택
                                         td.text-center.form-group
-                                            select.form-control
+                                            select.form-control(name='fq')
                                                 option +
                                                 option o
                                                 option u
@@ -94,7 +94,9 @@ html
                         .hr-line-dashed
                         .row
                             .col-lg-1.col-lg-offset-11
-                                button.btn.btn-primary 채 점
+                                form.form(method='POST', onsubmit='return stringifyForm()')
+                                    input(type='hidden', name='stringifyText')
+                                    button.btn.btn-primary(type='submit') 채 점
                         
 
         .modal.fade#detModal(tabindex='-1', role='dialog')
@@ -884,3 +886,37 @@ html
             // load default Z array
             changeZ(1);
         })
+
+        function stringifyForm() {
+            var rowSize = $('#score-table tr').length;
+            var ret = [];
+            for (var index = 0; index < rowSize; index++) {
+                var row = $('#score-table tr').eq(index);
+                var card = row.find('select[name=card] option:selected').val();
+                var cardNum = numberMapper[card];
+                var loc = row.find('select[name=loc] option:selected').val();
+                var dq = row.find('select[name=dq] option:selected').val();
+                var det = dets[index];
+                var fq = row.find('select[name=fq] option:selected').val();
+                var select2 = row.find('select.select2 option:selected').val();
+                var react = reacts[index];
+                var p = row.find('select.selectP option:selected').val();
+                var z = row.find('select.selectZ option:selected').val();
+                var score = scores[index];
+
+                ret.push({
+                    card: cardNum,
+                    loc: loc,
+                    dq: dq,
+                    det: det,
+                    fq: fq,
+                    select2: select2,
+                    react: react,
+                    p: p,
+                    z: z,
+                    score: score
+                });
+            }
+            $('input[name=stringifyText]').val(JSON.stringify(ret));
+            return true;
+        }
