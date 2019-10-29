@@ -32,18 +32,12 @@ html
                                 label.col-sm-2.control-label 채점방식
                                 .col-sm-4
                                     select.form-control(disabled)
-                                        option 요약
+                                        option 구조요약
                             
                             .form-group
                                 label.col-sm-1.control-label 학력
                                 .col-sm-3
-                                    select.form-control(name="graduate")
-                                        option(value="elementary") 초등학교 졸업 6년
-                                        option(value="middle") 중학교 졸업 9년
-                                        option(value="high") 고등학교 졸업 12년
-                                        option(value="univers") 4년제 대학교 졸업 16년
-                                        option(value="master") 대학원 졸업(석사) 18년
-                                        option(value="doctor") 대학원 졸업(박사) 20년
+                                    input.form-control(name="graduate" placeholder="학력")
                                 label.col-sm-1.control-label 직업
                                 .col-sm-3
                                     input.form-control(type="text" placeholder="직업" name="job" required)
