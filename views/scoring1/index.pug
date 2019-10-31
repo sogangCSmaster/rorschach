@@ -66,22 +66,26 @@ html
                                         td.text-center
                                             button.btn.btn-primary.btn-sm.determinant 선택
                                         td.text-center.form-group
+<<<<<<< HEAD
                                             select.form-control(name='fq')
+=======
+                                            select.form-control(name="fq")
+>>>>>>> 39277f4c341ca369b8ef15ac286c9e1229a685e4
                                                 option +
                                                 option o
                                                 option u
                                                 option -
                                                 option None
                                         td.text-center.form-group
-                                            select.form-control.select2(readonly)
-                                                option(disabled)
-                                                option(disabled) (2)
+                                            select.form-control.select2
+                                                option
+                                                option (2)
                                         td.text-center
                                             button.btn.btn-primary.btn-sm.react-btn 선택
                                         td.text-center.form-group
-                                            select.form-control.selectP(readonly)
-                                                option(disabled)
-                                                option(disabled) P
+                                            select.form-control.selectP
+                                                option
+                                                option P
                                         td.text-center
                                             select.form-control.selectZ
                                         td.text-center
@@ -94,10 +98,17 @@ html
                         .hr-line-dashed
                         .row
                             .col-lg-1.col-lg-offset-11
+<<<<<<< HEAD
                                 form.form(method='POST', onsubmit='return stringifyForm()')
                                     input(type='hidden', name='stringifyText')
                                     button.btn.btn-primary(type='submit') 채 점
                         
+=======
+                                form.form(action="/finishtest1" method="POST" onsubmit='return stringifyForm()')
+                                    input(type="hidden" name="stringifyText")
+                                    input(type="hidden" name="testID" value=session.insertId)
+                                    button.btn.btn-primary(type="submit") 채 점
+>>>>>>> 39277f4c341ca369b8ef15ac286c9e1229a685e4
 
         .modal.fade#detModal(tabindex='-1', role='dialog')
             .modal-dialog.modal-lg(role='document')
@@ -886,7 +897,6 @@ html
             // load default Z array
             changeZ(1);
         })
-
         function stringifyForm() {
             var rowSize = $('#score-table tr').length;
             var ret = [];

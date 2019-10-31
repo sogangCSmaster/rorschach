@@ -71,7 +71,7 @@ block content
             .ibox.float-e-margins
                 .ibox-title
                     span.label.label-success.pull-right=session.user.coin1
-                    h5 RORS 코인
+                    h5 RIAS-I (구조요약)
                 .ibox-content
                     h2.no-margins=session.user.useCount1
                     small 사용현황
@@ -81,7 +81,7 @@ block content
             .ibox.float-e-margins
                 .ibox-title
                     span.label.label-info.pull-right=session.user.coin2
-                    h5 RORS2 코인
+                    h5 RIAS-II (자동해석)
                 .ibox-content
                     h2.no-margins=session.user.useCount2
                     small 사용현황
@@ -94,11 +94,21 @@ block content
                 .ibox-content.text-center
                     .row
                         .col-lg-6
-                            button#rors1button.btn.btn-w-m.btn-primary.btn-block(type="button") 검사실시 (구조요약)
-                            a.btn.btn-w-m.btn-primary.btn-block.btn-outline(href="#") 검사실시 (구조요약 & 해석보고서)
+                            .row
+                                .col-md-12
+                                    table.table
+                                        thead
+                                            tr
+                                                th.text-center(colspan="2") 검사실시
+                                        tbody
+                                            tr
+                                                td.text-center
+                                                    button#rors1button.btn.btn-w-m.btn-primary.btn-block(type="button") 구조요약
+                                                td.text-center
+                                                    a.btn.btn-w-m.btn-primary.btn-block.btn-outline(href="#") 자동해석
                         .col-lg-6
                             br
-                            p RIASTM는 The Rorschach Test의 구조적 요약과 자동해석을 제공합니다. 이 프로그램에서 제공하는 해석은 가설적인 것이므로 다른 정보와 통합하여 사용해 주시기 바랍니다.
+                            p(style="font-size: 14px;") RIAS&#8482;은 The Rorschach Test의 구조요약과 자동해석을 제공합니다. 구조요약은 자료의 정리만 제공하며, 자동해석은 구조요약을 기본으로 제공하고 가설적 해석을 함께 제공합니다.
 
     .row
         .col-lg-12

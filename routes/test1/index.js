@@ -19,8 +19,8 @@ router.route("/test1")
         var { memberID, comName } = req.session.user;
         console.warn(testdate);
         console.log(req.session.user);
-        birthday = moment(birthday, 'DD/MM/YYYY').format('YYYY-MM-DD');
-        testdate = moment(testdate, 'DD/MM/YYYY').format('YYYY-MM-DD');
+        birthday = moment(birthday, 'YYYY-MM-DD').format('YYYY-MM-DD');
+        testdate = moment(testdate, 'YYYY-MM-DD').format('YYYY-MM-DD');
         console.log(birthday, testdate);
         var sql = "INSERT INTO test (name, sex, graduate, job, diagnosis, birthday, testdate, comName_input, inspector, memberID, comName) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         var insertId = await query.executeSQL(sql, [name, sex, graduate, job, diagnosis, birthday, testdate, comName_input, inspector, memberID, comName])
