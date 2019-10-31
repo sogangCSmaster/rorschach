@@ -878,7 +878,7 @@ html
         $(document).ready(function() {
             
             // add event handler for 반응위치+발달질 변경
-            $('select[name=card], select[name=loc], select[name=dq]').on('change', function() {
+            $(document).on('change', 'select[name=card], select[name=loc], select[name=dq]', function() {
                 var index = $(this).closest('tr').index();
                 changeZ(index);
             })
