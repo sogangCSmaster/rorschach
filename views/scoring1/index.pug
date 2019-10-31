@@ -66,11 +66,7 @@ html
                                         td.text-center
                                             button.btn.btn-primary.btn-sm.determinant 선택
                                         td.text-center.form-group
-<<<<<<< HEAD
                                             select.form-control(name='fq')
-=======
-                                            select.form-control(name="fq")
->>>>>>> 39277f4c341ca369b8ef15ac286c9e1229a685e4
                                                 option +
                                                 option o
                                                 option u
@@ -98,17 +94,10 @@ html
                         .hr-line-dashed
                         .row
                             .col-lg-1.col-lg-offset-11
-<<<<<<< HEAD
-                                form.form(method='POST', onsubmit='return stringifyForm()')
-                                    input(type='hidden', name='stringifyText')
-                                    button.btn.btn-primary(type='submit') 채 점
-                        
-=======
                                 form.form(action="/finishtest1" method="POST" onsubmit='return stringifyForm()')
                                     input(type="hidden" name="stringifyText")
                                     input(type="hidden" name="testID" value=session.insertId)
                                     button.btn.btn-primary(type="submit") 채 점
->>>>>>> 39277f4c341ca369b8ef15ac286c9e1229a685e4
 
         .modal.fade#detModal(tabindex='-1', role='dialog')
             .modal-dialog.modal-lg(role='document')
