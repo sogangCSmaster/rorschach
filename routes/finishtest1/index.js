@@ -27,16 +27,53 @@ router.route("/finishtest1")
         var regex = /[+-]?\d+(\.\d+)?/g;
         var Zf = 0;
         var ZSum = 0;
+        var sumW = 0;
+        var sumD = 0;
+        var sumDd = 0;
+        var sumS = 0;
+        var Wv = 0;
+
+        var dqPlus = 0;
+        var dqO = 0;
+        var dqVPlus = 0;
+        var dqV = 0;
+        
         score = JSON.parse(score);
+        console.warn(score);
         for(var i=1; i<score.length; i++){
-            console.warn(score[i]);
             if('z' in score[i]){
                 Zf = Zf + 1;
                 var Zvalue = score[i].z.match(regex).map(function(v) { return parseFloat(v); });
                 Zvalue = Zvalue[0];
                 ZSum = ZSum + Zvalue;
             }
+            var loc = score[i].loc;
+            var dq = score[i].dq;
+            if(loc == 'D'){
+                sumD = sumD + 1;
+            } else if(loc == 'W'){
+                sumW = sumW + 1;
+                if(dq == 'v'){
+                    Wv = Wv + 1;
+                }
+            } else if(loc == 'Dd'){
+                sumDd = sumDd + 1;
+            } else if(loc == 'S'){
+                sumS = sumS + 1;
+            }
+            if(dq=='+'){
+                dqPlus = dqPlus + 1;
+            } else if(dq=='v'){
+                dqV = dqV + 1;
+            } else if(dq=='o'){
+                dqO = dqO + 1;
+            } else if(dq=='v/+'){
+                dqVPlus = dqVPlus + 1;
+            }
+            
         }
+
+        var WplusD = sumW + sumD;
 
         var ZEst = ZEstMapper[Zf];
         console.log(ZEst);

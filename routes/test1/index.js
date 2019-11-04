@@ -17,11 +17,21 @@ router.route("/test1")
         }
         var { name, sex, graduate, job, diagnosis, birthday, testdate, comName_input, inspector } = req.body;
         var { memberID, comName } = req.session.user;
-        console.warn(testdate);
-        console.log(req.session.user);
+        if(!job){
+            job = "";
+        }
+        if(!diagnosis){
+            diagnosis = "";
+        }
+        if(!comName_input){
+            comName_input = "";
+        }
+        if(!inspector){
+            inspector = "";
+        }
         birthday = moment(birthday, 'YYYY-MM-DD').format('YYYY-MM-DD');
         testdate = moment(testdate, 'YYYY-MM-DD').format('YYYY-MM-DD');
-        console.log(birthday, testdate);
+
         var sql = "INSERT INTO test (name, sex, graduate, job, diagnosis, birthday, testdate, comName_input, inspector, memberID, comName) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         var insertId = await query.executeSQL(sql, [name, sex, graduate, job, diagnosis, birthday, testdate, comName_input, inspector, memberID, comName])
         insertId = insertId.insertId;

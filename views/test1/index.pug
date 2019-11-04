@@ -40,10 +40,10 @@ html
                                     input.form-control(name="graduate" placeholder="학력")
                                 label.col-sm-1.control-label 직업
                                 .col-sm-3
-                                    input.form-control(type="text" placeholder="직업" name="job" required)
+                                    input.form-control(type="text" placeholder="직업" name="job")
                                 label.col-sm-1.control-label 진단명
                                 .col-sm-3
-                                    input.form-control(type="text" placeholder="진단명" name="diagnosis" required)
+                                    input.form-control(type="text" placeholder="진단명" name="diagnosis")
                             .form-group
                                 label.col-sm-1.control-label 생년월일
                                 .col-sm-2
@@ -59,10 +59,10 @@ html
                                         input.form-control(type="text" readonly="readonly" value=moment().format('YYYY-MM-DD') name="testdate")
                                 label.col-sm-1.control-label 검사기관
                                 .col-sm-2
-                                    input.form-control(type="text" placeholder="검사기관" value=session.user.comName name="comName_input" required)
+                                    input.form-control(type="text" placeholder="검사기관" value=session.user.comName name="comName_input")
                                 label.col-sm-1.control-label 검사자
                                 .col-sm-2
-                                    input.form-control(type="text" placeholder="검사자" value=session.user.name name="inspector" required)
+                                    input.form-control(type="text" placeholder="검사자" value=session.user.name name="inspector")
                             .hr-line-dashed
                             .form-group
                                 .col-sm-4.col-sm-offset-1
