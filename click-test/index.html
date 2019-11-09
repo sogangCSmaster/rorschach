@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>asdasd</title>
+    <meta charset='utf-8'>
+    <style type='text/css'>
+.svg {
+  width: 2000px;
+  left: 0;
+  top: 0;
+}
+.svg.hover {
+  filter: invert(61%) sepia(84%) saturate(3429%) hue-rotate(157deg) brightness(89%) contrast(103%);
+}
+    </style>
+  </head>
+  <body>
+    <img class='svg' src='/assets/a-D1.svg' style='position: absolute;'>
+    <img class='svg' src='/assets/a-1.svg' style='position: absolute;'>
+    <img class='svg' src='/assets/a-Dd24.svg' style='position: absolute;'>
+  </body>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+  <script>
+
+      $('.svg').on('click', function(event, pageX, pageY, clientX, clientY) {
+        pageX = pageX || event.pageX;
+        pageY = pageY || event.pageY;
+        clientX = clientX || event.clientX;
+        clientY = clientY || event.clientY;
+        var ctx = document.createElement('canvas').getContext('2d');
+        var x = pageX - this.offsetLeft,
+          y = pageY - this.offsetTop,
+          w = ctx.canvas.width = this.width,
+          h = ctx.canvas.height = this.height,
+          alpha;
+
+        ctx.drawImage(this, 0, 0, w, h);
+        alpha = ctx.getImageData(x, y, 1, 1).data[3];
+
+        if (alpha == 0) {
+          $(this).hide();
+          $(document.elementFromPoint(clientX, clientY)).trigger('click', [pageX, pageY, clientX, clientY]);
+          $(this).show();
+        } else {
+          $('.svg').removeClass('hover');
+          $(this).addClass('hover');
+        }
+      });
+  </script>
+</html>
