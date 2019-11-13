@@ -55,6 +55,7 @@ html
                 size: A4;
                 margin: 0;
             }
+
             @media print {
                 html, body {
                     width: 210mm;
@@ -71,6 +72,7 @@ html
                     page-break-after: always;
                 }
             }
+            
     body.gray-bg
         .book
             .page
@@ -104,9 +106,11 @@ html
                                         td(style="font-size: 7pt;")
                                             .text-center 반응 위치
                                             div
-                                                | W = #{upper.location_features.W} &nbsp&nbsp ( Wv=#{upper.location_features.Wv} )
+                                                | W = #{upper.location_features.W}
+                                                span.pull-right ( Wv=#{upper.location_features.Wv} )
                                                 br
-                                                | D = #{upper.location_features.D} &nbsp&nbsp ( W+D=#{upper.location_features.WPlusD} )
+                                                | D = #{upper.location_features.D}
+                                                span.pull-right ( W+D=#{upper.location_features.WPlusD} )
                                                 br
                                                 | Dd = #{upper.location_features.Dd}
                                                 br
@@ -138,7 +142,7 @@ html
                                                 | &nbsp #{key} = #{upper.contents[key]}
                                                 br
                                             -}
-                        .col-md-3.col-3-print(style="padding-right: 2px; padding-left: 2px;")
+                        .col-md-4.col-3-print(style="padding-right: 2px; padding-left: 2px;")
                             table.table.table-bordered
                                 thead
                                     tr
@@ -147,7 +151,59 @@ html
                                             | (Summary of Approach)
                                 tbody
                                     tr
-                                        td(style="font-size: 7pt;" colspan="3")
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="1") 카드
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3") 위치 & 발달질(DQ)
+                                    tr
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="1") Ⅰ
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")
+                                            each elem in upper.approach[1]
+                                                = elem + ", "
+                                    tr
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="1") Ⅱ
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")
+                                            each elem in upper.approach[2]
+                                                = elem + ", "
+                                    tr
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="1") Ⅲ
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")
+                                            each elem in upper.approach[3]
+                                                = elem + ", "
+                                    tr
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="1") Ⅳ
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")
+                                            each elem in upper.approach[4]
+                                                = elem + ", "
+                                    tr
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="1") Ⅴ
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")
+                                            each elem in upper.approach[5]
+                                                = elem + ", "
+                                    tr
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="1") Ⅵ
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")
+                                            each elem in upper.approach[6]
+                                                = elem + ", "
+                                    tr
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="1") Ⅶ
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")
+                                            each elem in upper.approach[7]
+                                                = elem + ", "
+                                    tr
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="1") Ⅷ
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")
+                                            each elem in upper.approach[8]
+                                                = elem + ", "
+                                    tr
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="1") Ⅸ
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")
+                                            each elem in upper.approach[9]
+                                                = elem + ", "
+                                    tr
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="1") Ⅹ
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")
+                                            each elem in upper.approach[10]
+                                                = elem + ", "
+                                            
                                         
                 
 
