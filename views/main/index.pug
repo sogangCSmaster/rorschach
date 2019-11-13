@@ -11,11 +11,32 @@ block script
     script(src="/js/plugins/daterangepicker/daterangepicker.js")
     script(src="/js/plugins/clockpicker/clockpicker.js")
     script.
+        /**
+        * Korean translation for bootstrap-datepicker
+        * This is a port from https://github.com/moment/moment/blob/develop/src/locale/ko.js
+        */
+        ;(function($){
+            $.fn.datepicker.dates['ko'] = {
+                days: ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"],
+                daysShort: ["일", "월", "화", "수", "목", "금", "토"],
+                daysMin: ["일", "월", "화", "수", "목", "금", "토"],
+                months: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+                monthsShort: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+                today: "오늘",
+                clear: "삭제",
+                format: "yyyy-mm-dd",
+                titleFormat: "yyyy년mm월",
+                weekStart: 0
+            };
+        }(jQuery));
+    script.
         $(document).ready(function(){
             $('#daterange .input-daterange').datepicker({
                 keyboardNavigation: false,
                 forceParse: false,
-                autoclose: true
+                autoclose: true,
+                language: "ko",
+                calendarWeeks: true,
             });
         })
     script.
@@ -116,20 +137,20 @@ block content
                 .ibox-title
                     h5 검사
                 .ibox-content
-                    .row.form-group
+                    form.row.form-group(method="POST" action="/")
                         .col-lg-3.col-lg-offset-3.form-group#daterange
                             .input-daterange.input-group#datepicker
-                                input.input-sm.form-control(type="text" name="start" value="05/14/2014")
+                                input.input-sm.form-control(type="text" name="start" value="2019-01-01")
                                 span.input-group-addon ~
-                                input.input-sm.form-control(type="text" name="end" value="05/20/2014")
+                                input.input-sm.form-control(type="text" name="end" value=moment().format('YYYY-MM-DD'))
                         .col-lg-2
                             select.form-control(name="searchfor")
-                                option 수검자
-                                option 검사기관
+                                option(value="name") 수검자
+                                option(value="comName") 검사기관
                         .col-lg-3
                             input.form-control(name="searchtext" type="text" placeholder="검색")
                         .col-lg-1
-                            button.btn.btn-primary.btn-block 검색
+                            button.btn.btn-primary.btn-block(type="submit") 검색
 
                     .row
                         table.table.table-striped.table-sm
@@ -143,3 +164,18 @@ block content
                                     th.text-center(scope="col") 해석
                                     th.text-center(scope="col") 삭제
                             tbody
+                                each data in datas
+                                    tr
+                                        td.text-center=data.id
+                                        td.text-center=data.name
+                                        td.text-center=data.testdate
+                                        if data.test=="test1"
+                                            td.text-center 구조요약
+                                        else if data.test=="test2"
+                                            td.text-center 구조요약 & 해석보고서
+                                        td.text-center=data.comName_input
+                                        td.text-center
+                                            a.btn.btn-success.btn-xs(href="#") 해석
+                                        td.text-center
+                                            a.btn.btn-danger.btn-xs(href="#") 삭제
+
