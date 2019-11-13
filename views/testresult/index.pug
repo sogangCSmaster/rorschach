@@ -4,13 +4,13 @@ html
         meta(charset="utf-8")
         meta(name="viewport" content="width=device-width, initial-scale=1.0")
         title Rorschach
-        link(href="/css/bootstrap.min.css" rel="stylesheet")
-        link(href="/font-awesome/css/font-awesome.css" rel="stylesheet")
-        link(href="/css/animate.css" rel="stylesheet")
-        link(href="/css/style.css" rel="stylesheet")
-        link(href="/css/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet")
-        link(href="/css/plugins/datapicker/datepicker3.css" rel="stylesheet")
-        link(href="/css/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet")
+        link(href="/css/bootstrap.min.css" rel="stylesheet" media="all")
+        link(href="/font-awesome/css/font-awesome.css" rel="stylesheet" media="all")
+        link(href="/css/animate.css" rel="stylesheet" media="all")
+        link(href="/css/style.css" rel="stylesheet" media="all")
+        link(href="/css/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet" media="all")
+        link(href="/css/plugins/datapicker/datepicker3.css" rel="stylesheet" media="all")
+        link(href="/css/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" media="all")
         link(href='/css/table-hover-cells.css', rel='stylesheet')
         style.
             body {
@@ -232,6 +232,13 @@ html
                                             each elem in upper.approach[10]
                                                 = elem + ", "
                     .row
+                        .col-md-4
+                            table.table.table-bordered
+                                thead
+                                    tr
+                                        th.text-center(style="font-size: 7pt" colspan="3") 형태질
+                                            br
+                                            | (Form Quality)
 
                                         
                 

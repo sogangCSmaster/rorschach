@@ -9,6 +9,7 @@ const contents = require('./upper_section/contents');
 const approach = require('./upper_section/approach');
 const single = require('./upper_section/single');
 const dq = require('./upper_section/dq');
+const form_quality = require('./upper_section/form_quality');
 
 router.route("/finishtest1")
     .get(async(req, res, next) => {
@@ -58,6 +59,9 @@ router.route("/finishtest1")
         upper.dq.o = dq.getO(score);
         upper.dq.VSlashPlus = dq.getVSlashPlus(score);
         upper.dq.v = dq.getV(score);
+        upper.form_quality = {};
+        upper.form_quality.FQx = form_quality.getFQx(score);
+        console.warn(upper.form_quality.FQx)
 
 
 
