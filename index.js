@@ -54,6 +54,8 @@ const login = require('./routes/login');
 const test1 = require('./routes/test1');
 const scoring1 = require('./routes/scoring1');
 const finishtest1 = require('./routes/finishtest1');
+const deletion = require('./routes/delete');
+app.use(deletion)
 app.use(finishtest1);
 app.use(scoring1);
 app.use(test1);

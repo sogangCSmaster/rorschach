@@ -4,12 +4,14 @@ block head
     link(href="/css/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet")
     link(href="/css/plugins/datapicker/datepicker3.css" rel="stylesheet")
     link(href="/css/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet")
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css")
 
 block script
     script(src="/js/plugins/fullcalendar/moment.min.js")
     script(src="/js/plugins/datapicker/bootstrap-datepicker.js")
     script(src="/js/plugins/daterangepicker/daterangepicker.js")
     script(src="/js/plugins/clockpicker/clockpicker.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js")
     script.
         /**
         * Korean translation for bootstrap-datepicker
@@ -70,6 +72,28 @@ block script
             //- } else {
             //-     return location.href = '/test2';
             //- }
+        })
+    script.
+        $(".delete").on('click', function(){
+            var id = $(this).attr('data-id');
+            console.warn(id);
+            $.alert({
+                title: '채점 결과 삭제',
+                content: '정말 채점 결과를 삭제하시겠습니까?',
+                buttons: {
+                    삭제: function() {
+                        $.ajax({
+                            url: "/delete?id=" + id,
+                            method: "GET"
+                        }).done(function(res){
+                            location.reload();
+                        })
+                    },
+                    취소: function() {
+
+                    }
+                }
+            })
         })
 
         
@@ -180,5 +204,5 @@ block content
                                             else if data.test=="test2"
                                                 a.btn.btn-success.btn-xs(href="/finishtest2?id="+data.id) 해석
                                         td.text-center
-                                            a.btn.btn-danger.btn-xs(href="#") 삭제
+                                            button.delete.btn.btn-danger.btn-xs(data-id=data.id) 삭제
 
