@@ -96,7 +96,7 @@ html
                                     tr
                                         td(style="font-size: 7pt;")
                                             .text-center 조직화 활동
-                                            div
+                                            div(style="margin-left: 10px;")
                                                 | Zf = #{upper.location_features.Zf}
                                                 br
                                                 | ZSum = #{upper.location_features.ZSum}
@@ -105,7 +105,7 @@ html
                                     tr
                                         td(style="font-size: 7pt;")
                                             .text-center 반응 위치
-                                            div
+                                            div(style="margin-left: 10px;")
                                                 | W = #{upper.location_features.W}
                                                 span.pull-right ( Wv=#{upper.location_features.Wv} )
                                                 br
@@ -115,6 +115,27 @@ html
                                                 | Dd = #{upper.location_features.Dd}
                                                 br
                                                 | S = #{upper.location_features.S}
+                            
+                            table.table.table-bordered
+                                thead
+                                    tr
+                                        th.text-center(style="font-size: 7pt" colspan="3") 발달질
+                                            br
+                                            | (Developmental Quality)
+                                tbody
+                                    tr
+                                        td(style="font-size: 7pt;")
+                                            div(style="margin-left: 10px;")
+                                                | + = #{upper.dq.plus}
+                                                br
+                                                | o = #{upper.dq.o}
+                                                br
+                                                | v/o = #{upper.dq.VSlashPlus}
+                                                br
+                                                | v = #{upper.dq.v}
+
+
+
                         .col-md-3.col-3-print(style="padding-right: 2px; padding-left: 2px;")
                             table.table.table-bordered
                                 thead
@@ -144,10 +165,11 @@ html
                                 tbody
                                     tr
                                         td(style="font-size: 7pt;" colspan="3")
-                                            - for(var key in upper.contents){
-                                                | &nbsp #{key} = #{upper.contents[key]}
-                                                br
-                                            -}
+                                            div(style="margin-left: 10px;")
+                                                - for(var key in upper.contents){
+                                                    | &nbsp #{key} = #{upper.contents[key]}
+                                                    br
+                                                -}
                         .col-md-4.col-3-print(style="padding-right: 2px; padding-left: 2px;")
                             table.table.table-bordered
                                 thead
@@ -209,7 +231,8 @@ html
                                         td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")
                                             each elem in upper.approach[10]
                                                 = elem + ", "
-                                            
+                    .row
+
                                         
                 
 

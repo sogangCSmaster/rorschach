@@ -8,6 +8,7 @@ const location_features = require('./upper_section/location_features');
 const contents = require('./upper_section/contents');
 const approach = require('./upper_section/approach');
 const single = require('./upper_section/single');
+const dq = require('./upper_section/dq');
 
 router.route("/finishtest1")
     .get(async(req, res, next) => {
@@ -50,7 +51,14 @@ router.route("/finishtest1")
         upper.determinants.F = single.getF(score);
         upper.determinants.M = single.getM(score);
         upper.determinants.FM = single.getFM(score);
-        console.warn(upper.determinants);
+        // console.warn(upper.determinants);
+
+        upper.dq = {};
+        upper.dq.plus = dq.getPlus(score);
+        upper.dq.o = dq.getO(score);
+        upper.dq.VSlashPlus = dq.getVSlashPlus(score);
+        upper.dq.v = dq.getV(score);
+
 
 
         
