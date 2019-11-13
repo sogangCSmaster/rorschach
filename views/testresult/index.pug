@@ -69,6 +69,11 @@ html
                     .row
                         .col-lg-12.text-center
                             h3 Rorschach Test Structural Summary
+                    .container-fluid
+                        .row
+                            .col-md-12.text-center
+                                h6 NO : #{testconfig.id} &nbsp&nbsp&nbsp&nbsp 이름 : #{testconfig.name} &nbsp&nbsp&nbsp&nbsp 생년월일 : #{moment(testconfig.birthday).format('YY년 MM월 DD일')} &nbsp&nbsp&nbsp&nbsp 성별 : #{testconfig.sex} &nbsp&nbsp&nbsp&nbsp 검사일 : #{moment(testconfig.testdate).format('YY년 MM월 DD일')}
+
                     
                     
         script(src="/js/jquery-2.1.1.js")

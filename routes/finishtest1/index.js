@@ -3,6 +3,7 @@ const router = express.Router();
 const query = require('../query');
 const axios = require('axios');
 const config = require('../../config.json');
+const moment = require('moment');
 
 router.route("/finishtest1")
     .get(async(req, res, next) => {
@@ -16,6 +17,11 @@ router.route("/finishtest1")
         sql = "SELECT * FROM test WHERE id=?";
         var testconfig = await query.executeSQL(sql, [id]);
         testconfig = testconfig[0];
+        if(testconfig.sex=="male"){
+            testconfig.sex="남";
+        } else {
+            testconfig.sex="여";
+        }
         data = data[0];
         var score = data.score;
         score = JSON.parse(score);
@@ -23,7 +29,7 @@ router.route("/finishtest1")
         //testconfig => 이름, 검사주체 등 기본정보
         //score => 테스트
 
-        res.render('testresult/index', { testconfig });
+        res.render('testresult/index', { testconfig, moment });
 
     })
     .post(async(req, res, next) => {
