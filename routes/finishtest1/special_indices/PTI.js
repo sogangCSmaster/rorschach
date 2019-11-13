@@ -1,12 +1,15 @@
 const cognitive_mediation = require('../lower_section/cognitive_mediation.js');
+const ideation = require('../lower_section/ideation.js');
 
 function getXAperChecked(scores) {
   // XA% < 0.70 and WDA% < 0.75
+  cognitive_mediation.getXAper(scores) < 0.70 && cognitive_mediation.getWDAper(scores) < 0.75;
 }
 exports.getXAperChecked = getXAperChecked;
 
 function getXminusperChecked(scores) {
   // X-% > 0.29
+  return cognitive_mediation.getXminusper(scores) > 0.29;
 }
 exports.getXminusperChecked = getXminusperChecked;
 
