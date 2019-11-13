@@ -5,6 +5,7 @@ const axios = require('axios');
 const config = require('../../config.json');
 const moment = require('moment');
 const location_features = require('./upper_section/location_features');
+const contents = require('./upper_section/contents');
 
 router.route("/finishtest1")
     .get(async(req, res, next) => {
@@ -35,6 +36,16 @@ router.route("/finishtest1")
         upper.location_features.Zf = location_features.getZf(score);
         upper.location_features.ZSum = location_features.getZSum(score);
         upper.location_features.ZEst = location_features.getZEst(score);
+        upper.location_features.W = location_features.getW(score);
+        upper.location_features.D = location_features.getD(score);
+        upper.location_features.Dd = location_features.getDd(score);
+        upper.location_features.S = location_features.getS(score);
+        upper.location_features.Wv = location_features.getWv(score);
+        upper.location_features.WPlusD = location_features.getWPlusD(score);
+        // upper.contents = contents.getContents(score);
+        // console.warn(upper.contents);
+        
+        
 
         res.render('testresult/index', { testconfig, moment, upper });
 
