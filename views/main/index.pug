@@ -175,7 +175,10 @@ block content
                                             td.text-center 구조요약 & 해석보고서
                                         td.text-center=data.comName_input
                                         td.text-center
-                                            a.btn.btn-success.btn-xs(href="#") 해석
+                                            if data.test=="test1"
+                                                a.btn.btn-success.btn-xs(href="/finishtest1?id="+data.id) 해석
+                                            else if data.test=="test2"
+                                                a.btn.btn-success.btn-xs(href="/finishtest2?id="+data.id) 해석
                                         td.text-center
                                             a.btn.btn-danger.btn-xs(href="#") 삭제
 
