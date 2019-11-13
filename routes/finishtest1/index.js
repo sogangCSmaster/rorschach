@@ -44,7 +44,7 @@ router.route("/finishtest1")
         upper.location_features.WPlusD = location_features.getWPlusD(score);
         // upper.contents = contents.getContents(score);
         // console.warn(upper.contents);
-        
+
         
 
         res.render('testresult/index', { testconfig, moment, upper });

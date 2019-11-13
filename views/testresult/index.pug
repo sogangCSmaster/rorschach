@@ -41,6 +41,15 @@ html
                 height: 257mm;
                 outline: 2cm #FFFFFF solid;
             }
+
+            .col-6-print{
+                flex:0 0 50% !important;
+            }
+
+            .col-3-print{
+                flex:0 0 25% !important;
+            }
+
             
             @page {
                 size: A4;
@@ -67,14 +76,14 @@ html
             .page
                 .subpage
                     .row
-                        .col-lg-12.text-center
+                        .col-md-12.text-center
                             h3 Rorschach Test Structural Summary
                     .container-fluid
                         .row
                             .col-md-12.text-center
                                 h6 NO : #{testconfig.id} &nbsp&nbsp&nbsp&nbsp 이름 : #{testconfig.name} &nbsp&nbsp&nbsp&nbsp 생년월일 : #{moment(testconfig.birthday).format('YY년 MM월 DD일')} &nbsp&nbsp&nbsp&nbsp 성별 : #{testconfig.sex} &nbsp&nbsp&nbsp&nbsp 검사일 : #{moment(testconfig.testdate).format('YY년 MM월 DD일')}
                     .row
-                        .col-lg-3(style="padding-right: 2px; padding-left: 2px;")
+                        .col-md-3.col-3-print(style="padding-right: 2px; padding-left: 2px;")
                             table.table.table-bordered
                                 thead
                                     tr
@@ -102,7 +111,7 @@ html
                                                 | Dd = #{upper.location_features.Dd}
                                                 br
                                                 | S = #{upper.location_features.S}
-                        .col-lg-3(style="padding-right: 2px; padding-left: 2px;")
+                        .col-md-3.col-3-print(style="padding-right: 2px; padding-left: 2px;")
                             table.table.table-bordered
                                 thead
                                     tr
@@ -115,7 +124,7 @@ html
                                             .text-center 복합
                                         td(style="font-size: 7pt;" colspan="1.5")
                                             .text-center 전체
-                        .col-lg-3(style="padding-right: 2px; padding-left: 2px;")
+                        .col-md-3.col-3-print(style="padding-right: 2px; padding-left: 2px;")
                             table.table.table-bordered
                                 thead
                                     tr
@@ -125,7 +134,7 @@ html
                                 tbody
                                     tr
                                         td(style="font-size: 7pt;" colspan="3")
-                        .col-lg-3(style="padding-right: 2px; padding-left: 2px;")
+                        .col-md-3.col-3-print(style="padding-right: 2px; padding-left: 2px;")
                             table.table.table-bordered
                                 thead
                                     tr
@@ -158,3 +167,7 @@ html
         script(src="/js/plugins/datapicker/bootstrap-datepicker.js")
         script(src="/js/plugins/daterangepicker/daterangepicker.js")
         script(src="/js/plugins/clockpicker/clockpicker.js")
+        script.
+            $(document).ready(function(){
+                window.print();
+            })
