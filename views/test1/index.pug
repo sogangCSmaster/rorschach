@@ -32,24 +32,18 @@ html
                                 label.col-sm-2.control-label 채점방식
                                 .col-sm-4
                                     select.form-control(disabled)
-                                        option 요약
+                                        option 구조요약
                             
                             .form-group
                                 label.col-sm-1.control-label 학력
                                 .col-sm-3
-                                    select.form-control(name="graduate")
-                                        option(value="elementary") 초등학교 졸업 6년
-                                        option(value="middle") 중학교 졸업 9년
-                                        option(value="high") 고등학교 졸업 12년
-                                        option(value="univers") 4년제 대학교 졸업 16년
-                                        option(value="master") 대학원 졸업(석사) 18년
-                                        option(value="doctor") 대학원 졸업(박사) 20년
+                                    input.form-control(name="graduate" placeholder="학력")
                                 label.col-sm-1.control-label 직업
                                 .col-sm-3
-                                    input.form-control(type="text" placeholder="직업" name="job" required)
+                                    input.form-control(type="text" placeholder="직업" name="job")
                                 label.col-sm-1.control-label 진단명
                                 .col-sm-3
-                                    input.form-control(type="text" placeholder="진단명" name="diagnosis" required)
+                                    input.form-control(type="text" placeholder="진단명" name="diagnosis")
                             .form-group
                                 label.col-sm-1.control-label 생년월일
                                 .col-sm-2
@@ -62,13 +56,13 @@ html
                                     #today.input-group.date
                                         span.input-group-addon
                                             i.fa.fa-calendar
-                                        input.form-control(type="text" readonly="readonly" value=moment().format('DD/MM/YYYY') name="testdate")
+                                        input.form-control(type="text" readonly="readonly" value=moment().format('YYYY-MM-DD') name="testdate")
                                 label.col-sm-1.control-label 검사기관
                                 .col-sm-2
-                                    input.form-control(type="text" placeholder="검사기관" value=session.user.comName name="comName_input" required)
+                                    input.form-control(type="text" placeholder="검사기관" value=session.user.comName name="comName_input")
                                 label.col-sm-1.control-label 검사자
                                 .col-sm-2
-                                    input.form-control(type="text" placeholder="검사자" value=session.user.name name="inspector" required)
+                                    input.form-control(type="text" placeholder="검사자" value=session.user.name name="inspector")
                             .hr-line-dashed
                             .form-group
                                 .col-sm-4.col-sm-offset-1
@@ -94,19 +88,40 @@ html
         script(src="/js/plugins/daterangepicker/daterangepicker.js")
         script(src="/js/plugins/clockpicker/clockpicker.js")
         script.
+            /**
+            * Korean translation for bootstrap-datepicker
+            * This is a port from https://github.com/moment/moment/blob/develop/src/locale/ko.js
+            */
+            ;(function($){
+                $.fn.datepicker.dates['ko'] = {
+                    days: ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"],
+                    daysShort: ["일", "월", "화", "수", "목", "금", "토"],
+                    daysMin: ["일", "월", "화", "수", "목", "금", "토"],
+                    months: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+                    monthsShort: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+                    today: "오늘",
+                    clear: "삭제",
+                    format: "yyyy-mm-dd",
+                    titleFormat: "yyyy년mm월",
+                    weekStart: 0
+                };
+            }(jQuery));
+        script.
             $(document).ready(function(){
                 $("#birthday").datepicker({
                     todayBtn: "linked",
                     keyboardNavigation: false,
                     forceParse: false,
                     calendarWeeks: true,
-                    autoclose: true
+                    autoclose: true,
+                    language: "ko"
                 })
                 $("#today").datepicker({
                     todayBtn: "linked",
                     keyboardNavigation: false,
                     forceParse: false,
                     calendarWeeks: true,
-                    autoclose: true
+                    autoclose: true,
+                    language: "ko"
                 })
             })

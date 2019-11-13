@@ -1,0 +1,160 @@
+doctype html
+html
+    head
+        meta(charset="utf-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        title Rorschach
+        link(href="/css/bootstrap.min.css" rel="stylesheet")
+        link(href="/font-awesome/css/font-awesome.css" rel="stylesheet")
+        link(href="/css/animate.css" rel="stylesheet")
+        link(href="/css/style.css" rel="stylesheet")
+        link(href="/css/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet")
+        link(href="/css/plugins/datapicker/datepicker3.css" rel="stylesheet")
+        link(href="/css/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet")
+        link(href='/css/table-hover-cells.css', rel='stylesheet')
+        style.
+            body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                background-color: #FAFAFA;
+                font: 12pt "Tahoma";
+            }
+            * {
+                box-sizing: border-box;
+                -moz-box-sizing: border-box;
+            }
+            .page {
+                width: 210mm;
+                min-height: 297mm;
+                padding: 20mm;
+                margin: 10mm auto;
+                border: 1px #D3D3D3 solid;
+                border-radius: 5px;
+                background: white;
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            }
+            .subpage {
+                padding: 0.2cm;
+                border: 1px #FFFFFF solid;
+                height: 257mm;
+                outline: 2cm #FFFFFF solid;
+            }
+            
+            @page {
+                size: A4;
+                margin: 0;
+            }
+            @media print {
+                html, body {
+                    width: 210mm;
+                    height: 297mm;        
+                }
+                .page {
+                    margin: 0;
+                    border: initial;
+                    border-radius: initial;
+                    width: initial;
+                    min-height: initial;
+                    box-shadow: initial;
+                    background: initial;
+                    page-break-after: always;
+                }
+            }
+    body.gray-bg
+        .book
+            .page
+                .subpage
+                    .row
+                        .col-lg-12.text-center
+                            h3 Rorschach Test Structural Summary
+                    .container-fluid
+                        .row
+                            .col-md-12.text-center
+                                h6 NO : #{testconfig.id} &nbsp&nbsp&nbsp&nbsp 이름 : #{testconfig.name} &nbsp&nbsp&nbsp&nbsp 생년월일 : #{moment(testconfig.birthday).format('YY년 MM월 DD일')} &nbsp&nbsp&nbsp&nbsp 성별 : #{testconfig.sex} &nbsp&nbsp&nbsp&nbsp 검사일 : #{moment(testconfig.testdate).format('YY년 MM월 DD일')}
+                    .row
+                        .col-lg-3(style="padding-right: 2px; padding-left: 2px;")
+                            table.table.table-bordered
+                                thead
+                                    tr
+                                        th.text-center(style="font-size: 7pt" colspan="3") 반응위치 특징
+                                            br
+                                            | (Location Features)
+                                tbody
+                                    tr
+                                        td(style="font-size: 7pt;")
+                                            .text-center 조직화 활동
+                                            div
+                                                | Zf = #{upper.location_features.Zf}
+                                                br
+                                                | ZSum = #{upper.location_features.ZSum}
+                                                br
+                                                | ZEst = #{upper.location_features.ZEst}
+                                    tr
+                                        td(style="font-size: 7pt;")
+                                            .text-center 반응 위치
+                                            div
+                                                | W = #{upper.location_features.W} &nbsp&nbsp ( Wv=#{upper.location_features.Wv} )
+                                                br
+                                                | D = #{upper.location_features.D} &nbsp&nbsp ( W+D=#{upper.location_features.WPlusD} )
+                                                br
+                                                | Dd = #{upper.location_features.Dd}
+                                                br
+                                                | S = #{upper.location_features.S}
+                        .col-lg-3(style="padding-right: 2px; padding-left: 2px;")
+                            table.table.table-bordered
+                                thead
+                                    tr
+                                        th.text-center(style="font-size: 7pt" colspan="3") 결정인
+                                            br
+                                            | (Determinants)
+                                tbody
+                                    tr
+                                        td(style="font-size: 7pt;" colspan="1.5")
+                                            .text-center 복합
+                                        td(style="font-size: 7pt;" colspan="1.5")
+                                            .text-center 전체
+                        .col-lg-3(style="padding-right: 2px; padding-left: 2px;")
+                            table.table.table-bordered
+                                thead
+                                    tr
+                                        th.text-center(style="font-size: 7pt" colspan="3") 반응내용
+                                            br
+                                            | (Contents)
+                                tbody
+                                    tr
+                                        td(style="font-size: 7pt;" colspan="3")
+                        .col-lg-3(style="padding-right: 2px; padding-left: 2px;")
+                            table.table.table-bordered
+                                thead
+                                    tr
+                                        th.text-center(style="font-size: 7pt" colspan="3") 접근방식
+                                            br
+                                            | (Summary of Approach)
+                                tbody
+                                    tr
+                                        td(style="font-size: 7pt;" colspan="3")
+                                        
+                
+
+            .page
+                .subpage
+                    
+                    
+        script(src="/js/jquery-2.1.1.js")
+        script(src="/js/bootstrap.min.js")
+        script(src="/js/plugins/metisMenu/jquery.metisMenu.js")
+        script(src="/js/plugins/slimscroll/jquery.slimscroll.min.js")
+        script(src="/js/inspinia.js")
+        script(src="/js/plugins/pace/pace.min.js")
+        script(src="/js/plugins/flot/jquery.flot.js")
+        script(src="/js/plugins/flot/jquery.flot.tooltip.min.js")
+        script(src="/js/plugins/flot/jquery.flot.resize.js")
+        script(src="/js/plugins/chartJs/Chart.min.js")
+        script(src="/js/plugins/peity/jquery.peity.min.js")
+        script(src="/js/demo/peity-demo.js")
+        script(src="/js/plugins/fullcalendar/moment.min.js")
+        script(src="/js/plugins/datapicker/bootstrap-datepicker.js")
+        script(src="/js/plugins/daterangepicker/daterangepicker.js")
+        script(src="/js/plugins/clockpicker/clockpicker.js")

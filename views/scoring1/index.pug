@@ -11,6 +11,7 @@ html
         link(href="/css/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet")
         link(href="/css/plugins/datapicker/datepicker3.css" rel="stylesheet")
         link(href="/css/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet")
+        link(href='/css/table-hover-cells.css', rel='stylesheet')
     body.gray-bg
         .container-fluid.animated.fadeInDown.m-t-lg
             .row
@@ -65,7 +66,7 @@ html
                                         td.text-center
                                             button.btn.btn-primary.btn-sm.determinant 선택
                                         td.text-center.form-group
-                                            select.form-control
+                                            select.form-control(name='fq')
                                                 option +
                                                 option o
                                                 option u
@@ -76,12 +77,15 @@ html
                                                 option
                                                 option (2)
                                         td.text-center
+                                            button.btn.btn-primary.btn-sm.react-btn 선택
                                         td.text-center.form-group
-                                            select.form-control
+                                            select.form-control.selectP
                                                 option
                                                 option P
                                         td.text-center
+                                            select.form-control.selectZ
                                         td.text-center
+                                            button.btn.btn-primary.btn-sm.score-btn 선택
                                 +card-tr('hidden')
                                 +card-tr('show')
 
@@ -90,8 +94,10 @@ html
                         .hr-line-dashed
                         .row
                             .col-lg-1.col-lg-offset-11
-                                button.btn.btn-primary 채 점
-                        
+                                form.form(action="/finishtest1" method="POST" onsubmit='return stringifyForm()')
+                                    input(type="hidden" name="stringifyText")
+                                    input(type="hidden" name="testID" value=session.insertId)
+                                    button.btn.btn-primary(type="submit") 채 점
 
         .modal.fade#detModal(tabindex='-1', role='dialog')
             .modal-dialog.modal-lg(role='document')
@@ -103,7 +109,7 @@ html
                     .modal-body
                         .row
                             .col-lg-6
-                                table.table.table-striped.table-bordered
+                                table.table.table-striped.table-bordered.table-hover-cells
                                     thead
                                         tr
                                             th.text-center(colspan="2")  형태 반응 (Form)
@@ -123,7 +129,7 @@ html
                                             td.text-center.d-form(style='cursor: pointer;', data-dkey='reflection1', data-dvalue='Fr') Fr
                                             td.text-center.d-form(style='cursor: pointer;', data-dkey='reflection2', data-dvalue='rF') rF
 
-                                table.table.table-striped.table-bordered
+                                table.table.table-striped.table-bordered.table-hover-cells
                                     thead
                                         tr
                                             th.text-center(colspan="5")  운동 반응
@@ -153,7 +159,7 @@ html
                                             td.text-center.d-form(style='cursor: pointer;', data-dkey='a-p3', data-dvalue='m<sup>a-p</sup>') m<sup>a-p</sup>
                             
                             .col-lg-6   
-                                table.table.table-striped.table-bordered
+                                table.table.table-striped.table-bordered.table-hover-cells
                                     thead
                                         tr
                                             th.text-center(colspan="4")  유채색 반응 (Chromatic Color)
@@ -166,7 +172,7 @@ html
                                             td.text-center.d-form(style='cursor: pointer;', data-dkey='chromatic3', data-dvalue='C') C
                                              td.text-center.d-form(style='cursor: pointer;', data-dkey='chromatic4', data-dvalue='Cn') Cn
 
-                                table.table.table-striped.table-bordered
+                                table.table.table-striped.table-bordered.table-hover-cells
                                     thead
                                         tr
                                             th.text-center(colspan="3")  무채색 반응 (Achromatic Color)
@@ -178,7 +184,7 @@ html
                                             td.text-center.d-form(style='cursor: pointer;', data-dkey='achromatic2', data-dvalue='C\'F') C'F
                                             td.text-center.d-form(style='cursor: pointer;', data-dkey='achromatic3', data-dvalue='FC\'') FC'
                                 
-                                table.table.table-striped.table-bordered
+                                table.table.table-striped.table-bordered.table-hover-cells
                                     thead
                                         tr
                                             th.text-center(colspan="5")  운동 반응
@@ -207,6 +213,336 @@ html
                                 .form-group
                                     label 선택한 결정인
                                     #selectedDet
+                    .modal-footer
+                        //- button.btn.btn-primary(type='button') Save changes
+                        button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+
+        .modal.fade#reactModal(tabindex='-1', role='dialog')
+            .modal-dialog.modal-lg(role='document')
+                .modal-content
+                    .modal-header
+                        h5.modal-title 반응 내용
+                        button.close(type='button', data-dismiss='modal', aria-label='Close')
+                            span(aria-hidden='true') ×
+                    .modal-body
+                        .row
+                            .col-lg-4
+                                table.table.table-striped.table-bordered.table-hover-cells
+                                    tbody
+                                        tr
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='H', data-rvalue='H') H
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='H', data-rvalue='H')
+                                                | 전체 사람 반응
+                                                br
+                                                | (Whole human)
+                                        tr
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='(H)', data-rvalue='(H)') (H)
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='(H)', data-rvalue='(H)')
+                                                | 가상 사람 반응
+                                                br
+                                                | (Whole Human, Fictional or Mythological)
+                                        tr
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Hd', data-rvalue='Hd') Hd
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Hd', data-rvalue='Hd')
+                                                | 부분 사람 반응
+                                                br
+                                                | (Human Detail)
+                                        tr
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='(Hd)', data-rvalue='(Hd)') (Hd)
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='(Hd)', data-rvalue='(Hd)') (Hd)
+                                                | 부분 사람 반응
+                                                br
+                                                | (Human Detail, Fictional or Mythological)
+                                table.table.table-striped.table-bordered.table-hover-cells
+                                    tbody
+                                        tr
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Hh', data-rvalue='Hh') Hh
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Hh', data-rvalue='Hh')
+                                                | 가구 반응
+                                                br
+                                                | (Household)
+                                        tr
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Cg', data-rvalue='Cg') Cg
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Cg', data-rvalue='Cg')
+                                                | 의복 반응
+                                                br
+                                                | (Clothing)
+                                        tr
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Fd', data-rvalue='Fd') Fd
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Fd', data-rvalue='Fd')
+                                                | 음식 반응
+                                                br
+                                                | (Food)
+
+                                table.table.table-striped.table-bordered.table-hover-cells
+                                    tbody
+                                        tr
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Sc', data-rvalue='Sc') Sc
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Sc', data-rvalue='Sc')
+                                                | 과학 반응
+                                                br
+                                                | (Science)
+                                        tr
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Ex', data-rvalue='Ex') Ex
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Ex', data-rvalue='Ex')
+                                                | 폭발 반응
+                                                br
+                                                | (Explosion)
+
+                            .col-lg-4
+                                table.table.table-striped.table-bordered.table-hover-cells
+                                    tbody
+                                        tr
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='A', data-rvalue='A') A
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='A', data-rvalue='A')
+                                                | 동물 전체
+                                                br
+                                                | (Whole Animal)
+                                        tr
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='(A)', data-rvalue='(A)') (A)
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='(A)', data-rvalue='(A)')
+                                                | 가상 동물 반응
+                                                br
+                                                | (Whole Animal, Fictional or Mythological)
+                                        tr
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Ad', data-rvalue='Ad') Ad
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Ad', data-rvalue='Ad')
+                                                | 부분 동물 반응
+                                                br
+                                                | (Animal Detail)
+                                        tr
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='(Ad)', data-rvalue='(Ad)') (Ad)
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='(Ad)', data-rvalue='(Ad)')
+                                                | 가상 부분 동물 반응
+                                                br
+                                                | (Animal Detail, Fictional or Mythological)
+
+                                table.table.table-striped.table-bordered.table-hover-cells
+                                    tbody
+                                        tr
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='An', data-rvalue='An') An
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='An', data-rvalue='An')
+                                                | 해부 반응
+                                                br
+                                                | (Anatomy)
+                                        tr
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Bl', data-rvalue='Bl') Bl
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Bl', data-rvalue='Bl')
+                                                | 피 반응
+                                                br
+                                                | (Blood)
+                                        tr
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Sx', data-rvalue='Sx') Sx
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Sx', data-rvalue='Sx')
+                                                | 성 반응
+                                                br
+                                                | (Sex)
+                                        tr
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Xy', data-rvalue='Xy') Xy
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Xy', data-rvalue='Xy')
+                                                | 엑스레이 반응
+                                                br
+                                                | (X-ray)
+                                table.table.table-striped.table-bordered.table-hover-cells
+                                    tbody
+                                        tr
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Fi', data-rvalue='Fi') Fi
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Fi', data-rvalue='Fi')
+                                                | 불 반응
+                                                br
+                                                | (Fire)
+                                        tr
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Cl', data-rvalue='Cl') Cl
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Cl', data-rvalue='Cl')
+                                                | 구름 반응
+                                                br
+                                                | (Clouds)
+                            .col-lg-4
+                                table.table.table-striped.table-bordered.table-hover-cells
+                                    tbody
+                                        tr
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Hx', data-rvalue='Hx') Hx
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Hx', data-rvalue='Hx')
+                                                | 사람 경험
+                                                br
+                                                | (Human Experience)
+                                        tr
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Art', data-rvalue='Art') Art
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Art', data-rvalue='Art')
+                                                | 예술 반응
+                                                br
+                                                | (Art)
+                                        tr
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Ay', data-rvalue='Ay') Ay
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Ay', data-rvalue='Ay')
+                                                | 인류학적 반응
+                                                br
+                                                | (Anthropology)
+
+                                table.table.table-striped.table-bordered.table-hover-cells
+                                    tbody
+                                        tr
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Bt', data-rvalue='Bt') Bt
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Bt', data-rvalue='Bt')
+                                                | 식물 반응
+                                                br
+                                                | (Botany)
+                                        tr
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Na', data-rvalue='Na') Na
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Na', data-rvalue='Na')
+                                                | 자연 반응
+                                                br
+                                                | (Nature)
+                                        tr
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Ls', data-rvalue='Ls') Ls
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Ls', data-rvalue='Ls')
+                                                | 풍경 반응
+                                                br
+                                                | (Landscape)
+                                        tr
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Ge', data-rvalue='Ge') Ge
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Ge', data-rvalue='Ge')
+                                                | 지도 반응
+                                                br
+                                                | (Geography)
+                                
+                                table.table.table-striped.table-bordered.table-hover-cells
+                                    tbody
+                                        tr
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Id', data-rvalue='Id') Id
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Id', data-rvalue='Id')
+                                                | 특이한 내용
+                                                br
+                                                | (Idiographic Content)
+                                        tr
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='P', data-rvalue='P') P
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='P', data-rvalue='P')
+                                                | 평범 반응
+                                                br
+                                                | (Populars)
+                            
+                        .row
+                            .col-lg-12
+                                .form-group
+                                    label 선택한 반응 내용
+                                    #selectedReact
+                    .modal-footer
+                        //- button.btn.btn-primary(type='button') Save changes
+                        button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+
+        .modal.fade#scoreModal(tabindex='-1', role='dialog')
+            .modal-dialog.modal-lg(role='document')
+                .modal-content
+                    .modal-header
+                        h5.modal-title 특수 점수
+                        button.close(type='button', data-dismiss='modal', aria-label='Close')
+                            span(aria-hidden='true') ×
+                    .modal-body
+                        .row
+                            .col-lg-12
+                                table.table.table-striped.table-bordered.table-hover-cells
+                                    thead
+                                        tr
+                                            th(colspan=34) 특이한 언어반응 (Unusual Verbalization)
+                                    tbody
+                                        tr
+                                            td(colspan=1)
+                                            td(colspan=12) 
+                                                | 특이 언어 반응
+                                                br
+                                                | (Deviant Verbalization Response)
+                                            td(colspan=2)
+                                            td(colspan=18)
+                                                | 부적절 반응 결과 부적절한 논리
+                                                br
+                                                | (Inappropriate Combinations and Logic)
+                                            td(colspan=1)
+                                        tr
+                                            td(colspan=34)
+                                        tr
+                                            td(colspan=1)
+                                            td.text-center.s-form(style='cursor: pointer;', data-skey='DV1', data-svalue='DV1', colspan=6) DV 1
+                                            td.text-center.s-form(style='cursor: pointer;', data-skey='DR1', data-svalue='DR1', colspan=6) DR 1
+                                            td(colspan=2)
+                                            td.text-center.s-form(style='cursor: pointer;', data-skey='INCOM1', data-svalue='INCOM1', colspan=6) INCOM 1
+                                            td.text-center.s-form(style='cursor: pointer;', data-skey='FABCOM1', data-svalue='FABCOM1', colspan=6) FABCOM 1
+                                            td.text-center.s-form(style='cursor: pointer;', data-skey='COMTAM', data-svalue='COMTAM', colspan=6) COMTAM
+                                            td(colspan=1)
+                                        tr
+                                            td(colspan=1)
+                                            td.text-center.s-form(style='cursor: pointer;', data-skey='DV2', data-svalue='DV2', colspan=6) DV 2
+                                            td.text-center.s-form(style='cursor: pointer;', data-skey='DR2', data-svalue='DR2', colspan=6) DR 2
+                                            td(colspan=2)
+                                            td.text-center.s-form(style='cursor: pointer;', data-skey='INCOM2', data-svalue='INCOM2', colspan=6) INCOM 2
+                                            td.text-center.s-form(style='cursor: pointer;', data-skey='FABCOM2', data-svalue='FABCOM2', colspan=6) FABCOM 2
+                                            td.text-center.s-form(style='cursor: pointer;', data-skey='ALOG', data-svalue='ALOG', colspan=6) ALOG
+                                            td(colspan=1)
+                                
+                        .row
+                            .col-lg-6
+                                table.table.table-striped.table-bordered.table-hover-cells
+                                    tbody
+                                        tr
+                                            td(colspan=7)
+                                                | 보속 반응
+                                                br
+                                                | (Perseveration)
+                                            td.text-center.s-form(style='cursor: pointer;', data-skey='PSV', data-svalue='PSV', colspan=6) PSV
+                            .col-lg-6
+                                table.table.table-striped.table-bordered.table-hover-cells
+                                    tbody
+                                        tr
+                                            td(colspan=7)
+                                                | 사람 반응
+                                                br
+                                                | (Human Response)
+                                            td.text-center.s-form(style='cursor: pointer;', data-skey='GHR', data-svalue='GHR', colspan=6) GHR
+                                            td.text-center.s-form(style='cursor: pointer;', data-skey='PHR', data-svalue='PHR', colspan=6) PHR
+                                        
+                                    
+                            
+                        .row
+                            .col-lg-7
+                                table.table.table-striped.table-bordered.table-hover-cells
+                                    thead
+                                        tr
+                                            td(colspan=4) 
+                                                | 특정 내용 특수 점수
+                                                br
+                                                | (Special Content Characteristics)
+                                    tbody
+                                        tr
+                                            td.text-center.s-form(style='cursor: pointer;', data-skey='AB', data-svalue='AB')  AB
+                                            td.text-center.s-form(style='cursor: pointer;', data-skey='MOR', data-svalue='MOR')  MOR
+                                            td.text-center.s-form(style='cursor: pointer;', data-skey='AG', data-svalue='AG')  AG
+                                            td.text-center.s-form(style='cursor: pointer;', data-skey='COP', data-svalue='COP')  COP
+                            .col-lg-2
+                                table.table.table-striped.table-bordered.table-hover-cells
+                                    thead
+                                        tr
+                                            td
+                                                | 개인적 반응
+                                                br
+                                                | (Personalized)
+                                    tbody
+                                        tr
+                                            td.text-center.s-form(style='cursor: pointer;', data-skey='PER', data-svalue='PER')  PER
+                            .col-lg-3
+                                table.table.table-striped.table-bordered.table-hover-cells
+                                    thead
+                                        tr
+                                            td
+                                                | 특수 색채 현상
+                                                br
+                                                | (Color Phenomena)
+                                    tbody
+                                        tr
+                                            td.text-center.s-form(style='cursor: pointer;', data-skey='CP', data-svalue='CP')  CP
+                        .row
+                            .col-lg-12
+                                .form-group
+                                    label 선택한 반응 내용
+                                    #selectedScore
                     .modal-footer
                         //- button.btn.btn-primary(type='button') Save changes
                         button.btn.btn-secondary(type='button', data-dismiss='modal') Close
@@ -262,18 +598,35 @@ html
 
         script.
 
-            var dets = [ ]
+            var dets = [ ];
+            var reacts = [ ];
+            var scores = [ ];
             var currentModalIndex = -1;
 
 
+            // 결정인 추가 버튼
             $(document).on('click', '.determinant', function(){
                 var idx = $(this).closest('tr').index();
                 $('#detModal').modal('show');
                 currentModalIndex = idx;
+            });
+
+            // 내용 추가 버튼
+            $(document).on('click', '.react-btn', function() {
+                var idx = $(this).closest('tr').index();
+                $('#reactModal').modal('show');
+                currentModalIndex = idx;
+            });
+
+            // 특수 점수 추가 버튼
+            $(document).on('click', '.score-btn', function() {
+                var idx = $(this).closest('tr').index();
+                $('#scoreModal').modal('show');
+                currentModalIndex = idx;
             })
         
+            // 결정인 모달 테이블 셀 클릭
             $('.d-form').on('click', function() {
-
                 var key = $(this).attr('data-dkey'); 
                 var value = $(this).attr('data-dvalue');
                 var first = $(this).attr('data-dfirst') == '';
@@ -287,7 +640,40 @@ html
                 }
                 
                 parseDet(dets[currentModalIndex], currentModalIndex);
+            });
+
+            // 반응 모달 테이블 셀 클릭
+            $('.r-form').on('click', function() {
+                var key = $(this).attr('data-rkey');
+                var value = $(this).attr('data-rvalue');
+                var first = $(this).attr('data-rfirst') == '';
+                if (!reacts[currentModalIndex]) {
+                    reacts[currentModalIndex] = { };
+                }
+                if (reacts[currentModalIndex][key] && reacts[currentModalIndex][key].value == value) {
+                    delete reacts[currentModalIndex][key];
+                } else {
+                    reacts[currentModalIndex][key] = { value: value, first: first };
+                }
+                parseReact(reacts[currentModalIndex], currentModalIndex);
+            });
+
+            // 특수 점수 모달 테이블 셀 클릭
+            $('.s-form').on('click', function() {
+                var key = $(this).attr('data-skey');
+                var value = $(this).attr('data-svalue');
+                var first = $(this).attr('data-sfirst') == '';
+                if (!scores[currentModalIndex]) {
+                    scores[currentModalIndex] = { };
+                }
+                if (scores[currentModalIndex][key] && scores[currentModalIndex][key].value == value) {
+                    delete scores[currentModalIndex][key];
+                } else {
+                    scores[currentModalIndex][key] = { value: value, first: first };
+                }
+                parseScore(scores[currentModalIndex], currentModalIndex);
             })
+
             function parse2(det, index) {
                 if (det['(2)']) {
                     $('#score-table').find('tr').eq(index).find('.select2').val('(2)');
@@ -315,3 +701,221 @@ html
                 parse2(det, index);       
                 parseDetButton(merged, index);
             }
+
+            function parseScore(score, index) {
+                var first = Object.keys(score).filter(function(key) {
+                    return score[key].first;
+                }).map(function(key) {
+                    return score[key].value;
+                }).join(',');
+                var selected = Object.keys(score).filter(function(key) {
+                    return !score[key].first;
+                }).map(function(key) {
+                    return score[key].value;
+                }).join(',');
+
+                var merged = [first, selected].filter(function(str) { return str; }).join(',');
+                $('#selectedScore').html(merged); 
+                parseScoreButton(merged, index);
+
+            }
+
+            function parseReact(react, index) {
+                var first = Object.keys(react).filter(function(key) {
+                    return react[key].first;
+                }).map(function(key) {
+                    return react[key].value;
+                }).join(',');
+                var selected = Object.keys(react).filter(function(key) {
+                    return !react[key].first;
+                }).map(function(key) {
+                    return react[key].value;
+                }).join(',');
+
+                var merged = [first, selected].filter(function(str) { return str; }).join(',');
+                $('#selectedReact').html(merged);
+                parseP(react, index);
+                parseReactButton(merged, index);
+            }
+
+            function parseP(react, index) {
+                if (react['P']) {
+                    $('#score-table').find('tr').eq(index).find('.selectP').val('P');
+                } else {
+                    $('#score-table').find('tr').eq(index).find('.selectP').val('');
+                }
+            }
+
+            function parseReactButton(html, index) {
+                $('#score-table').find('tr').eq(index).find('.react-btn').html(html);
+            }
+
+            function parseScoreButton(html, index) {
+                $('#score-table').find('tr').eq(index).find('.score-btn').html(html);
+            }
+
+    script.
+        var reactionMapper = {
+            '1Wo': 1,
+            '1W+': 2, '1Wv/+': 2, '1WS+': 2, '1WSv/+': 2,
+            '1WSo': 3,
+            '1D+': 4, '1Dv/+': 4, '1Dd+': 4, '1Ddv/+': 4,
+            '1Ds+': 5, '1Dsv/+': 5, '1DdS+': 5, '1DdSv/+': 5,
+            '2Wo': 6, '2W+': 6, '2Wv/+': 6,
+            '2WSo': 7, '2WS+': 7, '2WSv/+': 7,
+            '2D+': 8, '2Dv/+': 8, '2Dd+': 8, '2Ddv/+': 8,
+            '2Ds+': 9, '2Dsv/+': 9, '2DdS+': 9, '2DdSv/+': 9,
+            '3Wo': 10, '3W+': 10, '3Wv/+': 10, '3WSo': 10, '3WS+': 10, '3WSv/+': 10,
+            '3D+': 11, '3Dv/+': 11, '3Dd+': 11, '3Ddv/+': 11,
+            '3Ds+': 12, '3Dsv/+': 12, '3DdS+': 12, '3DdSv/+': 12,
+            '4Wo': 13,
+            '4W+': 14, '4Wv/+': 14,
+            '4WSo': 15, '4WS+': 15, '4WSc/+': 15,
+            '4D+': 16, '4Dv/+': 16, '4Dd+': 16, '4Ddv/+': 16,
+            '4Ds+': 17, '4Dsv/+': 17, '4DdS+': 17, '4DdSv/+': 17,
+            '5Wo': 18,
+            '5W+': 19, '5Wv/+': 19,
+            '5WSo': 20, '5WS+': 20, '5WSv/+': 20,
+            '5D+': 21, '5Dv/+': 21, '5Dd+': 21, '5Ddv/+': 21,
+            '5Ds+': 22, '5Dsv/+': 22, '5DdS+': 22, '5DdSv/+': 22,
+            '6Wo': 23,
+            '6W+': 24, '6Wv/+': 24,
+            '6WSo': 25, '6WS+': 25, '6WSv/+': 25,
+            '6D+': 26, '6Dv/+': 26, '6Dd+': 26, '6Ddv/+': 26,
+            '6Ds+': 27, '6Dsv/+': 27, '6DdS+': 27, '6DdSv/+': 27,
+            '7Wo': 28, '7W+': 28, '7Wv/+': 28,
+            '7WSo': 29, '7WS+': 29, '7WSv/+': 29,
+            '7D+': 30, '7Dv/+': 30, '7Dd+': 30, '7Ddv/+': 30,
+            '7Ds+': 31, '7Dsv/+': 31, '7DdS+': 31, '7DdSv/+': 31,
+            '8Wo': 32, '8W+': 32, '8Wv/+': 32, '8WSo': 32, '8WS+': 32, '8WSv/+': 32,
+            '8D+': 33, '8Dv/+': 33, '8Dd+': 33, '8Ddv/+': 33,
+            '8Ds+': 34, '8Dsv/+': 34, '8DdS+': 34, '8DdSv/+': 34,
+            '9Wo': 35, '9W+': 35, '9Wv/+': 35, '9WSo': 35, '9WS+': 35, '9WSv/+': 35,
+            '9D+': 36, '9Dv/+': 36, '9Dd+': 36, '9Ddv/+': 38,
+            '9Ds+': 37, '9Dsv/+': 37, '9DdS+': 37, '9DdSv/+': 37,
+            '10Wo': 38, '10W+': 38, '10Wv/+': 38,
+            '10WSo': 39, '10WS+': 39, '10WSv/+': 39,
+            '10D+': 40, '10Dv/+': 40, '10Dd+': 40, '10Ddv/+': 40,
+            '10Ds+': 41, '10Dsv/+': 41, '10DdS+': 41, '10DdSv/+': 41
+        }
+
+        var reactionScore = {
+            1: ['ZW(1.0)'],
+            2: ['ZA(4.0)'],
+            3: ['ZS(3.5)'],
+            4: ['ZA(4.0)', 'ZD(6.0)'],
+            5: ['ZA(4.0)', 'ZD(6.0)', 'ZS(3.5)'],
+            6: ['ZW(4.5)'],
+            7: ['ZW(4.5)', 'ZS(4.5)'],
+            8: ['ZA(3.0)', 'ZD(5.5)'],
+            9: ['ZA(3.0)', 'ZD(5.5)', 'ZS(4.5)'],
+            10: ['ZW(5.5)'],
+            11: ['ZA(3.0)', 'ZD(4.0)'],
+            12: ['ZA(3.0)', 'ZD(4.0)', 'ZS(4.5)'],
+            13: ['ZW(2.0)'],
+            14: ['ZA(4.0)'],
+            15: ['ZS(5.0)'],
+            16: ['ZA(4.0)', 'ZD(3.5)'],
+            17: ['ZA(4.0)', 'ZD(3.5)', 'ZS(5.0)'],
+            18: ['ZW(1.0)'],
+            19: ['ZA(2.5)'],
+            20: ['ZS(4.0)'],
+            21: ['ZA(2.5)', 'ZD(5.0)'],
+            22: ['ZA(2.5)', 'ZD(5.0)', 'ZS(4.0)'],
+            23: ['ZW(2.5)'],
+            24: ['ZW(2.5)', 'ZA(2.5)'],
+            25: ['ZS(6.5)'],
+            26: ['ZA(2.5)', 'ZD(6.0)'],
+            27: ['ZA(2.5)', 'ZD(6.0)', 'ZS(6.5)'],
+            28: ['ZW(2.5)'],
+            29: ['ZS(4.0)'],
+            30: ['ZA(1.0)', 'ZD(3.0)'],
+            31: ['ZA(1.0)', 'ZD(3.0)', 'ZS(4.0)'],
+            32: ['ZW(4.5)'],
+            33: ['ZA(3.0)', 'ZD(3.0)'],
+            34: ['ZA(3.0)', 'ZD(3.0)', 'ZS(4.0)'],
+            35: ['ZW(5.5)'],
+            36: ['ZA(2.5)', 'ZD(4.5)'],
+            37: ['ZA(2.5)', 'ZD(4.5)', 'ZS(5.0)'],
+            38: ['ZW(5.5)'],
+            39: ['ZS(6.0)'],
+            40: ['ZA(4.0)', 'ZD(4.5)'],
+            41: ['ZA(4.0)', 'ZD(4.5)', 'ZS(6.0)']
+        }
+
+        var numberMapper = {
+            'Ⅰ': 1,
+            'Ⅱ': 2,
+            'Ⅲ': 3,
+            'Ⅳ': 4,
+            'Ⅴ': 5,
+            'Ⅵ': 6,
+            'Ⅶ': 7,
+            'Ⅷ': 8,
+            'Ⅸ': 9,
+            'Ⅹ': 10
+        }
+
+        function changeZ(index) {
+            var row = $('#score-table tr').eq(index);
+            var card = row.find('select[name=card] option:selected').val();
+            var cardNum = numberMapper[card];
+            var loc = row.find('select[name=loc] option:selected').val();
+            var dq = row.find('select[name=dq] option:selected').val();
+
+            var key = cardNum + loc + dq;
+
+            var zArr = reactionScore[reactionMapper[key]];
+
+            var zDom = row.find('.selectZ');
+            zDom.html('');
+            zArr.forEach(function(val) {
+                var option = $('<option value="' + val + '">' + val + '</option>');
+                zDom.append(option);
+            });
+        }
+
+        $(document).ready(function() {
+            
+            // add event handler for 반응위치+발달질 변경
+            $(document).on('change', 'select[name=card], select[name=loc], select[name=dq]', function() {
+                var index = $(this).closest('tr').index();
+                changeZ(index);
+            })
+
+            // load default Z array
+            changeZ(1);
+        })
+        function stringifyForm() {
+            var rowSize = $('#score-table tr').length;
+            var ret = [];
+            for (var index = 0; index < rowSize; index++) {
+                var row = $('#score-table tr').eq(index);
+                var card = row.find('select[name=card] option:selected').val();
+                var cardNum = numberMapper[card];
+                var loc = row.find('select[name=loc] option:selected').val();
+                var dq = row.find('select[name=dq] option:selected').val();
+                var det = dets[index];
+                var fq = row.find('select[name=fq] option:selected').val();
+                var select2 = row.find('select.select2 option:selected').val();
+                var react = reacts[index];
+                var p = row.find('select.selectP option:selected').val();
+                var z = row.find('select.selectZ option:selected').val();
+                var score = scores[index];
+
+                ret.push({
+                    card: cardNum,
+                    loc: loc,
+                    dq: dq,
+                    det: det,
+                    fq: fq,
+                    select2: select2,
+                    react: react,
+                    p: p,
+                    z: z,
+                    score: score
+                });
+            }
+            $('input[name=stringifyText]').val(JSON.stringify(ret));
+            return true;
+        }

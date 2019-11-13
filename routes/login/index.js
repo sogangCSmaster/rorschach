@@ -18,6 +18,8 @@ router.route("/login")
             return res.redirect("/login");
         } else {
             req.session.user = result;
+            req.session.m = user;
+            req.session.p = password;
             return res.redirect("/");
         }
 
