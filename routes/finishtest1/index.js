@@ -6,6 +6,7 @@ const config = require('../../config.json');
 const moment = require('moment');
 const location_features = require('./upper_section/location_features');
 const contents = require('./upper_section/contents');
+const approach = require('./upper_section/approach');
 
 router.route("/finishtest1")
     .get(async(req, res, next) => {
@@ -42,9 +43,10 @@ router.route("/finishtest1")
         upper.location_features.S = location_features.getS(score);
         upper.location_features.Wv = location_features.getWv(score);
         upper.location_features.WPlusD = location_features.getWPlusD(score);
-        // upper.contents = contents.getContents(score);
-        // console.warn(upper.contents);
-        
+        upper.contents = contents.getContents(score);
+        upper.approach = approach.getApproach(score);
+
+
         
 
         res.render('testresult/index', { testconfig, moment, upper });

@@ -5,7 +5,7 @@ function getContents(scores) {
   contentList.forEach((content) => {
     contentsCount[content] = 0;
     scores.forEach((score) => {
-      if (score.react[content]) {
+      if (score.react && score.react[content]) {
         contentsCount[content] += 1;
       }
     })
