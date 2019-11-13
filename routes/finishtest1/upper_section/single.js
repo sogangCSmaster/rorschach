@@ -12,6 +12,7 @@ function countSingleDetWithKey(scores, key, value) {
       }
     }
   })
+  return count;
 }
 
 function getM(scores) {
