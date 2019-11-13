@@ -7,6 +7,7 @@ const moment = require('moment');
 const location_features = require('./upper_section/location_features');
 const contents = require('./upper_section/contents');
 const approach = require('./upper_section/approach');
+const single = require('./upper_section/single');
 
 router.route("/finishtest1")
     .get(async(req, res, next) => {
@@ -45,6 +46,10 @@ router.route("/finishtest1")
         upper.location_features.WPlusD = location_features.getWPlusD(score);
         upper.contents = contents.getContents(score);
         upper.approach = approach.getApproach(score);
+        upper.determinants = {};
+        upper.determinants.F = single.getF(score);
+        upper.determinants.M = single.getM(score);
+        console.warn(upper.determinants);
 
 
         
@@ -61,11 +66,15 @@ router.route("/finishtest1")
         // 코인 사용
         var api = config.api;
         var { m } = req.session;
-        api = api + `/memberList.php?m=${m}&c=RORS&n=${testID}&p=add`;
-        axios.get(api);
+        console.warn(m);
+        api = api + `/coinProcess.php?m=${m}&c=RORS&n=${testID}&p=add`;
+        console.warn(api);
+        var response = await axios.get(api);
+        console.warn("hljksdhfkjasdhfsd");
+        console.warn(response.data);
 
 
-        res.end();
+        res.redirect(`/finishtest1?id=${testID}`);
     })
 
 module.exports = router;
