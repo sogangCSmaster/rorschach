@@ -49,6 +49,7 @@ router.route("/finishtest1")
         upper.determinants = {};
         upper.determinants.F = single.getF(score);
         upper.determinants.M = single.getM(score);
+        upper.determinants.FM = single.getFM(score);
         console.warn(upper.determinants);
 
 
