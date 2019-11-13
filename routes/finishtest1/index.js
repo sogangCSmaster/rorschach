@@ -4,6 +4,7 @@ const query = require('../query');
 const axios = require('axios');
 const config = require('../../config.json');
 const moment = require('moment');
+const location_features = require('./upper_section/location_features');
 
 router.route("/finishtest1")
     .get(async(req, res, next) => {
@@ -29,7 +30,13 @@ router.route("/finishtest1")
         //testconfig => 이름, 검사주체 등 기본정보
         //score => 테스트
 
-        res.render('testresult/index', { testconfig, moment });
+        var upper = {};
+        upper.location_features = {};
+        upper.location_features.Zf = location_features.getZf(score);
+        upper.location_features.ZSum = location_features.getZSum(score);
+        upper.location_features.ZEst = location_features.getZEst(score);
+
+        res.render('testresult/index', { testconfig, moment, upper });
 
     })
     .post(async(req, res, next) => {

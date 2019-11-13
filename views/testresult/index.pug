@@ -36,7 +36,7 @@ html
                 box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
             }
             .subpage {
-                padding: 1cm;
+                padding: 0.2cm;
                 border: 1px red solid;
                 height: 257mm;
                 outline: 2cm #FFFFFF solid;
@@ -73,7 +73,28 @@ html
                         .row
                             .col-md-12.text-center
                                 h6 NO : #{testconfig.id} &nbsp&nbsp&nbsp&nbsp 이름 : #{testconfig.name} &nbsp&nbsp&nbsp&nbsp 생년월일 : #{moment(testconfig.birthday).format('YY년 MM월 DD일')} &nbsp&nbsp&nbsp&nbsp 성별 : #{testconfig.sex} &nbsp&nbsp&nbsp&nbsp 검사일 : #{moment(testconfig.testdate).format('YY년 MM월 DD일')}
+                    .row
+                        .col-lg-3
+                            table.table.table-striped.table-bordered
+                                thead
+                                    tr
+                                        th.text-center(style="font-size: 7pt" colspan="3") 반응위치 특징
+                                            br
+                                            | (Location Features)
+                                tbody
+                                    tr
+                                        td(style="font-size: 7pt;")
+                                            .text-center 조직화 활동
+                                            div
+                                                | Zf = #{upper.location_features.Zf}
+                                                br
+                                                | ZSum = #{upper.location_features.ZSum}
+                                                br
+                                                | ZEst = #{upper.location_features.ZEst}
+                
 
+            .page
+                .subpage
                     
                     
         script(src="/js/jquery-2.1.1.js")
