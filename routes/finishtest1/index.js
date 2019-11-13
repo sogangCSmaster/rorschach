@@ -42,8 +42,8 @@ router.route("/finishtest1")
         upper.location_features.S = location_features.getS(score);
         upper.location_features.Wv = location_features.getWv(score);
         upper.location_features.WPlusD = location_features.getWPlusD(score);
-        // upper.contents = contents.getContents(score);
-        // console.warn(upper.contents);
+        upper.contents = contents.getContents(score);
+        console.warn(upper.contents);
 
         
 

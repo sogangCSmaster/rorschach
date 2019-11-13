@@ -124,7 +124,7 @@ html
                                             .text-center 복합
                                         td(style="font-size: 7pt;" colspan="1.5")
                                             .text-center 전체
-                        .col-md-3.col-3-print(style="padding-right: 2px; padding-left: 2px;")
+                        .col-md-2.col-2-print(style="padding-right: 2px; padding-left: 2px;")
                             table.table.table-bordered
                                 thead
                                     tr
@@ -134,6 +134,10 @@ html
                                 tbody
                                     tr
                                         td(style="font-size: 7pt;" colspan="3")
+                                            - for(var key in upper.contents){
+                                                | &nbsp #{key} = #{upper.contents[key]}
+                                                br
+                                            -}
                         .col-md-3.col-3-print(style="padding-right: 2px; padding-left: 2px;")
                             table.table.table-bordered
                                 thead
@@ -169,5 +173,5 @@ html
         script(src="/js/plugins/clockpicker/clockpicker.js")
         script.
             $(document).ready(function(){
-                window.print();
+                //- window.print();
             })
