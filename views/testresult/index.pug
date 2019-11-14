@@ -316,43 +316,114 @@ html
                             table.table.table-bordered
                                 thead
                                     tr
-                                        th.text-center(style="font-size: 7pt" colspan="4") 특수점수
+                                        th.text-center(style="font-size: 7pt" colspan="24") 특수점수
                                             br
                                             | (Special Scores)
                                 tbody(style="font-size: 7pt")
                                     tr
-                                        td.text-center(style="padding: 2px;" colspan="1.2")
-                                        td.text-center(style="padding: 2px;" colspan="1.4") LV1
-                                        td.text-center(style="padding: 2px;" colspan="1.4") LV2
+                                        td.text-center(style="padding: 2px;" colspan="6")
+                                        td.text-center(style="padding: 2px;" colspan="9") LV1
+                                        td.text-center(style="padding: 2px;" colspan="9") LV2
                                     tr
-                                        td.text-center(style="padding: 2px;" colspan="1.2") DV
-                                        td.text-center(style="padding: 2px;" colspan="1.4") #{upper.special_scores.DV1} × 1 (#{upper.special_scores.DV1*1})
-                                        td.text-center(style="padding: 2px;" colspan="1.4") #{upper.special_scores.DV2} × 2 (#{upper.special_scores.DV2*2})
+                                        td.text-center(style="padding: 2px;" colspan="6") DV
+                                        td.text-center(style="padding: 2px;" colspan="9") #{upper.special_scores.DV1} × 1 (#{upper.special_scores.DV1*1})
+                                        td.text-center(style="padding: 2px;" colspan="9") #{upper.special_scores.DV2} × 2 (#{upper.special_scores.DV2*2})
                                     tr
-                                        td.text-center(style="padding: 2px;" colspan="1.2") INCOM
-                                        td.text-center(style="padding: 2px;" colspan="1.4") #{upper.special_scores.INCOM1} × 2 (#{upper.special_scores.INCOM1*2})
-                                        td.text-center(style="padding: 2px;" colspan="1.4") #{upper.special_scores.INCOM2} × 4 (#{upper.special_scores.INCOM2*4})
+                                        td.text-center(style="padding: 2px;" colspan="6") INCOM
+                                        td.text-center(style="padding: 2px;" colspan="9") #{upper.special_scores.INCOM1} × 2 (#{upper.special_scores.INCOM1*2})
+                                        td.text-center(style="padding: 2px;" colspan="9") #{upper.special_scores.INCOM2} × 4 (#{upper.special_scores.INCOM2*4})
                                     tr
-                                        td.text-center(style="padding: 2px;" colspan="1.2") DR
-                                        td.text-center(style="padding: 2px;" colspan="1.4") #{upper.special_scores.DR1} × 3 (#{upper.special_scores.DR1*3})
-                                        td.text-center(style="padding: 2px;" colspan="1.4") #{upper.special_scores.DR2} × 6 (#{upper.special_scores.DR2*6})
+                                        td.text-center(style="padding: 2px;" colspan="6") DR
+                                        td.text-center(style="padding: 2px;" colspan="9") #{upper.special_scores.DR1} × 3 (#{upper.special_scores.DR1*3})
+                                        td.text-center(style="padding: 2px;" colspan="9") #{upper.special_scores.DR2} × 6 (#{upper.special_scores.DR2*6})
                                     tr
-                                        td.text-center(style="padding: 2px;" colspan="1.2") FABCOM
-                                        td.text-center(style="padding: 2px;" colspan="1.4") #{upper.special_scores.FABCOM1} × 4 (#{upper.special_scores.FABCOM1*4})
-                                        td.text-center(style="padding: 2px;" colspan="1.4") #{upper.special_scores.FABCOM2} × 7 (#{upper.special_scores.FABCOM2*7})
+                                        td.text-center(style="padding: 2px;" colspan="6") FABCOM
+                                        td.text-center(style="padding: 2px;" colspan="9") #{upper.special_scores.FABCOM1} × 4 (#{upper.special_scores.FABCOM1*4})
+                                        td.text-center(style="padding: 2px;" colspan="9") #{upper.special_scores.FABCOM2} × 7 (#{upper.special_scores.FABCOM2*7})
                                     tr
-                                        td.text-center(style="padding: 2px;" colspan="1.2") ALOG
-                                        td.text-center(style="padding: 2px;" colspan="1.4") #{upper.special_scores.ALOG} × 5 (#{upper.special_scores.ALOG*5})
-                                        td.text-center(style="padding: 2px;" colspan="1.4")
+                                        td.text-center(style="padding: 2px;" colspan="6") ALOG
+                                        td.text-center(style="padding: 2px;" colspan="9") #{upper.special_scores.ALOG} × 5 (#{upper.special_scores.ALOG*5})
+                                        td.text-center(style="padding: 2px;" colspan="9")
                                     tr
-                                        td.text-center(style="padding: 2px;" colspan="1.2") CONTAM
-                                        td.text-center(style="padding: 2px;" colspan="1.4") #{upper.special_scores.CONTAM} × 7 (#{upper.special_scores.CONTAM*7})
-                                        td.text-center(style="padding: 2px;" colspan="1.4")
+                                        td.text-center(style="padding: 2px;" colspan="6") CONTAM
+                                        td.text-center(style="padding: 2px;" colspan="9") #{upper.special_scores.CONTAM} × 7 (#{upper.special_scores.CONTAM*7})
+                                        td.text-center(style="padding: 2px;" colspan="9")
+                                thead(style="font-size: 7pt")
+                                    tr
+                                        th.text-center(style="padding: 2px;" colspan="24") Sum6 = #{upper.special_scores.Sum6} &nbsp;&nbsp; WSum6 = #{upper.special_scores.WSum6}
+                                tbody(style="font-size: 7pt")
+                                    tr
+                                        td.text-center(style="padding: 2px;" colspan="4") AG
+                                        td.text-center(style="padding: 2px;" colspan="8") #{upper.special_scores.AG}
+                                        td.text-center(style="padding: 2px;" colspan="4") AB
+                                        td.text-center(style="padding: 2px;" colspan="8") #{upper.special_scores.AB}
+                                    tr
+                                        td.text-center(style="padding: 2px;" colspan="4") COP
+                                        td.text-center(style="padding: 2px;" colspan="8") #{upper.special_scores.COP}
+                                        td.text-center(style="padding: 2px;" colspan="4") CP
+                                        td.text-center(style="padding: 2px;" colspan="8") #{upper.special_scores.CP}
+                                    tr
+                                        td.text-center(style="padding: 2px;" colspan="4") GHR
+                                        td.text-center(style="padding: 2px;" colspan="8") #{upper.special_scores.GHR}
+                                        td.text-center(style="padding: 2px;" colspan="4") MOR
+                                        td.text-center(style="padding: 2px;" colspan="8") #{upper.special_scores.MOR}
+                                    tr
+                                        td.text-center(style="padding: 2px;" colspan="4") PHR
+                                        td.text-center(style="padding: 2px;" colspan="8") #{upper.special_scores.PHR}
+                                        td.text-center(style="padding: 2px;" colspan="4") PSV
+                                        td.text-center(style="padding: 2px;" colspan="8") #{upper.special_scores.PSV}
+                                    tr
+                                        td.text-center(style="padding: 2px;" colspan="4") PER
+                                        td.text-center(style="padding: 2px;" colspan="8") #{upper.special_scores.PER}
+                                        td.text-center(style="padding: 2px;" colspan="12") 
                                         
-                
+
+
 
             .page
                 .subpage
+                    .row
+                        .col-md-12(style="padding-right: 2px; padding-left: 2px;")
+                            table.table.table-bordered
+                                thead
+                                    tr
+                                        th.text-center 비율(RAIOS), 백분율(PERCENTAGES), 산출한 점수(DERIVATIONS)
+                    
+                    .row
+                        .col-md-4(style="padding-right: 2px; padding-left: 2px;")
+                            table.table.table-bordered(style="font-size: 7pt")
+                                thead
+                                    tr
+                                        th.text-center(colspan="24") 핵심영역 (CORE)
+                                tbody
+                                    tr
+                                        td(colspan="12") R = #{lower.core.R}
+                                        td(colspan="12") Lambda(L) = #{lower.core.Lambda}
+                                    tr
+                                        td(colspan="8") EB = #{lower.core.EBLeft} : #{lower.core.EBRight}
+                                            br
+                                            | eb = #{lower.core.ebLeft} : #{lower.core.ebRight}
+                                        td(colspan="8") EA = #{lower.core.EA}
+                                            br
+                                            | es = #{lower.core.es}
+                                            br
+                                            | Adj es = #{lower.core.Adjes}
+                                        td(colspan="8") EBPer = #{lower.core.EBPer}
+                                            br
+                                            | D = #{lower.core.D}
+                                            br
+                                            | Adj D = #{lower.core.AdjD}
+                                    tr
+                                        td(colspan="8") FM = #{lower.core.FM}
+                                            br
+                                            | m = #{lower.core.m}
+                                        td(colspan="8") Sum C' = #{lower.core.SumCprime}
+                                            br
+                                            | Sum V = #{lower.core.SumV}
+                                        td(colspan="8") Sum T = #{lower.core.SumT}
+                                            br
+                                            | Sum Y = #{lower.core.SumY}
+
                     
                     
         script(src="/js/jquery-2.1.1.js")

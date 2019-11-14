@@ -11,6 +11,7 @@ const single = require('./upper_section/single');
 const dq = require('./upper_section/dq');
 const form_quality = require('./upper_section/form_quality');
 const special_scores = require('./upper_section/special_scores');
+const core = require('./lower_section/core');
 
 router.route("/finishtest1")
     .get(async(req, res, next) => {
@@ -97,11 +98,45 @@ router.route("/finishtest1")
         upper.special_scores.FABCOM2 = special_scores.getFABCOM2(score);
         upper.special_scores.ALOG = special_scores.getALOG(score);
         upper.special_scores.CONTAM = special_scores.getCONTAM(score);
+        upper.special_scores.Sum6 = special_scores.getSum6(score);
+        upper.special_scores.WSum6 = special_scores.getWSum6(score);
+        upper.special_scores.AG = special_scores.getAG(score);
+        upper.special_scores.AB = special_scores.getAB(score);
+        upper.special_scores.COP = special_scores.getCOP(score);
+        upper.special_scores.CP = special_scores.getCP(score);
+        // upper.special_scores.GHR = special_scores.getGHR(score);
+        upper.special_scores.MOR = special_scores.getMOR(score);
+        // upper.special_scores.PHR = special_scores.getPHR(score);
+        upper.special_scores.PSV = special_scores.getPSV(score);
+        upper.special_scores.PER = special_scores.getPER(score);
 
-        console.warn(upper.special_scores);
+        
+        var lower = {};
+        lower.core = {};
+        lower.core.R = core.getR(score);
+        lower.core.Lambda = core.getLambda(score);
+        lower.core.EBLeft = core.getEBLeft(score);
+        // lower.core.ebLeft = core.getebLeft(score);
+        lower.core.EBRight = core.getEBRight(score);
+        // lower.core.ebRight = core.getebRight(score);
+        lower.core.EA = core.getEA(score);
+        lower.core.EBPer = core.getEBPer(score);
+        // lower.core.es = core.getes(score);
+        // lower.core.Adjes = core.getAdjes(score);
+        // lower.core.D = core.getD(score);
+        // lower.core.AdjD = core.getAdjD(score);
+        // lower.core.FM = core.getFM(score);
+        // lower.core.m = core.getm(score);
+        lower.core.SumCprime = core.getSumCprime(score);
+        lower.core.SumV = core.getSumV(score);
+        lower.core.SumT = core.getSumT(score);
+        lower.core.SumY = core.getSumY(score);
+
+        console.warn(lower.core);
+
         
 
-        res.render('testresult/index', { testconfig, moment, upper });
+        res.render('testresult/index', { testconfig, moment, upper, lower });
 
     })
     .post(async(req, res, next) => {
