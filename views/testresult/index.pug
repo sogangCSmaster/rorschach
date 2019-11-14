@@ -274,7 +274,7 @@ html
                                             each elem in upper.approach[10]
                                                 = elem + ", "
                     .row
-                        .col-md-4
+                        .col-md-4(style="padding-right: 2px; padding-left: 2px;")
                             table.table.table-bordered
                                 thead
                                     tr
@@ -312,7 +312,42 @@ html
                                         td.text-center(style="padding: 2px;") #{upper.form_quality.FQx['none']}
                                         td.text-center(style="padding: 2px;") #{upper.form_quality.MQuality['none']}
                                         td.text-center(style="padding: 2px;") #{upper.form_quality.WPlusD['none']}
-
+                        .col-md-4(style="padding-right: 2px; padding-left: 2px;")
+                            table.table.table-bordered
+                                thead
+                                    tr
+                                        th.text-center(style="font-size: 7pt" colspan="4") 특수점수
+                                            br
+                                            | (Special Scores)
+                                tbody(style="font-size: 7pt")
+                                    tr
+                                        td.text-center(style="padding: 2px;" colspan="1.2")
+                                        td.text-center(style="padding: 2px;" colspan="1.4") LV1
+                                        td.text-center(style="padding: 2px;" colspan="1.4") LV2
+                                    tr
+                                        td.text-center(style="padding: 2px;" colspan="1.2") DV
+                                        td.text-center(style="padding: 2px;" colspan="1.4") #{upper.special_scores.DV1} × 1 (#{upper.special_scores.DV1*1})
+                                        td.text-center(style="padding: 2px;" colspan="1.4") #{upper.special_scores.DV2} × 2 (#{upper.special_scores.DV2*2})
+                                    tr
+                                        td.text-center(style="padding: 2px;" colspan="1.2") INCOM
+                                        td.text-center(style="padding: 2px;" colspan="1.4") #{upper.special_scores.INCOM1} × 2 (#{upper.special_scores.INCOM1*2})
+                                        td.text-center(style="padding: 2px;" colspan="1.4") #{upper.special_scores.INCOM2} × 4 (#{upper.special_scores.INCOM2*4})
+                                    tr
+                                        td.text-center(style="padding: 2px;" colspan="1.2") DR
+                                        td.text-center(style="padding: 2px;" colspan="1.4") #{upper.special_scores.DR1} × 3 (#{upper.special_scores.DR1*3})
+                                        td.text-center(style="padding: 2px;" colspan="1.4") #{upper.special_scores.DR2} × 6 (#{upper.special_scores.DR2*6})
+                                    tr
+                                        td.text-center(style="padding: 2px;" colspan="1.2") FABCOM
+                                        td.text-center(style="padding: 2px;" colspan="1.4") #{upper.special_scores.FABCOM1} × 4 (#{upper.special_scores.FABCOM1*4})
+                                        td.text-center(style="padding: 2px;" colspan="1.4") #{upper.special_scores.FABCOM2} × 7 (#{upper.special_scores.FABCOM2*7})
+                                    tr
+                                        td.text-center(style="padding: 2px;" colspan="1.2") ALOG
+                                        td.text-center(style="padding: 2px;" colspan="1.4") #{upper.special_scores.ALOG} × 5 (#{upper.special_scores.ALOG*5})
+                                        td.text-center(style="padding: 2px;" colspan="1.4")
+                                    tr
+                                        td.text-center(style="padding: 2px;" colspan="1.2") CONTAM
+                                        td.text-center(style="padding: 2px;" colspan="1.4") #{upper.special_scores.CONTAM} × 7 (#{upper.special_scores.CONTAM*7})
+                                        td.text-center(style="padding: 2px;" colspan="1.4")
                                         
                 
 
