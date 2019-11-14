@@ -76,7 +76,7 @@ router.route("/finishtest1")
         upper.determinants.Fr = single.getFr(score);
         upper.determinants.rF = single.getrF(score);
         upper.determinants.two = single.get2(score);
-        // upper.determinants.P = single.getP
+        upper.determinants.P = single.getP(score);
 
         upper.dq = {};
         upper.dq.plus = dq.getPlus(score);
@@ -106,9 +106,9 @@ router.route("/finishtest1")
         upper.special_scores.AB = special_scores.getAB(score);
         upper.special_scores.COP = special_scores.getCOP(score);
         upper.special_scores.CP = special_scores.getCP(score);
-        // upper.special_scores.GHR = special_scores.getGHR(score);
+        upper.special_scores.GHR = special_scores.getGHR(score);
         upper.special_scores.MOR = special_scores.getMOR(score);
-        // upper.special_scores.PHR = special_scores.getPHR(score);
+        upper.special_scores.PHR = special_scores.getPHR(score);
         upper.special_scores.PSV = special_scores.getPSV(score);
         upper.special_scores.PER = special_scores.getPER(score);
 
@@ -140,6 +140,12 @@ router.route("/finishtest1")
         lower.affection.PureC = affection.getPureC(score);
         lower.affection.SumCprime = affection.getSumCprime(score);
         lower.affection.WSumC = affection.getWSumC(score);
+        lower.affection.Afr = affection.getAfr(score);
+        lower.affection.S = affection.getS(score);
+        lower.affection.Blends = affection.getBlends(score);
+        lower.affection.R = affection.getR(score);
+        lower.affection.CP = affection.getCP(score);
+        
 
         
 

@@ -197,6 +197,8 @@ html
                                                 | rF = #{upper.determinants.rF}
                                                 br
                                                 | (2) = #{upper.determinants.two}
+                                                br
+                                                | P = #{upper.determinants.P}
                         .col-md-2.col-2-print(style="padding-right: 2px; padding-left: 2px;")
                             table.table.table-bordered
                                 thead
@@ -436,11 +438,27 @@ html
                                             | Pure C
                                             br
                                             | SumC' : WSumC
+                                            br
+                                            | Affective Ratio (Afr)
+                                            br
+                                            | S
+                                            br
+                                            | Blends : R
+                                            br
+                                            | Color Projection (CP)
                                         td(colspan="12").text-center #{lower.affection.FCCFCLeft} : #{lower.affection.FCCFCRight}
                                             br
                                             | #{lower.affection.PureC}
                                             br
-                                            | 
+                                            | #{lower.affection.SumCprime} : #{lower.affection.WSumC}
+                                            br
+                                            | #{lower.affection.Afr}
+                                            br
+                                            | #{lower.affection.S}
+                                            br
+                                            | #{lower.affection.Blends} : #{lower.affection.R}
+                                            br
+                                            | #{lower.affection.CP}
 
                         
 
