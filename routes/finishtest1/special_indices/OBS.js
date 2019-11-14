@@ -1,28 +1,37 @@
 const form_quality = require('../upper_section/form_quality.js');
 const cognitive_mediation = require('../lower_section/cognitive_mediation.js');
+const information_processing = require('../lower_section/information_processing.js');
+const form_quality = require('../upper_section/form_quality.js');
 
 function getDdChecked(scores) {
   // Dd > 3
+  return information_processing.getDd(scores) > 3;
+
 }
 exports.getDdChecked = getDdChecked;
 
 function getZfChecked(scores) {
   // Zf > 12
+  return information_processing.getZf(scores) > 12;
 }
 exports.getZfChecked = getZfChecked;
 
 function getZdChecked(scores) {
   // Zd > +3.0
+  return information_processing.getZd(scores) > 3.0;
 }
 exports.getZdChecked = getZdChecked;
 
 function getPopularsChecked(scores) {
   // Populars > 7
+  return cognitive_mediation.getP(scores) > 7;
 }
 exports.getPopularsChecked = getPopularsChecked;
 
 function getFQplusChecked(scores) {
   // FQ+ > 1
+  const FQx = form_quality.getFQx(scores);
+  return FQx['+'] > 1;
 }
 exports.getFQplusChecked = getFQplusChecked;
 
