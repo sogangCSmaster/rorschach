@@ -2,6 +2,7 @@ const core = require('../lower_section/core.js');
 const self_perception = require('../lower_section/self_perception.js');
 const ideation = require('../lower_section/ideation.js');
 const interpersonal = require('../lower_section/interpersonal.js');
+const affection = require('../lower_section/affection.js');
 
 function getUp5Checked(scores) {
   let checked = 0;
@@ -25,6 +26,7 @@ exports.getFVChecked = getFVChecked;
 
 function getColorShadingBlendsChecked(scores) {
   // Color-Shading Blends > 0 or S > 2
+  return color_sharing.getBlends(scores) > 0 || affectiion.getS(scores) > 2;
 }
 exports.getColorShadingBlendsChecked = getColorShadingBlendsChecked;
 
@@ -37,11 +39,13 @@ exports.getEgoChecked = getEgoChecked;
 
 function getAfrChecked(scores) {
   // Afr < 0.46 or Blends < 4
+  return affection.getAfr(scores) < 0.46 || affection.getBlends(scores) < 4;
 }
 exports.getAfrChecked = getAfrChecked;
 
 function getSumShadingChecked(scores) {
   // Sum Shading > FM + m or SumC' > 2
+  return core.getebRight(scores) > core.getebLeft(scores) || core.getSumCprime(scores) > 2;
 }
 exports.getSumShadingChecked = getSumShadingChecked;
 

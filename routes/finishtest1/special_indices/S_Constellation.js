@@ -4,6 +4,7 @@ const information_processing = require('../lower_section/information_processing.
 const affection = require('../lower_section/affection.js');
 const interpersonal = require('../lower_section/interpersonal.js');
 const cognitive_mediation = require('../lower_section/cognitive_mediation.js');
+const color_shading = require('./color_shading.js');
 
 function getUp8Checked(scores) {
   let checked = 0;
@@ -33,7 +34,8 @@ function getFVPlusVFPlusVPlusFDChecked(scores) {
 exports.getFVPlusVFPlusVPlusFDChecked = getFVPlusVFPlusVPlusFDChecked;
 
 function getColorShadingBlendsChecked(scores) {
-  // excel 이상..
+  // CS-blends > 0
+  return color_shading.getBlends(scores) > 0;
 }
 exports.getColorShadingBlendsChecked = getColorShadingBlendsChecked;
 
