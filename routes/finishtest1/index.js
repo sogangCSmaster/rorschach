@@ -115,7 +115,24 @@ router.route("/finishtest1")
         lower.core = {};
         lower.core.R = core.getR(score);
         lower.core.Lambda = core.getLambda(score);
-        // lower.core.highlow = core.get
+        lower.core.EBLeft = core.getEBLeft(score);
+        // lower.core.ebLeft = core.getebLeft(score);
+        lower.core.EBRight = core.getEBRight(score);
+        // lower.core.ebRight = core.getebRight(score);
+        lower.core.EA = core.getEA(score);
+        lower.core.EBPer = core.getEBPer(score);
+        // lower.core.es = core.getes(score);
+        // lower.core.Adjes = core.getAdjes(score);
+        // lower.core.D = core.getD(score);
+        // lower.core.AdjD = core.getAdjD(score);
+        // lower.core.FM = core.getFM(score);
+        // lower.core.m = core.getm(score);
+        lower.core.SumCprime = core.getSumCprime(score);
+        lower.core.SumV = core.getSumV(score);
+        lower.core.SumT = core.getSumT(score);
+        lower.core.SumY = core.getSumY(score);
+
+        console.warn(lower.core);
 
         
 
