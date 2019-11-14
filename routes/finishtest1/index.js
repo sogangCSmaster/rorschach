@@ -12,6 +12,7 @@ const dq = require('./upper_section/dq');
 const form_quality = require('./upper_section/form_quality');
 const special_scores = require('./upper_section/special_scores');
 const core = require('./lower_section/core');
+const affection = require('./lower_section/affection');
 
 router.route("/finishtest1")
     .get(async(req, res, next) => {
@@ -116,23 +117,28 @@ router.route("/finishtest1")
         lower.core.R = core.getR(score);
         lower.core.Lambda = core.getLambda(score);
         lower.core.EBLeft = core.getEBLeft(score);
-        // lower.core.ebLeft = core.getebLeft(score);
+        lower.core.ebLeft = core.getebLeft(score);
         lower.core.EBRight = core.getEBRight(score);
-        // lower.core.ebRight = core.getebRight(score);
+        lower.core.ebRight = core.getebRight(score);
         lower.core.EA = core.getEA(score);
         lower.core.EBPer = core.getEBPer(score);
-        // lower.core.es = core.getes(score);
-        // lower.core.Adjes = core.getAdjes(score);
-        // lower.core.D = core.getD(score);
-        // lower.core.AdjD = core.getAdjD(score);
-        // lower.core.FM = core.getFM(score);
-        // lower.core.m = core.getm(score);
+        lower.core.es = core.getes(score);
+        lower.core.Adjes = core.getAdjes(score);
+        lower.core.D = core.getD(score);
+        lower.core.AdjD = core.getAdjD(score);
+        lower.core.FM = core.getFM(score);
+        lower.core.m = core.getm(score);
         lower.core.SumCprime = core.getSumCprime(score);
         lower.core.SumV = core.getSumV(score);
         lower.core.SumT = core.getSumT(score);
         lower.core.SumY = core.getSumY(score);
 
-        console.warn(lower.core);
+        lower.affection = {};
+        lower.affection.FCCFCLeft = affection.getFCCFCLeft(score);
+        lower.affection.FCCFCRight = affection.getFCCFCRight(score);
+        lower.affection.PureC = affection.getPureC(score);
+        lower.affection.SumCprime = affection.getSumCprime(score);
+        lower.affection.WSumC = affection.getWSumC(score);
 
         
 

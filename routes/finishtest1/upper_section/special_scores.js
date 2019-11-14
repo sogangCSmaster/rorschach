@@ -192,7 +192,7 @@ function checkGHRorPHR(score) {
     }
 
     // 5
-    if ((score.card == 3 || score.card == 4 || score.card == 7 || score.card \\ 9) && score.p === 'P') {
+    if ((score.card == 3 || score.card == 4 || score.card == 7 || score.card == 9) && score.p === 'P') {
       return 'GHR';
     }
     

@@ -394,10 +394,10 @@ html
                             table.table.table-bordered(style="font-size: 7pt")
                                 thead
                                     tr
-                                        th.text-center(colspan="24") 핵심영역 (CORE)
+                                        th.text-center(colspan="24") 핵심 영역 (CORE)
                                 tbody
                                     tr
-                                        td(colspan="12") R = #{lower.core.R}
+                                        td(colspan="12" ) R = #{lower.core.R}
                                         td(colspan="12") Lambda(L) = #{lower.core.Lambda}
                                     tr
                                         td(colspan="8") EB = #{lower.core.EBLeft} : #{lower.core.EBRight}
@@ -423,6 +423,26 @@ html
                                         td(colspan="8") Sum T = #{lower.core.SumT}
                                             br
                                             | Sum Y = #{lower.core.SumY}
+                        
+                        .col-md-4(style="padding-right: 2px; padding-left: 2px;")
+                            table.table.table-bordered(style="font-size: 7pt;")
+                                thead
+                                    tr
+                                        th.text-center(colspan="24") 정서 영역 (AFFECT)
+                                tbody
+                                    tr
+                                        td(colspan="12").text-center FC : CF+C
+                                            br
+                                            | Pure C
+                                            br
+                                            | SumC' : WSumC
+                                        td(colspan="12").text-center #{lower.affection.FCCFCLeft} : #{lower.affection.FCCFCRight}
+                                            br
+                                            | #{lower.affection.PureC}
+                                            br
+                                            | 
+
+                        
 
                     
                     
