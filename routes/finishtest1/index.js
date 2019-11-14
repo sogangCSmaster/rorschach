@@ -74,18 +74,18 @@ router.route("/finishtest1")
         upper.determinants.rF = single.getrF(score);
         upper.determinants.two = single.get2(score);
 
-        console.warn(upper.determinants);
-
         upper.dq = {};
         upper.dq.plus = dq.getPlus(score);
         upper.dq.o = dq.getO(score);
         upper.dq.VSlashPlus = dq.getVSlashPlus(score);
         upper.dq.v = dq.getV(score);
+
         upper.form_quality = {};
         upper.form_quality.FQx = form_quality.getFQx(score);
-        console.warn(upper.form_quality.FQx)
+        upper.form_quality.MQuality = form_quality.getMQual(score);
+        upper.form_quality.WPlusD = form_quality.getWPlusD(score);
 
-
+        console.warn(upper.form_quality);
 
         
 

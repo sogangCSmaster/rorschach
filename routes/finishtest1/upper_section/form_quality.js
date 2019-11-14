@@ -54,6 +54,7 @@ function getWPlusD(scores) {
         WPlusD[score.fq] += 1;
       }
     }
-  })
+  });
+  return WPlusD;
 }
 exports.getWPlusD = getWPlusD;
