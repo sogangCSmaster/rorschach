@@ -176,7 +176,7 @@ function checkGHRorPHR(score) {
     // 2
     if (
       (score.fq == '-' || score.fq == 'none') ||
-      ((score.fq == '+' || score.fq == 'o' || score.fq == 'u') && (score.score.ALOG || score.score.CONTAM || score.score.DV2 || score.score.INCOM2 || score.score.DR2 || score.score.FABCOM2))
+      ((score.fq == '+' || score.fq == 'o' || score.fq == 'u') && ((score.score) && (score.score.ALOG || score.score.CONTAM || score.score.DV2 || score.score.INCOM2 || score.score.DR2 || score.score.FABCOM2)))
     ) {
       return 'PHR';
     }
