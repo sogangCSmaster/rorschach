@@ -97,8 +97,19 @@ router.route("/finishtest1")
         upper.special_scores.FABCOM2 = special_scores.getFABCOM2(score);
         upper.special_scores.ALOG = special_scores.getALOG(score);
         upper.special_scores.CONTAM = special_scores.getCONTAM(score);
+        upper.special_scores.Sum6 = special_scores.getSum6(score);
+        upper.special_scores.WSum6 = special_scores.getWSum6(score);
+        upper.special_scores.AG = special_scores.getAG(score);
+        upper.special_scores.AB = special_scores.getAB(score);
+        upper.special_scores.COP = special_scores.getCOP(score);
+        upper.special_scores.CP = special_scores.getCP(score);
+        // upper.special_scores.GHR = special_scores.getGHR(score);
+        upper.special_scores.MOR = special_scores.getMOR(score);
+        // upper.special_scores.PHR = special_scores.getPHR(score);
+        upper.special_scores.PSV = special_scores.getPSV(score);
+        upper.special_scores.PER = special_scores.getPER(score);
 
-        console.warn(upper.special_scores);
+        // console.warn(upper.special_scores);
         
 
         res.render('testresult/index', { testconfig, moment, upper });
