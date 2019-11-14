@@ -15,7 +15,7 @@ exports.getR = getR;
 function getFM(scores) {
   // FM*을 센다
   let FM = 0;
-  scores.foreEach((score) => {
+  scores.forEach((score) => {
     if (score.det &&
       (score.det.active2 || score.det.passive2 || score.det['a-p2'])
     ) {
