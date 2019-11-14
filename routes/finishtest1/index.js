@@ -52,7 +52,29 @@ router.route("/finishtest1")
         upper.determinants.F = single.getF(score);
         upper.determinants.M = single.getM(score);
         upper.determinants.FM = single.getFM(score);
-        // console.warn(upper.determinants);
+        upper.determinants.m = single.getm(score);
+        upper.determinants.FC = single.getFC(score);
+        upper.determinants.CF = single.getCF(score);
+        upper.determinants.C = single.getC(score);
+        upper.determinants.Cn = single.getCn(score);
+        upper.determinants.FCprime = single.getFCprime(score);
+        upper.determinants.CprimeF = single.getCprimeF(score);
+        upper.determinants.Cprime = single.getCprime(score);
+        upper.determinants.FY = single.getFY(score);
+        upper.determinants.YF = single.getYF(score);
+        upper.determinants.Y = single.getY(score);
+        upper.determinants.FT = single.getFT(score);
+        upper.determinants.TF = single.getTF(score);
+        upper.determinants.T = single.getT(score);
+        upper.determinants.FV = single.getFV(score);
+        upper.determinants.VF = single.getVF(score);
+        upper.determinants.V = single.getV(score);
+        upper.determinants.FD = single.getFD(score);
+        upper.determinants.Fr = single.getFr(score);
+        upper.determinants.rF = single.getrF(score);
+        upper.determinants.two = single.get2(score);
+
+        console.warn(upper.determinants);
 
         upper.dq = {};
         upper.dq.plus = dq.getPlus(score);
