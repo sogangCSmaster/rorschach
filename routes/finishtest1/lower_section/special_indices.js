@@ -17,6 +17,11 @@ function getPTI(scores) {
 }
 exports.getPTI = getPTI;
 
+function getPTIPositive(scores) {
+  return '-';
+}
+exports.getPTIPositive = getPTIPositive;
+
 function getDEPI(scores) {
   let count = 0;
   count += DEPI.getFVChecked(scores);
@@ -31,6 +36,11 @@ function getDEPI(scores) {
 }
 exports.getDEPI = getDEPI;
 
+function getDEPIPositive(scores) {
+  return DEPI.getUp5Checked(scores);
+}
+exports.getDEPIPositive = getDEPIPositive;
+
 function getCDI(scores) {
   let count = 0;
   count += CDI.getEAChecked(scores);
@@ -42,6 +52,11 @@ function getCDI(scores) {
   return count;
 }
 exports.getCDI = getCDI;
+
+function getCDIPositive(scores) {
+  return CDI.getUp4Checked(scores);
+}
+exports.getCDIPositive = getCDIPositive;
 
 function getSCON(scores) {
   let count = 0;
@@ -61,6 +76,11 @@ function getSCON(scores) {
 }
 exports.getSCON = getSCON;
 
+function getSCONPositive(scores) {
+  return S_Constellation.getUp8Checked(scores);
+}
+exports.getSCONPositive = getSCONPositive;
+
 function getHVI(scores) {
   let count = 0;
   count += HVI.getFTChecked(scores);
@@ -76,6 +96,11 @@ function getHVI(scores) {
 }
 exports.getHVI = getHVI;
 
+function getHVIPositive(scores) {
+  return HVI.getUp4Checked(scores);
+}
+exports.getHVIPositive = getHVIPositive;
+
 function getOBS(scores) {
   let count = 0;
   count += OBS.getDdChecked(scores);
@@ -87,3 +112,8 @@ function getOBS(scores) {
   return count;
 }
 exports.getOBS = getOBS;
+
+function getOBSPositive(scores) {
+  return OBS.getUp1Checked(scores);
+}
+exports.getOBSPositive = getOBSPositive;

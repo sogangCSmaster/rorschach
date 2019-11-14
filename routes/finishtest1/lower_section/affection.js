@@ -1,5 +1,7 @@
 const location_features = require('../upper_section/location_features.js');
 const special_scores = require('../upper_section/special_scores.js');
+const core = require('../lower_section/core.js');
+
 function getFCCFCLeft(scores) {
   let FC = 0;
   scores.forEach((score) => {
@@ -104,6 +106,11 @@ function getBlends(scores) {
   return total;
 }
 exports.getBlends = getBlends;
+
+function getR(scores) {
+  return core.getR(scores);
+}
+exports.getR = getR;
 
 function getCP(scores) {
   return special_scores.getCP(scores);

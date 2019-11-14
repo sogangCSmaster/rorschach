@@ -1,3 +1,5 @@
+const cognitive_mediation = require('../lower_section/cognitive_mediation.js');
+
 function countSingleDetWithKey(scores, key, value) {
   // value가 없으면 key만 센다
   let count = 0;
@@ -144,3 +146,8 @@ function get2(scores) {
   return two;
 }
 exports.get2 = get2;
+
+function getP(scores) {
+  return cognitive_mediation.getP(scores);
+}
+exports.getP = getP;
