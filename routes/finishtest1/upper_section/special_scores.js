@@ -126,11 +126,84 @@ function getPSV(scores) {
 exports.getPSV = getPSV;
 
 function getGHR(scores) {
+  let GHR = 0;
+  scores.forEach((score) => {
+    if (checkGHRorPHR(score) == 'GHR') {
+      GHR += 1;
+    }
+  });
+  return GHR;
+}
+exports.getGHR = getGHR;
 
+function getPHR(scores) {
+  let PHR = 0;
+  scores.forEach((score) => {
+    if (checkGHRorPHR(score) == 'PHR') {
+      PHR += 1;
+    }
+  });
+  return PHR;
+}
+exports.getPHR = getPHR;
+
+function checkGHRorPHR(score) {
   /* GHR 조건
-   * H, (H), Hd (Hd), Ma, Mp, Ma-p or Hx 를 가지고 있고   <pure H>
-   * a) FQ 가 +, o,  or u
-   * b) 특수 점수가 DV를 제외한 인지적 특수 점수 없을 것
-   * c) 특수 점수: MOR, AG같은 내용 특수 점수 없을 것
+   * H, (H), Hd (Hd), Hx, Ma, Mp, Ma-p 를 가지고 있거나
+   * (FMa or FMp or  FMa-p) and (COP or AG) 이면서
+   * H  and (fq = + or o or u) and (special scores not DR1 not DR2 not INCOM1 not INCOM2 not FABCOM1 not FABCOM2 not CONTAM not ALOG not AG not MOR) 이면 GHR
+   *
+   * 그 외에 (fq 가 - or none or ((fq 가 + or o or u) and (ALOG or CONTAM or DV2 or INCOM2 or DR2 or FABCOM2) )) 이면 PHR
+   * 그 외에 (COP and (!AG)) 이면 GHR
+   * 그 외에 (FABCOM1 or FABCOM2 or MOR or An) 이면 PHR
+   * 그 외에 (card 번호 3 or 4 or 7 or 9) and p='P' 이면 GHR
+   * 그 외에 (AG or INCOM1 or INCOM2 or DR1 or DR2 or Hd) 이면 PHR
+   * 그 외는 GHR
    */
+  if (
+  (score.react && (score.react.H || score.react['(H)'] || score.react.Hd || score.react['(Hd)'] || score.react.Hx)) ||
+  (score.det && (score.det.active1 || score.det.passive1 || score.det['a-p1'])) ||
+  (score.det && (score.det.active2 || score.det.passive2 || score.det['a-p2']) && score.score && (score.score.AG || score.score.COP))
+) {
+    // 1
+    if (score.react && score.react.H &&
+      (score.fq == '+' || score.fq == 'o' || score.fq == 'u') &&
+      (score.score && (!score.score.DR1 && !score.score.DR2 && !score.score.INCOM1 && !score.score.INCOM2 && !score.score.FABCOM1 && !score.score.FABCOM2 && !score.score.CONTAM && !score.score.ALOG && !score.score.AG && !score.score.MOR))
+    ) {
+      return 'GHR';
+    }
+
+    // 2
+    if (
+      (score.fq == '-' || score.fq == 'none') ||
+      ((score.fq == '+' || score.fq == 'o' || score.fq == 'u') && (score.score.ALOG || score.score.CONTAM || score.score.DV2 || score.score.INCOM2 || score.score.DR2 || score.score.FABCOM2))
+    ) {
+      return 'PHR';
+    }
+
+    // 3
+    if (score.score && score.score.COP && !score.score.AG) {
+      return 'GHR';
+    }
+
+    // 4
+    if (score.score && (score.score.FABCOM1 || score.score.FABCOM2 || score.score.MOR || (score.react && score.react.An))) {
+      return 'PHR';
+    }
+
+    // 5
+    if ((score.card == 3 || score.card == 4 || score.card == 7 || score.card \\ 9) && score.p === 'P') {
+      return 'GHR';
+    }
+    
+    // 6
+    if (score.score && (score.score.AG || score.score.INCOM1 || score.score.INCOM2 || score.score.DR1 || score.score.DR2 || (score.react && score.react.Hd))) {
+      return 'PHR';
+    }
+
+    // 7
+    return 'GHR';
+  } else {
+    return '';
+  }
 }

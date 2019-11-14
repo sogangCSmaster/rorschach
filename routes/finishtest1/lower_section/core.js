@@ -1,3 +1,5 @@
+const affection = require('./affection.js');
+
 function getR(scores) {
   let R = 0;
   scores.forEach((scores) => {
@@ -38,12 +40,12 @@ function getm(scores) {
 exports.getm = getm;
 
 function getEBLeft(scores) {
-
+  return getM(scores);
 }
 exports.getEBLeft = getEBLeft;
 
 function getEBRight(scores) {
-
+  return affection.getWSumC(scores);
 }
 exports.getEBRight = getEBRight;
 
@@ -53,7 +55,7 @@ function getebLeft(scores) {
 exports.getebLeft = getebLeft;
 
 function getebRight(scores) {
-
+  return getSumCprime(scores) + getSumV(scores) + getSumT(scores) + getSumY(scores);
 }
 exports.getebRight = getebRight;
 
