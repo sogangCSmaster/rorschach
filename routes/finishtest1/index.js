@@ -10,6 +10,7 @@ const approach = require('./upper_section/approach');
 const single = require('./upper_section/single');
 const dq = require('./upper_section/dq');
 const form_quality = require('./upper_section/form_quality');
+const special_scores = require('./upper_section/special_scores');
 
 router.route("/finishtest1")
     .get(async(req, res, next) => {
@@ -85,6 +86,19 @@ router.route("/finishtest1")
         upper.form_quality.MQuality = form_quality.getMQual(score);
         upper.form_quality.WPlusD = form_quality.getWPlusD(score);
 
+        upper.special_scores = {};
+        upper.special_scores.DV1 = special_scores.getDV1(score);
+        upper.special_scores.DV2 = special_scores.getDV2(score);
+        upper.special_scores.INCOM1 = special_scores.getINCOM1(score);
+        upper.special_scores.INCOM2 = special_scores.getINCOM2(score);
+        upper.special_scores.DR1 = special_scores.getDR1(score);
+        upper.special_scores.DR2 = special_scores.getDR2(score);
+        upper.special_scores.FABCOM1 = special_scores.getFABCOM1(score);
+        upper.special_scores.FABCOM2 = special_scores.getFABCOM2(score);
+        upper.special_scores.ALOG = special_scores.getALOG(score);
+        upper.special_scores.CONTAM = special_scores.getCONTAM(score);
+
+        console.warn(upper.special_scores);
         
 
         res.render('testresult/index', { testconfig, moment, upper });
