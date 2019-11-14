@@ -278,9 +278,40 @@ html
                             table.table.table-bordered
                                 thead
                                     tr
-                                        th.text-center(style="font-size: 7pt" colspan="3") 형태질
+                                        th.text-center(style="font-size: 7pt" colspan="4") 형태질
                                             br
                                             | (Form Quality)
+                                tbody(style="font-size: 7pt")
+                                    tr
+                                        td.text-center(style="padding: 2px;")
+                                        td.text-center(style="padding: 2px;") FQx
+                                        td.text-center(style="padding: 2px;") MQuality
+                                        td.text-center(style="padding: 2px;") W+D
+                                    tr
+                                        td.text-center(style="padding: 2px;") +
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.FQx['+']}
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.MQuality['+']}
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.WPlusD['+']}
+                                    tr
+                                        td.text-center(style="padding: 2px;") o
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.FQx['o']}
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.MQuality['o']}
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.WPlusD['o']}
+                                    tr
+                                        td.text-center(style="padding: 2px;") u
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.FQx['u']}
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.MQuality['u']}
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.WPlusD['u']}
+                                    tr
+                                        td.text-center(style="padding: 2px;") -
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.FQx['-']}
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.MQuality['-']}
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.WPlusD['-']}
+                                    tr
+                                        td.text-center(style="padding: 2px;") none
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.FQx['none']}
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.MQuality['none']}
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.WPlusD['none']}
 
                                         
                 

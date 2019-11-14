@@ -85,8 +85,6 @@ router.route("/finishtest1")
         upper.form_quality.MQuality = form_quality.getMQual(score);
         upper.form_quality.WPlusD = form_quality.getWPlusD(score);
 
-        console.warn(upper.form_quality);
-
         
 
         res.render('testresult/index', { testconfig, moment, upper });
