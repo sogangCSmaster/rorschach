@@ -51,7 +51,7 @@ function getEBRight(scores) {
 exports.getEBRight = getEBRight;
 
 function getebLeft(scores) {
-  return getM(scores) + getm(scores);
+  return getFM(scores) + getm(scores);
 }
 exports.getebLeft = getebLeft;
 
