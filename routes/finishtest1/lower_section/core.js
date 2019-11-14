@@ -74,7 +74,7 @@ function getLambda(scores) {
   } else if (R - F == 0) {
     return 'Very High';
   } else {
-    return Math.round(F / (R - F), 1);
+    return (F / (R - F)).toFixed(2)
   }
 }
 exports.getLambda = getLambda;
@@ -176,7 +176,7 @@ function getEBPer(scores) {
   if (getEBLeft(scores) == 0 || getEBRight(scores) == 0) {
     return 'N/A';
   } else {
-    return Math.round(Math.max(getEBLeft(scores), getEBRight(scores)) / Math.min(getEBLeft(scores), getEBRight(scores)), 2);
+    return (Math.max(getEBLeft(scores), getEBRight(scores)) / Math.min(getEBLeft(scores), getEBRight(scores))).toFixed(2);
   }
 }
 exports.getEBPer = getEBPer;

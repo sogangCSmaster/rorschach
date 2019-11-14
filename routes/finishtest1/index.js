@@ -13,6 +13,7 @@ const form_quality = require('./upper_section/form_quality');
 const special_scores = require('./upper_section/special_scores');
 const core = require('./lower_section/core');
 const affection = require('./lower_section/affection');
+const interpersonal = require('./lower_section/interpersonal');
 
 router.route("/finishtest1")
     .get(async(req, res, next) => {
@@ -145,6 +146,20 @@ router.route("/finishtest1")
         lower.affection.Blends = affection.getBlends(score);
         lower.affection.R = affection.getR(score);
         lower.affection.CP = affection.getCP(score);
+
+        lower.interpersonal = {};
+        lower.interpersonal.COP = interpersonal.getCOP(score);
+        lower.interpersonal.AG = interpersonal.getAG(score);
+        lower.interpersonal.GHR = interpersonal.getGHR(score);
+        lower.interpersonal.PHR = interpersonal.getPHR(score);
+        lower.interpersonal.a = interpersonal.geta(score);
+        lower.interpersonal.p = interpersonal.getp(score);
+        lower.interpersonal.Food = interpersonal.getFood(score);
+        lower.interpersonal.SumT = interpersonal.getSumT(score);
+        lower.interpersonal.HumanCont = interpersonal.getHumanCont(score); // NaN
+        lower.interpersonal.PureH = interpersonal.getPureH(score);
+        // lower.interpersonal.PER = interpersonal.getPER(score); // Error
+        lower.interpersonal.ISOIndex = interpersonal.getISOIndex(score);
         
 
         

@@ -118,6 +118,6 @@ function getISOIndex(scores) {
   sum += cont['Ls'];
   sum += cont['Ge'];
 
-  return sum / core.getR(scores);
+  return (sum / core.getR(scores)).toFixed(2);
 }
 exports.getISOIndex = getISOIndex;
