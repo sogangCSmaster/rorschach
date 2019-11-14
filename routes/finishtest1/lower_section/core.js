@@ -176,7 +176,7 @@ function getEBPer(scores) {
   if (getEBLeft(scores) == 0 || getEBRight(scores) == 0) {
     return 'N/A';
   } else {
-    return Math.max(getEBLeft(scores), getEBRight(scores)) / Math.min(getEBLeft(scores), getEBRight(scores));
+    return Math.round(Math.max(getEBLeft(scores), getEBRight(scores)) / Math.min(getEBLeft(scores), getEBRight(scores)), 2);
   }
 }
 exports.getEBPer = getEBPer;
