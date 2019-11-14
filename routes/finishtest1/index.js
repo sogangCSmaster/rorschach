@@ -76,6 +76,7 @@ router.route("/finishtest1")
         upper.determinants.Fr = single.getFr(score);
         upper.determinants.rF = single.getrF(score);
         upper.determinants.two = single.get2(score);
+        // upper.determinants.P = single.getP
 
         upper.dq = {};
         upper.dq.plus = dq.getPlus(score);
