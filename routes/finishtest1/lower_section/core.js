@@ -71,7 +71,7 @@ function getLambda(scores) {
   } else if (R - F == 0) {
     return 'Very High';
   } else {
-    return F / (R - F);
+    return Math.round(F / (R - F), 1);
   }
 }
 exports.getLambda = getLambda;

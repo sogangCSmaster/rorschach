@@ -11,6 +11,7 @@ const single = require('./upper_section/single');
 const dq = require('./upper_section/dq');
 const form_quality = require('./upper_section/form_quality');
 const special_scores = require('./upper_section/special_scores');
+const core = require('./lower_section/core');
 
 router.route("/finishtest1")
     .get(async(req, res, next) => {
@@ -109,10 +110,16 @@ router.route("/finishtest1")
         upper.special_scores.PSV = special_scores.getPSV(score);
         upper.special_scores.PER = special_scores.getPER(score);
 
-        // console.warn(upper.special_scores);
+        
+        var lower = {};
+        lower.core = {};
+        lower.core.R = core.getR(score);
+        lower.core.Lambda = core.getLambda(score);
+        // lower.core.highlow = core.get
+
         
 
-        res.render('testresult/index', { testconfig, moment, upper });
+        res.render('testresult/index', { testconfig, moment, upper, lower });
 
     })
     .post(async(req, res, next) => {

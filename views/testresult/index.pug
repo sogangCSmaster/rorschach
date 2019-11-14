@@ -382,6 +382,25 @@ html
 
             .page
                 .subpage
+                    .row
+                        .col-md-12(style="padding-right: 2px; padding-left: 2px;")
+                            table.table.table-bordered
+                                thead
+                                    tr
+                                        th.text-center 비율(RAIOS), 백분율(PERCENTAGES), 산출한 점수(DERIVATIONS)
+                    
+                    .row
+                        .col-md-4(style="padding-right: 2px; padding-left: 2px;")
+                            table.table.table-bordered(style="font-size: 7pt")
+                                thead
+                                    tr
+                                        th.text-center 핵심영역 (CORE)
+                                tbody
+                                    tr
+                                        td R = #{lower.core.R}
+                                        td Lambda(L) = #{lower.core.Lambda}
+                                        td
+
                     
                     
         script(src="/js/jquery-2.1.1.js")
