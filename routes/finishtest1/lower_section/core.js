@@ -1,4 +1,5 @@
 const affection = require('./affection.js');
+const information_processing = require('./information_processing.js');
 
 function getR(scores) {
   let R = 0;
@@ -40,7 +41,7 @@ function getm(scores) {
 exports.getm = getm;
 
 function getEBLeft(scores) {
-  return getM(scores);
+  return information_processing.getM(scores);
 }
 exports.getEBLeft = getEBLeft;
 
