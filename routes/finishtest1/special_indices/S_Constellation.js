@@ -74,7 +74,7 @@ exports.getesChecked = getesChecked;
 
 function getCFChecked(scores) {
   // CF + C > FC
-  affection.getFCCFCRight(scores) > affection.getFCCFCLeft(scores);
+  return affection.getFCCFCRight(scores) > affection.getFCCFCLeft(scores);
 }
 exports.getCFChecked = getCFChecked;
 
@@ -98,7 +98,7 @@ function getPChecked(scores) {
 exports.getPChecked = getPChecked;
 
 function getPureHChecked(scores) {
-  interpersonal.getPureH(scores) < 2;
+  return interpersonal.getPureH(scores) < 2;
 }
 exports.getPureHChecked = getPureHChecked;
 
