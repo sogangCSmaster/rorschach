@@ -663,7 +663,7 @@ html
                                                 i.fa.fa-square(style="margin-right: 6px; font-size: 11pt;")
                                             | S-CON = #{lower.special_indices.SCON}
                                         th.text-center(colspan="4")
-                                            if lower.special_indices.PTIPositive
+                                            if lower.special_indices.PTI>=4
                                                 i.fa.fa-check-square(style="margin-right: 6px; font-size: 11pt;")
                                             else
                                                 i.fa.fa-square(style="margin-right: 6px; font-size: 11pt;")
@@ -679,16 +679,20 @@ html
                                                 i.fa.fa-check-square(style="margin-right: 6px; font-size: 11pt;")
                                             else
                                                 i.fa.fa-square(style="margin-right: 6px; font-size: 11pt;")
-                                        
                                             | CDI = #{lower.special_indices.CDI}
                                         th.text-center(colspan="4")
                                             if lower.special_indices.CDIPositive == true
                                                 i.fa.fa-check-square(style="margin-right: 6px; font-size: 11pt;")
                                             else
                                                 i.fa.fa-square(style="margin-right: 6px; font-size: 11pt;")
+                                            | HVI = #{lower.special_indices.HVI}
+                                        th.text-center(colspan="4")
+                                            if lower.special_indices.OBSPositive == true
+                                                i.fa.fa-check-square(style="margin-right: 6px; font-size: 11pt;")
+                                            else
+                                                i.fa.fa-square(style="margin-right: 6px; font-size: 11pt;")
+                                            | OBS = #{lower.special_indices.OBS}
                                         
-                                        HVI = 
-                                        th.text-center(colspan="4") OBS = 
 
                                             
 

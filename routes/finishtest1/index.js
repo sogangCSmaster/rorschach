@@ -224,8 +224,6 @@ router.route("/finishtest1")
         lower.special_indices.OBSPositive = special_indices.getOBSPositive(score);
         lower.special_indices.OBS = special_indices.getOBS(score);
 
-        console.warn(lower.special_indices)
-
         
 
         res.render('testresult/index', { testconfig, moment, upper, lower });
