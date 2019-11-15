@@ -22,6 +22,7 @@ const special_indices = require('./lower_section/special_indices');
 const blends = require('./upper_section/blends');
 const S_Constellation = require('./special_indices/S_Constellation');
 const PTI = require('./special_indices/PTI');
+const DEPI = require('./special_indices/DEPI');
 
 router.route("/finishtest1")
     .get(async(req, res, next) => {
@@ -252,6 +253,18 @@ router.route("/finishtest1")
         SpecialIndices.PTI.Level2 = PTI.getLevel2Checked(score);
         SpecialIndices.PTI.R = PTI.getRChecked(score);
         SpecialIndices.PTI.M = PTI.getMChecked(score);
+
+        SpecialIndices.DEPI = {};
+        SpecialIndices.DEPI.Up5Checked = DEPI.getUp5Checked(score);
+        SpecialIndices.DEPI.FV = DEPI.getFVChecked(score);
+        SpecialIndices.DEPI.ColorShadingBlends = DEPI.getColorShadingBlendsChecked(score);
+        SpecialIndices.DEPI.Ego = DEPI.getEgoChecked(score);
+        SpecialIndices.DEPI.Afr = DEPI.getAfrChecked(score);
+        SpecialIndices.DEPI.SumShading = DEPI.getSumShadingChecked(score);
+        SpecialIndices.DEPI.MOR = DEPI.getMORChecked(score);
+        SpecialIndices.DEPI.COP = DEPI.getCOPChecked(score);
+
+        
 
         
 

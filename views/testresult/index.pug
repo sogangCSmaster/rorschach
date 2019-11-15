@@ -834,6 +834,73 @@ html
                                                 else
                                                     i.fa.fa-square-o
                                                 | &nbsp;(M- > 1) or (X-% > 0.40)
+                    
+                    .row
+                        .col-md-6(style="padding-right: 2px; padding-left: 2px;")
+                            table.table.table-bordered(style="font-size: 7pt;")
+                                thead
+                                    tr
+                                        th.text-center DEPI (Depression Index)
+                                tbody
+                                    tr
+                                        td
+                                            p(style="font-weight: bold;")
+                                                if SpecialIndices.DEPI.Up5Checked
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;Positive if 5 or more conditions are true
+                                            p
+                                                if SpecialIndices.DEPI.FV
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(SumV > 0) or (FD > 2)
+                                            p
+                                                if SpecialIndices.DEPI.ColorShadingBlends
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(Color-Shading Blends > 0) or (S > 2)
+                                            p
+                                                if SpecialIndices.DEPI.Ego
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(Egocentricity Index > 0.44 and Reflection(Fr+rF) = 0) or (Egocentricity Index < 0.33)
+                                            p
+                                                if SpecialIndices.DEPI.Afr
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(Affective Ratio < 0.46) or (Blends < 4)
+                                            p
+                                                if SpecialIndices.DEPI.SumShading
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(SumShading > Fm + m) or (SumC' > 2)
+                                            p
+                                                if SpecialIndices.DEPI.MOR
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(MOR > 2) or (Intellectualization Index > 3)
+                                            p
+                                                if SpecialIndices.DEPI.COP
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(COP < 2) or (Isolation Index > 0.24)
+
+                                .col-md-6(style="padding-right: 2px; padding-left: 2px;")
+                                    table.table.table-bordered(style="font-size: 7pt;")
+                                        thead
+                                            tr
+                                                th.text-center CDI (Coping Deficit Index)
+                                        tbody
+                                            
+
                                             
                                             
 
