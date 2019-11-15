@@ -1,5 +1,7 @@
 const interpersonal = require('./interpersonal.js');
 const form_quality = require('../upper_section/form_quality.js');
+const special_scores = require('../upper_section/special_scores');
+const contents = require('../upper_section/contents')
 
 function geta(scores) {
   return interpersonal.geta(scores);

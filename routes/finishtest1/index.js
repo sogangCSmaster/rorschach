@@ -14,6 +14,7 @@ const special_scores = require('./upper_section/special_scores');
 const core = require('./lower_section/core');
 const affection = require('./lower_section/affection');
 const interpersonal = require('./lower_section/interpersonal');
+const ideation = require('./lower_section/ideation');
 
 router.route("/finishtest1")
     .get(async(req, res, next) => {
@@ -161,6 +162,13 @@ router.route("/finishtest1")
         // lower.interpersonal.PER = interpersonal.getPER(score); // Error
         lower.interpersonal.ISOIndex = interpersonal.getISOIndex(score);
         
+        lower.ideation = {};
+        lower.ideation.a = ideation.geta(score);
+        lower.ideation.p = ideation.getp(score);
+        lower.ideation.Ma = ideation.getMa(score);
+        lower.ideation.Mp = ideation.getMp(score);
+        lower.ideation.twoABplusArtplusAy = ideation.twoABplusArtplusAy(score);
+        lower.ideation.MOR = ideation.getMOR(score);
 
         
 
