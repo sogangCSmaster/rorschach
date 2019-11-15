@@ -160,7 +160,7 @@ router.route("/finishtest1")
         lower.interpersonal.SumT = interpersonal.getSumT(score);
         lower.interpersonal.HumanCont = interpersonal.getHumanCont(score); // NaN
         lower.interpersonal.PureH = interpersonal.getPureH(score);
-        // lower.interpersonal.PER = interpersonal.getPER(score); // Error
+        lower.interpersonal.PER = interpersonal.getPER(score); // Error
         lower.interpersonal.ISOIndex = interpersonal.getISOIndex(score);
         
         lower.ideation = {};
