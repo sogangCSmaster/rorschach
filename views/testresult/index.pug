@@ -893,12 +893,51 @@ html
                                                     i.fa.fa-square-o
                                                 | &nbsp;(COP < 2) or (Isolation Index > 0.24)
 
-                                .col-md-6(style="padding-right: 2px; padding-left: 2px;")
-                                    table.table.table-bordered(style="font-size: 7pt;")
-                                        thead
-                                            tr
-                                                th.text-center CDI (Coping Deficit Index)
-                                        tbody
+                        .col-md-6(style="padding-right: 2px; padding-left: 2px;")
+                            table.table.table-bordered(style="font-size: 7pt;")
+                                thead
+                                    tr
+                                        th.text-center CDI (Coping Deficit Index)
+                                tbody
+                                    tr
+                                        td
+                                            p(style="font-weight: bold;")
+                                                if SpecialIndices.CDI.Up4Checked
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;Positive if 4 or more conditions are true
+                                            p
+                                                if SpecialIndices.CDI.EA
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(EA < 6) or (Adj D < 0)
+                                            p
+                                                if SpecialIndices.CDI.COP
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(COP < 2) and (AG < 2)
+                                            p
+                                                if SpecialIndices.CDI.WSumC
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(WsumC < 2.5) or *(Affective < 0.46)
+                                            p
+                                                if SpecialIndices.CDI.Passive
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(Passive(p) > Active(a)+1) or (Pure H < 2)
+                                            p
+                                                if SpecialIndices.CDI.SumT
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(Sum T > 1) or (Isloation Index > 0.24) or (Food > 0)
+                                            
                                             
 
                                             

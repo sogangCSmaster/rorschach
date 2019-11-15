@@ -23,6 +23,7 @@ const blends = require('./upper_section/blends');
 const S_Constellation = require('./special_indices/S_Constellation');
 const PTI = require('./special_indices/PTI');
 const DEPI = require('./special_indices/DEPI');
+const CDI = require('./special_indices/CDI');
 
 router.route("/finishtest1")
     .get(async(req, res, next) => {
@@ -264,6 +265,13 @@ router.route("/finishtest1")
         SpecialIndices.DEPI.MOR = DEPI.getMORChecked(score);
         SpecialIndices.DEPI.COP = DEPI.getCOPChecked(score);
 
+        SpecialIndices.CDI = {};
+        SpecialIndices.CDI.Up4Checked = CDI.getUp4Checked(score);
+        SpecialIndices.CDI.EA = CDI.getEAChecked(score);
+        SpecialIndices.CDI.COP = CDI.getCOPChecked(score);
+        SpecialIndices.CDI.WSumC = CDI.getWSumCChecked(score);
+        SpecialIndices.CDI.Passive = CDI.getPassiveChecked(score);
+        SpecialIndices.CDI.SumT = CDI.getSumTChecked(score);
         
 
         
