@@ -15,6 +15,7 @@ const core = require('./lower_section/core');
 const affection = require('./lower_section/affection');
 const interpersonal = require('./lower_section/interpersonal');
 const ideation = require('./lower_section/ideation');
+const cognitive_mediation = require('./lower_section/cognitive_mediation');
 
 router.route("/finishtest1")
     .get(async(req, res, next) => {
@@ -169,6 +170,20 @@ router.route("/finishtest1")
         lower.ideation.Mp = ideation.getMp(score);
         lower.ideation.twoABplusArtplusAy = ideation.twoABplusArtplusAy(score);
         lower.ideation.MOR = ideation.getMOR(score);
+        lower.ideation.Sum6 = ideation.getSum6(score);
+        lower.ideation.Lv2 = ideation.getLv2(score);
+        lower.ideation.WSum6 = ideation.getWSum6(score);
+        lower.ideation.Mminus = ideation.getMminus(score);
+        lower.ideation.Mnone = ideation.getMnone(score);
+
+        lower.cognitive_mediation = {};
+        lower.cognitive_mediation.XAper = cognitive_mediation.getXAper(score);
+        lower.cognitive_mediation.WDAper = cognitive_mediation.getWDAper(score);
+        lower.cognitive_mediation.Xminusper = cognitive_mediation.getXminusper(score);
+        lower.cognitive_mediation.Sminus = cognitive_mediation.getSminus(score);
+        lower.cognitive_mediation.P = cognitive_mediation.getP(score);
+        lower.cognitive_mediation.Xplusper = cognitive_mediation.getXplusper(score);
+        lower.cognitive_mediation.Xuper = cognitive_mediation.getXuper(score);
 
         
 
