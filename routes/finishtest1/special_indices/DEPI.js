@@ -26,7 +26,7 @@ exports.getFVChecked = getFVChecked;
 
 function getColorShadingBlendsChecked(scores) {
   // Color-Shading Blends > 0 or S > 2
-  return color_sharing.getBlends(scores) > 0 || affectiion.getS(scores) > 2;
+  return color_sharing.getBlends(scores) > 0 || affection.getS(scores) > 2;
 }
 exports.getColorShadingBlendsChecked = getColorShadingBlendsChecked;
 
