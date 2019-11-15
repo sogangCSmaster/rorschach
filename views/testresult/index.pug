@@ -656,7 +656,27 @@ html
                             table.table.table-bordered(style="font-size: 7pt;")
                                 thead
                                     tr
-                                        th.text-center(colspan="24") 자기 지각 영역
+                                        th.text-center(colspan="4")
+                                            if lower.special_indices.SCONPositive == true
+                                                i.fa.fa-check-square(style="margin-right: 6px; font-size: 11pt;")
+                                            else
+                                                i.fa.fa-square(style="margin-right: 6px; font-size: 11pt;")
+                                            | S-CON = #{lower.special_indices.SCON}
+                                        th.text-center(colspan="4")
+                                            if lower.special_indices.PTIPositive
+                                                i.fa.fa-check-square(style="margin-right: 6px; font-size: 11pt;")
+                                            else
+                                                i.fa.fa-square(style="margin-right: 6px; font-size: 11pt;")
+                                            | PTI = #{lower.special_indices.PTI}
+                                        th.text-center(colspan="4")
+                                            if lower.special_indices.DEPIPositive == true
+                                                i.fa.fa-check-square(style="margin-right: 6px; font-size: 11pt;")
+                                            else
+                                                i.fa.fa-square(style="margin-right: 6px; font-size: 11pt;")
+                                            | DEPI = #{lower.special_indices.DEPI}
+                                        th.text-center(colspan="4") CDI = 
+                                        th.text-center(colspan="4") HVI = 
+                                        th.text-center(colspan="4") OBS = 
 
                                             
 
