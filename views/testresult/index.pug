@@ -2,7 +2,7 @@ doctype html
 html
     head
         meta(charset="utf-8")
-        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        meta(name="viewport" content="initial-scale=1.0")
         title Rorschach
         link(href="/css/bootstrap.min.css" rel="stylesheet" media="all")
         link(href="/font-awesome/css/font-awesome.css" rel="stylesheet" media="all")
@@ -515,6 +515,16 @@ html
                                             | Intellectual Index
                                             br
                                             | MOR
+                                            br
+                                            | Sum6
+                                            br
+                                            | Lv2 Special Scores
+                                            br
+                                            | WSum6
+                                            br
+                                            | M-
+                                            br
+                                            | M none
                                         td(colspan="8") #{lower.ideation.a} : #{lower.ideation.p}
                                             br
                                             | #{lower.ideation.Ma} : #{lower.ideation.Mp}
@@ -522,6 +532,53 @@ html
                                             | #{lower.ideation.twoABplusArtplusAy}
                                             br
                                             | #{lower.ideation.MOR}
+                                            br
+                                            | #{lower.ideation.Sum6}
+                                            br
+                                            | #{lower.ideation.Lv2}
+                                            br
+                                            | #{lower.ideation.WSum6}
+                                            br
+                                            | #{lower.ideation.Mminus}
+                                            br
+                                            | #{lower.ideation.Mnone}
+
+
+                        .col-md-3(style="padding-right: 2px; padding-left: 2px;")
+                            table.table.table-bordered(style="font-size: 7pt;")
+                                thead
+                                    tr
+                                        th.text-center(colspan="24") 인지적 중재 영역
+                                tbody
+                                    tr
+                                        td(colspan="12") XA%
+                                            br
+                                            | XDA%
+                                            br
+                                            | X-%
+                                            br
+                                            | S-
+                                            br
+                                            | Popular (P)
+                                            br
+                                            | X+%
+                                            br
+                                            | Xu%
+                                            
+                                        td(colspan="12") #{lower.cognitive_mediation.XAper}
+                                            br
+                                            | #{lower.cognitive_mediation.WDAper}
+                                            br
+                                            | #{lower.cognitive_mediation.Xminusper}
+                                            br
+                                            | #{lower.cognitive_mediation.Sminus}
+                                            br
+                                            | #{lower.cognitive_mediation.P}
+                                            br
+                                            | #{lower.cognitive_mediation.Xplusper}
+                                            br
+                                            | #{lower.cognitive_mediation.Xuper}
+                                            
 
 
 
