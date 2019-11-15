@@ -25,6 +25,7 @@ const PTI = require('./special_indices/PTI');
 const DEPI = require('./special_indices/DEPI');
 const CDI = require('./special_indices/CDI');
 const HVI = require('./special_indices/HVI');
+const OBS = require('./special_indices/OBS');
 
 router.route("/finishtest1")
     .get(async(req, res, next) => {
@@ -284,7 +285,18 @@ router.route("/finishtest1")
         SpecialIndices.HVI.ParH = HVI.getParHChecked(score);
         SpecialIndices.HVI.HplusA = HVI.getHplusAChecked(score);
         SpecialIndices.HVI.Cg = HVI.getCgChecked(score);
-        
+
+        SpecialIndices.OBS = {};
+        SpecialIndices.OBS.Dd = OBS.getDdChecked(score);
+        SpecialIndices.OBS.Zf = OBS.getZfChecked(score);
+        SpecialIndices.OBS.Zd = OBS.getZdChecked(score);
+        SpecialIndices.OBS.Populars = OBS.getPopularsChecked(score);
+        SpecialIndices.OBS.FQplus = OBS.getFQplusChecked(score);
+        SpecialIndices.OBS.Up1Checked = OBS.getUp1Checked(score);
+        SpecialIndices.OBS.AllChecked = OBS.getAllChecked(score);
+        SpecialIndices.OBS.Up2Checked = OBS.getUp2Checked(score);
+        SpecialIndices.OBS.Up3Checked = OBS.getUp3Checked(score);
+        SpecialIndices.OBS.FQplusChecked = OBS.getFQplusChecked(score);
 
         
 

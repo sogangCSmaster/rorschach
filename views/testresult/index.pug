@@ -707,7 +707,7 @@ html
                         .col-md-12.text-center
                             h3 특수지표 (Constellation Worksheet)
 
-                    .row.m-t-lg
+                    .row
                         .col-md-6(style="padding-right: 2px; padding-left: 2px;")
                             table.table.table-bordered(style="font-size: 7pt;")
                                 thead
@@ -1001,16 +1001,76 @@ html
                                                     i.fa.fa-square-o
                                                 | &nbsp;(8) Cg > 3
                                             
-                                            
-                                            
-
-                                            
-                                            
-
-
-
-                        
-
+                        .col-md-6(style="padding-right: 2px; padding-left: 2px;")
+                            table.table.table-bordered(style="font-size: 7pt;")
+                                thead
+                                    tr
+                                        th.text-center OBS (Obsessive Style Index)
+                                tbody
+                                    tr
+                                        td
+                                            p
+                                                if SpecialIndices.OBS.Dd
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(1) Dd > 3
+                                            p
+                                                if SpecialIndices.OBS.Zf
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(2) Zf > 12
+                                            p
+                                                if SpecialIndices.OBS.Zd
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(3) Zd > +3.0
+                                            p
+                                                if SpecialIndices.OBS.Populars
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(4) Populars(P) > 7
+                                            p
+                                                if SpecialIndices.OBS.FQplus
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(5) FQx+ > 1
+                                    tr
+                                        td
+                                            p(style="font-weight: bold;")
+                                                if SpecialIndices.OBS.Up1Checked
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;Positive if one or more is true
+                                            p
+                                                if SpecialIndices.OBS.AllChecked
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;Conditions (1) to (5) are all true
+                                            p
+                                                if SpecialIndices.OBS.Up2Checked
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;2 or more of (1) to (4) are true and (FQx+ > 3)
+                                            p
+                                                if SpecialIndices.OBS.Up3Checked
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;3 or more of (1) to (5) are true and (X+% > 0.89)
+                                            p
+                                                if SpecialIndices.OBS.FQplusChecked
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(FQx+ > 3) and (X+% > 0.89)
                     
                     
         script(src="/js/jquery-2.1.1.js")
