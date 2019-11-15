@@ -937,6 +937,70 @@ html
                                                 else
                                                     i.fa.fa-square-o
                                                 | &nbsp;(Sum T > 1) or (Isloation Index > 0.24) or (Food > 0)
+                    .row
+                        .col-md-6(style="padding-right: 2px; padding-left: 2px;")
+                            table.table.table-bordered(style="font-size: 7pt;")
+                                thead
+                                    tr
+                                        th.text-center HVI (Hypervigilance Index)
+                                tbody
+                                    tr
+                                        td
+                                            p(style="font-weight: bold;")
+                                                if SpecialIndices.HVI.Up4Checked
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;Positive if (1) is true and at least 4 of the others are true
+                                            p
+                                                if SpecialIndices.HVI.FT
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(1) SumT = 0
+                                            p
+                                                if SpecialIndices.HVI.Zf
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(2) Zf > 12
+                                            p
+                                                if SpecialIndices.HVI.Zd
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(3) Zd > +3.5
+                                            p
+                                                if SpecialIndices.HVI.S
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(4) S > 3
+                                            p
+                                                if SpecialIndices.HVI.H
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(5) Human Content > 6
+                                            p
+                                                if SpecialIndices.HVI.ParH
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(6) (H) + (A) + (Hd) + (Ad) > 3
+                                            p
+                                                if SpecialIndices.HVI.HplusA
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(7) H + A : Hd + Ad < 4 : 1
+                                            p
+                                                if SpecialIndices.HVI.Cg
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(8) Cg > 3
+                                            
                                             
                                             
 

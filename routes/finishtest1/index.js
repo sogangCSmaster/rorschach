@@ -24,6 +24,7 @@ const S_Constellation = require('./special_indices/S_Constellation');
 const PTI = require('./special_indices/PTI');
 const DEPI = require('./special_indices/DEPI');
 const CDI = require('./special_indices/CDI');
+const HVI = require('./special_indices/HVI');
 
 router.route("/finishtest1")
     .get(async(req, res, next) => {
@@ -272,6 +273,17 @@ router.route("/finishtest1")
         SpecialIndices.CDI.WSumC = CDI.getWSumCChecked(score);
         SpecialIndices.CDI.Passive = CDI.getPassiveChecked(score);
         SpecialIndices.CDI.SumT = CDI.getSumTChecked(score);
+
+        SpecialIndices.HVI = {};
+        SpecialIndices.HVI.Up4Checked = HVI.getUp4Checked(score);
+        SpecialIndices.HVI.FT = HVI.getFTChecked(score);
+        SpecialIndices.HVI.Zf = HVI.getZfChecked(score);
+        SpecialIndices.HVI.Zd = HVI.getZdChecked(score);
+        SpecialIndices.HVI.S = HVI.getSChecked(score);
+        SpecialIndices.HVI.H = HVI.getHChecked(score);
+        SpecialIndices.HVI.ParH = HVI.getParHChecked(score);
+        SpecialIndices.HVI.HplusA = HVI.getHplusAChecked(score);
+        SpecialIndices.HVI.Cg = HVI.getCgChecked(score);
         
 
         
