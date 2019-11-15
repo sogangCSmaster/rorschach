@@ -211,10 +211,20 @@ router.route("/finishtest1")
         lower.self_perception.Hrest = self_perception.getHrest(score);
 
         lower.special_indices = {};
-        lower.special_indices.getSCONPositive = special_indices.getSCONPositive(score);
-        lower.special_indices.getSCON = special_indices.getSCON(score);
+        lower.special_indices.SCONPositive = special_indices.getSCONPositive(score);
+        lower.special_indices.SCON = special_indices.getSCON(score);
+        lower.special_indices.PTIPositive = special_indices.getPTIPositive(score);
+        lower.special_indices.PTI = special_indices.getPTI(score);
+        lower.special_indices.DEPIPositive = special_indices.getDEPIPositive(score);
+        lower.special_indices.DEPI = special_indices.getDEPI(score)
+        lower.special_indices.CDIPositive = special_indices.getCDIPositive(score);
+        lower.special_indices.CDI = special_indices.getCDI(score);
+        lower.special_indices.HVIPositive = special_indices.getHVIPositive(score);
+        lower.special_indices.HVI = special_indices.getHVI(score);
+        lower.special_indices.OBSPositive = special_indices.getOBSPositive(score);
+        lower.special_indices.OBS = special_indices.getOBS(score);
 
-        console.warn(lower.special_indices.getSCON)
+        console.warn(lower.special_indices)
 
         
 

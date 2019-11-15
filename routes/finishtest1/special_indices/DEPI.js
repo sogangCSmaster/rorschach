@@ -3,10 +3,10 @@ const self_perception = require('../lower_section/self_perception.js');
 const ideation = require('../lower_section/ideation.js');
 const interpersonal = require('../lower_section/interpersonal.js');
 const affection = require('../lower_section/affection.js');
+const color_sharing = require('./color_shading');
 
 function getUp5Checked(scores) {
   let checked = 0;
-  checked += getUp5Checked(scores);
   checked += getFVChecked(scores);
   checked += getColorShadingBlendsChecked(scores);
   checked += getEgoChecked(scores);

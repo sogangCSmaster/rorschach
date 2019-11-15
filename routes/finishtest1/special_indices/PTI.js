@@ -17,7 +17,7 @@ exports.getXminusperChecked = getXminusperChecked;
 
 function getLevel2Checked(scores) {
   // Level2 > 2 and FABCOM2 > 0
-  return special_scores.getLv2(scores) > 2 && special_scores.getFABCOM2(scores) > 0;
+  return ideation.getLv2(scores) > 2 && special_scores.getFABCOM2(scores) > 0;
 }
 exports.getLevel2Checked = getLevel2Checked;
 
