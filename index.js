@@ -7,7 +7,7 @@ const methodOverride = require('method-override');
 const session = require('express-session');
 const MYSQLStore = require('express-mysql-session')(session);
 const config = require('./config.json');
-const port = 3000;
+const port = 80;
 
 
 console.log(config);
@@ -52,9 +52,11 @@ const main = require('./routes/main');
 const redirect = require('./routes/redirect');
 const login = require('./routes/login');
 const test1 = require('./routes/test1');
+const test2 = require('./routes/test2');
 const scoring1 = require('./routes/scoring1');
 const finishtest1 = require('./routes/finishtest1');
 const deletion = require('./routes/delete');
+app.use(test2);
 app.use(deletion)
 app.use(finishtest1);
 app.use(scoring1);
