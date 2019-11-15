@@ -17,6 +17,7 @@ const interpersonal = require('./lower_section/interpersonal');
 const ideation = require('./lower_section/ideation');
 const cognitive_mediation = require('./lower_section/cognitive_mediation');
 const information_processing = require('./lower_section/information_processing');
+const self_perception = require('./lower_section/self_perception');
 
 router.route("/finishtest1")
     .get(async(req, res, next) => {
@@ -197,6 +198,18 @@ router.route("/finishtest1")
         lower.information_processing.PSV = information_processing.getPSV(score);
         lower.information_processing.DQplus = information_processing.getDQplus(score);
         lower.information_processing.DQv = information_processing.getDQv(score);
+
+        lower.self_perception = {};
+        lower.self_perception.EgocentricityIndex = self_perception.getEgocentricityIndex(score);
+        lower.self_perception.Reflections = self_perception.getReflections(score);
+        lower.self_perception.SumV = self_perception.getSumV(score);
+        lower.self_perception.FD = self_perception.getFD(score);
+        lower.self_perception.AnPlusXy = self_perception.getAnPlusXy(score);
+        lower.self_perception.MOR = self_perception.getMOR(score);
+        lower.self_perception.H = self_perception.getH(score);
+        lower.self_perception.Hrest = self_perception.getHrest(score);
+
+        console.warn(lower.self_perception);
 
         
 

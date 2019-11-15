@@ -17,6 +17,7 @@ function getReflections(scores) {
       reflection += 1;
     }
   })
+  return reflection;
 }
 exports.getReflections = getReflections;
 
