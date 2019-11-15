@@ -102,7 +102,7 @@ function getPureH(scores) {
 exports.getPureH = getPureH;
 
 function getPER(scores) {
-  return special_score.getPER(scores);
+  return special_scores.getPER(scores);
 }
 exports.getPER = getPER;
 
