@@ -1,4 +1,4 @@
-exports.getBlends(scores) {
+function getBlends(scores) {
   let cs = 0;
   scores.forEach((score) => {
     if (score && score.det && 
@@ -10,3 +10,5 @@ exports.getBlends(scores) {
   });
   return cs;
 }
+
+exports.getBlends = getBlends;

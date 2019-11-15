@@ -1,7 +1,6 @@
 const form_quality = require('../upper_section/form_quality.js');
 const cognitive_mediation = require('../lower_section/cognitive_mediation.js');
 const information_processing = require('../lower_section/information_processing.js');
-const form_quality = require('../upper_section/form_quality.js');
 
 function getDdChecked(scores) {
   // Dd > 3

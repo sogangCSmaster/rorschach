@@ -70,7 +70,7 @@ function getesChecked(scores) {
   // es > EA
   return core.getes(scores) > core.getEA(scores);
 }
-exports.getesChecked(scores);
+exports.getesChecked = getesChecked;
 
 function getCFChecked(scores) {
   // CF + C > FC
@@ -82,7 +82,7 @@ function getXplusperChecked(scores) {
   // X+% < 0.70
   return cognitive_mediation.getXplusper(scores) < 0.7;
 }
-exorts.getXplusperChecked = getXplusperChecked;
+exports.getXplusperChecked = getXplusperChecked;
 
 function getSChecked(scores) {
   // S > 3
