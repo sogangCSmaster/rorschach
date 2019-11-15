@@ -5,7 +5,7 @@ const core = require('../lower_section/core.js');
 
 function getXAperChecked(scores) {
   // XA% < 0.70 and WDA% < 0.75
-  cognitive_mediation.getXAper(scores) < 0.70 && cognitive_mediation.getWDAper(scores) < 0.75;
+  return cognitive_mediation.getXAper(scores) < 0.70 && cognitive_mediation.getWDAper(scores) < 0.75;
 }
 exports.getXAperChecked = getXAperChecked;
 
