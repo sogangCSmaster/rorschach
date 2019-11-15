@@ -795,6 +795,45 @@ html
                                                 else
                                                     i.fa.fa-square-o
                                                 | &nbsp;R < 17
+
+                        .col-md-6(style="padding-right: 2px; padding-left: 2px;")
+                            table.table.table-bordered(style="font-size: 7pt;")
+                                thead
+                                    tr
+                                        th.text-center PTI (Perceptual Thinking Index)
+                                tbody
+                                    tr
+                                        td
+                                            p
+                                                if SpecialIndices.PTI.XAper
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(XA% < 0.70) and (WDA% < 0.75)
+                                            p
+                                                if SpecialIndices.PTI.Xminusper
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;X-% > 0.29
+                                            p
+                                                if SpecialIndices.PTI.Level2
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(Sum Level2 Special Score > 2) and (FABCOM Level2 > 0)
+                                            p
+                                                if SpecialIndices.PTI.R
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;{(R < 17) and (WSum6 > 12)} or {(R > 16) and (WSum6 > 17)}
+                                            p
+                                                if SpecialIndices.PTI.M
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(M- > 1) or (X-% > 0.40)
                                             
                                             
 

@@ -21,6 +21,7 @@ const self_perception = require('./lower_section/self_perception');
 const special_indices = require('./lower_section/special_indices');
 const blends = require('./upper_section/blends');
 const S_Constellation = require('./special_indices/S_Constellation');
+const PTI = require('./special_indices/PTI');
 
 router.route("/finishtest1")
     .get(async(req, res, next) => {
@@ -245,8 +246,12 @@ router.route("/finishtest1")
         SpecialIndices.S_Constellation.PureH = S_Constellation.getPureHChecked(score);
         SpecialIndices.S_Constellation.R = S_Constellation.getRChecked(score);
 
-
-        console.warn(SpecialIndices);
+        SpecialIndices.PTI = {};
+        SpecialIndices.PTI.XAper = PTI.getXAperChecked(score);
+        SpecialIndices.PTI.Xminusper = PTI.getXminusperChecked(score);
+        SpecialIndices.PTI.Level2 = PTI.getLevel2Checked(score);
+        SpecialIndices.PTI.R = PTI.getRChecked(score);
+        SpecialIndices.PTI.M = PTI.getMChecked(score);
 
         
 
