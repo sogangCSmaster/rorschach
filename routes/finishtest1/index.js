@@ -20,6 +20,7 @@ const information_processing = require('./lower_section/information_processing')
 const self_perception = require('./lower_section/self_perception');
 const special_indices = require('./lower_section/special_indices');
 const blends = require('./upper_section/blends');
+const S_Constellation = require('./special_indices/S_Constellation');
 
 router.route("/finishtest1")
     .get(async(req, res, next) => {
@@ -228,9 +229,28 @@ router.route("/finishtest1")
         lower.special_indices.OBSPositive = special_indices.getOBSPositive(score);
         lower.special_indices.OBS = special_indices.getOBS(score);
 
+        var SpecialIndices = {};
+        SpecialIndices.S_Constellation = {};
+        SpecialIndices.S_Constellation.Up8Checked = S_Constellation.getUp8Checked(score);
+        SpecialIndices.S_Constellation.SumVplusFD = S_Constellation.getFVPlusVFPlusVPlusFDChecked(score);
+        SpecialIndices.S_Constellation.ColorShadingBlends = S_Constellation.getColorShadingBlendsChecked(score);
+        SpecialIndices.S_Constellation.Ego = S_Constellation.getEgoChecked(score);
+        SpecialIndices.S_Constellation.MOR = S_Constellation.getMORChecked(score);
+        SpecialIndices.S_Constellation.Zd = S_Constellation.getZdChecked(score);
+        SpecialIndices.S_Constellation.es = S_Constellation.getesChecked(score);
+        SpecialIndices.S_Constellation.CF = S_Constellation.getCFChecked(score);
+        SpecialIndices.S_Constellation.XPlus = S_Constellation.getXplusperChecked(score);
+        SpecialIndices.S_Constellation.S = S_Constellation.getSChecked(score);
+        SpecialIndices.S_Constellation.P = S_Constellation.getPChecked(score);
+        SpecialIndices.S_Constellation.PureH = S_Constellation.getPureHChecked(score);
+        SpecialIndices.S_Constellation.R = S_Constellation.getRChecked(score);
+
+
+        console.warn(SpecialIndices);
+
         
 
-        res.render('testresult/index', { testconfig, moment, upper, lower });
+        res.render('testresult/index', { testconfig, moment, upper, lower, SpecialIndices });
 
     })
     .post(async(req, res, next) => {

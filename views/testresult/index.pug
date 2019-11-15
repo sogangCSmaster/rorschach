@@ -707,7 +707,96 @@ html
                         .col-md-12.text-center
                             h3 특수지표 (Constellation Worksheet)
 
-                    .row
+                    .row.m-t-lg
+                        .col-md-6(style="padding-right: 2px; padding-left: 2px;")
+                            table.table.table-bordered(style="font-size: 7pt;")
+                                thead
+                                    tr
+                                        th.text-center S-Constellation (Suicide Potential) : 만 14세 이상만 적용
+                                tbody
+                                    tr
+                                        td
+                                            p(style="font-weight:bold;")
+                                                if SpecialIndices.S_Constellation.Up8Checked
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;Positive if 8 or more conditions are true
+                                            
+                                            p
+                                                if SpecialIndices.S_Constellation.SumVplusFD
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;SumV + FD > 2
+                                            p
+                                                if SpecialIndices.S_Constellation.ColorShadingBlends
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;Color-Shading Blends > 0
+                                            p
+                                                if SpecialIndices.S_Constellation.Ego
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;Egocentricity Index < 0.31 or Egocentricity Index > 0.44
+                                            p
+                                                if SpecialIndices.S_Constellation.MOR
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;MOR > 3
+                                            p
+                                                if SpecialIndices.S_Constellation.Zd
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(Zd > +3.5) or (Zd < -3.5)
+                                            p
+                                                if SpecialIndices.S_Constellation.es
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;es > EA
+                                            p
+                                                if SpecialIndices.S_Constellation.CF
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;CF + C > FC
+                                            p
+                                                if SpecialIndices.S_Constellation.XPlus
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;X+% < 0.70
+                                            p
+                                                if SpecialIndices.S_Constellation.S
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;S > 3
+                                            p
+                                                if SpecialIndices.S_Constellation.P
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(Populars(P) < 3) or (Populars(P) > 8)
+                                            p
+                                                if SpecialIndices.S_Constellation.PureH
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;Pure H < 2
+                                            p
+                                                if SpecialIndices.S_Constellation.R
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;R < 17
+                                            
+                                            
 
 
 
