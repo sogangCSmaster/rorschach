@@ -18,6 +18,7 @@ const ideation = require('./lower_section/ideation');
 const cognitive_mediation = require('./lower_section/cognitive_mediation');
 const information_processing = require('./lower_section/information_processing');
 const self_perception = require('./lower_section/self_perception');
+const special_indices = require('./lower_section/special_indices');
 
 router.route("/finishtest1")
     .get(async(req, res, next) => {

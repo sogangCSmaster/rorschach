@@ -48,7 +48,7 @@ function getEgoChecked(scores) {
     return false;
   }
 }
-exports.getEgoChecked getEgoChecked;
+exports.getEgoChecked = getEgoChecked;
 
 function getMORChecked(scores) {
   return self_perception.getMOR(scores) > 3;
