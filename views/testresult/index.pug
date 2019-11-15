@@ -147,6 +147,12 @@ html
                                     tr
                                         td(style="font-size: 7pt;" colspan="1.5")
                                             .text-center 복합
+                                            div
+                                                each blends in upper.blends
+                                                    p
+                                                        each blend in blends
+                                                            span=blend + " "
+                                                        
                                         td(style="font-size: 7pt;" colspan="1.5")
                                             .text-center 전체
                                             div
@@ -695,6 +701,13 @@ html
                                         
 
                                             
+            .page
+                .subpage
+                    .row
+                        .col-md-12.text-center
+                            h3 특수지표 (Constellation Worksheet)
+
+                    .row
 
 
 

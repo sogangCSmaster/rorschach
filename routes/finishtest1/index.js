@@ -19,6 +19,7 @@ const cognitive_mediation = require('./lower_section/cognitive_mediation');
 const information_processing = require('./lower_section/information_processing');
 const self_perception = require('./lower_section/self_perception');
 const special_indices = require('./lower_section/special_indices');
+const blends = require('./upper_section/blends');
 
 router.route("/finishtest1")
     .get(async(req, res, next) => {
@@ -57,6 +58,9 @@ router.route("/finishtest1")
         upper.location_features.WPlusD = location_features.getWPlusD(score);
         upper.contents = contents.getContents(score);
         upper.approach = approach.getApproach(score);
+
+        upper.blends = blends.getBlendsArray(score);
+
         upper.determinants = {};
         upper.determinants.F = single.getF(score);
         upper.determinants.M = single.getM(score);
