@@ -16,6 +16,7 @@ const affection = require('./lower_section/affection');
 const interpersonal = require('./lower_section/interpersonal');
 const ideation = require('./lower_section/ideation');
 const cognitive_mediation = require('./lower_section/cognitive_mediation');
+const information_processing = require('./lower_section/information_processing');
 
 router.route("/finishtest1")
     .get(async(req, res, next) => {
@@ -184,6 +185,18 @@ router.route("/finishtest1")
         lower.cognitive_mediation.P = cognitive_mediation.getP(score);
         lower.cognitive_mediation.Xplusper = cognitive_mediation.getXplusper(score);
         lower.cognitive_mediation.Xuper = cognitive_mediation.getXuper(score);
+
+
+        lower.information_processing = {};
+        lower.information_processing.Zf = information_processing.getZf(score);
+        lower.information_processing.W = information_processing.getW(score);
+        lower.information_processing.D = information_processing.getD(score);
+        lower.information_processing.Dd = information_processing.getDd(score);
+        lower.information_processing.M = information_processing.getM(score);
+        lower.information_processing.Zd = information_processing.getZd(score);
+        lower.information_processing.PSV = information_processing.getPSV(score);
+        lower.information_processing.DQplus = information_processing.getDQplus(score);
+        lower.information_processing.DQv = information_processing.getDQv(score);
 
         
 
