@@ -76,7 +76,7 @@ html
     body.gray-bg
         .book
             .page
-                .subpage
+                .subpage#page1
                     .row
                         .col-md-12.text-center
                             h3 Rorschach Test Structural Summary
@@ -389,7 +389,7 @@ html
 
 
             .page
-                .subpage
+                .subpage#page2
                     .row
                         .col-md-12(style="padding-right: 2px; padding-left: 2px;")
                             table.table.table-bordered
@@ -702,7 +702,7 @@ html
 
                                             
             .page
-                .subpage
+                .subpage#page3
                     .row
                         .col-md-12.text-center
                             h3 특수지표 (Constellation Worksheet)
@@ -1089,7 +1089,28 @@ html
         script(src="/js/plugins/datapicker/bootstrap-datepicker.js")
         script(src="/js/plugins/daterangepicker/daterangepicker.js")
         script(src="/js/plugins/clockpicker/clockpicker.js")
+        script(src="http://html2canvas.hertzen.com/dist/html2canvas.min.js")
         script.
-            $(document).ready(function(){
-                //- window.print();
-            })
+            //- $(document).ready(function(){
+            //-     html2canvas(document.querySelector("#page1")).then(canvas => {
+            //-         var a = document.createElement('a');
+            //-         // toDataURL defaults to png, so we need to request a jpeg, then convert for file download.
+            //-         a.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
+            //-         a.download = 'page1.jpg';
+            //-         a.click();
+            //-     });
+            //-     html2canvas(document.querySelector("#page2")).then(canvas => {
+            //-         var a = document.createElement('a');
+            //-         // toDataURL defaults to png, so we need to request a jpeg, then convert for file download.
+            //-         a.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
+            //-         a.download = 'page2.jpg';
+            //-         a.click();
+            //-     });
+            //-     html2canvas(document.querySelector("#page3")).then(canvas => {
+            //-         var a = document.createElement('a');
+            //-         // toDataURL defaults to png, so we need to request a jpeg, then convert for file download.
+            //-         a.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
+            //-         a.download = 'page3.jpg';
+            //-         a.click();
+            //-     });
+            //- })
