@@ -210,7 +210,11 @@ router.route("/finishtest1")
         lower.self_perception.H = self_perception.getH(score);
         lower.self_perception.Hrest = self_perception.getHrest(score);
 
-        console.warn(lower.self_perception);
+        lower.special_indices = {};
+        lower.special_indices.getSCONPositive = special_indices.getSCONPositive(score);
+        lower.special_indices.getSCON = special_indices.getSCON(score);
+
+        console.warn(lower.special_indices.getSCON)
 
         
 

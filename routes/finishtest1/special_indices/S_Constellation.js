@@ -88,6 +88,7 @@ function getSChecked(scores) {
   // S > 3
   return affection.getS(scores) > 3;
 }
+exports.getSChecked = getSChecked;
 
 function getPChecked(scores) {
   // P < 3 or P > 8
