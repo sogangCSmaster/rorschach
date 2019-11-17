@@ -26,6 +26,7 @@ const DEPI = require('./special_indices/DEPI');
 const CDI = require('./special_indices/CDI');
 const HVI = require('./special_indices/HVI');
 const OBS = require('./special_indices/OBS');
+const validity = require('./explanation/validity');
 
 router.route("/finishtest1")
     .get(async(req, res, next) => {
@@ -588,10 +589,14 @@ router.route("/finishtest1")
             SpecialIndices.OBS.Up2Checked = OBS.getUp2Checked(score);
             SpecialIndices.OBS.Up3Checked = OBS.getUp3Checked(score);
             SpecialIndices.OBS.FQplusChecked = OBS.getFQplusChecked(score);
+
+
+            var step0 = validity.getValidity(lower.core.R, lower.core.Lambda)
+            console.warn(step0);
     
             
     
-            res.render('testresult/index2', { testconfig, moment, upper, lower, SpecialIndices });
+            res.render('testresult/index2', { testconfig, moment, upper, lower, SpecialIndices, step0 });
         })
         .post(async(req, res, next) => {
             var { stringifyText, testID } = req.body;
