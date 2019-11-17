@@ -110,7 +110,39 @@ html
                                         td.text-center 검사기관
                                         td.text-center #{testconfig.comName_input}
 
+                    .row
+                        .col-md-12.text-center
+                            h3.text-danger 주 의 사 항
+                            br
 
+                    .row
+                        .col-md-12(style="font-size: 10pt;")
+                            p The Rorschach Interpretation Assistance System version 1 (RIAS™)은 ‘The Rorschach Test: A Comprehensive System Volume 1: Basic Foundations and Principes of Interpretation 4th edition (Exner, 2003)과 A Rorschach Workbook for the Comprehensive System, 5th edition (Exner, 2001)’의 채점기준(scoring guidelines)과 해석전략(interpretive strategies)을 참고하여 개발되었습니다. 이 프로그램에서는 Beck (1937), Hertz (1942), Klopfer (1942), Piotrowski (1957), Rapaport, Gill, Schafer (1946) 등에 의해 성립된 접근 방식(실시, 기호화, 채점, 지표, 해석)은 제공하지 않습니다.
+                            br
+                            p ‘로르샤하 종합체계 1권 4판과 로르샤하 종합체계 워크북 5판’은 만 5세에서 만 70세까지의 연령집단을 대상으로 기술 통계 자료를 수집하였으며, 규준 집단(n=600)의 인종 구성은 백인(82%), 흑인(10%), 라틴아메리카인(6%), 아시아인(2%)순으로 구성되어 있습니다.
+                            br
+                            p 한국인을 대상으로 한 표준화 연구가 부족하기 때문에 수검자의 반응을 기호화하고 산출된 지표를 해석하는 과정에서 문화적 차이가 나타나므로 이 프로그램에서 제공하는 구조적 요약의 지표와 자동해석을 사용할 때는 이러한 점을 고려해야 합니다. 이 프로그램에서 제공하는 정보에 대한 의문이 있을 경우 한국인 수검자를 대상으로 한 The Rorschach Test의 연구 결과를 참고하시기 바랍니다.
+                            br
+                            p The Rorschach Interpretation Assistance System version 1 (RIAS™)에서는 점수계열(Sequence of Scores), 구조요약(Structural Summary), 특수지표(Constellations Table)를 제공하며 이를 바탕으로 요약된 자동 해석을 제공합니다. 자동 해석에서 제공하는 정보는 일반적인 경향성을 반영하므로 수검자 개인의 특성이 여실히 드러나지 않을 수 있습니다. 그러므로 수검자 개인에 초점을 맞춘 종합적인 평가를 위해서는 다른 출처의 정보를 통한 추가적인 분석이 필요합니다.
+                            br
+                            p The Rorschach Interpretation Assistance System version 1 (RIAS™)은 심리평가(Psychological Assessment)와 로르샤하 검사(The Rorschach Test)에 대한 충분하고 적절한 훈련을 받은 전문가가 사용하도록 개발되었습니다. 그러므로 이 프로그램을 사용하기 전에 충분한 교육과 훈련을 받을 것을 권장합니다.
+
+                    .row
+                        .col-md-12
+                            br
+                            br
+                            h3 로르샤하 검사의 실시와 해석에 활용할 수 있는 참고 문헌
+                            p(style="font-size: 7pt;") ① The Rorschach: A Comprehensive System, Volume 1: Basic Foundations and Principes of Interpretation, 4th edition(Exner, 2003)
+                                br
+                                | ② A Rorschach Workbook for the Comprehensive System, 5th edition(Exner, 2001)
+                                br
+                                | ③ The Rorschach: A Comprehensive System, Volume 3: Assessment of Children and Adolescents, Second edition(Exner & Weiner, 1995)
+                                br
+                                | ④ A Primer for Rorschach Interpretation(Exner, 2000)
+                                br
+                                | ⑤ Principles of Rorschach Interpretation Second edition(Weiner, 2003)
+                                br
+                                | ⑥ Psychoanalytic Perspectives on the Rorschach(Lerner,1998), approach of Rapaport(1946)
                     
                     
                     
@@ -133,5 +165,5 @@ html
         script(src="http://html2canvas.hertzen.com/dist/html2canvas.min.js")
         script.
             $(document).ready(function(){
-                window.print();
+                //- window.print();
             })
