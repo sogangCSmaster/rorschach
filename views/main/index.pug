@@ -58,20 +58,19 @@ block script
         })
     script.
         $("#rors2button").on('click', function(){
-            alert('개발 진행 중');
-            //- var user = !{JSON.stringify(session)};
-            //- user = user.user;
-            //- var coin2 = user.coin2;
-            //- var useCount2 = user.useCount2;
+            var user = !{JSON.stringify(session)};
+            user = user.user;
+            var coin2 = user.coin2;
+            var useCount2 = user.useCount2;
 
-            //- coin2 = Number(coin2);
-            //- useCount2 = Number(useCount2);
+            coin2 = Number(coin2);
+            useCount2 = Number(useCount2);
 
-            //- if(useCount2>=coin2){
-            //-     return alert('코인2이 부족합니다.');
-            //- } else {
-            //-     return location.href = '/test2';
-            //- }
+            if(useCount2>=coin2){
+                return alert('코인2이 부족합니다.');
+            } else {
+                return location.href = '/test2';
+            }
         })
     script.
         $(".delete").on('click', function(){
@@ -150,7 +149,7 @@ block content
                                                 td.text-center
                                                     button#rors1button.btn.btn-w-m.btn-primary.btn-block(type="button") 구조요약
                                                 td.text-center
-                                                    a.btn.btn-w-m.btn-primary.btn-block.btn-outline(href="#") 자동해석
+                                                    button#rors2button.btn.btn-w-m.btn-primary.btn-block.btn-outline(type="button") 자동해석
                         .col-lg-6
                             br
                             p(style="font-size: 14px;") RIAS&#8482;은 The Rorschach Test의 구조요약과 자동해석을 제공합니다. 구조요약은 자료의 정리만 제공하며, 자동해석은 구조요약을 기본으로 제공하고 가설적 해석을 함께 제공합니다.

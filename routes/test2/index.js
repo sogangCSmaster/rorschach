@@ -8,8 +8,8 @@ router.route("/test2")
         if(!req.session.user){
             return res.redirect('/login');
         }
-        return res.send("개발 진행 중");
-        // res.render('test2/index', { moment });
+        
+        res.render('test2/index', { moment });
     })
     .post(async(req, res, next) => {
         if(!req.session.user){
@@ -31,9 +31,10 @@ router.route("/test2")
         }
         birthday = moment(birthday, 'YYYY-MM-DD').format('YYYY-MM-DD');
         testdate = moment(testdate, 'YYYY-MM-DD').format('YYYY-MM-DD');
+        var test = "test2"
 
-        var sql = "INSERT INTO test (name, sex, graduate, job, diagnosis, birthday, testdate, comName_input, inspector, memberID, comName) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        var insertId = await query.executeSQL(sql, [name, sex, graduate, job, diagnosis, birthday, testdate, comName_input, inspector, memberID, comName])
+        var sql = "INSERT INTO test (name, test, sex, graduate, job, diagnosis, birthday, testdate, comName_input, inspector, memberID, comName) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        var insertId = await query.executeSQL(sql, [name, test, sex, graduate, job, diagnosis, birthday, testdate, comName_input, inspector, memberID, comName])
         insertId = insertId.insertId;
         req.session.insertId = insertId;
         res.redirect("/scoring2");
