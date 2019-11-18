@@ -82,7 +82,7 @@ html
                 .subpage
                     .row
                         .col-md-12.text-center
-                            h3(style="font-size: 16pt;") 로르샤흐 검사 해석 보고서
+                            h3(style="font-size: 16pt;") 로르샤하 검사 해석 보고서
                             h3 The Rorschach Test Interpretation Report
                     .row
                         .col-md-12
@@ -151,7 +151,7 @@ html
                 .subpage
                     .row
                         .col-md-12.text-center
-                            h3(style="font-size: 16pt;") 로르샤흐 보고서
+                            h3(style="font-size: 16pt;") 로르샤하 보고서
                             h3 해석의 가설(Interpretive Hypotheses)
 
                     .row
@@ -244,13 +244,94 @@ html
 
                     .row
                         .col-md-12
-                            h4.text-danger 주요 지표 확인 단계
-                            p.a(style="font-size: 9pt;") 수검자의 현재 상태를 이해하기 위해서 특수지표를 확인하고 잠재 위험성에 대해 확인해야 합니다. 가장 먼저 자살 위험성을 파악하기 위해 S-CON이 양성(Positive: 8항목 이상)인지 확인해야 합니다. 그리고 사고장애 가능성을 확인하기 위해 PTI가 양성(Positive: 4항목 이상)인지 확인합니다. 그 이후에 다른 지표가 양성인지 확인하여 해석적 가정을 설정하시기 바랍니다.
+                            table.table.table-bordered(style="font-size: 7pt;")
+                                tbody
+                                    tr
+                                        td
+                                            h5 아래 조건에 해당하는 것으로 의심될 경우 다른 정보를 통해 타당성을 다시 평가하시기 바랍니다.
+                                            p 1. 방어적인 수검자
+                                                br
+                                                | 2. 회피 유형의 수검자
+                                                br
+                                                | 3. 반응을 왜곡하려는 수검자
+                                                br
+                                                | 4. 신경학적 기능 이상이 있는 수검자
+
+
+                    .row
+                        .col-md-12
+                            h4.text-danger 로르샤하 검사 결과의 군집별 해석 전략의 선택
+                            p(style="font-size: 9pt;") 1) 대처 방식에 따른 경험 유형 분류 (문제해결 또는 의사결정)
+
+                    .row
+                        .col-md-12
+                            table.table.table-bordered(style="font-size: 7pt;")
+                                thead
+                                    tr
+                                        th.text-center(colspan="6") 대처 방식 유형
+                                        th.text-center(colspan="6") 내향형 (Introversive)
+                                        th.text-center(colspan="6") 외향형 (Extratensive)
+                                        th.text-center(colspan="6") 양향형 (Ambitent)
+                                tbody
+                                    tr
+                                        td.text-center(colspan="6") Average Lambda(L)
+                                        if experienceClassification.copyingStyle=="Introversive" && experienceClassification.approachStyle=="True"
+                                            td.text-center.bg-warning(colspan="6") True Introversive
+                                        else
+                                            td.text-center(colspan="6") True Introversive
+                                        if experienceClassification.copyingStyle=="Extratensive" && experienceClassification.approachStyle=="True"
+                                            td.text-center.bg-warning(colspan="6") True Extratensive
+                                        else
+                                            td.text-center(colspan="6") True Extratensive
+                                        if experienceClassification.copyingStyle=="Ambitent" && experienceClassification.approachStyle=="True"
+                                            td.text-center.bg-warning(colspan="6") True Ambitent
+                                        else
+                                            td.text-center(colspan="6") True Ambitent
+                                    tr
+                                        td.text-center(colspan="6") 지배적 대처 방식
+                                        if experienceClassification.copyingStyle=="Introversive" && experienceClassification.dominantStyle=="Flexible"
+                                            td.text-center.bg-warning(colspan="3") Flexible Introversive
+                                        else
+                                            td.text-center(colspan="3") Flexible Introversive
+                                        if experienceClassification.copyingStyle=="Introversive" && experienceClassification.dominantStyle=="Pervasive"
+                                            td.text-center.bg-warning(colspan="3") Pervasive Introversive
+                                        else
+                                            td.text-center(colspan="3") Pervasive Introversive
+                                        if experienceClassification.copyingStyle=="Extratensive" && experienceClassification.dominantStyle=="Flexible"
+                                            td.text-center.bg-warning(colspan="3") Flexible Extratensive
+                                        else
+                                            td.text-center(colspan="3") Flexible Introversive
+                                        if experienceClassification.copyingStyle=="Extratensive" && experienceClassification.dominantStyle=="Pervasive"
+                                            td.text-center.bg-warning(colspan="3") Pervasive Extratensive
+                                        else
+                                            td.text-center(colspan="3") Pervasive Introversive
+                                        td.text-center(colspan="6")
+                                    tr
+                                        td.text-center(colspan="6") High Lambda(L)
+                                        if experienceClassification.approachStyle=="Avoidant" && experienceClassification.copyingStyle=="Introversive"
+                                            td.text-center.bg-warning(colspan="6") Avoidant Introversive
+                                        else
+                                            td.text-center(colspan="6") Avoidant Introversive
+                                        if experienceClassification.approachStyle=="Avoidant" && experienceClassification.copyingStyle=="Extratensive"
+                                            td.text-center.bg-warning(colspan="6") Avoidant Extratensive
+                                        else
+                                            td.text-center(colspan="6") Avoidant Extratensive
+                                        if experienceClassification.approachStyle=="Avoidant" && experienceClassification.copyingStyle=="Ambitent"
+                                            td.text-center.bg-warning(colspan="6") Avoidant Ambitent
+                                        else
+                                            td.text-center(colspan="6") Avoidant Ambitent
+
+                    if experienceClassification.approachStyle == "" && experienceClassification.copyingStyle == "" && experienceClassification.dominantStyle == ""
+                        .row
+                            .col-md-12.text-center
+                                h5.text-warning 이 수검자는 대처 방식 유형(EB Style)을 계산할 수 없습니다.
+                    .row
+                        .col-md-12
+                            p(style="font-size: 9pt;") 2) 임상 증후군을 반영하는 특수지표
+                                                
                     
                     
                     .row
-                        .col-md-12.text-center
-                            h4 특 수 지 표
                         .col-md-12
                             table.table.table-bordered(style="font-size: 7pt;")
                                 thead
@@ -291,41 +372,13 @@ html
                                             else
                                                 i.fa.fa-square(style="margin-right: 6px; font-size: 11pt;")
                                             | OBS = #{lower.special_indices.OBS}
-                    //- .row
-                    //-     .col-md-12
-                    //-         p.a(style="font-size: 9pt;") 수검자의 경험유형(EB Style)에 대한 정보를 확인하여 자원(생각 : 정서)을 사용하는 방법과 자원을 다루는 방법에 대한 해석적 가정을 설정하고 전반적인 군집영역에서 어떠한 방식으로 드러나고 있는지에 대해 확인하시기 바랍니다. 수검자에게 해당하는 경험유형은 아래 표에서 노란색으로 표시됩니다. 자원에 대한 정보가 부족한 일부 수검자에 대해서는 경험유형(EB Style)을 제공되지 않습니다.
-                    //-         h4.text-center [해석보고서 디자인 해설서]가 필요합니다.
             
             
             .page
                 .subpage
                     .row
                         .col-md-12.text-center
-                            h3 통제 능력과 스트레스 저항력 평가
-                    .row
-                        .col-md-12
-                            table.table.table-bordered
-                                thead
-                                    tr
-                                        th(style="font-size: 8pt;") 가용 자원을 통해 간접적으로 통제 능력, 스트레스 저항력, 전반적 적응 수준(general adjustment level)을 평가.
-                                            //- p(style="font-size: 8pt; font-weight: normal;") 1. 통제 능력(Control Capability): 개인이 심리의 구조(organized)와 지향(directed)을 적절하게 유지하는 능력. 가용 자원(available resources)을 활용하여 상황 요구(demand situation)에 적합한 의사결정을 내리고, 그에 적합한 의도적 행동을 실행하는 능력.
-                                            //-     br
-                                            //-     | 2. 주요 개념: 가용 자원(available resources), 자아 강도(Ego Strength), 스트레스 저항력(Stress Tolerance), 자극 요구(stimulus demand)
-                                            //-     br
-                                            //-     | 3. 이론적 근거: 정신분석 모형(Ego functioning: Ego Strength –Secondary processing, cf: Primary process thinking), 성격 모형(욕구 변화, 항상성, 충동성)
-                                            //-     br
-                                            //-     | 4. 사전에 탐색할 문제: 1) 수검자의 전반적 적응 수준은 적절한가? 2) 적응 수준의 저하는 일시적인가 또는 만성적인가? 3) 가용 자원을 사용하여 상황 요구에 대처하는 방식은 적절한가? 4) 적응 수준이 저하된 원인은 무엇인가? * 유사 개념: 회복탄력성(resilience)
-                                each ExnerTable1 in getExnerTable1.steps
-                                    thead
-                                        tr
-                                            th(style="font-size: 8pt;")=ExnerTable1.stepText
-                                    tbody
-                                        tr
-                                            td
-                                                p(style="font-size: 8pt;")
-                                                    each text in ExnerTable1.textArray
-                                                        | #{text}
-                                                        br
+                            
                     
 
                     
@@ -348,5 +401,5 @@ html
         script(src="http://html2canvas.hertzen.com/dist/html2canvas.min.js")
         script.
             $(document).ready(function(){
-                window.print();
+                //- window.print();
             })

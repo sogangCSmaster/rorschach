@@ -28,6 +28,7 @@ const HVI = require('./special_indices/HVI');
 const OBS = require('./special_indices/OBS');
 const validity = require('./explanation/validity');
 const ExnerTable1 = require('./explanation/ExnerTable1');
+const experience = require('./explanation/experince');
 
 router.route("/finishtest1")
     .get(async(req, res, next) => {
@@ -591,13 +592,16 @@ router.route("/finishtest1")
             SpecialIndices.OBS.Up3Checked = OBS.getUp3Checked(score);
             SpecialIndices.OBS.FQplusChecked = OBS.getFQplusChecked(score);
 
-
+            
+            var experienceClassification = experience.getExperience(lower.core.EBLeft, lower.core.EBRight, lower.core.EA, lower.core.Lambda, lower.core.EBPer);
+            // var experienceClassification = experience.getExperience(3, 5, 10, 0.89, 2.3);
+            console.warn(experienceClassification);
             var step0 = validity.getValidity(lower.core.R, lower.core.Lambda);
             var getExnerTable1 = ExnerTable1.getExnerTable1(lower.core.AdjD, lower.special_indices.CDI, lower.core.EA, testconfig.birthday);
             console.warn(getExnerTable1);
             
     
-            res.render('testresult/index2', { testconfig, moment, upper, lower, SpecialIndices, step0, getExnerTable1 });
+            res.render('testresult/index2', { testconfig, moment, upper, lower, SpecialIndices, step0, getExnerTable1, experienceClassification });
         })
         .post(async(req, res, next) => {
             var { stringifyText, testID } = req.body;
