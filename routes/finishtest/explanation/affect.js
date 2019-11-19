@@ -1,4 +1,4 @@
-function caculateAffect(DEPI, CDI, Lambda, M, EBLeft, EBRight, WSumC, EA, EBPer, FM, m, SumCprime, SumT, SumV, SumY, Afr, twoABplusArtplusAy, CP, FC, CF, C, age, copyingStyle, approachStyle, PureC, S, approach){
+function caculateAffect(DEPI, CDI, Lambda, M, EBLeft, EBRight, WSumC, EA, EBPer, FM, m, SumCprime, SumT, SumV, SumY, Afr, twoABplusArtplusAy, CP, FC, CF, C, age, copyingStyle, approachStyle, PureC, S, approach, Blends, R){
     var IntellectualIndex = twoABplusArtplusAy;
     var result = [];
     var nextStep = 1;
@@ -90,6 +90,14 @@ function caculateAffect(DEPI, CDI, Lambda, M, EBLeft, EBRight, WSumC, EA, EBPer,
             return result;
         }
         nextStep = STEP11.nextStep;
+    }
+    if(nextStep==12){
+        var STEP12 = step12(copyingStyle, approachStyle, Blends, R);
+        result.push(STEP12);
+        if(STEP12.goNext==true){
+            return result;
+        }
+        nextStep = STEP12.nextStep;
     }
 
     return result;
@@ -809,4 +817,51 @@ function step11(S, approach){
     result.nextStep = 12;
     result.goNext = false;
     return result;
+}
+
+function step12(copyingStyle, approachStyle, Blends, R){
+    var result = {};
+    var textData = [];
+    var percentage = ((Blends/R) * 100).toFixed(3);
+    var average = [];
+    if(approachStyle=="True" && copyingStyle=="Extratensive"){
+        average = [19, 33];
+    }
+    if(approachStyle=="True" && copyingStyle=="Introversive"){
+        average = [13, 26];
+    }
+    if(approachStyle=="True" && copyingStyle=="Ambitent"){
+        average = [16, 36];
+    }
+    if(approachStyle=="Avoidant"){
+        average = [8, 14];
+    }
+
+    if(average[0]<=percentage && percentage<=average[1]){
+        textData.push(`[잠정 결과1] [정상범주] 복합반응 비율(Blends : R)을 고려할 때, 수검자의 심리 기능은 비슷한 대처 경향을 가진 사람들과 다르지 않은 일반적 수준에서 복잡성을 보일 것이다.`);
+        result.curStep = 12;
+        result.textData = textData;
+        result.nextStep = 13;
+        result.goNext = false;
+        return result;
+    }
+
+    if(percentage < average[0]){
+        textData.push(`[잠정 결과2] 복합반응 비율(Blends : R)을 고려할 때, 수검자의 심리 기능은 예상되는 수준보다 덜 복잡할 것이다. 이러한 결과는 수검자의 심리구조가 현저하게 미성숙한 경우에 흔하게 나타난다. 수검자가 복잡한 정서적 상황에 직면할 때 행동에 어려움이 나타날 수 있다.`);
+        result.curStep = 12;
+        result.textData = textData;
+        result.nextStep = 13;
+        result.goNext = false;
+        return result;
+    }
+    if(average[1] < percentage){
+        textData.push(`[잠정 결과3] 복합반응 비율(Blends : R)을 고려할 때, 수검자의 심리 기능은 예상되는 수준보다 더 복잡할 것이다. 대부분의 복합반응은 하나 이상의 정서 관련 변인을 포함할 것이다. 이러한 결과는 예기치 못한 심리적 복잡성이 일반적으로 정서에 근거하고 있다는 알 수 있게 한다.`);
+        textData.push(`수검자가 정서 경험을 다루는데 이용할 수 있는 적절한 가용자원을 가지고 있다면 불리한 점(liability)은 아닐 것이다. 만약, 수검자의 가용 자원이 더 제한되어 있고, 통제나 조절에 문제가 있다면, 복잡성의 증가는 행동의 일관성이나 안정성에 정서가 좋지 않은 영향을 주게 할 수 있다.`);
+        result.curStep = 12;
+        result.textData = textData;
+        result.nextStep = 13;
+        result.goNext = false;
+        return result;
+    }
+
 }

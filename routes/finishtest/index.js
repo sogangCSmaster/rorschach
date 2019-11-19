@@ -616,7 +616,7 @@ router.route("/finishtest1")
                 }
                 if(scoreOrder[i]=='정서'){
                     resultName = "Affect 정서 자원이 사용되는 방식, 정서 상태, 정서의 역기능 평가";
-                    steps = affect.caculateAffect(lower.special_indices.DEPI, lower.special_indices.CDI, lower.core.Lambda, upper.determinants.M, lower.core.EBLeft, lower.core.EBRight, lower.affection.WSumC, lower.core.EA, lower.core.EBPer, lower.core.FM, lower.core.m, lower.core.SumCprime, lower.core.SumT, lower.core.SumV, lower.core.SumY, lower.affection.Afr, lower.ideation.twoABplusArtplusAy, upper.special_scores.CP, upper.determinants.FC, upper.determinants.CF, upper.determinants.C, age, experienceClassification.copyingStyle, experienceClassification.approachStyle, lower.affection.PureC, upper.location_features.S, upper.approach);
+                    steps = affect.caculateAffect(lower.special_indices.DEPI, lower.special_indices.CDI, lower.core.Lambda, upper.determinants.M, lower.core.EBLeft, lower.core.EBRight, lower.affection.WSumC, lower.core.EA, lower.core.EBPer, lower.core.FM, lower.core.m, lower.core.SumCprime, lower.core.SumT, lower.core.SumV, lower.core.SumY, lower.affection.Afr, lower.ideation.twoABplusArtplusAy, upper.special_scores.CP, upper.determinants.FC, upper.determinants.CF, upper.determinants.C, age, experienceClassification.copyingStyle, experienceClassification.approachStyle, lower.affection.PureC, upper.location_features.S, upper.approach, lower.affection.Blends, lower.affection.R);
                     TESTRESULT.push({resultName, steps});
                 }
             }
