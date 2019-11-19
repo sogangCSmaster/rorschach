@@ -16,6 +16,7 @@ router.route("/test2")
             return res.redirect('/login');
         }
         var { name, sex, graduate, job, diagnosis, birthday, testdate, comName_input, inspector } = req.body;
+        console.warn(req.body);
         var { memberID, comName } = req.session.user;
         if(!job){
             job = "";
@@ -33,7 +34,7 @@ router.route("/test2")
         testdate = moment(testdate, 'YYYY-MM-DD').format('YYYY-MM-DD');
         var test = "test2"
 
-        var sql = "INSERT INTO test (name, test, sex, graduate, job, diagnosis, birthday, testdate, comName_input, inspector, memberID, comName) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        var sql = "INSERT INTO test (name, test, sex, graduate, job, diagnosis, birthday, testdate, comName_input, inspector, memberID, comName) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         var insertId = await query.executeSQL(sql, [name, test, sex, graduate, job, diagnosis, birthday, testdate, comName_input, inspector, memberID, comName])
         insertId = insertId.insertId;
         req.session.insertId = insertId;
