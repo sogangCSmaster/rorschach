@@ -1,4 +1,4 @@
-function caculateAffect(DEPI, CDI, Lambda, M, EBLeft, EBRight, WSumC, EA, EBPer, FM, m, SumCprime, SumT, SumV, SumY, Afr, twoABplusArtplusAy, CP, FC, CF, C, age, copyingStyle, approachStyle, PureC){
+function caculateAffect(DEPI, CDI, Lambda, M, EBLeft, EBRight, WSumC, EA, EBPer, FM, m, SumCprime, SumT, SumV, SumY, Afr, twoABplusArtplusAy, CP, FC, CF, C, age, copyingStyle, approachStyle, PureC, S, approach){
     var IntellectualIndex = twoABplusArtplusAy;
     var result = [];
     var nextStep = 1;
@@ -70,10 +70,26 @@ function caculateAffect(DEPI, CDI, Lambda, M, EBLeft, EBRight, WSumC, EA, EBPer,
     if(nextStep==9){
         var STEP9 = step9(FC, CF, C, PureC);
         result.push(STEP9);
-        if(STEP8.goNext==true){
+        if(STEP9.goNext==true){
             return result;
         }
         nextStep = STEP9.nextStep;
+    }
+    if(nextStep==10){
+        var STEP10 = step10();
+        result.push(STEP10);
+        if(STEP10.goNext==true){
+            return result;
+        }
+        nextStep = STEP10.nextStep;
+    }
+    if(nextStep==11){
+        var STEP11 = step11(S, approach);
+        result.push(STEP11);
+        if(STEP11.goNext==true){
+            return result;
+        }
+        nextStep = STEP11.nextStep;
     }
 
     return result;
@@ -696,6 +712,101 @@ function step9(FC, CF, C, PureC){
     result.curStep = 9;
     result.textData = textData;
     result.nextStep = 10;
+    result.goNext = false;
+    return result;
+}
+
+
+function step10(){
+    var result = {};
+    var textData = ["질적분석<br/><br/><br/><br/><br/>"]
+    result.curStep = 10;
+    result.textData = textData;
+    result.nextStep = 11;
+    result.goNext = false;
+    return result;
+}
+
+function step11(S, approach){
+    var result  = {};
+    var textData = [];
+
+    
+    var card1 = approach[1].join(' ');
+    card1 = card1.split("S").length-1
+    var card2 = approach[2].join(' ');
+    card2 = card2.split("S").length-1
+    var card3 = approach[3].join(' ');
+    card3 = card3.split("S").length-1
+    var card4 = approach[4].join(' ');
+    card4 = card4.split("S").length-1
+    var card5 = approach[5].join(' ');
+    card5 = card5.split("S").length-1
+    var card6 = approach[6].join(' ');
+    card6 = card6.split("S").length-1
+    var card7 = approach[7].join(' ');
+    card7 = card7.split("S").length-1
+    var card8 = approach[1].join(' ');
+    card8 = card8.split("S").length-1
+    var card9 = approach[9].join(' ');
+    card9 = card9.split("S").length-1
+    var card10 = approach[10].join(' ');
+    card10 = card10.split("S").length-1
+
+
+    if(0<=S && S<=2){
+        textData.push(`[잠정 결과1] [정상범주] 공간 반응(S)을 고려할 때, 수검자의 환경에 대한 거부나 분노는 일반적 수준일 것이다.`);
+        result.curStep = 11;
+        result.textData = textData;
+        result.nextStep = 12;
+        result.goNext = false;
+        return result;
+    }
+    if(S==3 && (card1+card2==3)){
+        textData.push(`[잠정 결과2] 공간 반응(S)을 고려할 때, 수검자는 검사를 받을 충분한 준비가 되어 있지 않으며, 상황요구에 거부적인 태도를 보일 것이다. `);
+        textData.push(`이러한 수검자의 저항은 일상적이지 않으며, 상황에 관련된 거부일 것이다.`);
+        result.curStep = 11;
+        result.textData = textData;
+        result.nextStep = 12;
+        result.goNext = false;
+        return result;
+    }
+
+    if((4<=S && S<=5) && (4<=card1+card2+card3 && card1+card2+card3<=5)){
+        textData.push(`[잠정 결과3] 공간 반응(S)을 고려할 때, 수검자는 검사 상황으로 인해 상당히 불편(irritated)할 것이다.`);
+        textData.push(`이러한 결과는 원하지 않는 도전에 직면할 경우 과도하게 저항하는 경향이나, 더 지속적인 권위에 대한 거부적 태도를 반영하는 것일 수 있다.`);
+        result.curStep = 11;
+        result.textData = textData;
+        result.nextStep = 12;
+        result.goNext = false;
+        return result;
+    }
+    if(S==3 && card1+card2<=2){
+        textData.push(`[잠정 결과4] 공간 반응(S)을 고려할 때, 수검자는 대부분의 다른 사람들보다 더 환경에 거부적이고 저항적인 경향을 보일 것이다.`);
+        textData.push(`이러한 경향은 수검자에게 불리한 점(liability)으로 작용하지 않겠지만, 원만한 사회적 관계를 형성하는 데 이롭지 않을 것이다.`);
+        result.curStep = 11;
+        result.textData = textData;
+        result.nextStep = 12;
+        result.goNext = false;
+        return result;
+    }
+    if(S>=4 && card1+card2+card3<=3){
+        textData.push(`[잠정 결과5] 공간 반응(S)을 고려할 때, 수검자는 상당한 분노를 경험하고 있으며, 분노가 일반화되어 수검자가 가진 환경에 대한 태도에 뚜렷하게 영향을 끼치고 있을 것이다. 특성적인 형태를 가지고 있어 수검자의 심리 기능에 영향을 주므로 의사결정이나 대처 행동에 항상 영향을 미칠 것이다. `);
+        textData.push(`분노는 사람마다 다양한 형태로 표출될 것이다. 어떤 사람은 분노를 직접적이고 분명한 행동으로 표현할 수 있으며, 어떤 사람은 더 교묘하게 우회적으로 표현할 수 있으며, 감정을 억제하는 성격 특징을 가진 사람은 단지 속만 끓일 수 있다.`);
+        textData.push(`이러한 경향을 가진 수검자는 사회적 관계에서 쉽게 타협하지 못하고 참을성을 잃기 때문에 다른 사람들과 깊이 있는 관계를 유지하기 어렵다. `);
+        textData.push(`수검자가 정서표현의 통제나 조절에 문제를 보일 경우, 그로 인해 더 강렬해진 정서표현에 대단히 거부적 태도가 포함될 수 있다.`);
+        result.curStep = 11;
+        result.textData = textData;
+        result.nextStep = 12;
+        result.goNext = false;
+        return result;
+    }
+
+
+
+    result.curStep = 11;
+    result.textData = textData;
+    result.nextStep = 12;
     result.goNext = false;
     return result;
 }
