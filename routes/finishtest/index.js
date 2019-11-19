@@ -609,10 +609,8 @@ router.route("/finishtest1")
             for(var i=0; i< scoreOrder.length; i++){
                 if(scoreOrder[i]=='통제력'){
                     resultName = "Control and Stress Tolerance 통제 능력과 스트레스 저항력 평가";
-                    // es, FM, m, SumCprime, SumV, SumT, SumY
                     steps = control.caculateControl(lower.core.AdjD, lower.special_indices.CDI, lower.core.EA, lower.core.EBLeft, lower.core.EBRight, lower.core.Lambda, age, upper.determinants.M, lower.affection.WSumC, lower.core.Adjes, lower.core.es, lower.core.FM, lower.core.m, lower.core.SumCprime, lower.core.SumV, lower.core.SumT, lower.core.SumY);
                     TESTRESULT.push({resultName, steps});
-                    console.warn(steps);
                 }
             }
 
