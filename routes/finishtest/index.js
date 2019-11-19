@@ -589,12 +589,12 @@ router.route("/finishtest1")
             SpecialIndices.OBS.Zf = OBS.getZfChecked(score);
             SpecialIndices.OBS.Zd = OBS.getZdChecked(score);
             SpecialIndices.OBS.Populars = OBS.getPopularsChecked(score);
-            SpecialIndices.OBS.FQplus = OBS.getFQplusChecked(score);
+            SpecialIndices.OBS.FQplus = OBS.getFQplusChecked1(score);
             SpecialIndices.OBS.Up1Checked = OBS.getUp1Checked(score);
             SpecialIndices.OBS.AllChecked = OBS.getAllChecked(score);
             SpecialIndices.OBS.Up2Checked = OBS.getUp2Checked(score);
             SpecialIndices.OBS.Up3Checked = OBS.getUp3Checked(score);
-            SpecialIndices.OBS.FQplusChecked = OBS.getFQplusChecked(score);
+            SpecialIndices.OBS.FQplusChecked = OBS.getFQplusChecked3(score);
 
             
             var experienceClassification = experience.getExperience(lower.core.EBLeft, lower.core.EBRight, lower.core.EA, lower.core.Lambda, lower.core.EBPer);
