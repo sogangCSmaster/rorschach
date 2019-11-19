@@ -1,4 +1,4 @@
-function caculateAffect(DEPI, CDI, Lambda, M, EBLeft, EBRight, WSumC, EA, EBPer, FM, m, SumCprime, SumT, SumV, SumY, Afr, twoABplusArtplusAy, CP, FC, CF, C){
+function caculateAffect(DEPI, CDI, Lambda, M, EBLeft, EBRight, WSumC, EA, EBPer, FM, m, SumCprime, SumT, SumV, SumY, Afr, twoABplusArtplusAy, CP, FC, CF, C, age, copyingStyle, approachStyle){
     var result = [];
     var nextStep = 1;
     if(nextStep==1){
@@ -16,6 +16,40 @@ function caculateAffect(DEPI, CDI, Lambda, M, EBLeft, EBRight, WSumC, EA, EBPer,
             return result;
         }
         nextStep = STEP2.nextStep;
+    }
+    console.warn(nextStep);
+    if(nextStep==3){
+        var STEP3 = step3(M, WSumC, Lambda, EBPer);
+        result.push(STEP3);
+        if(STEP3.goNext==true){
+            return result;
+        }
+        nextStep = STEP3.nextStep;
+    }
+    if(nextStep==4){
+        var STEP4 = step4(FM, m, SumCprime, SumT, SumV, SumY);
+        result.push(STEP4);
+        if(STEP4.goNext==true){
+            return result;
+        }
+        nextStep = STEP4.nextStep;
+    }
+    if(nextStep==5){
+        var STEP5 = step5(SumCprime, WSumC);
+        result.push(STEP5);
+        if(STEP5.goNext==true){
+            return result;
+        }
+        nextStep = STEP5.nextStep;
+    }
+
+    if(nextStep==6){
+        var STEP6 = step6(Afr, age, copyingStyle, approachStyle);
+        result.push(STEP6);
+        if(STEP6.goNext==true){
+            return result;
+        }
+        nextStep = STEP6.nextStep;
     }
 
     return result;
@@ -202,14 +236,245 @@ function step3(M, WSumC, Lambda, EBPer){
     var textData = [];
     
     if(M<WSumC && Lambda<=0.99){
-        
+        if(EBPer<2.5){
+            textData.push(`[잠정 결과1] 지배적 경험유형(EBPer)을 고려할 때, 수검자는 유연한(flexible) 진성 외향형(True Extratensive)의 대처방식(coping style)을 가지고 있는 것으로 볼 수 있다. 문제해결과 의사결정에서 정서자원을 주로 사용하기 때문에 사고과정에 감정이 많은 영향을 주지만, 상황에 따라 더 명확한 관념적 접근이 필요할 경우 감정을 한쪽으로 미뤄두고 감정의 영향을 배제할 수 있을 것이다. 그렇기에 정서표현의 조절에도 어느 정도 관심을 보일 수 있다.`);
+            result.goNext = false;
+            result.nextStep = 4;
+            result.curStep = 3;
+            result.textData= textData;
+            return result;
+        }
+        if(EBPer>=2.5){
+            textData.push(`[잠정 결과2] 지배적 경험유형(EBPer)을 고려할 때, 수검자는 지배적(pervasive) 진성 외향형(True Extratensive)의 대처방식(coping style)을 가지고 있는 것으로 볼 수 있다. 문제해결과 의사결정에서 정서자원을 지배적으로 사용하기 때문에 사고과정에 감정이 영향이 다른 유형에 비해 상당할 수 있다. 그렇기에 반응을 지연하고 심사숙고하는 것이 효과적인(effective) 상황에서도 시행착오 방식의 접근을 사용하여 상황에 적절하게 대처하는 데 어려움이 있을 수 있다. 그리고 정서표현의 조절에 관심을 적기 때문에 수검자의 감정이 상황에 적절하지 않게 지각될 수도 있다.`);
+            result.curStep = 3;
+            result.textData = textData;
+            result.nextStep = 4;
+            result.goNext = false;
+            return result;
+        }
     }
-
-
+    if(M<WSumC && Lambda<=0.99){
+        if(EBPer<2.5){
+            textData.push(`[잠정 결과3] 지배적 경험유형(EBPer)을 고려할 때, 수검자는 유연한(flexible) 진성 내향형(True Introversive)의 대처방식을 가지고 있는 것으로 볼 수 있다. 문제해결과 의사결정에서 사고자원을 주로 사용하기 때문에 사고과정에 감정의 영향이 적으며, 주로 관념적 접근을 사용한다. 때로는 감정이 사고과정에 영향을 주어 시행착오 방식에서 볼 수 있는 직관적인 의사결정을 할 수도 있다. 감정을 활용하는데 유연한 모습을 어느 정도 가지고 있을 수 있다.`);
+            result.curStep = 3;
+            result.textData = textData;
+            result.nextStep = 4;
+            result.goNext = false;
+            return result;
+        }
+        if(EBPEr>=2.5){
+            textData.push(`[잠정 결과4] 지배적 경험유형(EBPer)을 고려할 때, 수검자는 지배적(pervasive) 진성 내향형(True Introversive)의 대처방식을 가지고 있는 것으로 볼 수 있다. 문제해결과 의사결정에서 사고자원을 지배적으로 사용하기 때문에 사고과정에 감정의 영향이 거의 없을 수 있다. 그렇기에 시행착오 방식의 직관적 의사결정이 더 효과적인(effective) 상황에서도 관념적 접근을 사용하기에 상황에 적절하게 대처하는 데 어려움이 있을 수 있다. 정서표현의 조절에 상당히 엄격하기에 수검자의 감정이 상황에 적절하지 않은 것으로 지각될 수도 있다.`);
+            result.curStep = 3;
+            result.textData = textData;
+            result.nextStep = 4;
+            result.goNext = false;
+            return result;
+        }
+    }
 
     result.goNext = false;
     result.nextStep = 4;
     result.curStep = 3;
     result.textData= textData;
+    return result;
+}
+
+
+function step4(FM, m, SumCprime, SumT, SumV, SumY){
+    var result = {};
+    var textData = [];
+    if(FM+m>SumCprime+SumT+SumV+SumY){
+        if(SumCprime<=2 && SumT==1 && SumV==0 && SumY<=2){
+            textData.push(`[잠정 결과1] 심리적 고통을 반영하는 eb의 우항 점수를 고려할 때, 부정적 정서 상태를 유발하는 원인이 드러나지 않으므로, 정서적 고통을 유발하는 어떠한 원인을 가정할 필요가 없다.`);
+            result.curStep = 4;
+            result.textData = textData;
+            result.nextStep = 5;
+            result.goNext = false;
+            return result;
+        }
+        if(SumCprime>=3){
+            textData.push(`[잠정 결과2a] 심리적 고통을 반영하는 eb 우항의 SumC’ 점수를 고려할 때, 수검자는 감정을 내재화하는 경향이 뚜렷할 것이다. 정서표출을 억제하고 그로 인한 영향을 억누르는 경향으로 인해 불편해지거나(irritating) 부정적 감정을 느낄 것으로 보인다.`);
+            textData.push(`\n`);
+        }
+        if(SumT>=2){
+            textData.push(`[잠정 결과2b] 심리적 고통을 반영하는 eb 우항의 SumT 점수를 고려할 때, 수검자가 최근에 정서적으로 중요한 대상을 상실한 개인력이 없다면, 만성적으로 외로움을 느끼고 있거나, 정서적으로 빈곤한(emotional neediness) 상태일 수 있다.`);
+            textData.push(`\n`);
+        }
+        if(SumV>=1){
+            textData.push(`[잠정 결과2c] 심리적 고통을 반영하는 eb 우항의 SumV 점수를 고려할 때, 수검자가 최근에 후회나 죄책감을 느끼고 있다는 개인력이 없다면, 지속하여 자신을 질책하거나, 비하하는 경향을 보이고, 그로 인해 부정적 감정이 생겨나거나 마음이 어지럽혀지는(disquieting) 것일 수 있다.`);
+            textData.push(`\n`);
+        }
+        if(SumY>=3){
+            textData.push(`[잠정 결과2d] 심리적 고통을 반영하는 eb 우항의 SumY 점수를 고려할 때, 수검자는 스트레스 상황을 해결할 수 없다는 무력감으로 인해 부정적 감정을 겪고 있을 것이다.`);
+            textData.push(`\n`);
+        }
+        result.curStep = 4;
+        result.textData = textData;
+        result.nextStep = 5;
+        result.goNext = false;
+        return result;
+    }
+    if((FM+m>=3) && (FM+m<SumCprime+SumT+SumV+SumY)){
+        textData.push(`[잠정 결과3] 심리적 고통을 반영하는 eb 점수를 고려할 때, 수검자는 정서적 불편(distress)을 겪고 있을 수 있다. 수검자가 겪고 있는 정서적 불편은 우울이나, 불안처럼 직접적인 감정의 형태를 가질 수 있다. 그리고 수면 곤란이나, 무기력 같은 여러 신체 증상이나 심한 긴장이나, 걱정 같은 간접적인 형태를 가지는 등 다양한 양상을 보일 수 있다.`);
+        textData.push(`수검자가 경험하는 정서적 불편의 원인은 eb의 우항을 구성하는 어떤 지표가 정상범주를 이탈하는지를 통해 탐색할 수 있다.<br/>`);
+        textData.push(`* 정상범주: SumC’< 3, SumT= 1, SumV= 0, SumY < 2.`);
+        textData.push(`<br/>`);
+        if(SumCprime>=3){
+            textData.push(`[잠정 결과2a] 심리적 고통을 반영하는 eb 우항의 SumC’ 점수를 고려할 때, 수검자는 감정을 내재화하는 경향이 뚜렷할 것이다. 정서표출을 억제하고 그로 인한 영향을 억누르는 경향으로 인해 불편해지거나(irritating) 부정적 감정을 느낄 것으로 보인다.`);
+            textData.push(`<br/>`);
+        }
+        if(SumT>=2){
+            textData.push(`[잠정 결과2b] 심리적 고통을 반영하는 eb 우항의 SumT 점수를 고려할 때, 수검자가 최근에 정서적으로 중요한 대상을 상실한 개인력이 없다면, 만성적으로 외로움을 느끼고 있거나, 정서적으로 빈곤한(emotional neediness) 상태일 수 있다.`);
+            textData.push(`<br/>`);
+        }
+        if(SumV>=1){
+            textData.push(`[잠정 결과2c] 심리적 고통을 반영하는 eb 우항의 SumV 점수를 고려할 때, 수검자가 최근에 후회나 죄책감을 느끼고 있다는 개인력이 없다면, 지속하여 자신을 질책하거나, 비하하는 경향을 보이고, 그로 인해 부정적 감정이 생겨나거나 마음이 어지럽혀지는(disquieting) 것일 수 있다.`);
+            textData.push(`<br/>`);
+        }
+        if(SumY>=3){
+            textData.push(`[잠정 결과2d] 심리적 고통을 반영하는 eb 우항의 SumY 점수를 고려할 때, 수검자는 스트레스 상황을 해결할 수 없다는 무력감으로 인해 부정적 감정을 겪고 있을 것이다.`);
+            textData.push(`<br/>`);
+        }
+        result.curStep = 4;
+        result.textData = textData;
+        result.nextStep = 5;
+        result.goNext = false;
+        return result;
+    }
+    if((FM+m<3) && (SumCprime+SumT+SumV+SumY>=4)){
+        textData.push(`[잠정 결과3] 심리적 고통을 반영하는 eb 점수를 고려할 때, 수검자는 정서적 불편(distress)을 겪고 있을 수 있다. 수검자가 겪고 있는 정서적 불편은 우울이나, 불안처럼 직접적인 감정의 형태를 가질 수 있다. 그리고 수면 곤란이나, 무기력 같은 여러 신체 증상이나 심한 긴장이나, 걱정 같은 간접적인 형태를 가지는 등 다양한 양상을 보일 수 있다.`);
+        textData.push(`수검자가 경험하는 정서적 불편의 원인은 eb의 우항을 구성하는 어떤 지표가 정상범주를 이탈하는지를 통해 탐색할 수 있다.<br/>`);
+        textData.push(`* 정상범주: SumC’< 3, SumT= 1, SumV= 0, SumY < 2.`);
+        textData.push(`<br/>`);
+        if(SumCprime>=3){
+            textData.push(`[잠정 결과2a] 심리적 고통을 반영하는 eb 우항의 SumC’ 점수를 고려할 때, 수검자는 감정을 내재화하는 경향이 뚜렷할 것이다. 정서표출을 억제하고 그로 인한 영향을 억누르는 경향으로 인해 불편해지거나(irritating) 부정적 감정을 느낄 것으로 보인다.`);
+            textData.push(`<br/>`);
+        }
+        if(SumT>=2){
+            textData.push(`[잠정 결과2b] 심리적 고통을 반영하는 eb 우항의 SumT 점수를 고려할 때, 수검자가 최근에 정서적으로 중요한 대상을 상실한 개인력이 없다면, 만성적으로 외로움을 느끼고 있거나, 정서적으로 빈곤한(emotional neediness) 상태일 수 있다.`);
+            textData.push(`<br/>`);
+        }
+        if(SumV>=1){
+            textData.push(`[잠정 결과2c] 심리적 고통을 반영하는 eb 우항의 SumV 점수를 고려할 때, 수검자가 최근에 후회나 죄책감을 느끼고 있다는 개인력이 없다면, 지속하여 자신을 질책하거나, 비하하는 경향을 보이고, 그로 인해 부정적 감정이 생겨나거나 마음이 어지럽혀지는(disquieting) 것일 수 있다.`);
+            textData.push(`<br/>`);
+        }
+        if(SumY>=3){
+            textData.push(`[잠정 결과2d] 심리적 고통을 반영하는 eb 우항의 SumY 점수를 고려할 때, 수검자는 스트레스 상황을 해결할 수 없다는 무력감으로 인해 부정적 감정을 겪고 있을 것이다.`);
+            textData.push(`<br/>`);
+        }
+        result.curStep = 4;
+        result.textData = textData;
+        result.nextStep = 5;
+        result.goNext = false;
+        return result;
+    }
+    result.curStep = 4;
+    result.textData = textData;
+    result.nextStep = 5;
+    result.goNext = false;
+    return result;
+}
+
+function step5(SumCprime, WSumC){
+    var result = {};
+    var textData = [];
+    if(SumCprime<=WSumC){
+        textData.push(`[잠정 결과1] [정상범주] 무채색(SumC’)과 유채색(WSumC)의 비율을 고려할 때, 수검자는 정서를 억압하거나 억제하여 내재화하는 방어기제를 현저하게 사용하지 않는 것으로 볼 수 있다.`);
+        result.curStep = 5;
+        result.textData = textData;
+        result.nextStep = 6;
+        result.goNext = false;
+        return result;
+    }
+    if(SumCprime>WSumC){
+        textData.push(`[잠정 결과2] 무채색(SumC’)과 유채색(WSumC)의 비율을 고려할 때, 수검자는 정서를 억압하거나 억제하여 내재화하는 방어기제를 현저하게 사용하여 상당히 불편한(irritating) 감정을 겪고 있을 수 있다.`);
+        result.curStep = 5;
+        result.textData = textData;
+        result.nextStep = 6;
+        result.goNext = false;
+        return result;
+    }
+
+    result.curStep = 5;
+    result.textData = textData;
+    result.nextStep = 6;
+    result.goNext = false;
+    return result;
+}
+
+function step6(Afr, age, copyingStyle, approachStyle){
+    var result = {};
+    var textData = [];
+    var average = [];
+    if(age>=14){
+        if(copyingStyle=="Extratensive"){
+            average = [0.60, 0.89];
+        }
+        if(copyingStyle=="Introversive"){
+            average = [0.53, 0.78];
+        }
+        if(copyingStyle=="Ambitent"){
+            average = [0.53, 0.83];
+        }
+        if(approachStyle=="Avoidant"){
+            average = [0.45, 0.65];
+        }
+    }
+    if(5<=age && age<=6){
+        average = [0.57, 1.05];
+    }
+    if(7<=age && age<=9){
+        average = [0.55, 0.92];
+    }
+    if(10<=age && age<=13){
+        average = [0.53, 0.83];
+    }
+
+    if(average[0]<=Afr && Afr<=average[1]){
+        textData.push(`[잠정 결과1] [정상범주] 정서비율(Afr) 점수를 고려할 때, 수검자는 문제해결과 의사결정에서 사용하는 개별적인 대처방식(particular coping style)에 따라 일반적인 수준에서 정서가 포함된 자극을 다루고 있는 것으로 볼 수 있다. 해당하는 대처방식(coping style)에서 감정을 다루는 방식 이외의 다른 해석 결과는 없을 것이다.`);
+        textData.push(`정서 자극 처리에는 어떤 반응이나 변화가 요구된다. 지속하여 정서표현의 조절이나 통제의 어려움을 겪고 있는 수검자는 정서 자극에 관심을 줄여서 이러한 요구를 경감시키는 경향이 있으므로 평균 범위의 정서비율(Afr)을 보일 수 있다. 그러므로 개인력에서 지속하여 정서 조절의 문제를 보였는지 검토할 필요가 있다.`);
+        result.curStep = 6;
+        result.textData = textData;
+        result.nextStep = 7;
+        result.goNext = false;
+        return result;
+    }
+
+    if(Afr>average[1]){
+        textData.push(`[잠정 결과2] 정서비율(Afr) 점수를 고려할 때, 수검자는 정서 자극에 쉽게 끌리고 정서 변화에 관심을 상당히 많이 가질 것이다. 이러한 결과는 외향형 대처방식(coping style)을 가진 수검자에게 흔하지만, 그들에게만 국한되는 특징은 아니다.`);
+        textData.push(`이러한 경향은 단순히 정서에 강하게 관심을 가지는 것을 반영하며, 다른 사람에 비해 불리한 점(liability)을 의미하지 않는다. 정서 자극은 정서에 더 강한 관심을 가지도록 하고, 이러한 경향을 더 강화할 수 있다.`);
+        textData.push(`정서 자극 처리에는 어떤 반응이나 변화를 요구하므로 심리적 부담이 수반할 수 있다. 그러므로 정서 조절이나 통제의 어려움이 있으면 다른 사람에 비해 불리한 점(liability)일 수 있다. 정서 자극을 추구하는 경향은 예상되거나 요구되는 정서 변화를 증가시키기 때문에 정서 처리 과정에서 발생하는 심리적 부담이 증가할 수 있다. 그러므로 개인력에서 정서 조절의 문제가 있는지 검토할 필요가 있다.`);
+        result.curStep = 6;
+        result.textData = textData;
+        result.nextStep = 7;
+        result.goNext = false;
+        return result;
+    }
+
+    if(0.43<Afr && Afr<average[0]){
+        textData.push(`[잠정 결과3] 정서비율(Afr) 점수를 고려할 때, 수검자는 정서 자극을 처리하는데 관심이 적거나, 덜 적극적일 것이다. 이러한 결과는 회피 유형의 대처방식(coping style)을 가진 수검자에게 흔하게 나타나며, 복잡한 자극을 단순화하거나 회피하는 경향이 반영된 것이다.`);
+        textData.push(`이러한 경향은 단순히 정서에 덜 관여하는 것을 반영하며, 다른 사람에 비해 불리한 점(liability)을 의미하지 않는다.`);
+        textData.push(`정서 자극 처리에는 어떤 반응이나 변화를 요구하므로 심리적 부담이 수반할 수 있다. 정서 조절이나 통제의 문제가 있는 수검자에서 볼 때, 정서 덜 관여하는 경향은 자신의 문제를 더 심화시키는 상황을 회피하여 적응 유지하는 방식으로 볼 수 있다. 개인력에서 정서 조절의 문제가 있는지 검토할 필요가 있다.`);
+        result.curStep = 6;
+        result.textData = textData;
+        result.nextStep = 7;
+        result.goNext = false;
+        return result;
+    }
+    if(Afr<=0.43){
+        textData.push(`[잠정 결과4] 정서비율(Afr) 점수를 고려할 때, 수검자는 정서 자극을 현저하게 회피하고 있을 것이다. 수검자는 정서를 다루는 것을 상당히 불편할 수 있다. 그래서 정서적 교류를 포함할 수밖에 없는 사회적 상황이 어색하거나, 더욱이 사회적으로 고립되어 있을 수도 있다. 정서를 억제하거나(step5) 현저한 정서적 방어(step 7, 8)를 의미할 수 있으므로 관련된 정보를 탐색할 필요가 있다.`);
+        textData.push(`아동이나 청소년에서 이러한 경향이 나타날 경우, 심리적 발달에 기여 하는 많은 일상적 변화에도 회피적으로 반응하거나 지나치게 조심스럽게 접근하기 때문에 발달 자극을 충분히 접하지 못하게 될 수도 있다. 그러므로 아동이나 청소년에서 이러한 경향이 나타나면 더 관심을 기울여야 한다.`);
+        result.curStep = 6;
+        result.textData = textData;
+        result.nextStep = 7;
+        result.goNext = false;
+        return result;
+    }
+
+
+    result.curStep = 6;
+    result.textData = textData;
+    result.nextStep = 7;
+    result.goNext = false;
     return result;
 }
