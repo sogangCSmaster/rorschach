@@ -389,6 +389,25 @@ html
                                         td 제 3변인 : #{Order.thirdParty.join(', ')}
                                     tr
                                         td(style="font-weight: bold;") 군집별 해석 순서 : #{Order.order.join(' > ')}
+
+
+            each T in TESTRESULT
+                .page
+                    .subpage
+                        .row
+                            .col-md-12.text-center
+                                h3=T.resultName
+                        .row
+                            .col-md-12
+                                each step in T.steps
+                                    br
+                                    h5 Step #{step.curStep}
+                                    p.a(style="font-size: 9pt;")
+                                        if step.textData.length == 0
+                                            = "해당 사항 없음."
+                                        else
+                                            each text in step.textData
+                                                =text
                                 
                             
                     

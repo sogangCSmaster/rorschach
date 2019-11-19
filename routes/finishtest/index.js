@@ -30,6 +30,7 @@ const validity = require('./explanation/validity');
 const ExnerTable1 = require('./explanation/ExnerTable1');
 const experience = require('./explanation/experince');
 const explnationorder = require('./explanation/explnationorder');
+const control = require('./explanation/control');
 
 router.route("/finishtest1")
     .get(async(req, res, next) => {
@@ -599,9 +600,23 @@ router.route("/finishtest1")
             var step0 = validity.getValidity(lower.core.R, lower.core.Lambda);
             var getExnerTable1 = ExnerTable1.getExnerTable1(lower.core.AdjD, lower.special_indices.CDI, lower.core.EA, testconfig.birthday);
             var Order = explnationorder.getOrder(lower.special_indices.PTI, lower.special_indices.DEPI, lower.special_indices.CDI, lower.core.D, lower.core.AdjD, lower.core.Lambda, lower.self_perception.Reflections, experienceClassification.copyingStyle, lower.ideation.p, lower.ideation.a, lower.special_indices.HVIPositive, lower.special_indices.OBSPositive, lower.core.EA, lower.ideation.Mminus, lower.ideation.Mp, lower.ideation.Ma, upper.special_scores.Sum6, SpecialIndices.DEPI.SumShading, SpecialIndices.S_Constellation.CF, lower.affection.Afr, lower.cognitive_mediation.Xminusper, lower.information_processing.Zd, upper.special_scores.MOR, upper.special_scores.AG, upper.determinants.T);
-            console.warn(Order);
-    
-            res.render('testresult/index2', { testconfig, moment, upper, lower, SpecialIndices, step0, getExnerTable1, experienceClassification, Order });
+            var scoreOrder = Order.order;
+
+            var age = moment().diff(testconfig.birthday, 'years');
+
+            var TESTRESULT = [];
+            var resultName = "";
+            for(var i=0; i< scoreOrder.length; i++){
+                if(scoreOrder[i]=='통제력'){
+                    resultName = "Control and Stress Tolerance 통제 능력과 스트레스 저항력 평가";
+                    // es, FM, m, SumCprime, SumV, SumT, SumY
+                    steps = control.caculateControl(lower.core.AdjD, lower.special_indices.CDI, lower.core.EA, lower.core.EBLeft, lower.core.EBRight, lower.core.Lambda, age, upper.determinants.M, lower.affection.WSumC, lower.core.Adjes, lower.core.es, lower.core.FM, lower.core.m, lower.core.SumCprime, lower.core.SumV, lower.core.SumT, lower.core.SumY);
+                    TESTRESULT.push({resultName, steps});
+                    console.warn(steps);
+                }
+            }
+
+            res.render('testresult/index2', { testconfig, moment, upper, lower, SpecialIndices, step0, getExnerTable1, experienceClassification, Order, TESTRESULT });
         })
         .post(async(req, res, next) => {
             var { stringifyText, testID } = req.body;

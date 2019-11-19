@@ -505,8 +505,6 @@ function getOrder(PTI, DEPI, CDI, D, AdjD, Lambda, Reflections, copyingStyle, p,
         }
     }
 
-
-
 }
 
 exports.getOrder = getOrder;
