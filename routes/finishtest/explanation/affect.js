@@ -1,4 +1,5 @@
-function caculateAffect(DEPI, CDI, Lambda, M, EBLeft, EBRight, WSumC, EA, EBPer, FM, m, SumCprime, SumT, SumV, SumY, Afr, twoABplusArtplusAy, CP, FC, CF, C, age, copyingStyle, approachStyle){
+function caculateAffect(DEPI, CDI, Lambda, M, EBLeft, EBRight, WSumC, EA, EBPer, FM, m, SumCprime, SumT, SumV, SumY, Afr, twoABplusArtplusAy, CP, FC, CF, C, age, copyingStyle, approachStyle, PureC){
+    var IntellectualIndex = twoABplusArtplusAy;
     var result = [];
     var nextStep = 1;
     if(nextStep==1){
@@ -17,7 +18,6 @@ function caculateAffect(DEPI, CDI, Lambda, M, EBLeft, EBRight, WSumC, EA, EBPer,
         }
         nextStep = STEP2.nextStep;
     }
-    console.warn(nextStep);
     if(nextStep==3){
         var STEP3 = step3(M, WSumC, Lambda, EBPer);
         result.push(STEP3);
@@ -50,6 +50,30 @@ function caculateAffect(DEPI, CDI, Lambda, M, EBLeft, EBRight, WSumC, EA, EBPer,
             return result;
         }
         nextStep = STEP6.nextStep;
+    }
+    if(nextStep==7){
+        var STEP7 = step7(IntellectualIndex);
+        result.push(STEP7);
+        if(STEP7.goNext==true){
+            return result;
+        }
+        nextStep = STEP7.nextStep;
+    }
+    if(nextStep==8){
+        var STEP8 = step8(CP);
+        result.push(STEP8);
+        if(STEP8.goNext==true){
+            return result;
+        }
+        nextStep = STEP8.nextStep;
+    }
+    if(nextStep==9){
+        var STEP9 = step9(FC, CF, C, PureC);
+        result.push(STEP9);
+        if(STEP8.goNext==true){
+            return result;
+        }
+        nextStep = STEP9.nextStep;
     }
 
     return result;
@@ -475,6 +499,203 @@ function step6(Afr, age, copyingStyle, approachStyle){
     result.curStep = 6;
     result.textData = textData;
     result.nextStep = 7;
+    result.goNext = false;
+    return result;
+}
+
+
+function step7(IntellectualIndex){
+    var result = {};
+    var textData = [];
+
+    if(IntellectualIndex<4){
+        textData.push(`[잠정 결과0] [정상범주] 주지화 지표(Intellectualization Index) 점수를 고려할 때, 주지화 방어기제의 사용은 일반적 수준일 것이다.`);
+        result.curStep = 7;
+        result.textData = textData;
+        result.nextStep = 8;
+        result.goNext = false;
+        return result;
+    }
+    if(4<=IntellectualIndex && IntellectualIndex<=6){
+        textData.push(`[잠정 결과1] 주지화 지표(Intellectualization Index) 점수를 고려할 때, 수검자는 다른 사람들보다 더 감정을 지적인 수준에서 다루는 경향이 있을 것이다. `);
+        textData.push(`주지화 과정은 감정의 영향을 줄이거나 무효화시키며, 또한 상황의 영향이나 진정한 의미를 왜곡하는 부정(denial)의 형태로 작용할 수 있다.`);
+        result.curStep = 7;
+        result.textData = textData;
+        result.nextStep = 8;
+        result.goNext = false;
+        return result;
+    }
+    if(7<=IntellectualIndex){
+        textData.push(`[잠정 결과2] 주지화 지표(Intellectualization Index) 점수를 고려할 때, 수검자는 정서적 스트레스가 지각되는 상황에서 주지화를 주된 방어기제로 사용할 것이다.`);
+        textData.push(`주지화 전략은 정서 자극의 강도가 증가할수록 효과적이지 않게(less effective) 되므로 강한 정서 경험을 할 때면 혼란(disorganization)에 빠지기 더 쉬워질 수 있다.`);
+        result.curStep = 7;
+        result.textData = textData;
+        result.nextStep = 8;
+        result.goNext = false;
+        return result;
+    }
+
+
+    result.curStep = 7;
+    result.textData = textData;
+    result.nextStep = 8;
+    result.goNext = false;
+    return result;
+}
+
+function step8(CP){
+    var result = {};
+    var textData = [];
+    if(CP>=1){
+        textData.push(`[잠정 결과] 색채투사(CP)를 고려할 때, 수검자는 자주 불쾌한 정서나 정서 자극을 부정하고, 상황에 적절하지 않은 긍정 정서나 정서가(emotion value)로 대치하는 경향을 보일 것이다. 부정은 현실을 무시하거나 위배(violate)하는 히스테리 과정(hysteroid-liked process)과 유사하다.`);
+        textData.push(`수검자는 부정적 정서를 다루는 자신의 능력을 미심쩍어 하며, 자주 자신의 정서표현을 조절하는 데 문제가 있을 수 있다. 그렇기에 지각되거나 예상되는 어려움(harshness)을 다루는 것을 회피하기 위해 현실을 왜곡하여 경향이 있다.`);
+        textData.push(`현실을 왜곡하는 방어는 세련되지 않아 쉽게 드러날 수밖에 없으므로, 이러한 방어를 자주 사용하는 수검자는 다른 사람들이 자신을 ‘정서적으로 깊이가 없다.’ 판단하는 것을 알게 될 수 있다.`);
+        result.curStep = 8;
+        result.textData = textData;
+        result.nextStep = 9;
+        result.goNext = false;
+        return result;    
+    }
+
+    result.curStep = 8;
+    result.textData = textData;
+    result.nextStep = 9;
+    result.goNext = false;
+    return result;
+}
+
+function step9(FC, CF, C, PureC){
+    var result = {};
+    var textData = [];
+
+    if((FC>=CF+C+1) || (FC==2*(CF+C))){
+        if(PureC==0){
+            textData.push(`[잠정 결과1] 형태-색채 비율(FC: CF+C)을 고려할 때, 수검자는 정서 표출을 대부분의 성인만큼 잘 통제하거나 조절할 수 있을 것이다.`);
+            textData.push(`15세 미만의 어린 수검자에서는 드물게 나타나기 때문에 만약 이러한 결과가 나타났다면, 정서를 상당히 엄격하게 통제하고 있음을 시사한다.`);
+            result.curStep = 9;
+            result.textData = textData;
+            result.nextStep = 11;
+            result.goNext = false;
+            return result;        
+        }
+        if(PureC==1){
+            textData.push(`[잠정 결과4] 형태-색채 비율(FC: CF+C)을 고려할 때, 수검자는 정서표출을 대부분의 시간 동안에 다른 성인들만큼 조절할 수 있을 것이다. 어떤 경우에는 조절 오류가 나타나는 동안에는 다른 성인들만큼 정서표출을 잘 통제하지 못할 수 있다.`);
+            textData.push(`15세 미만의 어린 수검자의 검사 결과에서는 드물게 나타난다.`);
+            result.curStep = 9;
+            result.textData = textData;
+            result.nextStep = 11;
+            result.goNext = false;
+            return result;        
+        }
+        if(PureC>=2){
+            textData.push(`[잠정 결과6] 형태-색채 비율(FC: CF+C)을 고려할 때, 수검자는 정서표출을 효과적으로(effectively) 조절하기 위해 노력하지만, 심한 조절 오류가 빈번하게 발생할 가능성이 있다. 성인의 검사 결과에서 이러한 반응은 흔하지 않은 것이므로 통제능력 관련 주제에 대해 다시 살펴볼 필요가 있다.`);
+            textData.push(`아동이나 어린 청소년은 적절한 정서표현에 대해 아직 배우는 과정에 있기에 이러한 반응이 검사 결과에서 흔하게 나타날 수 있다.`);
+            result.curStep = 9;
+            result.textData = textData;
+            result.nextStep = 10;
+            result.goNext = false;
+            return result;
+        }
+    }
+
+    if(2*(CF+C)<FC && FC<3*(CF+C)){
+        if(PureC==0){
+            textData.push(`[잠정 결과2] 형태-색채 비율(FC: CF+C)을 고려할 때, 수검자는 정서표출을 대부분의 다른 사람들보다 더 엄격하게 통제하는 경향이 있을 것이다.`);
+            textData.push(`15세 미만의 어린 수검자의 검사 결과에서는 매우 드물게 나타난다.`);
+            result.curStep = 9;
+            result.textData = textData;
+            result.nextStep = 11;
+            result.goNext = false;
+            return result;
+        }
+    }
+
+    if(FC>2*(CF+C)){
+        if(PureC>=1){
+            textData.push(`[잠정 결과5] 형태-색채 비율(FC: CF+C) 점수를 고려할 때, 수검자는 대부분의 정서표현을 엄중히 조절할 것이다. 달리 보면, 정서표현의 조절 실패가 발생하기 쉽기에 엄중하게 통제하는 것일 수 있다.`);
+            textData.push(`그리고 이러한 검사 결과를 보이는 수검자가 대개 가지고 있는 정서에 대한 갈등은 때때로 엄중하게 조절하려는 일상적인 노력이 허물어지게 하는 원인이 될 수 있다.`);
+            result.curStep = 9;
+            result.textData = textData;
+            result.nextStep = 10;
+            result.goNext = false;
+            return result;
+        }
+    }
+    if(FC>=3*(CF+C)){
+        if(PureC==0){
+            textData.push(`[잠정 결과3] 형태-색채 비율(FC: CF+C)을 고려할 때, 수검자는 대부분의 다른 사람들보다 정서표현을 훨씬 더 과도하게 통제할 것이다. `);
+            textData.push(`수검자가 정서적으로 억압되어 있음을 시사하며, 대개 강렬한 감정 표현에 개입하는 것을 두려워하거나, 감정을 통제하는 자신의 능력을 미심쩍어할 것이다.`);
+            result.curStep = 9;
+            result.textData = textData;
+            result.nextStep = 11;
+            result.goNext = false;
+            return result;
+        }
+    }
+
+    if((CF+C==FC) || (CF+C==FC+2)){
+        if(PureC==0 || PureC==1){
+            textData.push(`[잠정 결과7] 형태-색채 비율(FC: CF+C)을 고려할 때, 수검자는 대부분의 다른 성인들보다 정서표출의 조절에 덜 엄격할 것이다. 일반적 사람들보다 감정 표현이 더 분명하고 강렬할 수 있다.`);
+            textData.push(`통제능력에 관련된 어려움이 없는 성인의 경우 반드시 부정적으로 해석할 필요는 없다. 하지만, 대인관계 문제나 현실검증능력의 문제 또는 정서적 혼란(disruption)을 겪고 있는 수검자에게는 상당히 불리한 점(liability)일 수 있다. 어떤 상태든지 상황에 적절하지 않은 형태의 정서표현이 나타날 수 있다.`);
+            textData.push(`아동이나 어린 청소년의 검사 결과에서는 흔하게 나타나지만, 내향형 대처방식(coping style)을 가진 사람에게는 흔하게 나타나지 않는다. 일반적인 양상이 아닌 경우 원인을 탐색해 볼 필요가 있다.`);
+            if(PureC==0){
+                result.curStep = 9;
+                result.textData = textData;
+                result.nextStep = 11;
+                result.goNext = false;
+                return result;
+            }
+            if(PureC==1){
+                result.curStep = 9;
+                result.textData = textData;
+                result.nextStep = 10;
+                result.goNext = false;
+                return result;
+            }
+        }
+
+        if(PureC>=2){
+            textData.push(`[잠정 결과8] 형태-색채 비율(FC: CF+C)을 고려할 때, 수검자는 심한 정서 조절 문제를 가지고 있을 것이다. 이러한 사람들의 정서표현은 자주 과도하고 강렬하며, 때때로 충동적 인상을 줄 수 있다. `);
+            textData.push(`통제능력에 관련된 어려움이 없다면, 수검자의 심리구조가 덜 성숙하지 않아 정서 조절이 매우 중요하다는 것을 간과하고 있는 것일 수 있다. 이러한 결과는 정서적으로 충만하고 조절 능력이 제한되어 있어 자주 감정을 드러내 보이는 경향을 나타내며, 아이들의 행동에서 자주 볼 수 있는 특징이다. 만약, 통제능력에 관련된 문제가 있다면 수검자의 현재 상태를 그 결과로 봐야 한다.`);
+            textData.push(`아동과 청소년의 검사 결과에서는 매우 흔하게 나타나며, 내향형의 대처방식(coping style)을 가진 사람에서는 흔하지 않다. 만약, 내향형의 수검자가 이런 결과를 보인다면, 관념적 방식의 유효성(efficacy)과 완전성(integrity)이 손상되어 있거나, 자주 다른 심리 작용 때문에 방해받고 있을 것이다.`);
+            result.curStep = 9;
+            result.textData = textData;
+            result.nextStep = 10;
+            result.goNext = false;
+            return result;
+        }
+    }
+
+    if(CF+C>=FC+3){
+        if(PureC==0){
+            textData.push(`[잠정 결과9] 형태-색채 비율(FC: CF+C)을 고려할 때, 수검자는 다른 사람들에 비해 정서표출의 조절을 더 적게 할 것이다. 이러한 결과를 보이는 성인은 강렬하게 표현되는 자신의 감정 때문에 때때로 놀라기도 한다.`);
+            textData.push(`수검자의 덜 억제된 정서표현이 효율적이거나(effectiveness) 비효율적인지는(ineffectiveness) 사회적 환경이 그러한 정서표현을 어떻게 수용하는지에 따라 달라지기 때문에 반드시 불리한 점(liability)이라고 볼 수 없다. 그러므로 수검자가 속한 사회적 환경에 대한 정보를 통해 해석을 조정할 필요가 있다.`);
+            textData.push(`수검자가 현실검증능력의 문제나 정서적 혼란(disruption)을 경험하고 있다면, 상황에 부적절하고 많이 통제되지 않은 정서표현이 나타날 수 있다.`);
+            textData.push(`아동이나 어린 청소년의 검사 결과에서는 흔하게 나타날 수 있다.`);
+            result.curStep = 9;
+            result.textData = textData;
+            result.nextStep = 11;
+            result.goNext = false;
+            return result;
+        }
+        if(PureC>=1){
+            textData.push(`[잠정 결과10] 형태-색채 비율(FC: CF+C)을 고려할 때, 수검자의 정서표현 조절은 상당히 느슨할 것이다. 수검자는 자주 다른 사람들에게 충동적으로 보일 수 있으며, 아니면 최소한 과도하게 감정적이거나 성숙하지 않은 사람으로 보일 수 있다. `);
+            textData.push(`수검자가 현실검증능력의 문제나 정서적 혼란(disruption)을 경험하고 있다면, 정서표현의 조절 실패 결과는 사회적응 시도에 매우 부정적인 영향을 자주 줄 것이다.`);
+            textData.push(`내향형 수검자에서 이러한 결과가 나타났다면, 관념적 방식의 기능이나 효율성(effectiveness)에 심한 문제가 있다는 신호일 수 있다.`);
+            textData.push(`대부분의 어린 아동의 검사 결과에서는 흔하게 나타나지만, 성인에서는 흔하지 않은 결과이다.`);
+            result.curStep = 9;
+            result.textData = textData;
+            result.nextStep = 10;
+            result.goNext = false;
+            return result;
+        }
+    }
+
+
+
+    result.curStep = 9;
+    result.textData = textData;
+    result.nextStep = 10;
     result.goNext = false;
     return result;
 }

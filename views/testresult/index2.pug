@@ -400,10 +400,10 @@ html
                         .row
                             .col-md-12
                                 each step in T.steps
-                                    h5 Step #{step.curStep}
-                                    p.a(style="font-size: 9pt;")
+                                    if step.textData.length != 0
+                                        span(style="color: blue; font-size: 9pt;") [Step #{step.curStep}]
+                                    p(style="font-size: 9pt;")
                                         if step.textData.length == 0
-                                            = "해당 사항 없음."
                                         else
                                             each text in step.textData
                                                 !=text
