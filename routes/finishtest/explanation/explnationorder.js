@@ -6,7 +6,7 @@ function checkDone(order){
     }
 }
 
-function getOrder(PTI, DEPI, CDI, D, AdjD, Lambda, Reflections, copyingStyle, p, a, HVIPositive, OBSPositive, EA, Mminus, Mp, Ma, Sum6, SumShading, CF, Afr, Xminusper, Zd, MOR, AG, T){
+function getOrder(PTI, DEPI, CDI, D, AdjD, Lambda, Reflections, copyingStyle, p, a, HVIPositive, OBSPositive, EA, Mminus, Mp, Ma, Sum6, SumShading, CF, Afr, Xminusper, Zd, MOR, AG, T, EgocentricityIndex){
     var order = [];
     var main = [];
     var thirdParty = [];
@@ -441,6 +441,37 @@ function getOrder(PTI, DEPI, CDI, D, AdjD, Lambda, Reflections, copyingStyle, p,
 
 
     // 3r + (2) / R < .33  여기서 3r
+    if(EgocentricityIndex<0.33){
+        thirdParty.push("Egocentricity Index < 0.33");
+        if(!order.includes('자기지각')){
+            order.push('자기지각');
+        }
+        if(!order.includes('대인지각')){
+            order.push('대인지각');
+        }
+        if(!order.includes('정서')){
+            order.push('정서');
+        }
+        if(!order.includes('통제력')){
+            order.push('통제력');
+        }
+        if(!order.includes('정보처리')){
+            order.push('정보처리');
+        }
+        if(!order.includes('인지적 중재')){
+            order.push('인지적 중재');
+        }
+        if(!order.includes('관념화')){
+            order.push('관념화');
+        }
+        if(order.length>=7){
+            result.main = main;
+            result.order = order;
+            result.thirdParty = thirdParty;
+            return result;
+        }
+
+    }
 
     if((MOR > 2) || (AG > 2)){
         thirdParty.push("MOR > 2 or AG > 2");

@@ -601,7 +601,7 @@ router.route("/finishtest1")
             // var experienceClassification = experience.getExperience(3, 5, 10, 0.89, 2.3);
             var step0 = validity.getValidity(lower.core.R, lower.core.Lambda);
             var getExnerTable1 = ExnerTable1.getExnerTable1(lower.core.AdjD, lower.special_indices.CDI, lower.core.EA, testconfig.birthday);
-            var Order = explnationorder.getOrder(lower.special_indices.PTI, lower.special_indices.DEPI, lower.special_indices.CDI, lower.core.D, lower.core.AdjD, lower.core.Lambda, lower.self_perception.Reflections, experienceClassification.copyingStyle, lower.ideation.p, lower.ideation.a, lower.special_indices.HVIPositive, lower.special_indices.OBSPositive, lower.core.EA, lower.ideation.Mminus, lower.ideation.Mp, lower.ideation.Ma, upper.special_scores.Sum6, SpecialIndices.DEPI.SumShading, SpecialIndices.S_Constellation.CF, lower.affection.Afr, lower.cognitive_mediation.Xminusper, lower.information_processing.Zd, upper.special_scores.MOR, upper.special_scores.AG, upper.determinants.T);
+            var Order = explnationorder.getOrder(lower.special_indices.PTI, lower.special_indices.DEPI, lower.special_indices.CDI, lower.core.D, lower.core.AdjD, lower.core.Lambda, lower.self_perception.Reflections, experienceClassification.copyingStyle, lower.ideation.p, lower.ideation.a, lower.special_indices.HVIPositive, lower.special_indices.OBSPositive, lower.core.EA, lower.ideation.Mminus, lower.ideation.Mp, lower.ideation.Ma, upper.special_scores.Sum6, SpecialIndices.DEPI.SumShading, SpecialIndices.S_Constellation.CF, lower.affection.Afr, lower.cognitive_mediation.Xminusper, lower.information_processing.Zd, upper.special_scores.MOR, upper.special_scores.AG, upper.determinants.T, lower.self_perception.EgocentricityIndex);
             var scoreOrder = Order.order;
 
             var age = moment().diff(testconfig.birthday, 'years');
@@ -616,7 +616,7 @@ router.route("/finishtest1")
                 }
                 if(scoreOrder[i]=='정서'){
                     resultName = "Affect 정서 자원이 사용되는 방식, 정서 상태, 정서의 역기능 평가";
-                    steps = affect.caculateAffect(lower.special_indices.DEPI, lower.special_indices.CDI, upper.determinants.M, lower.core.EBLeft, lower.core.EBRight, lower.affection.WSumC, lower.core.EA, lower.core.EBPer, lower.core.FM, lower.core.m, lower.core.SumCprime, lower.core.SumT, lower.core.SumV, lower.core.SumY, lower.affection.Afr, lower.ideation.twoABplusArtplusAy, upper.special_scores.CP, upper.determinants.FC, upper.determinants.CF, upper.determinants.C);
+                    steps = affect.caculateAffect(lower.special_indices.DEPI, lower.special_indices.CDI, lower.core.Lambda, upper.determinants.M, lower.core.EBLeft, lower.core.EBRight, lower.affection.WSumC, lower.core.EA, lower.core.EBPer, lower.core.FM, lower.core.m, lower.core.SumCprime, lower.core.SumT, lower.core.SumV, lower.core.SumY, lower.affection.Afr, lower.ideation.twoABplusArtplusAy, upper.special_scores.CP, upper.determinants.FC, upper.determinants.CF, upper.determinants.C);
                     TESTRESULT.push({resultName, steps});
                 }
             }
