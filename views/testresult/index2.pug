@@ -392,21 +392,53 @@ html
 
 
             each T in TESTRESULT
-                .page
-                    .subpage
-                        .row
-                            .col-md-12.text-center
-                                h3=T.resultName
-                        .row
-                            .col-md-12
-                                each step in T.steps
-                                    if step.textData.length != 0
-                                        span(style="color: blue; font-size: 8pt;") [Step #{step.curStep}]
-                                    p(style="font-size: 8pt;")
-                                        if step.textData.length == 0
-                                        else
-                                            each text in step.textData
-                                                !=text
+                if T.resultName == "Affect 정서 자원이 사용되는 방식, 정서 상태, 정서의 역기능 평가"
+                    - var steps = T.steps;
+                    - var stepLeft = steps.splice(0, 9);
+                    .page
+                        .subpage
+                            .row
+                                .col-md-12.text-center
+                                    h3=T.resultName
+                            .row
+                                .col-md-12
+                                    each step in stepLeft
+                                        if step.textData.length != 0
+                                            span(style="color: blue; font-size: 8pt;") [Step #{step.curStep}]
+                                        p(style="font-size: 8pt;")
+                                            if step.textData.length == 0
+                                            else
+                                                each text in step.textData
+                                                    !=text
+                    .page
+                        .subpage
+                            .row
+                                .col-md-12
+                                    each step in steps
+                                        if step.textData.length != 0
+                                            span(style="color: blue; font-size: 8pt;") [Step #{step.curStep}]
+                                        p(style="font-size: 8pt;")
+                                            if step.textData.length == 0
+                                            else
+                                                each text in step.textData
+                                                    !=text
+
+                else
+                    .page
+                        .subpage
+                            .row
+                                .col-md-12.text-center
+                                    h3=T.resultName
+                            .row
+                                .col-md-12
+                                    each step in T.steps
+                                        if step.textData.length != 0
+                                            span(style="color: blue; font-size: 8pt;") [Step #{step.curStep}]
+                                        p(style="font-size: 8pt;")
+                                            if step.textData.length == 0
+                                            else
+                                                each text in step.textData
+                                                    !=text
                                 
                             
                     

@@ -620,6 +620,7 @@ router.route("/finishtest1")
                     TESTRESULT.push({resultName, steps});
                 }
             }
+            console.warn(TESTRESULT);
 
             res.render('testresult/index2', { testconfig, moment, upper, lower, SpecialIndices, step0, getExnerTable1, experienceClassification, Order, TESTRESULT });
         })
