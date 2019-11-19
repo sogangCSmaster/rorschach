@@ -76,7 +76,7 @@ function getUp3Checked(scores) {
   checked += getPopularsChecked(scores);
   checked += getFQplusChecked1(scores);
 
-  return checked >= 3 && cognitive_mediation.getXperplus(scores) > 0.89;
+  return checked >= 3 && cognitive_mediation.getXplusper(scores) > 0.89;
 }
 exports.getUp3Checked = getUp3Checked;
 
