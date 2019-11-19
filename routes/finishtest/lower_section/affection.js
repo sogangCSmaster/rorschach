@@ -86,7 +86,7 @@ function getAfr(scores) {
       second += 1;
     }
   });
-  return first / second;
+  return (first / second).toFixed(2);
 }
 exports.getAfr = getAfr;
 
