@@ -52,6 +52,7 @@ router.route("/finishtest1")
         data = data[0];
         var score = data.score;
         score = JSON.parse(score);
+        score = score.slice(1);
 
         //testconfig => 이름, 검사주체 등 기본정보
         //score => 테스트
@@ -296,12 +297,12 @@ router.route("/finishtest1")
         SpecialIndices.OBS.Zf = OBS.getZfChecked(score);
         SpecialIndices.OBS.Zd = OBS.getZdChecked(score);
         SpecialIndices.OBS.Populars = OBS.getPopularsChecked(score);
-        SpecialIndices.OBS.FQplus = OBS.getFQplusChecked(score);
+        SpecialIndices.OBS.FQplus = OBS.getFQplusChecked1(score);
         SpecialIndices.OBS.Up1Checked = OBS.getUp1Checked(score);
         SpecialIndices.OBS.AllChecked = OBS.getAllChecked(score);
         SpecialIndices.OBS.Up2Checked = OBS.getUp2Checked(score);
         SpecialIndices.OBS.Up3Checked = OBS.getUp3Checked(score);
-        SpecialIndices.OBS.FQplusChecked = OBS.getFQplusChecked(score);
+        SpecialIndices.OBS.FQplusChecked = OBS.getFQplusChecked3(score);
 
         
 

@@ -27,8 +27,8 @@ function getMQual(scores) {
     'none': 0,
   };
   scores.forEach((score) => {
-    // active1이면 무조건 active1.value[0] == 'M'이지만 그래도 check
-    if (score.det && score.det.active1 && score.det.active1.value[0] == 'M') {
+    // active1이면 무조건 active.value[0] == 'M'이지만 그래도 check
+    if (score.det && (score.det.active1 || score.det.passive1 || score.det['a-p1'])) {
       if (fqList.indexOf(score.fq) !== -1) {
         MQual[score.fq] += 1;
       }

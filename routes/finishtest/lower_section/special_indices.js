@@ -107,7 +107,7 @@ function getOBS(scores) {
   count += OBS.getZfChecked(scores);
   count += OBS.getZdChecked(scores);
   count += OBS.getPopularsChecked(scores);
-  count += OBS.getFQplusChecked(scores);
+  count += OBS.getFQplusChecked1(scores);
 
   return count;
 }

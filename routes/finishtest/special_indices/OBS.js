@@ -27,19 +27,19 @@ function getPopularsChecked(scores) {
 }
 exports.getPopularsChecked = getPopularsChecked;
 
-function getFQplusChecked(scores) {
+function getFQplusChecked1(scores) {
   // FQ+ > 1
   const FQx = form_quality.getFQx(scores);
   return FQx['+'] > 1;
 }
-exports.getFQplusChecked = getFQplusChecked;
+exports.getFQplusChecked1 = getFQplusChecked1;
 
 function getUp1Checked(scores) {
   let checked = 0;
   checked += getAllChecked(scores);
   checked += getUp2Checked(scores);
   checked += getUp3Checked(scores);
-  checked += getFQplusChecked(scores);
+  checked += getFQplusChecked3(scores);
 
   return checked >= 1;
 }
@@ -51,7 +51,7 @@ function getAllChecked(scores) {
   checked += getZfChecked(scores);
   checked += getZdChecked(scores);
   checked += getPopularsChecked(scores);
-  checked += getFQplusChecked(scores);
+  checked += getFQplusChecked1(scores);
 
   return checked == 5;
 }
@@ -63,7 +63,6 @@ function getUp2Checked(scores) {
   checked += getZfChecked(scores);
   checked += getZdChecked(scores);
   checked += getPopularsChecked(scores);
-  checked += getFQplusChecked(scores);
 
   return checked >= 2 && form_quality.getFQx(scores)['+'] > 3;
 }
@@ -75,14 +74,14 @@ function getUp3Checked(scores) {
   checked += getZfChecked(scores);
   checked += getZdChecked(scores);
   checked += getPopularsChecked(scores);
-  checked += getFQplusChecked(scores);
+  checked += getFQplusChecked1(scores);
 
   return checked >= 3 && cognitive_mediation.getXperplus(scores) > 0.89;
 }
 exports.getUp3Checked = getUp3Checked;
 
-function getFQplusChecked(scores) {
+function getFQplusChecked3(scores) {
   // FQ+ > 3 and X+% > 0.89
   return form_quality.getFQx(scores)['+'] > 3 && cognitive_mediation.getXplusper(scores) > 0.89;
 }
-exports.getFQplusChecked = getFQplusChecked;
+exports.getFQplusChecked3 = getFQplusChecked3;

@@ -4,7 +4,7 @@ const information_processing = require('./information_processing.js');
 function getR(scores) {
   let R = 0;
   scores.forEach((scores) => {
-    if (scores.card >= 1 && scores.card <= 10) {
+    if (scores.card && scores.card >= 1 && scores.card <= 10) {
       R += 1;
     }
   })

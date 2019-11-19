@@ -14,7 +14,7 @@ function getApproach(scores) {
 
   scores.forEach((score) => {
     if (cards[score.card]) {
-      cards[score.card].push(score.loc);
+      cards[score.card].push(score.loc + score.dq);
     }
   });
   return cards;

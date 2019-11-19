@@ -99,7 +99,7 @@ function getBlends(scores) {
   // 2개 이상의 det를 갖는 score를 더함
   let total = 0;
   scores.forEach((score) => {
-    if (score.det && Object.keys(score.det) > 1) {
+    if (score.det && Object.keys(score.det).length > 1) {
       total += 1;
     }
   });

@@ -25,7 +25,7 @@ function getSumV(scores) {
   // FV, VF, V
   let sumV = 0;
   scores.forEach((score) => {
-    if (score && (score.vista1 || score.vista2 || score.vista3)) {
+    if (score.det && (score.det.vista1 || score.det.vista2 || score.det.vista3)) {
       sumV += 1;
     }
   });
