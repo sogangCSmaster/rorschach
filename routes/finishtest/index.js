@@ -31,6 +31,7 @@ const ExnerTable1 = require('./explanation/ExnerTable1');
 const experience = require('./explanation/experince');
 const explnationorder = require('./explanation/explnationorder');
 const control = require('./explanation/control');
+const affect = require('./explanation/affect');
 
 router.route("/finishtest1")
     .get(async(req, res, next) => {
@@ -610,10 +611,13 @@ router.route("/finishtest1")
             for(var i=0; i< scoreOrder.length; i++){
                 if(scoreOrder[i]=='통제력'){
                     resultName = "Control and Stress Tolerance 통제 능력과 스트레스 저항력 평가";
-                    // es, FM, m, SumCprime, SumV, SumT, SumY
                     steps = control.caculateControl(lower.core.AdjD, lower.special_indices.CDI, lower.core.EA, lower.core.EBLeft, lower.core.EBRight, lower.core.Lambda, age, upper.determinants.M, lower.affection.WSumC, lower.core.Adjes, lower.core.es, lower.core.FM, lower.core.m, lower.core.SumCprime, lower.core.SumV, lower.core.SumT, lower.core.SumY);
                     TESTRESULT.push({resultName, steps});
-                    console.warn(steps);
+                }
+                if(scoreOrder[i]=='정서'){
+                    resultName = "Affect 정서 자원이 사용되는 방식, 정서 상태, 정서의 역기능 평가";
+                    steps = affect.caculateAffect(lower.special_indices.DEPI, lower.special_indices.CDI, upper.determinants.M, lower.core.EBLeft, lower.core.EBRight, lower.affection.WSumC, lower.core.EA, lower.core.EBPer, lower.core.FM, lower.core.m, lower.core.SumCprime, lower.core.SumT, lower.core.SumV, lower.core.SumY, lower.affection.Afr, lower.ideation.twoABplusArtplusAy, upper.special_scores.CP, upper.determinants.FC, upper.determinants.CF, upper.determinants.C);
+                    TESTRESULT.push({resultName, steps});
                 }
             }
 
