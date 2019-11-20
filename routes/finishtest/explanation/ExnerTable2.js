@@ -4,6 +4,8 @@ function calculateExnerTable2(scores) {
     return nextStep(step, result, scores);
 }
 
+exports.calculateExnerTable2 = calculateExnerTable2;
+
 function nextStep(stepNum, result, scores) {
     var step = eval(`step${stepNum}(scores)`);
     result.push(step);

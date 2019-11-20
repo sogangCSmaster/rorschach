@@ -32,6 +32,8 @@ const experience = require('./explanation/experince');
 const explnationorder = require('./explanation/explnationorder');
 const control = require('./explanation/control');
 const affect = require('./explanation/affect');
+const ExnerTable2 = require('./explanation/ExnerTable2');
+const ExnerTable4 = require('./explanation/information_processing');
 
 router.route("/finishtest1")
     .get(async(req, res, next) => {
@@ -624,14 +626,23 @@ router.route("/finishtest1")
                     resultName = "Control and Stress Tolerance 통제 능력과 스트레스 저항력 평가";
                     steps = control.caculateControl(lower.core.AdjD, lower.special_indices.CDI, lower.core.EA, lower.core.EBLeft, lower.core.EBRight, lower.core.Lambda, age, upper.determinants.M, lower.affection.WSumC, lower.core.Adjes, lower.core.es, lower.core.FM, lower.core.m, lower.core.SumCprime, lower.core.SumV, lower.core.SumT, lower.core.SumY);
                     TESTRESULT.push({resultName, steps});
+
+                    resultName = "Situationally related stress 평소 통제능력보다 낮은 현재 통제능력을 유발하는 상황 관련 스트레스 평가"
+                    steps = ExnerTable2.calculateExnerTable2(score);
+                    TESTRESULT.push({resultName, steps});
                 }
                 if(scoreOrder[i]=='정서'){
                     resultName = "Affect 정서 자원이 사용되는 방식, 정서 상태, 정서의 역기능 평가";
                     steps = affect.caculateAffect(lower.special_indices.DEPI, lower.special_indices.CDI, lower.core.Lambda, upper.determinants.M, lower.core.EBLeft, lower.core.EBRight, lower.affection.WSumC, lower.core.EA, lower.core.EBPer, lower.core.FM, lower.core.m, lower.core.SumCprime, lower.core.SumT, lower.core.SumV, lower.core.SumY, lower.affection.Afr, lower.ideation.twoABplusArtplusAy, upper.special_scores.CP, upper.determinants.FC, upper.determinants.CF, upper.determinants.C, age, experienceClassification.copyingStyle, experienceClassification.approachStyle, lower.affection.PureC, upper.location_features.S, upper.approach, lower.affection.Blends, lower.affection.R);
                     TESTRESULT.push({resultName, steps});
                 }
+
+                if(scoreOrder[i]=="정보처리"){
+                    resultName = "Information Processing / Cognitive triad 정보처리"
+                    steps = ExnerTable4.calculateExnerTable4(score);
+                    TESTRESULT.push({resultName, steps});
+                }
             }
-            console.warn(TESTRESULT);
 
             res.render('testresult/index2', { testconfig, age, moment, upper, lower, SpecialIndices, step0, getExnerTable1, experienceClassification, Order, TESTRESULT });
         })

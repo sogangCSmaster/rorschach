@@ -307,7 +307,6 @@ function step2(age, EA, AdjD){
 }
 
 function step3(EBLeft, EBRight, EA, Lambda, age, M, WSumC){
-    console.warn(EBRight, EBLeft, EA, Lambda, age, M, WSumC)
     var result = {};
     var textData = [];
     if(EBLeft>0 && EBRight>0){
