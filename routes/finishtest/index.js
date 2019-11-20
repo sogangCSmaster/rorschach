@@ -50,6 +50,10 @@ router.route("/finishtest1")
         } else {
             testconfig.sex="여";
         }
+        if(data.length==0){
+            req.session.insertId = id;
+            return res.redirect("/scoring1");
+        }
         data = data[0];
         var score = data.score;
         score = JSON.parse(score);
@@ -342,6 +346,12 @@ router.route("/finishtest1")
             } else {
                 testconfig.sex="여";
             }
+
+            if(data.length==0){
+                req.session.insertId = id;
+                return res.redirect("/scoring2");
+            }
+
             data = data[0];
             var score = data.score;
             score = JSON.parse(score);
