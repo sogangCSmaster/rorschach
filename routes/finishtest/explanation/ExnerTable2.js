@@ -16,7 +16,6 @@ function nextStep(stepNum, result, scores) {
 }
 
 function step1({D, AdjD, es, Adjes, }) {
-    console.warn(D, AdjD, es, Adjes);
     var result = {};
     result.textData = [];
     result.curStep = 1;
@@ -39,12 +38,14 @@ function step1({D, AdjD, es, Adjes, }) {
     }
 
     result.goNext = true;
+    // result.nextStep = 2;
     result.textData.push('[해당 사항 없음]');
 
     return result;
 }
 
 function step2({ AdjD, D }) {
+    // console.warn(AdjD, D);
     var result = { };
     result.textData = [];
     result.curStep = 2;
@@ -67,6 +68,7 @@ function step2({ AdjD, D }) {
 }
 
 function step3({ m, SumY }) {
+    // console.warn(m, SumY);
     var result = { };
     result.textData = [];
     result.curStep = 3;
@@ -89,11 +91,13 @@ function step3({ m, SumY }) {
         return result;
     }
 
-    result.goNext = true;
+    result.goNext = false;
+    result.nextStep = 4;
     return result;
 }
 
 function step4({ SumT, SumV, EgocentricityIndex }) {
+    console.warn(SumT, SumV, EgocentricityIndex);
     var result = {};
     result.textData = [];
     result.curStep = 4;
@@ -110,7 +114,8 @@ function step4({ SumT, SumV, EgocentricityIndex }) {
         result.nextStep = 5;
         return result;
     }
-    result.goNext = true;
+    result.goNext = false;
+    result.nextStep = 5;
     return result;
 }
 
@@ -171,7 +176,8 @@ function step5({ D, PureC, Mminus, Mnone }) {
         result.nextStep = 6;
         return result;
     }
-    result.goNext = true;
+    result.goNext = false;
+    result.nextStep = 6;
     return result;
 }
 
