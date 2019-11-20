@@ -864,4 +864,10 @@ function step12(copyingStyle, approachStyle, Blends, R){
         return result;
     }
 
+    result.curStep = 12;
+    result.textData = textData;
+    result.nextStep = 13;
+    result.goNext = false;
+    return result;
+
 }

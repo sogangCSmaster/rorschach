@@ -31,9 +31,9 @@ router.route("/test1")
         }
         birthday = moment(birthday, 'YYYY-MM-DD').format('YYYY-MM-DD');
         testdate = moment(testdate, 'YYYY-MM-DD').format('YYYY-MM-DD');
-
-        var sql = "INSERT INTO test (name, sex, graduate, job, diagnosis, birthday, testdate, comName_input, inspector, memberID, comName) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        var insertId = await query.executeSQL(sql, [name, sex, graduate, job, diagnosis, birthday, testdate, comName_input, inspector, memberID, comName])
+        var age = moment().diff(birthday, 'years');
+        var sql = "INSERT INTO test (name, sex, graduate, job, diagnosis, birthday, testdate, comName_input, inspector, memberID, comName, age) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        var insertId = await query.executeSQL(sql, [name, sex, graduate, job, diagnosis, birthday, testdate, comName_input, inspector, memberID, comName, age])
         insertId = insertId.insertId;
         req.session.insertId = insertId;
         res.redirect("/scoring1");
