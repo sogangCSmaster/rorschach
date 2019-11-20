@@ -557,61 +557,106 @@ router.route("/finishtest1")
     
             lower.interpersonal = {};
             lower.interpersonal.COP = interpersonal.getCOP(score);
+            indicators.COP = lower.interpersonal.COP;
             lower.interpersonal.AG = interpersonal.getAG(score);
+            indicators.AG = lower.interpersonal.AG;
             lower.interpersonal.GHR = interpersonal.getGHR(score);
+            indicators.GHR = lower.interpersonal.GHR;
             lower.interpersonal.PHR = interpersonal.getPHR(score);
+            indicators.PHR = lower.interpersonal.PHR;
             lower.interpersonal.a = interpersonal.geta(score);
+            indicators.a = lower.interpersonal.a;
             lower.interpersonal.p = interpersonal.getp(score);
+            indicators.p = lower.interpersonal.p;
             lower.interpersonal.Food = interpersonal.getFood(score);
+            indicators.Food = lower.interpersonal.Food;
             lower.interpersonal.SumT = interpersonal.getSumT(score);
+            indicators.SumT = lower.interpersonal.SumT;
             lower.interpersonal.HumanCont = interpersonal.getHumanCont(score); // NaN
+            indicators.HumanCont = lower.interpersonal.HumanCont;
             lower.interpersonal.PureH = interpersonal.getPureH(score);
+            indicators.PureH = lower.interpersonal.PureH;
             lower.interpersonal.PER = interpersonal.getPER(score); // Error
+            indicators.PER = lower.interpersonal.PER;
             lower.interpersonal.ISOIndex = interpersonal.getISOIndex(score);
+            indicators.ISOIndex = lower.interpersonal.ISOIndex;
             
             lower.ideation = {};
             lower.ideation.a = ideation.geta(score);
             lower.ideation.p = ideation.getp(score);
             lower.ideation.Ma = ideation.getMa(score);
+            indicators.Ma = lower.ideation.Ma;
             lower.ideation.Mp = ideation.getMp(score);
+            indicators.Mp = lower.ideation.Mp;
             lower.ideation.twoABplusArtplusAy = ideation.twoABplusArtplusAy(score);
+            indicators.twoABplusArtplusAy = lower.ideation.twoABplusArtplusAy;
             lower.ideation.MOR = ideation.getMOR(score);
+            indicators.MOR = lower.ideation.MOR;
             lower.ideation.Sum6 = ideation.getSum6(score);
+            indicators.Sum6 = lower.ideation.Sum6;
             lower.ideation.Lv2 = ideation.getLv2(score);
+            indicators.Lv2 = lower.ideation.Lv2;
             lower.ideation.WSum6 = ideation.getWSum6(score);
+            indicators.WSum6 = lower.ideation.WSum6;
             lower.ideation.Mminus = ideation.getMminus(score);
+            indicators.Mminus = lower.ideation.Mminus;
             lower.ideation.Mnone = ideation.getMnone(score);
+            indicators.Mnone = lower.ideation.Mnone;
     
             lower.cognitive_mediation = {};
             lower.cognitive_mediation.XAper = cognitive_mediation.getXAper(score);
+            indicators.XAper = lower.cognitive_mediation.XAper;
             lower.cognitive_mediation.WDAper = cognitive_mediation.getWDAper(score);
+            indicators.WDAper = lower.cognitive_mediation.WDAper;
             lower.cognitive_mediation.Xminusper = cognitive_mediation.getXminusper(score);
+            indicators.Xminusper = lower.cognitive_mediation.Xminusper;
             lower.cognitive_mediation.Sminus = cognitive_mediation.getSminus(score);
+            indicators.Sminus = lower.cognitive_mediation.Sminus;
             lower.cognitive_mediation.P = cognitive_mediation.getP(score);
+            indicators.P = lower.cognitive_mediation.P;
             lower.cognitive_mediation.Xplusper = cognitive_mediation.getXplusper(score);
+            indicators.Xplusper = lower.cognitive_mediation.Xplusper;
             lower.cognitive_mediation.Xuper = cognitive_mediation.getXuper(score);
+            indicators.Xuper = lower.cognitive_mediation.Xuper;
     
     
             lower.information_processing = {};
             lower.information_processing.Zf = information_processing.getZf(score);
+            indicators.Zf = lower.information_processing.Zf;
             lower.information_processing.W = information_processing.getW(score);
+            indicators.W = lower.information_processing.W;
             lower.information_processing.D = information_processing.getD(score);
+            indicators.D = lower.information_processing.D;
             lower.information_processing.Dd = information_processing.getDd(score);
+            indicators.Dd = lower.information_processing.Dd;
             lower.information_processing.M = information_processing.getM(score);
+            indicators.M = lower.information_processing.M;
             lower.information_processing.Zd = information_processing.getZd(score);
+            indicators.Zd = lower.information_processing.Zd;
             lower.information_processing.PSV = information_processing.getPSV(score);
+            indicators.PSV = lower.information_processing.PSV;
             lower.information_processing.DQplus = information_processing.getDQplus(score);
+            indicators.DQplus = lower.information_processing.DQplus;
             lower.information_processing.DQv = information_processing.getDQv(score);
+            indicators.DQv = lower.information_processing.DQv;
     
             lower.self_perception = {};
             lower.self_perception.EgocentricityIndex = self_perception.getEgocentricityIndex(score);
+            indicators.EgocentricityIndex = lower.self_perception.EgocentricityIndex;
             lower.self_perception.Reflections = self_perception.getReflections(score);
+            indicators.Reflections = lower.self_perception.Reflections;
             lower.self_perception.SumV = self_perception.getSumV(score);
+            indicators.SumV = lower.self_perception.SumV
             lower.self_perception.FD = self_perception.getFD(score);
+            indicators.FD = lower.self_perception.FD;
             lower.self_perception.AnPlusXy = self_perception.getAnPlusXy(score);
+            indicators.AnPlusXy = lower.self_perception.AnPlusXy;
             lower.self_perception.MOR = self_perception.getMOR(score);
+            indicators.MOR = lower.self_perception.MOR;
             lower.self_perception.H = self_perception.getH(score);
+            indicators.H = lower.self_perception.H;
             lower.self_perception.Hrest = self_perception.getHrest(score);
+            indicators.Hrest = lower.self_perception.Hrest;
     
             lower.special_indices = {};
             lower.special_indices.SCONPositive = special_indices.getSCONPositive(score);
@@ -711,7 +756,7 @@ router.route("/finishtest1")
                     steps = control.caculateControl(lower.core.AdjD, lower.special_indices.CDI, lower.core.EA, lower.core.EBLeft, lower.core.EBRight, lower.core.Lambda, age, upper.determinants.M, lower.affection.WSumC, lower.core.Adjes, lower.core.es, lower.core.FM, lower.core.m, lower.core.SumCprime, lower.core.SumV, lower.core.SumT, lower.core.SumY);
                     TESTRESULT.push({resultName, steps});
 
-                    resultName = "Situationally related stress 평소 통제능력보다 낮은 현재 통제능력을 유발하는 상황 관련 스트레스 평가"
+                    resultName = "평소 통제능력보다 낮은 현재 통제능력을 유발하는 상황 관련 스트레스 평가"
                     steps = ExnerTable2.calculateExnerTable2(indicators);
                     TESTRESULT.push({resultName, steps});
                 }
