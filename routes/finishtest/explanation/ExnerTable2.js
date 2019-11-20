@@ -16,11 +16,12 @@ function nextStep(stepNum, result, scores) {
 }
 
 function step1({D, AdjD, es, Adjes, }) {
+    console.warn(D, AdjD, es, Adjes);
     var result = {};
     result.textData = [];
-
+    result.curStep = 1;
     if (D < AdjD) {
-        if (es - Ades >= 2) {
+        if (es - Adjes >= 2) {
             result.goNext = false;
             result.nextStep = 2; //다음 step으로 진행
             result.textData.push('[잠정 결과1] 2가지 통제능력(D & Adj D)과 2가지 스트레스 양(es &Adj es)을 통해 볼 때 수검자의 일반적 통제능력(Adj D)과 현재 통제능력(D)의 점수 차이는 타당하며, 아래의 가정도 타당할 것이다.');
@@ -46,6 +47,7 @@ function step1({D, AdjD, es, Adjes, }) {
 function step2({ AdjD, D }) {
     var result = { };
     result.textData = [];
+    result.curStep = 2;
     if (AdjD - D == 1) {
         result.goNext = false;
         result.nextStep = 3;
@@ -53,7 +55,7 @@ function step2({ AdjD, D }) {
         result.textData.push('심리적 혼란(disruption)을 경험하고 있지만, 일상적인 의사결정이나 행동 방식은 혼란되지(disorganizing) 않을 수 있다.');
         return result;
     }
-    if (ADjD - D >= 2) {
+    if (AdjD - D >= 2) {
         result.goNext = false;
         result.nextStep = 3;
         result.textData.push('[잠정 결과2] 2가지 통제능력(D & Adj D) 지표의 점수 차이를 볼 때, 수검자가 경험하는 상황적 스트레스가 상당히 많을 것이다.');
@@ -67,7 +69,7 @@ function step2({ AdjD, D }) {
 function step3({ m, SumY }) {
     var result = { };
     result.textData = [];
-
+    result.curStep = 3;
     if (Math.abs(m - SumY) >= 3 && (m <= 3*SumY || SumY <= 3*m)) {
         result.textData.push('[잠정 결과1] 침투적 사고(m)와 무력감(SumY)의 비율을 고려할 때, 상황 관련 스트레스가 사고와 정서에 모두 영향을 미치는 것으로 볼 수 있다. 의식 밖에 있는 침투적 사고로 인해 주의집중력이 저하되고, 무력감이나 무능감에 관련된 감정으로 인해 걱정, 불안, 슬픔 등을 경험할 수 있다. 한쪽 값이 다른 쪽보다 2점을 초과하여 크다면, 그 값을 통해 스트레스의 영향에 대한 의미 있는 실마리를 얻을 수 있다.');
         result.goNext = false;
@@ -94,6 +96,7 @@ function step3({ m, SumY }) {
 function step4({ SumT, SumV, EgocentricityIndex }) {
     var result = {};
     result.textData = [];
+    result.curStep = 4;
     if ((SumT == 1 && SumV == 0) || (SumV >= 1 && EgocentricityIndex <= 0.32)) {
         result.textData.push('[잠정 결과1] 안정적 특성에 가까운 지표인 재질(Texture)반응과 차원(Vista)반응을 고려할 때, 개인력에서 재질반응(정서적 상실)이나 차원반응(죄책감, 후회)을 증가시키는 심리적 외상사건이 있을 가능성이 적고 일반적 통제능력(Adj D) 지표는 적절하게 산출되었을 것이며, 수검자의 통제능력(D & Adj D) 지표 사이의 점수 차이는 타당하며 다시 검토할 필요가 없을 것이다.');
         result.nextStep = 5;
@@ -114,7 +117,7 @@ function step4({ SumT, SumV, EgocentricityIndex }) {
 function step5({ D, PureC, Mminus, Mnone }) {
     var result = {};
     result.textData = [];
-
+    result.curStep = 5;
     if (D >= 0) {
         result.textData.push('[잠정 결과1] 상황관련 스트레스에 영향받는 현재 통제능력(D)이 균형 상태(D = 0) 이상이라는 것은 상황적 스트레스의 영향이 존재하지만 아마도 심하지는 않을 것이다.');
         result.textData.push('수검자는 어떤 상황적 스트레스를 겪고 있으며, 현재 통제능력은 일반적 통제능력보다 낮아진 상태일 것이라는 1단계의 기본 가정(disorganization)이 성립할 것이다.');

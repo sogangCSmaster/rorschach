@@ -360,18 +360,27 @@ router.route("/finishtest1")
     
             //testconfig => 이름, 검사주체 등 기본정보
             //score => 테스트
-    
+            var indicators = {};
             var upper = {};
             upper.location_features = {};
             upper.location_features.Zf = location_features.getZf(score);
+            indicators.Zf = upper.location_features.Zf;
             upper.location_features.ZSum = location_features.getZSum(score);
+            indicators.ZSum = upper.location_features.ZSum;
             upper.location_features.ZEst = location_features.getZEst(score);
+            indicators.ZEst = upper.location_features.ZEst;
             upper.location_features.W = location_features.getW(score);
+            indicators.W = upper.location_features.W;
             upper.location_features.D = location_features.getD(score);
+            indicators.D = upper.location_features.D;
             upper.location_features.Dd = location_features.getDd(score);
+            indicators.Dd = upper.location_features.Dd;
             upper.location_features.S = location_features.getS(score);
+            indicators.S = upper.location_features.S;
             upper.location_features.Wv = location_features.getWv(score);
+            indicators.Wv = upper.location_features.Wv;
             upper.location_features.WPlusD = location_features.getWPlusD(score);
+            indicators.WPlusD = upper.location_features.WPlusD;
             upper.contents = contents.getContents(score);
             upper.approach = approach.getApproach(score);
     
@@ -379,30 +388,55 @@ router.route("/finishtest1")
     
             upper.determinants = {};
             upper.determinants.F = single.getF(score);
+            indicators.F = upper.determinants.F;
             upper.determinants.M = single.getM(score);
+            indicators.M = upper.determinants.M;
             upper.determinants.FM = single.getFM(score);
+            indicators.FM = upper.determinants.FM;
             upper.determinants.m = single.getm(score);
+            indicators.m = upper.determinants.m;
             upper.determinants.FC = single.getFC(score);
+            indicators.FC = upper.determinants.FC;
             upper.determinants.CF = single.getCF(score);
+            indicators.CF = upper.determinants.CF;
             upper.determinants.C = single.getC(score);
+            indicators.C = upper.determinants.C;
             upper.determinants.Cn = single.getCn(score);
+            indicators.Cn = upper.determinants.Cn;
             upper.determinants.FCprime = single.getFCprime(score);
+            indicators.FCprime = upper.determinants.FCprime;
             upper.determinants.CprimeF = single.getCprimeF(score);
+            indicators.CprimeF = upper.determinants.CprimeF;
             upper.determinants.Cprime = single.getCprime(score);
+            indicators.Cprime = upper.determinants.Cprime;
             upper.determinants.FY = single.getFY(score);
+            indicators.FY = upper.determinants.FY;
             upper.determinants.YF = single.getYF(score);
+            indicators.YF = upper.determinants.YF;
             upper.determinants.Y = single.getY(score);
+            indicators.Y = upper.determinants.Y;
             upper.determinants.FT = single.getFT(score);
+            indicators.FT = upper.determinants.FT;
             upper.determinants.TF = single.getTF(score);
+            indicators.TF = upper.determinants.TF;
             upper.determinants.T = single.getT(score);
+            indicators.T = upper.determinants.T;
             upper.determinants.FV = single.getFV(score);
+            indicators.FV = upper.determinants.FV;
             upper.determinants.VF = single.getVF(score);
+            indicators.VF = upper.determinants.VF;
             upper.determinants.V = single.getV(score);
+            indicators.V = upper.determinants.V;
             upper.determinants.FD = single.getFD(score);
+            indicators.FD = upper.determinants.FD;
             upper.determinants.Fr = single.getFr(score);
+            indicators.Fr = upper.determinants.Fr;
             upper.determinants.rF = single.getrF(score);
+            indicators.rF = upper.determinants.rF;
             upper.determinants.two = single.get2(score);
+            indicators.two = upper.determinants.two;
             upper.determinants.P = single.getP(score);
+            indicators.P = upper.determinants.P;
     
             upper.dq = {};
             upper.dq.plus = dq.getPlus(score);
@@ -417,60 +451,109 @@ router.route("/finishtest1")
     
             upper.special_scores = {};
             upper.special_scores.DV1 = special_scores.getDV1(score);
+            indicators.DV1 = upper.special_scores.DV1;
             upper.special_scores.DV2 = special_scores.getDV2(score);
+            indicators.DV2 = upper.special_scores.DV2;
             upper.special_scores.INCOM1 = special_scores.getINCOM1(score);
+            indicators.INCOM1 = upper.special_scores.INCOM1;
             upper.special_scores.INCOM2 = special_scores.getINCOM2(score);
+            indicators.INCOM2 = upper.special_scores.INCOM2;
             upper.special_scores.DR1 = special_scores.getDR1(score);
+            indicators.DR1 = upper.special_scores.DR1;
             upper.special_scores.DR2 = special_scores.getDR2(score);
+            indicators.DR2 = upper.special_scores.DR2;
             upper.special_scores.FABCOM1 = special_scores.getFABCOM1(score);
+            indicators.FABCOM1 = upper.special_scores.FABCOM1;
             upper.special_scores.FABCOM2 = special_scores.getFABCOM2(score);
+            indicators.FABCOM2 = upper.special_scores.FABCOM2;
             upper.special_scores.ALOG = special_scores.getALOG(score);
+            indicators.ALOG = upper.special_scores.ALOG;
             upper.special_scores.CONTAM = special_scores.getCONTAM(score);
+            indicators.CONTAM = upper.special_scores.CONTAM;
             upper.special_scores.Sum6 = special_scores.getSum6(score);
+            indicators.Sum6 = upper.special_scores.Sum6;
             upper.special_scores.WSum6 = special_scores.getWSum6(score);
+            indicators.WSum6 = upper.special_scores.WSum6;
             upper.special_scores.AG = special_scores.getAG(score);
+            indicators.AG = upper.special_scores.AG;
             upper.special_scores.AB = special_scores.getAB(score);
+            indicators.AB = upper.special_scores.AB;
             upper.special_scores.COP = special_scores.getCOP(score);
+            indicators.COP = upper.special_scores.COP;
             upper.special_scores.CP = special_scores.getCP(score);
+            indicators.CP = upper.special_scores.CP;
             upper.special_scores.GHR = special_scores.getGHR(score);
+            indicators.GHR = upper.special_scores.GHR;
             upper.special_scores.MOR = special_scores.getMOR(score);
+            indicators.MOR = upper.special_scores.MOR;
             upper.special_scores.PHR = special_scores.getPHR(score);
+            indicators.PHR = upper.special_scores.PHR;
             upper.special_scores.PSV = special_scores.getPSV(score);
+            indicators.PSV = upper.special_scores.PSV;
             upper.special_scores.PER = special_scores.getPER(score);
+            indicators.PER = upper.special_scores.PER;
     
             
             var lower = {};
             lower.core = {};
             lower.core.R = core.getR(score);
+            indicators.R = lower.core.R;
             lower.core.Lambda = core.getLambda(score);
+            indicators.Lambda = lower.core.Lambda;
             lower.core.EBLeft = core.getEBLeft(score);
+            indicators.EBLeft = lower.core.EBLeft;
             lower.core.ebLeft = core.getebLeft(score);
+            indicators.ebLeft = lower.core.ebLeft;
             lower.core.EBRight = core.getEBRight(score);
+            indicators.EBRight = lower.core.EBRight;
             lower.core.ebRight = core.getebRight(score);
+            indicators.ebRight = lower.core.ebRight;
             lower.core.EA = core.getEA(score);
+            indicators.EA = lower.core.EA;
             lower.core.EBPer = core.getEBPer(score);
+            indicators.EBPer = lower.core.EBPer;
             lower.core.es = core.getes(score);
+            indicators.es = lower.core.es;
             lower.core.Adjes = core.getAdjes(score);
+            indicators.Adjes = lower.core.Adjes;
             lower.core.D = core.getD(score);
+            indicators.D = lower.core.D;
             lower.core.AdjD = core.getAdjD(score);
+            indicators.AdjD = lower.core.AdjD;
             lower.core.FM = core.getFM(score);
+            indicators.FM = lower.core.FM;
             lower.core.m = core.getm(score);
+            indicators.m = lower.core.m;
             lower.core.SumCprime = core.getSumCprime(score);
+            indicators.SumCprime = lower.core.SumCprime;
             lower.core.SumV = core.getSumV(score);
+            indicators.SumV = lower.core.SumV;
             lower.core.SumT = core.getSumT(score);
+            indicators.SumT = lower.core.SumT;
             lower.core.SumY = core.getSumY(score);
+            indicators.SumY = lower.core.SumY;
     
             lower.affection = {};
             lower.affection.FCCFCLeft = affection.getFCCFCLeft(score);
+            indicators.FCCFCLeft = lower.affection.FCCFCLeft;
             lower.affection.FCCFCRight = affection.getFCCFCRight(score);
+            indicators.FCCFCRight = lower.affection.FCCFCRight;
             lower.affection.PureC = affection.getPureC(score);
+            indicators.PureC = lower.affection.PureC;
             lower.affection.SumCprime = affection.getSumCprime(score);
+            indicators.SumCprime = lower.affection.SumCprime;
             lower.affection.WSumC = affection.getWSumC(score);
+            indicators.WSumC = lower.affection.WSumC;
             lower.affection.Afr = affection.getAfr(score);
+            indicators.Afr = lower.affection.Afr;
             lower.affection.S = affection.getS(score);
+            indicators.S = lower.affection.S;
             lower.affection.Blends = affection.getBlends(score);
+            indicators.Blends = lower.affection.Blends;
             lower.affection.R = affection.getR(score);
+            indicators.R = lower.affection.R;
             lower.affection.CP = affection.getCP(score);
+            indicators.CP = lower.affection.CP;
     
             lower.interpersonal = {};
             lower.interpersonal.COP = interpersonal.getCOP(score);
@@ -618,6 +701,7 @@ router.route("/finishtest1")
 
             // var age = moment().diff(testconfig.birthday, 'years');
             var age = testconfig.age;
+            indicators.age = age;
 
             var TESTRESULT = [];
             var resultName = "";
@@ -628,7 +712,7 @@ router.route("/finishtest1")
                     TESTRESULT.push({resultName, steps});
 
                     resultName = "Situationally related stress 평소 통제능력보다 낮은 현재 통제능력을 유발하는 상황 관련 스트레스 평가"
-                    steps = ExnerTable2.calculateExnerTable2(score);
+                    steps = ExnerTable2.calculateExnerTable2(indicators);
                     TESTRESULT.push({resultName, steps});
                 }
                 if(scoreOrder[i]=='정서'){
@@ -639,7 +723,7 @@ router.route("/finishtest1")
 
                 if(scoreOrder[i]=="정보처리"){
                     resultName = "Information Processing / Cognitive triad 정보처리"
-                    steps = ExnerTable4.calculateExnerTable4(score);
+                    steps = ExnerTable4.calculateExnerTable4(indicators);
                     TESTRESULT.push({resultName, steps});
                 }
             }
