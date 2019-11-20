@@ -18,7 +18,7 @@ function nextStep(stepNum, result, scores) {
 function step1({ L, Zf }) {
     var result = {};
     result.textData = [];
-
+    result.curStep = 1;
     if (L <= 0.99) {
         if (Zf >= 14) {
             result.textData.push('[잠정 결과1a] 조직화(Z)를 고려할 때, 수검자는 반점 영역을 처리하는데 일상적인 것보다 더 많은 노력을 들일 것이다.');
@@ -42,14 +42,15 @@ function step1({ L, Zf }) {
         result.goNext = false;
         result.nextStep = 2;
     }
-    result.goNext = true;
+    result.goNext = false;
+    result.nextStep = 2;
     return result;
 }
 
 function step2({ Dd, W, D }) {
     var result = {};
     result.textData = [];
-
+    result.curStep = 2;
     if (Dd <= 3) {
         if (D >= 1.3 * W || D <= 1.6 * W) {
             result.textData.push('[잠정 결과1] [정상범주] 반응 위치 비율(W:D:Dd)을 고려할 때, 수검자가 들이는 처리 노력이나 처리 전략은 대부분의 다른 사람들에서 예상할 수 있는 범주에 있을 것이다. 이 결과는 잠정적이므로 3단계(step3)에서 다루는 위치 계열에 따라 노력이나 동기를 더 확인할 필요가 있다.');
@@ -77,7 +78,8 @@ function step2({ Dd, W, D }) {
         return result;
     }
 
-    result.goNext = true;
+    result.goNext = false;
+    result.nextStep = 3;
     return result;
 }
 
@@ -88,7 +90,7 @@ function step3({  }) {
 function step4({  }) {
     var result = {};
     result.textData = [];
-
+    result.curStep = 4;
     if (W > M) {
         if (W / M == 1.5 || W / M == 2 || W / M == 3) {
             result.textData.push('잠정 결과1a] 처리 노력에 영향을 주는 동기 수준을 결정하는 ‘어떤 행동이 어떤 결과를 가져올 것이라는 믿음’을 반영하는 기대 비율(Aspirational Ratio)과 결과를 얻는데 필요한 가용 자원을 반영하는 경험유형(EBstyle)을 고려할 때, 수검자는 자신이 가지고 있는 성취역량(가용 자원)에 비해 높은 성취목표(기대수준)를 가지고 있을 것이다. ');
@@ -119,13 +121,15 @@ function step4({  }) {
         }
     }
 
-    result.goNext = true;
+    result.goNext = false;
+    result.nextStep = 5;
     return result;
 }
 
 function step5({ Zd }) {
     var result = {};
     result.textData = [];
+    result.curStep = 5;
     if (Zd >= -3.0 && Zd <= 3.0) {
         result.textData.push('[잠정 결과1] [정상범주] 정보 처리 능률(Zd)을 고려할 때, 수검자는 자극 장의 탐색 활동에서 다른 사람들과 비슷한 수준의 능률(efficiency)을 보일 것이다. 다시 말해서 효과적인(effectively) 처리에 대한 동기가 적절한 수준일 것이다.');
         result.goNext = false;
@@ -149,14 +153,15 @@ function step5({ Zd }) {
         return result;
     }
 
-    result.goNext = true;
+    result.goNext = false;
+    result.nextStep = 6;
     return result;
 }
 
 function step6({ PSV }) {
     var result = {};
     result.textData = [];
-
+    result.curStep = 6;
     if (PSV == 1) {
         result.textData.push('[잠정 결과1] 보속 반응(PSV)을 고려할 때, 수검자는 때때로 주의전환에 약간의 어려움을 보일 수 있으며, 그로 인해 처리 활동이 능률적이지(efficiency) 않게 될 것이다.');
         result.textData.push('참고) 카드 내 보속은 처리 능률(efficiency)의 문제로 볼 수 있지만, 내용 보속은 처리 작용과 관련이 없으며 몰두해 있는 주제에 대한 정보를 제공한다. 그리고 기계적 보속은 심각한 인지적-신경학적 문제를 반영한다.');
@@ -173,7 +178,8 @@ function step6({ PSV }) {
         return result;
     }
 
-    result.goNext = true;
+    result.goNext = false;
+    result.nextStep = 7;
     return result;
 }
 
