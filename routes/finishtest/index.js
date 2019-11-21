@@ -738,6 +738,9 @@ router.route("/finishtest1")
 
             
             var experienceClassification = experience.getExperience(lower.core.EBLeft, lower.core.EBRight, lower.core.EA, lower.core.Lambda, lower.core.EBPer);
+            indicators.copyingStyle = experienceClassification.copyingStyle;
+            indicators.approachStyle = experienceClassification.approachStyle;
+            indicators.dominantStyle = experienceClassification.dominantStyle;
             // var experienceClassification = experience.getExperience(3, 5, 10, 0.89, 2.3);
             var step0 = validity.getValidity(lower.core.R, lower.core.Lambda);
             var getExnerTable1 = ExnerTable1.getExnerTable1(lower.core.AdjD, lower.special_indices.CDI, lower.core.EA, testconfig.birthday);
