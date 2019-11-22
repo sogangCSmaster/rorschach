@@ -9,6 +9,7 @@ exports.calculateExnerTable4 = calculateExnerTable4;
 function nextStep(stepNum, result, scores) {
     var step = eval(`step${stepNum}(scores)`);
     result.push(step);
+    console.warn(step);
     if (step.goNext == true) {
         return result;
     }
@@ -84,10 +85,18 @@ function step2({ Dd, W, D }) {
 }
 
 function step3({  }) {
+    var result = {};
+    result.textData = [];
+    result.curStep = 3;
 
+
+
+    result.goNext = false;
+    result.nextStep = 4;
+    return result;
 }
 
-function step4({  }) {
+function step4({W, M, Zf, }) {
     var result = {};
     result.textData = [];
     result.curStep = 4;
@@ -184,9 +193,24 @@ function step6({ PSV }) {
 }
 
 function step7() {
+    var result = {};
+    result.textData = [];
+    result.curStep = 7;
 
+
+    result.goNext = false;
+    result.nextStep = 8;
+    return result;
 }
 
 function step8() {
+    var result = {};
+    result.textData = [];
+    result.curStep = 8;
+
+
+    result.goNext = true;
+    result.nextStep = 8;
+    return result;
 
 }
