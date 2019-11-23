@@ -8427,6 +8427,11 @@ body.md-skin {
   font-size: 15px;
 }
 
+#card-table td.gphr {
+  line-height: 40px;
+  font-size: 15px;
+}
+
 td[data-dkey].active,
 td[data-rkey].active,
 td[data-skey].active {
@@ -8439,3 +8444,4 @@ td[data-skey].active {
 #scoreModal .title {
   color: rgba(97, 178, 191);
 }
+

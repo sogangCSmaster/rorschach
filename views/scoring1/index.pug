@@ -32,6 +32,7 @@ html
                                     th.text-center(scope="col") 내용
                                     th.text-center.col-xs-1(scope="col") P
                                     th.text-center.col-xs-1(scope="col") Z
+                                    th.text-center.col-xs-1(scope='col') G/PHR
                                     th.text-center(scope="col") 특수점수
                             tbody#score-table
                                 mixin card-tr(display, index)
@@ -87,6 +88,7 @@ html
                                                 option P
                                         td.text-center
                                             select.form-control.selectZ
+                                        td.text-center.gphr
                                         td.text-center
                                             button.btn.btn-default.btn-sm.score-btn 선택
                                 +card-tr('hidden', 0)
@@ -495,21 +497,21 @@ html
                                             td(colspan=34)
                                         tr
                                             td(colspan=1)
-                                            td.text-center.s-form(style='cursor: pointer;', data-skey='DV1', data-svalue='DV1', colspan=6): strong DV 1
-                                            td.text-center.s-form(style='cursor: pointer;', data-skey='DR1', data-svalue='DR1', colspan=6): strong DR 1
+                                            td.text-center.s-form(style='cursor: pointer;', data-skey='DV1', data-svalue='DV1', colspan=6, data-validate='DR1', data-validate2='DR2', data-validate3='CONTAM', data-validate-msg='DV와 DR은 함께 채점되지 않습니다. 둘 다 해당하면 DR로 채점합니다.', data-validate2-msg='DV와 DR은 함께 채점되지 않습니다. 둘 다 해당하면 DR로 채점합니다.', data-validate3-msg='CONTAM이 있을 경우 DV, DR, INCOM, FABCOM, ALOG은 채점되지 않고 CONTAM 만 채점합니다.'): strong DV 1
+                                            td.text-center.s-form(style='cursor: pointer;', data-skey='DR1', data-svalue='DR1', colspan=6, data-validate='DV1', data-validate2='DV2', data-validate3='CONTAM', data-validate-msg='DV와 DR은 함께 채점되지 않습니다. 둘 다 해당하면 DR로 채점합니다.', data-validate2-msg='DV와 DR은 함께 채점되지 않습니다. 둘 다 해당하면 DR로 채점합니다.', data-validate3-msg='CONTAM이 있을 경우 DV, DR, INCOM, FABCOM, ALOG은 채점되지 않고 CONTAM 만 채점합니다.'): strong DR 1
                                             td(colspan=2)
-                                            td.text-center.s-form(style='cursor: pointer;', data-skey='INCOM1', data-svalue='INCOM1', colspan=6): strong INCOM 1
-                                            td.text-center.s-form(style='cursor: pointer;', data-skey='FABCOM1', data-svalue='FABCOM1', colspan=6): strong FABCOM 1
-                                            td.text-center.s-form(style='cursor: pointer;', data-skey='CONTAM', data-svalue='CONTAM', colspan=6): strong CONTAM
+                                            td.text-center.s-form(style='cursor: pointer;', data-skey='INCOM1', data-svalue='INCOM1', colspan=6, data-validate='FABCOM1', data-validate2='FABCOM2',data-validate3='CONTAM', data-validate-msg='INCOM과 FABCOM은 함께 채점되지 않습니다. 둘 다 해당하면 FABCOM으로 채점합니다.', data-validate2-msg='INCOM과 FABCOM은 함께 채점되지 않습니다. 둘 다 해당하면 FABCOM으로 채점합니다.', data-validate3-msg='CONTAM이 있을 경우 DV, DR, INCOM, FABCOM, ALOG은 채점되지 않고 CONTAM 만 채점합니다.'): strong INCOM 1
+                                            td.text-center.s-form(style='cursor: pointer;', data-skey='FABCOM1', data-svalue='FABCOM1', colspan=6,data-validate='INCOM1', data-validate2='INCOM2', data-validate3='CONTAM', data-validate-msg='INCOM과 FABCOM은 함께 채점되지 않습니다. 둘 다 해당하면 FABCOM으로 채점합니다.', data-validate2-msg='INCOM과 FABCOM은 함께 채점되지 않습니다. 둘 다 해당하면 FABCOM으로 채점합니다.', data-validate3-msg='CONTAM이 있을 경우 DV, DR, INCOM, FABCOM, ALOG은 채점되지 않고 CONTAM 만 채점합니다.'): strong FABCOM 1
+                                            td.text-center.s-form(style='cursor: pointer;', data-skey='CONTAM', data-svalue='CONTAM', colspan=6, data-validate-func='validateCONTAM(this)', data-validate-msg='CONTAM이 있을 경우 DV, DR, INCOM, FABCOM, ALOG은 채점되지 않고 CONTAM만 채점합니다.'): strong CONTAM
                                             td(colspan=1)
                                         tr
                                             td(colspan=1)
-                                            td.text-center.s-form(style='cursor: pointer;', data-skey='DV2', data-svalue='DV2', colspan=6): strong DV 2
-                                            td.text-center.s-form(style='cursor: pointer;', data-skey='DR2', data-svalue='DR2', colspan=6): strong DR 2
+                                            td.text-center.s-form(style='cursor: pointer;', data-skey='DV2', data-svalue='DV2', colspan=6, data-validate='DR1', data-validate2='DR2', data-validate3='CONTAM', data-validate-msg='DV와 DR은 함께 채점되지 않습니다. 둘 다 해당하면 DR로 채점합니다.', data-validate2-msg='DV와 DR은 함께 채점되지 않습니다. 둘 다 해당하면 DR로 채점합니다.', data-validate3-msg='CONTAM이 있을 경우 DV, DR, INCOM, FABCOM, ALOG은 채점되지 않고 CONTAM 만 채점합니다.'): strong DV 2
+                                            td.text-center.s-form(style='cursor: pointer;', data-skey='DR2', data-svalue='DR2', colspan=6, data-validate='DV1', data-validate2='DV2', data-validate3='CONTAM', data-validate-msg='DV와 DR은 함께 채점되지 않습니다. 둘 다 해당하면 DR로 채점합니다.', data-validate2-msg='DV와 DR은 함께 채점되지 않습니다. 둘 다 해당하면 DR로 채점합니다.', data-validate3-msg='CONTAM이 있을 경우 DV, DR, INCOM, FABCOM, ALOG은 채점되지 않고 CONTAM 만 채점합니다.'): strong DR 2
                                             td(colspan=2)
-                                            td.text-center.s-form(style='cursor: pointer;', data-skey='INCOM2', data-svalue='INCOM2', colspan=6): strong INCOM 2
-                                            td.text-center.s-form(style='cursor: pointer;', data-skey='FABCOM2', data-svalue='FABCOM2', colspan=6): strong FABCOM 2
-                                            td.text-center.s-form(style='cursor: pointer;', data-skey='ALOG', data-svalue='ALOG', colspan=6): strong ALOG
+                                            td.text-center.s-form(style='cursor: pointer;', data-skey='INCOM2', data-svalue='INCOM2', colspan=6, data-validate='FABCOM1', data-validate2='FABCOM2', data-validate3='CONTAM', data-validate-msg='INCOM과 FABCOM은 함께 채점되지 않습니다. 둘 다 해당하면 FABCOM으로 채점합니다.', data-validate2-msg='INCOM과 FABCOM은 함께 채점되지 않습니다. 둘 다 해당하면 FABCOM으로 채점합니다.', data-validate3-msg='CONTAM이 있을 경우 DV, DR, INCOM, FABCOM, ALOG은 채점되지 않고 CONTAM 만 채점합니다.'): strong INCOM 2
+                                            td.text-center.s-form(style='cursor: pointer;', data-skey='FABCOM2', data-svalue='FABCOM2', colspan=6, data-validate='INCOM1', data-validate2='INCOM2', data-validate3='CONTAM', data-validate-msg='INCOM과 FABCOM은 함께 채점되지 않습니다. 둘 다 해당하면 FABCOM으로 채점합니다.', data-validate2-msg='INCOM과 FABCOM은 함께 채점되지 않습니다. 둘 다 해당하면 FABCOM으로 채점합니다.', data-validate3-msg='CONTAM이 있을 경우 DV, DR, INCOM, FABCOM, ALOG은 채점되지 않고 CONTAM 만 채점합니다.'): strong FABCOM 2
+                                            td.text-center.s-form(style='cursor: pointer;', data-skey='ALOG', data-svalue='ALOG', colspan=6, data-validate='CONTAM', data-validate-msg='CONTAM이 있을 경우 DV, DR, INCOM, FABCOM, ALOG은 채점되지 않고 CONTAM 만 채점합니다.'): strong ALOG
                                             td(colspan=1)
                                 
                         .row
@@ -641,6 +643,16 @@ html
             var currentModalIndex = -1;
 
 
+            // CONTAM validation
+            //
+            function validateCONTAM(e) {
+              var index = currentModalIndex;
+              var score = scores[index];
+              if(!score) {
+                return false;
+              }
+              return score.DV1 || score.DV2 || score.DR1 || score.DR2 || score.INCOM1 || score.INCOM2 || score.FABCOM1 || score.FABCOM2 || score.ALOG;
+            }
             // 결정인 추가 버튼
             $(document).on('click', '.determinant', function(){
                 var idx = $(this).closest('tr').attr('data-index');
@@ -684,6 +696,7 @@ html
                 }
                 
                 parseDet(dets[currentModalIndex], currentModalIndex);
+                parseGPHR(currentModalIndex);
             });
 
             // 반응 모달 테이블 셀 클릭
@@ -716,6 +729,7 @@ html
                     reacts[currentModalIndex][key] = { value: value, first: first };
                 }
                 parseReact(reacts[currentModalIndex], currentModalIndex);
+                parseGPHR(currentModalIndex);
             });
 
             // 특수 점수 모달 테이블 셀 클릭
@@ -723,6 +737,33 @@ html
                 var key = $(this).attr('data-skey');
                 var value = $(this).attr('data-svalue');
                 var first = $(this).attr('data-sfirst') == '';
+                
+                var val1 = $(this).attr('data-validate');
+                var val2 = $(this).attr('data-validate2');
+                var val3 = $(this).attr('data-validate3');
+                var val1m = $(this).attr('data-validate-msg');
+                var val2m = $(this).attr('data-validate2-msg');
+                var val3m = $(this).attr('data-validate3-msg');
+                var score = scores[currentModalIndex];
+                var valf = $(this).attr('data-validate-func');
+
+                if (val1 && score && score[val1]) {
+                    alert(val1m);
+                    return;
+                }
+                if (val2 && score && score[val2]) {
+                    alert(val2m);
+                    return;
+                }
+                if (val3 && score && score[val3]) {
+                    alert(val3m);
+                    return;
+                }
+                if (valf && score && eval(valf)) {
+                    alert(val1m);
+                    return;
+                }
+                
                 if (!scores[currentModalIndex]) {
                     scores[currentModalIndex] = { };
                 }
@@ -732,6 +773,7 @@ html
                     scores[currentModalIndex][key] = { value: value, first: first };
                 }
                 parseScore(scores[currentModalIndex], currentModalIndex);
+                parseGPHR(currentModalIndex);
             })
 
             function parse2(det, index) {
@@ -958,11 +1000,13 @@ html
 
         $(document).ready(function() {
             
+            // 카드 변경시 G/PHR 계산
             // add event handler for 반응위치+발달질 변경
             $(document).on('change', 'select[name=card], select[name=loc], select[name=dq]', function() {
                 //var index = $(this).closest('tr').index();
                 var index = parseInt($(this).closest('tr').attr('data-index'));
                 changeZ(index);
+                parseGPHR(currentModalIndex);
             });
 
             $(document).on('change', 'select.select2', function() {
@@ -976,6 +1020,7 @@ html
                     }
                     dets[index]['(2)'] = '(2)';
                 }
+                parseGPHR(index);
             })
             $(document).on('change', 'select.selectP', function() {
                 var val = $(this).val();
@@ -988,12 +1033,21 @@ html
                     }
                     reacts[index]['P'] = 'P';
                 }
-            })
+                parseGPHR(index);
+            });
+            $(document).on('change', 'select[name=fq], select.selectZ', function() {
+                parseGPHR(index);
+            });
             
 
             // load default Z array
             changeZ(1);
         })
+
+        function parseGPHR(index) {
+          $('#score-table tr[data-index=' + index + ']').find('td.gphr').text(checkGPHR(index));
+        }
+
         function stringifyForm() {
             var rowSize = $('#score-table tr').length;
             var ret = [];
@@ -1027,3 +1081,54 @@ html
             $('input[name=stringifyText]').val(JSON.stringify(ret));
             return true;
         }
+        function checkGPHR(index) {
+          score = { };
+          score.react = reacts[index];
+          score.det = dets[index];
+          score.score = scores[index];
+            if (
+              (score.react && (score.react.H || score.react['(H)'] || score.react.Hd || score.react['(Hd)'] || score.react.Hx)) ||
+              (score.det && (score.det.active1 || score.det.passive1 || score.det['a-p1'])) ||
+              (score.det && (score.det.active2 || score.det.passive2 || score.det['a-p2']) && score.score && (score.score.AG || score.score.COP))
+            ) {
+                // 1
+                if (score.react && score.react.H &&
+                  (score.fq == '+' || score.fq == 'o' || score.fq == 'u') &&
+                  (score.score && (!score.score.DR1 && !score.score.DR2 && !score.score.INCOM1 && !score.score.INCOM2 && !score.score.FABCOM1 && !score.score.FABCOM2 && !score.score.CONTAM && !score.score.ALOG && !score.score.AG && !score.score.MOR))
+                ) { 
+                  return 'GHR';
+                }   
+
+                // 2
+                if (
+                  (score.fq == '-' || score.fq == 'none') ||
+                  ((score.fq == '+' || score.fq == 'o' || score.fq == 'u') && ((score.score) && (score.score.ALOG || score.score.CONTAM || score.score.DV2 || score.score.INCOM2 || score.score.DR2 || score.score.FABCOM2)))
+                ) {
+                  return 'PHR';
+                }
+
+                // 3
+                if (score.score && score.score.COP && !score.score.AG) {
+                  return 'GHR';
+                }
+
+                // 4
+                if (score.score && (score.score.FABCOM1 || score.score.FABCOM2 || score.score.MOR || (score.react && score.react.An))) {
+                  return 'PHR';
+                }
+
+                // 5
+                if ((score.card == 3 || score.card == 4 || score.card == 7 || score.card == 9) && score.p === 'P') {
+                  return 'GHR';
+                }
+                    // 6
+                if (score.score && (score.score.AG || score.score.INCOM1 || score.score.INCOM2 || score.score.DR1 || score.score.DR2 || (score.react && score.react.Hd))) {
+                  return 'PHR';
+                }
+
+                // 7
+                return 'GHR';
+              } else {
+                return '';
+              }
+              }
