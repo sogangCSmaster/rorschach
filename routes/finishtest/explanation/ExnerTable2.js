@@ -7,6 +7,7 @@ function calculateExnerTable2(scores) {
 exports.calculateExnerTable2 = calculateExnerTable2;
 
 function nextStep(stepNum, result, scores) {
+    console.log(stepNum);
     var step = eval(`step${stepNum}(scores)`);
     result.push(step);
     if (step.goNext == true) {
@@ -30,16 +31,22 @@ function step1({D, AdjD, es, Adjes, }) {
             return result;
         }
         if (es - Adjes == 1) {
-            result.goNext = true; // 다음 군집으로 진행
+            result.goNext = false; // 다음 군집으로 진행
             result.textData.push('[잠정 결과2] 2가지 통제능력(D & Adj D)과 2가지 스트레스 양(es &Adj es)을 통해 볼 때, 상황 스트레스 관련(m, SumY) 지표에 대한 채점이 정확한지 검토해야 한다. ');
-            result.textData.push('********이동 미구현입니다********');
+            result.textData.push(`상황 스트레스 관련 지표(m, SumY)의 채점이 정확하지 않다면, [상황 관련 스트레스] 군집의 해석은 진행할 수 없다. <span style='color: blue;'>[다음 군집으로 진행]</span>`)
+            result.textData.push(`상황 스트레스 관련 지표(m, SumY)의 채점이 정확하다면 개인력에서 상황 스트레스 관련 사건의 유무에 따라 해석 방향을 탐색해야 한다. <br/>`)
+            result.textData.push(`1) 개인력에서 상황적 스트레스에 관련된 정보가 명확하게 발견된다면, [상황 관련 스트레스] 군집의 해석이 가능하고, 아래의 가정이 타당한 것으로 볼 수 있다.<br/>`)
+            result.textData.push(`- (기본 가정: disorganization) 수검자는 상황 관련 스트레스로 인해 자극 요구(stimulus demand)의 증가를 경험하고, 의사결정이나 행동이 평소처럼 조직화 되지 않을 수 있다.<br/>`);
+            result.textData.push(`- (2차 가정: impulsiveness) D 점수가 음수일 경우 수검자는 현재 과부하 상태에 놓여 있고, 평소보다 충동적일 수 있다. <span style='color: blue;'>[2단계로 진행]</span> <br/>`)
+            result.textData.push(`2) 개인력에서 상황적 스트레스에 대한 정보를 명확하지 않지만, 다른 지표(SumT, SumV)가 상황적 스트레스를 지지할 경우 기본 가정은 추측수준으로 고려하고, 2차 가정의 충동성은 해석에 포함하지 않는 게 좋다. <span style='color: blue;'>[2단계로 진행]</span>`)
+            result.textData.push(`3) 개인력에서 상황적 스트레스에 대한 정보를 찾지 못하고, 다른 지표(SumT, SumV)가 상황적 스트레스를 지지하지 않으면 기본 가정과 2차 가정에 대한 해석은 사용하지 않는 게 좋다. <span style='color: blue;'>[다음 군집으로 진행]</span>`)
+            result.nextStep = 2;
             return result;
         }
     }
 
-    result.goNext = true;
-    // result.nextStep = 2;
-    result.textData.push('[해당 사항 없음]');
+    result.goNext = false;
+    result.nextStep = 2;
 
     return result;
 }
@@ -63,7 +70,8 @@ function step2({ AdjD, D }) {
         result.textData.push('상황적 스트레스의 강한 영향으로 일상적인 방식의 사고나 행동이 상당히 방해받을 수 있다.');
         return result;
     }
-    result.goNext = true;
+    result.goNext = false;
+    result.nextStep = 3;
     return result;
 }
 
@@ -97,7 +105,6 @@ function step3({ m, SumY }) {
 }
 
 function step4({ SumT, SumV, EgocentricityIndex }) {
-    console.warn(SumT, SumV, EgocentricityIndex);
     var result = {};
     result.textData = [];
     result.curStep = 4;
@@ -108,8 +115,8 @@ function step4({ SumT, SumV, EgocentricityIndex }) {
         return result;
     }
     if ((SumT > 1) || (SumV >= 1 && EgocentricityIndex >= 0.33)) {
-        result.textData.push('[잠정 결과2] 안정적 특성에 가까운 지표인 재질(Texture)반응과 차원(Vista)반응을 고려할 때, 개인력에서 재질반응(정서적 상실)이나 차원반응(죄책감, 후회)을 정상집단의 예상값(SumT=1, SumV=0)보다 증가시키는 심리적 외상사건에 대한 정보가 명확하게 없다면, 일반적 통제능력(Adj D)이 낮은 것은 지속적이고 특성적이므로 수검자의 통제능력(D & Adj D) 지표 사이의 점수 차이는 타당하며 다시 검토할 필요가 없을 것이다.');
-        result.textData.push('****** 2단계 재검토가 무엇인가요..******');
+        result.textData.push('[잠정 결과2] 안정적 특성에 가까운 지표인 재질(Texture)반응과 차원(Vista)반응을 고려할 때, 개인력에서 재질반응(정서적 상실)이나 차원반응(죄책감, 후회)을 정상집단의 예상값(SumT=1, SumV=0)보다 증가시키는 심리적 외상사건에 대한 정보가 명확하게 없다면, 일반적 통제능력(Adj D)이 낮은 것은 지속적이고 특성적이므로 수검자의 통제능력(D & Adj D) 지표 사이의 점수 차이는 타당하며 다시 검토할 필요가 없을 것이다.<br/>');
+        result.textData.push(`상황적 스트레스로 작용하는 심리적 외상사건에 대한 명확한 정보가 있다면, 상황적 스트레스로 인해 일반적 통제능력(Adj D)이 낮게 추정되었을 것이다. 재질반응과 차원반응을 정상집단의 예상값(SumT=1, SumV=0)으로 바꾸어 Adj es를 다시 계산하고 일반적 통제능력(Adj D)을 다시 산출하여 통제능력(D & Adj D) 지표 사이의 점수 차이를 다시 계산해야 한다. <span style='color: blue;'>[2단계 재검토]</span>`)
         result.goNext = false;
         result.nextStep = 5;
         return result;
@@ -124,13 +131,13 @@ function step5({ D, PureC, Mminus, Mnone }) {
     result.textData = [];
     result.curStep = 5;
     if (D >= 0) {
-        result.textData.push('[잠정 결과1] 상황관련 스트레스에 영향받는 현재 통제능력(D)이 균형 상태(D = 0) 이상이라는 것은 상황적 스트레스의 영향이 존재하지만 아마도 심하지는 않을 것이다.');
-        result.textData.push('수검자는 어떤 상황적 스트레스를 겪고 있으며, 현재 통제능력은 일반적 통제능력보다 낮아진 상태일 것이라는 1단계의 기본 가정(disorganization)이 성립할 것이다.');
+        result.textData.push('[잠정 결과1] 상황관련 스트레스에 영향받는 현재 통제능력(D)이 균형 상태(D = 0) 이상이라는 것은 상황적 스트레스의 영향이 존재하지만 아마도 심하지는 않을 것이다.<br/>');
+        result.textData.push('수검자는 어떤 상황적 스트레스를 겪고 있으며, 현재 통제능력은 일반적 통제능력보다 낮아진 상태일 것이라는 1단계의 기본 가정(disorganization)이 성립할 것이다.<br/>');
         result.textData.push('하지만 통제능력의 저하로 인해 충동성을 보일 것이라는 1단계의 2차 가정(impulsiveness)은 성립하지 않을 것이다.');
         result.goNext = false;
         result.nextStep = 6;
         if (PureC > 0) {
-            result.textData.push('[잠정 결과1a] 일반적으로 조절되지 않은 정서를 반영하는 지표(Pure C)는 충동성이 아니라 가용 자원이 정서 조절이나 억제에 사용되지 않는다는 것을 의미한다. 그러므로 정서가 평소보다 통제되지 않을 것이다.');
+            result.textData.push('[잠정 결과1a] 일반적으로 조절되지 않은 정서를 반영하는 지표(Pure C)는 충동성이 아니라 가용 자원이 정서 조절이나 억제에 사용되지 않는다는 것을 의미한다. 그러므로 정서가 평소보다 통제되지 않을 것이다.<br/>');
             result.textData.push('[정서]군집에서 구체적으로 다룬다.');
         }
         if (Mminus > 0 || Mnone > 0) {
@@ -181,10 +188,60 @@ function step5({ D, PureC, Mminus, Mnone }) {
     return result;
 }
 
-function step6() {
+function step6({ blends }) {
+    var result = {};
+    result.textData = [];
+    result.curStep = 6;
+    var countmY = 0;
+    var totalBlends = blends.length;
+    for(var i=0;i<blends.length;i++){
+        for(var l=0; l<blends[i].length;l++){
+            if(blends[i][l].includes('m') || blends[i][l].includes('Y')){
+                countmY += 1;
+                break;
+            }
+        }
+    }
+    
+    var percentage = (countmY / totalBlends) * 100;
 
+    if(percentage<20){
+        result.textData.push(`[잠정 결과1] 상황 변인에 관련된 복합반응 개수를 통해 볼 때, 수검자가 경험하는 상황적 스트레스로 증가한 심리적 복잡성(psychological complexity)은 경도(mild) 수준일 것이다.`);
+        result.nextStep = 7;
+        result.goNext = false;
+        return result;
+    }
+
+    if(20<=percentage && percentage<=30){
+        result.textData.push(`[잠정 결과2] 상황 변인에 관련된 복합반응 개수를 통해 볼 때, 수검자가 경험하는 상황적 스트레스로 증가한 심리적 복잡성(psychological complexity)은 중등도(moderately) 수준일 것이다.`);
+        result.textData.push(`현재 통제능력(D) 지표가 음수일 경우, 과부하 상태(overload condition) 동안 증가한 심리적 복잡성은 충동적 행동(impulsive-like behavior) 잠재성을 높일 수 있다.`);
+        result.nextStep = 7;
+        result.goNext = false;
+        return result;
+    }
+
+    if(30<percentage){
+        result.textData.push(`[잠정 결과3] 상황 변인에 관련된 복합반응 개수를 통해 볼 때, 수검자가 경험하는 상황적 스트레스로 증가한 심리적 복잡성(psychological complexity)은 상당한(substantial) 수준일 것이다. 증가 된 심리적 복잡성으로 인해 심리적 혼란(disorganization)이 발생하기 쉬워질 것이다.`);
+        result.textData.push(`현재 통제능력(D) 지표가 음수일 경우, 심리적 혼란(disorganization)과 충동적 행동의 가능성이 모두 단계적으로 상승하여 수검자를 손상시킬 수 있다.`);
+        result.nextStep = 7;
+        result.goNext = false;
+        return result;
+    }
+
+
+
+    result.goNext = false;
+    result.nextStep = 7;
+    return result;
 }
 
 function step7() {
+    var result = {};
+    result.textData = [];
+    result.curStep = 7;
 
+
+    result.goNext = true;
+    result.nextStep = 7;
+    return result;
 }
