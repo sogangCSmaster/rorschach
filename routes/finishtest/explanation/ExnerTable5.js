@@ -18,7 +18,7 @@ function nextStep(stepNum, result, scores) {
 function step1({ L, Zf }) {
     var result = {};
     result.textData = [];
-
+    result.curStep = 1;
     if (L <= 0.99) {
         if (Zf >= 14) {
             result.textData.push('[잠정 결과1a] 조직화(Z)를 고려할 때, 수검자는 반점 영역을 처리하는데 일상적인 것보다 더 많은 노력을 들일 것이다.');
@@ -42,7 +42,7 @@ function step1({ L, Zf }) {
         result.goNext = false;
         result.nextStep = 2;
     }
-    result.goNext = true;
+    result.goNext = false;
     return result;
 }
 
