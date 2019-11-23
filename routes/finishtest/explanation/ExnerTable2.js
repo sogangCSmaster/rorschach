@@ -235,10 +235,60 @@ function step6({ blends }) {
     return result;
 }
 
-function step7() {
+function step7({ blends }) {
     var result = {};
     result.textData = [];
     result.curStep = 7;
+    var yColorBlends = 0;
+    var otherColorBlends = 0;
+
+    for(var i=0;i<blends.length;i++){
+        for(var l=0; l<blends[i].length;l++){
+            if(blends[i][l].includes('Y')){
+                yColorBlends += 1;
+                break;
+            }
+        }
+    }
+
+    for(var i=0;i<blends.length;i++){
+        for(var l=0; l<blends[i].length;l++){
+            if(blends[i][l].includes('T') || blends[i][l].includes('V') || blends[i][l].includes("C'")){
+                otherColorBlends += 1;
+                break;
+            }
+        }
+    }
+
+    if(yColorBlends==1 && otherColorBlends==0){
+        result.textData.push(`[잠정 결과1] 색채-음영 복합반응을 통해 볼 때, 상황적 스트레스에 의해 정서적 혼란(confusion)이 약간 유발된 것으로 보인다. <br/>
+        * 정상집단의 색채-음영(무채색) 복합반응의 예상값은 1개이다. 일반적으로 대부분의 사람들이 자신의 감정 상태에 대해 혼란(confusion)을 경험한다.`);
+        result.goNext = true;
+        result.nextStep = 0;
+        return result;
+    }
+    if(yColorBlends==1 && otherColorBlends>=1){
+        result.textData.push(`[잠정 결과2] 색채-음영 복합반응을 통해 볼 때, 기존에 있던 정서적 혼란(confusion)이 상황적 스트레스로 인해 더 증가한 것으로 보인다.`);
+        result.goNext = true;
+        result.nextStep = 0;
+        return result;
+    }
+    if(yColorBlends>1 && otherColorBlends==0){
+        result.textData.push(`[잠정 결과3] 색채-음영 복합반응을 통해 볼 때, 상황적 스트레스로 인해 정서적 혼란(confusion)이 상당한 것으로 보인다. <br/>`);
+        result.textData.push(`현재 통제능력(D) 지표가 음수일 때, 정서적 혼란은 심리적 혼란(disorganization)과 충동적 행동의 가능성이 큰 폭으로 증가할 수 있다.`);
+        result.goNext = true;
+        result.nextStep = 0;
+        return result;
+    }
+    if(yColorBlends>1 && otherColorBlends>=1){
+        result.textData.push(`[잠정 결과4] 색채-음영 복합반응을 통해 볼 때, 기존에 있던 정서적 혼란(confusion)이 상황적 스트레스로 인해 더 증가한 것으로 보인다. 심리적 혼란(disorganization)의 일화가 발생하기 쉽다. <br/>`);
+        result.textData.push(`현재 통제능력(D) 지표가 음수일 때, 충동적 행동(Impulsiveness)의 가능성을 더 현저하게 증가시킬 수 있다. `);
+        result.goNext = true;
+        result.nextStep = 0;
+        return result;
+    }
+
+
 
 
     result.goNext = true;
