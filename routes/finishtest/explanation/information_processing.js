@@ -192,10 +192,149 @@ function step6({ PSV }) {
     return result;
 }
 
-function step7() {
+function step7({ age, dqplus, dqVSlashPlus, dqv, copyingStyle }) {
     var result = {};
     result.textData = [];
     result.curStep = 7;
+
+    // 13세 이상 청소년
+    if(age>=13){
+        var averageDQplus = [];
+
+        if(copyingStyle=="Introversive"){
+            averageDQplus = [7, 10];
+        } else if (copyingStyle=="Extratensive" || copyingStyle=="Ambitent"){
+            averageDQplus = [5, 8];
+        }
+
+        if(copyingStyle=="Interversive" || copyingStyle=="Ambitent"){
+            averageDQv = [0, 1];
+        } else if(copyingStyle=="Extratensive"){
+            averageDQv = [1, 2]
+        }
+
+        var sum = dqv + dqVSlashPlus;
+        var sumaverage = 0;
+        if(copyingStyle=="Introversive" || copyingStyle=="Ambitent"){
+            sumaverage = 1;
+        } else {
+            sumaverage = 2;
+        }
+
+        if(averageDQplus[0]<=dqplus && dqplus<=averageDQplus[1]){
+            if(sum<=sumaverage){
+                result.textData.push(`[잠정 결과1] [정상범주] 발달질(DQ)의 분포를 고려할 때, 수검자가 보이는 처리의 질(quality)은 대개 매우 적절할 것이다. <br />`)
+                result.nextStep = 8;
+                result.goNext = false;
+                return result;
+            }
+
+            if(sum>sumaverage){
+                result.textData.push(`[잠정 결과2] 발달질(DQ)의 분포를 고려할 때, 수검자가 보이는 처리의 질(quality)은 대개 적절할 것이다. 하지만, 때때로 처리활동이 불안정해져서 적절하지 않거나 성숙하지 않은 수준으로 약해질 수 있다.<br/>`)
+                result.textData.push(`이러한 결과는 아동에서는 흔하게 나타나지만, 청소년이나 성인에서는 흔하지 않다. 정교하지 않은 처리는 입력된 정보가 자주 느슨하거나 흠결 있게 해석되는 원인이나, 적응 어려움의 전조가 될 수 있다.`);
+                result.nextStep = 8;
+                result.goNext = false;
+                return result;
+            }
+
+        }
+
+        if(dqplus>averageDQplus[1]){
+            if(sum<=sumaverage){
+                result.textData.push(`[잠정 결과3] 발달질(DQ)의 분포를 고려할 때, 수검자가 보이는 처리의 질(quality)은 양호할 것이고, 아마도 더 정확히 말하면 복잡할 것이다. <br/>`);
+                result.textData.push(`학력 수준이 높은 수검자에서 흔하게 나타나며, 더 능률적인(efficient) 인지 기능이나 더 효과적인(effective) 형태의 적응을 의미하지는 않는다. 이것은 단순히 처리의 질(quality)이 높다는 것을 의미할 뿐이다. <br/>`);
+
+                result.nextStep = 8;
+                result.goNext = false;
+                return result;
+            }
+
+            if(sum>sumaverage){
+                result.textData.push(`[잠정 결과4] 발달질(DQ)의 분포를 고려할 때, 수검자가 보이는 처리의 질(quality)은 대개 매우 양호할 것이고, 아마도 더 정확히 말하면 복잡할 것이다. 또한, 때때로 처리 활동의 질(quality)에 심한 결함이 생기거나, 처리 결과의 형태가 성숙하지 않을 수 있다.<br/>`);
+                result.textData.push(`어떤 종류의 현저한 심리적 혼란(disarray)이 있는 사람에서 흔하게 나타난다. 처리의 문제는 새로 입력된 정보를 해석하거나, 개념을 형성하고 응용하는데 잠재적 문제를 만들 수 있다.`);
+                result.nextStep = 8;
+                result.goNext = false;
+                return result;
+            }
+        }
+
+        if(dqplus<averageDQplus[0]){
+            if(sum<=sumaverage){
+                result.textData.push(`[잠정 결과5] 발달질(DQ)의 분포를 고려할 때, 수검자가 보이는 처리의 질(quality)은 아마도 적절할 것이다. 하지만, 일반적인 것보다 더 조심스러워하고 처리 노력을 아낄(economical) 것이다. 이러한 결과는 회피 유형(avoidant style)에서 가장 흔하게 나타난다. 회피 유형은 수검자의 심리 활동의 관리(directing)에서 매우 지배적인 역할을 할 것이다.`);
+                result.nextStep = 9;
+                result.goNext = false;
+                return result;
+            }
+
+            if(sum>sumaverage){
+                result.textData.push(`[잠정 결과6] 발달질(DQ)의 분포를 고려할 때, 수검자가 보이는 처리의 질(quality)은 자주 적절하지 않을 것이다. 특히, 복잡한 상황에 놓이면 그러한 경향이 뚜렷할 것이다. 느슨하거나 결함 있는 처리는 자주 적응 어려움으로 이어질 것이다.`);
+                result.nextStep = 8;
+                result.goNext = false;
+                return result;
+            }
+        }
+
+
+
+    }
+
+    if(age<=12){
+        var averageDQplus = [5, 8];
+        var sum = dqv + dqVSlashPlus;
+
+        if(averageDQplus[0]<=dqplus && dqplus<=averageDQplus[1]){
+            if(sum==5){
+                result.textData.push(`[잠정 결과1] [정상범주] 발달질(DQ)의 분포를 고려할 때, 수검자가 보이는 처리의 질(quality)은 대개 매우 적절할 것이다. <br />`)
+                result.nextStep = 8;
+                result.goNext = false;
+                return result;
+            }
+
+            if(sum>5){
+                result.textData.push(`[잠정 결과2] 발달질(DQ)의 분포를 고려할 때, 수검자가 보이는 처리의 질(quality)은 대개 적절할 것이다. 하지만, 때때로 처리활동이 불안정해져서 적절하지 않거나 성숙하지 않은 수준으로 약해질 수 있다.<br/>`)
+                result.textData.push(`이러한 결과는 아동에서는 흔하게 나타나지만, 청소년이나 성인에서는 흔하지 않다. 정교하지 않은 처리는 입력된 정보가 자주 느슨하거나 흠결 있게 해석되는 원인이나, 적응 어려움의 전조가 될 수 있다.`);
+                result.nextStep = 8;
+                result.goNext = false;
+                return result;
+            }
+
+        }
+
+        if(dqplus>averageDQplus[1]){
+            if(sum==5){
+                result.textData.push(`[잠정 결과3] 발달질(DQ)의 분포를 고려할 때, 수검자가 보이는 처리의 질(quality)은 양호할 것이고, 아마도 더 정확히 말하면 복잡할 것이다. <br/>`);
+                result.textData.push(`학력 수준이 높은 수검자에서 흔하게 나타나며, 더 능률적인(efficient) 인지 기능이나 더 효과적인(effective) 형태의 적응을 의미하지는 않는다. 이것은 단순히 처리의 질(quality)이 높다는 것을 의미할 뿐이다. <br/>`);
+
+                result.nextStep = 8;
+                result.goNext = false;
+                return result;
+            }
+
+            if(sum>5){
+                result.textData.push(`[잠정 결과4] 발달질(DQ)의 분포를 고려할 때, 수검자가 보이는 처리의 질(quality)은 대개 매우 양호할 것이고, 아마도 더 정확히 말하면 복잡할 것이다. 또한, 때때로 처리 활동의 질(quality)에 심한 결함이 생기거나, 처리 결과의 형태가 성숙하지 않을 수 있다.<br/>`);
+                result.textData.push(`어떤 종류의 현저한 심리적 혼란(disarray)이 있는 사람에서 흔하게 나타난다. 처리의 문제는 새로 입력된 정보를 해석하거나, 개념을 형성하고 응용하는데 잠재적 문제를 만들 수 있다.`);
+                result.nextStep = 8;
+                result.goNext = false;
+                return result;
+            }
+        }
+
+        if(dqplus<averageDQplus[0]){
+            if(sum==5){
+                result.textData.push(`[잠정 결과5] 발달질(DQ)의 분포를 고려할 때, 수검자가 보이는 처리의 질(quality)은 아마도 적절할 것이다. 하지만, 일반적인 것보다 더 조심스러워하고 처리 노력을 아낄(economical) 것이다. 이러한 결과는 회피 유형(avoidant style)에서 가장 흔하게 나타난다. 회피 유형은 수검자의 심리 활동의 관리(directing)에서 매우 지배적인 역할을 할 것이다.`);
+                result.nextStep = 9;
+                result.goNext = false;
+                return result;
+            }
+
+            if(sum>5){
+                result.textData.push(`[잠정 결과6] 발달질(DQ)의 분포를 고려할 때, 수검자가 보이는 처리의 질(quality)은 자주 적절하지 않을 것이다. 특히, 복잡한 상황에 놓이면 그러한 경향이 뚜렷할 것이다. 느슨하거나 결함 있는 처리는 자주 적응 어려움으로 이어질 것이다.`);
+                result.nextStep = 8;
+                result.goNext = false;
+                return result;
+            }
+        }
+    }
 
 
     result.goNext = false;
@@ -207,7 +346,7 @@ function step8() {
     var result = {};
     result.textData = [];
     result.curStep = 8;
-
+    result.textData.push('[질적 해석]<br/><br/><br/><br/><br/><br/><br/><br/>');
 
     result.goNext = true;
     result.nextStep = 8;
