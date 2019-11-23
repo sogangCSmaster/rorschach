@@ -443,6 +443,11 @@ router.route("/finishtest1")
             upper.dq.o = dq.getO(score);
             upper.dq.VSlashPlus = dq.getVSlashPlus(score);
             upper.dq.v = dq.getV(score);
+            indicators.dqplus = upper.dq.plus;
+            indicators.dqo = upper.dq.o;
+            indicators.dqVSlashPlus = upper.dq.VSlashPlus;
+            indicators.dqv = upper.dq.v;
+
     
             upper.form_quality = {};
             upper.form_quality.FQx = form_quality.getFQx(score);
@@ -746,6 +751,7 @@ router.route("/finishtest1")
             var getExnerTable1 = ExnerTable1.getExnerTable1(lower.core.AdjD, lower.special_indices.CDI, lower.core.EA, testconfig.birthday);
             var Order = explnationorder.getOrder(lower.special_indices.PTI, lower.special_indices.DEPI, lower.special_indices.CDI, lower.core.D, lower.core.AdjD, lower.core.Lambda, lower.self_perception.Reflections, experienceClassification.copyingStyle, lower.ideation.p, lower.ideation.a, lower.special_indices.HVIPositive, lower.special_indices.OBSPositive, lower.core.EA, lower.ideation.Mminus, lower.ideation.Mp, lower.ideation.Ma, upper.special_scores.Sum6, SpecialIndices.DEPI.SumShading, SpecialIndices.S_Constellation.CF, lower.affection.Afr, lower.cognitive_mediation.Xminusper, lower.information_processing.Zd, upper.special_scores.MOR, upper.special_scores.AG, upper.determinants.T, lower.self_perception.EgocentricityIndex);
             var scoreOrder = Order.order;
+            indicators.blends = upper.blends;
 
             // var age = moment().diff(testconfig.birthday, 'years');
             var age = testconfig.age;
