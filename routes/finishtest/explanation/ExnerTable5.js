@@ -15,33 +15,11 @@ function nextStep(stepNum, result, scores) {
     return eval(`nextStep(${step.nextStep}, result, scores)`);
 }
 
-function step1({ L, Zf }) {
+function step1({ XAper, WDAper }) {
     var result = {};
     result.textData = [];
     result.curStep = 1;
-    if (L <= 0.99) {
-        if (Zf >= 14) {
-            result.textData.push('[잠정 결과1a] 조직화(Z)를 고려할 때, 수검자는 반점 영역을 처리하는데 일상적인 것보다 더 많은 노력을 들일 것이다.');
-        } else if (Zf >= 9 && Zf <= 13) {
-            result.textData.push('[잠정 결과1b] [정상범주] 조직화(Z)를 고려할 때, 수검자는 반점 영역을 처리하는데 대부분의 사람에서 예상되는 수준으로 노력을 들일 것이다.');
-        } else if (Zf <= 8) {
-            result.textData.push('[잠정 결과1c] 조직화(Z)를 고려할 때, 수검자는 반점 영역을 처리하는데 조심스럽거나, 처리 접근에 열의가 없을 것이다. 주의를 기울여 충분히 자극 장을 탐색하지 않고 눈에 쉽게 띄는 몇 개의 자극으로만 정보를 처리하는 경향이 보일 수 있다.');
-        }
-        result.goNext = false;
-        result.nextStep = 2;
-        return result;
-    }
-    if (L >= 1) {
-        if (Zf >= 11) {
-            result.textData.push('[잠정 결과2a] 조직화(Z)를 고려할 때, 수검자는 반점 영역을 처리하는데 회피 유형(avoidant style)에서 예상되는 것보다 노력을 더 많이 들일 것이다. 이러한 결과가 나타난 원인에 대해 파악할 필요가 있다.');
-        } else if (Zf >= 6 && Zf <= 10) {
-            result.textData.push('[잠정 결과2b] [정상범주] 조직화(Z)를 고려할 때, 수검자는 반점 영역을 처리하는데 복잡한 것을 피하고 (노력을) 아끼는 경향을 보이는 회피 유형(avoidant style)에서 예상할 수 있는 수준으로 노력을 들일 것이다. 경계하거나 조심스러운 경향을 보이는 회피 유형에 일치하는 결과이고, 처리노력이 적절하지 않다는 것을 의미하지 않는다.');
-        } else if (Zf <= 5) {
-            result.textData.push('[잠정 결과2c] 조직화(Z)를 고려할 때, 수검자가 반점 영역을 처리하는데 미치는 회피 유형(avoidant style)의 영향이 매우 상당할 것이다. 이러한 제한적인 처리노력으로 인해 잠재적인 적응 문제가 생길 수 있다.');
-        }
-        result.goNext = false;
-        result.nextStep = 2;
-    }
+    
     result.goNext = false;
     return result;
 }

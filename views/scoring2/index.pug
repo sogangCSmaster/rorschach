@@ -19,7 +19,7 @@ html
                     .ibox-title
                         h5 등록번호 : #{session.insertId}   
                     .ibox-content
-                        table.table.table-sm.table-striped.table-bordered
+                        table#card-table.table.table-sm.table-striped.table-bordered
                             thead
                                 tr
                                     th.text-center.col-xs-1(scope="col") 카드
@@ -32,12 +32,13 @@ html
                                     th.text-center(scope="col") 내용
                                     th.text-center.col-xs-1(scope="col") P
                                     th.text-center.col-xs-1(scope="col") Z
+                                    th.text-center.col-xs-1(scope='col') G/PHR
                                     th.text-center(scope="col") 특수점수
                             tbody#score-table
                                 mixin card-tr(display, index)
                                     tr(data-index=index, style=(display == 'hidden' ? 'display: none' : ''))
-                                        th.form-group.text-center(scope="row")
-                                            select.form-control(name="card")
+                                        td.form-group.text-center(scope="row")
+                                            select.form-control.card-select(name="card")
                                                 option Ⅰ
                                                 option Ⅱ
                                                 option Ⅲ
@@ -87,6 +88,7 @@ html
                                                 option P
                                         td.text-center
                                             select.form-control.selectZ
+                                        td.text-center.gphr
                                         td.text-center
                                             button.btn.btn-default.btn-sm.score-btn 선택
                                 +card-tr('hidden', 0)
@@ -106,7 +108,7 @@ html
             .modal-dialog.modal-lg(role='document')
                 .modal-content
                     .modal-header
-                        h5.modal-title 결정인
+                        h2.modal-title(style='display: inline-block; font-weight: bold') 결정인
                         button.close(type='button', data-dismiss='modal', aria-label='Close')
                             span(aria-hidden='true') ×
                     .modal-body
@@ -120,10 +122,14 @@ html
                                             
                                     tbody
                                         tr
-                                            td.text-center 순수 (Pure)
-                                            td.text-center 차원 (Dimension)
-                                            td.text-center 쌍 반응
-                                            td.text-center(colspan="2") 반사
+                                            td.text-center 
+                                                span.title 순수
+                                                | (Pure)
+                                            td.text-center 
+                                                span.title 차원
+                                                | (Dimension)
+                                            td.text-center.title 쌍 반응
+                                            td.text-center.title(colspan="2") 반사
 
                                         tr
                                             td.text-center.d-form(style='cursor: pointer;', data-dkey='form1', data-dvalue='F') F
@@ -132,31 +138,41 @@ html
                                             td.text-center.d-form(style='cursor: pointer;', data-dkey='reflection1', data-dvalue='Fr') Fr
                                             td.text-center.d-form(style='cursor: pointer;', data-dkey='reflection2', data-dvalue='rF') rF
 
-                                table.table.table-striped.table-bordered.table-hover-cells
+                                table.table.table-striped.table-bordered.table-hover-cells(style='margin-top: 40px;')
                                     thead
                                         tr
-                                            th.text-center(colspan="5")  운동 반응
+                                            th.text-center(colspan="5")  운동 반응(Movement)
     
                                             
                                     tbody
                                         tr
                                             td(colspan="2")
-                                            td.text-center 능동 (Active)
-                                            td.text-center 수동 (Passive)
-                                            td.text-center a-p  
+                                            td(style='width: 23%;').text-center 
+                                                span.title 능동
+                                                |(Active)
+                                            td(style='width: 23%;').text-center
+                                                span.title 수동
+                                                | (Passive)
+                                            td(style='width: 23%;').text-center.title a-p  
 
                                         tr
-                                            td(colspan="2") 사람 (Human)
+                                            td(colspan="2")
+                                                span.title 사람
+                                                | (Human)
                                             td.text-center.d-form(style='cursor: pointer;', data-dkey='active1', data-dvalue='M<sup>a</sup>', data-dfirst) M<sup>a</sup>
                                             td.text-center.d-form(style='cursor: pointer;', data-dkey='passive1', data-dvalue='M<sup>p</sup>') M<sup>p</sup>
                                             td.text-center.d-form(style='cursor: pointer;', data-dkey='a-p1', data-dvalue='M<sup>a-p</sup>') M<sup>a-p</sup>
                                         tr
-                                            td(colspan="2") 동물 (Animal)
+                                            td(colspan="2")
+                                                span.title 동물
+                                                | (Animal)
                                             td.text-center.d-form(style='cursor: pointer;', data-dkey='active2', data-dvalue='FM<sup>a</sup>', data-dfirst) FM<sup>a</sup>
                                             td.text-center.d-form(style='cursor: pointer;', data-dkey='passive2', data-dvalue='FM<sup>p</sup>') FM<sup>p</sup>
                                             td.text-center.d-form(style='cursor: pointer;', data-dkey='a-p2', data-dvalue='FM<sup>a-p</sup>') FM<sup>a-p</sup>
                                         tr
-                                            td(colspan="2") 무생물 (Inaminate)
+                                            td(colspan="2")
+                                                span.title 무생물
+                                                | (Inaminate)
                                             td.text-center.d-form(style='cursor: pointer;', data-dkey='active3', data-dvalue='m<sup>a</sup>', data-dfirst) m<sup>a</sup>
                                             td.text-center.d-form(style='cursor: pointer;', data-dkey='passive3', data-dvalue='m<sup>p</sup>') m<sup>p</sup>
                                             td.text-center.d-form(style='cursor: pointer;', data-dkey='a-p3', data-dvalue='m<sup>a-p</sup>') m<sup>a-p</sup>
@@ -183,32 +199,38 @@ html
                                             
                                     tbody
                                         tr
-                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='achromatic1', data-dvalue='C\'') C'
-                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='achromatic2', data-dvalue='C\'F') C'F
                                             td.text-center.d-form(style='cursor: pointer;', data-dkey='achromatic3', data-dvalue='FC\'') FC'
+                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='achromatic2', data-dvalue='C\'F') C'F
+                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='achromatic1', data-dvalue='C\'') C'
                                 
                                 table.table.table-striped.table-bordered.table-hover-cells
                                     thead
                                         tr
-                                            th.text-center(colspan="5") 음영 반응
+                                            th.text-center(colspan="5") 음영 반응(Shadings)
     
                                             
                                     tbody
                                         tr
-                                            td(colspan="2") 재질 (Texture)
-                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='texture1', data-dvalue='T') T
-                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='texture2', data-dvalue='TF') TF
+                                            td(colspan="2")
+                                                span.title 재질
+                                                | (Texture)
                                             td.text-center.d-form(style='cursor: pointer;', data-dkey='texture3', data-dvalue='FT') FT
+                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='texture2', data-dvalue='TF') TF
+                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='texture1', data-dvalue='T') T
                                         tr
-                                            td(colspan="2") 깊이 (Vista)
-                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='vista1', data-dvalue='V') V
-                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='vista2', data-dvalue='VF') VF
+                                            td(colspan="2")
+                                                span.title 깊이
+                                                | (Vista)
                                             td.text-center.d-form(style='cursor: pointer;', data-dkey='vista3', data-dvalue='FV') FV
+                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='vista2', data-dvalue='VF') VF
+                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='vista1', data-dvalue='V') V
                                         tr
-                                            td(colspan="2") 확산 (Diffuse)
-                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='diffuse1', data-dvalue='Y') Y
-                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='diffuse2', data-dvalue='YF') YF
+                                            td(colspan="2")
+                                                span.title 번짐
+                                                | (Diffuse)
                                             td.text-center.d-form(style='cursor: pointer;', data-dkey='diffuse3', data-dvalue='FY') FY
+                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='diffuse2', data-dvalue='YF') YF
+                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='diffuse1', data-dvalue='Y') Y
                             
                             
                         .row
@@ -224,7 +246,7 @@ html
             .modal-dialog.modal-lg(role='document')
                 .modal-content
                     .modal-header
-                        h5.modal-title 반응 내용
+                        h2.modal-title(style='display: inline-block; font-weight: bold;') 반응 내용
                         button.close(type='button', data-dismiss='modal', aria-label='Close')
                             span(aria-hidden='true') ×
                     .modal-body
@@ -235,62 +257,62 @@ html
                                         tr
                                             td.text-center.r-form(style='cursor: pointer;', data-rkey='H', data-rvalue='H') H
                                             td.text-center.r-form(style='cursor: pointer;', data-rkey='H', data-rvalue='H')
-                                                | 전체 사람 반응
+                                                span.title 전체 사람 반응
                                                 br
                                                 | (Whole human)
                                         tr
                                             td.text-center.r-form(style='cursor: pointer;', data-rkey='(H)', data-rvalue='(H)') (H)
                                             td.text-center.r-form(style='cursor: pointer;', data-rkey='(H)', data-rvalue='(H)')
-                                                | 가상 사람 반응
+                                                span.title 가상 사람 반응
                                                 br
-                                                | (Whole Human, Fictional or Mythological)
+                                                | (Whole Human,
+                                                br
+                                                | Fictional or
+                                                br
+                                                | Mythological)
                                         tr
                                             td.text-center.r-form(style='cursor: pointer;', data-rkey='Hd', data-rvalue='Hd') Hd
                                             td.text-center.r-form(style='cursor: pointer;', data-rkey='Hd', data-rvalue='Hd')
-                                                | 부분 사람 반응
+                                                span.title 부분 사람 반응
                                                 br
                                                 | (Human Detail)
                                         tr
                                             td.text-center.r-form(style='cursor: pointer;', data-rkey='(Hd)', data-rvalue='(Hd)') (Hd)
-                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='(Hd)', data-rvalue='(Hd)') (Hd)
-                                                | 부분 사람 반응
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='(Hd)', data-rvalue='(Hd)')
+                                                span.title 가상 부분 사람 반응
                                                 br
-                                                | (Human Detail, Fictional or Mythological)
-                                table.table.table-striped.table-bordered.table-hover-cells
+                                                | (Human Detail, 
+                                                br
+                                                | Fictional or
+                                                br
+                                                | Mythological)
+                                table.table.table-striped.table-bordered.table-hover-cells(style='margin-top: 53px;')
                                     tbody
                                         tr
-                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Hh', data-rvalue='Hh') Hh
-                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Hh', data-rvalue='Hh')
-                                                | 가구 반응
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Hx', data-rvalue='Hx') Hx
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Hx', data-rvalue='Hx')
+                                                span.title 사람 경험
                                                 br
-                                                | (Household)
+                                                | (Human Experience)
                                         tr
-                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Cg', data-rvalue='Cg') Cg
-                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Cg', data-rvalue='Cg')
-                                                | 의복 반응
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Art', data-rvalue='Art') Art
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Art', data-rvalue='Art')
+                                                span.title 예술 반응
                                                 br
-                                                | (Clothing)
+                                                | (Art)
                                         tr
-                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Fd', data-rvalue='Fd') Fd
-                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Fd', data-rvalue='Fd')
-                                                | 음식 반응
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Ay', data-rvalue='Ay') Ay
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Ay', data-rvalue='Ay')
+                                                span.title 인류학적 반응
                                                 br
-                                                | (Food)
-
-                                table.table.table-striped.table-bordered.table-hover-cells
-                                    tbody
+                                                | (Anthropology)
                                         tr
                                             td.text-center.r-form(style='cursor: pointer;', data-rkey='Sc', data-rvalue='Sc') Sc
                                             td.text-center.r-form(style='cursor: pointer;', data-rkey='Sc', data-rvalue='Sc')
-                                                | 과학 반응
+                                                span.title 과학 반응
                                                 br
                                                 | (Science)
-                                        tr
-                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Ex', data-rvalue='Ex') Ex
-                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Ex', data-rvalue='Ex')
-                                                | 폭발 반응
-                                                br
-                                                | (Explosion)
+
 
                             .col-lg-4
                                 table.table.table-striped.table-bordered.table-hover-cells
@@ -298,131 +320,142 @@ html
                                         tr
                                             td.text-center.r-form(style='cursor: pointer;', data-rkey='A', data-rvalue='A') A
                                             td.text-center.r-form(style='cursor: pointer;', data-rkey='A', data-rvalue='A')
-                                                | 동물 전체
+                                                span.title 동물 전체
                                                 br
                                                 | (Whole Animal)
                                         tr
                                             td.text-center.r-form(style='cursor: pointer;', data-rkey='(A)', data-rvalue='(A)') (A)
                                             td.text-center.r-form(style='cursor: pointer;', data-rkey='(A)', data-rvalue='(A)')
-                                                | 가상 동물 반응
+                                                span.title 가상 동물 반응
                                                 br
-                                                | (Whole Animal, Fictional or Mythological)
+                                                | (Whole Animal, 
+                                                br
+                                                | Fictional or
+                                                br
+                                                | Mythological)
                                         tr
                                             td.text-center.r-form(style='cursor: pointer;', data-rkey='Ad', data-rvalue='Ad') Ad
                                             td.text-center.r-form(style='cursor: pointer;', data-rkey='Ad', data-rvalue='Ad')
-                                                | 부분 동물 반응
+                                                span.title 부분 동물 반응
                                                 br
                                                 | (Animal Detail)
                                         tr
                                             td.text-center.r-form(style='cursor: pointer;', data-rkey='(Ad)', data-rvalue='(Ad)') (Ad)
                                             td.text-center.r-form(style='cursor: pointer;', data-rkey='(Ad)', data-rvalue='(Ad)')
-                                                | 가상 부분 동물 반응
+                                                span.title 가상 부분 동물 반응
                                                 br
-                                                | (Animal Detail, Fictional or Mythological)
+                                                | (Animal Detail,
+                                                br
+                                                | Fictional or
+                                                br
+                                                | Mythological)
 
-                                table.table.table-striped.table-bordered.table-hover-cells
+                                table.table.table-striped.table-bordered.table-hover-cells(style='margin-top: 53px;')
                                     tbody
                                         tr
-                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='An', data-rvalue='An') An
-                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='An', data-rvalue='An')
-                                                | 해부 반응
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='An', data-rvalue='An', data-validate='Xy', data-validate-msg='An과 Xy는 함께 채점할 수 없습니다. 둘중 하나만 선택하세요.') An
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='An', data-rvalue='An', data-validate='Xy', data-validate-msg='An과 Xy는 함께 채점할 수 없습니다. 둘중 하나만 선택하세요.')
+                                                span.title 해부 반응
                                                 br
                                                 | (Anatomy)
                                         tr
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Xy', data-rvalue='Xy', data-validate='An', data-validate-msg='An과 Xy는 함께 채점할 수 없습니다. 둘 중 하나만 선택하세요.') Xy
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Xy', data-rvalue='Xy', data-validate='An', data-validate-msg='An과 Xy는 함께 채점할 수 없습니다. 둘 중 하나만 선택하세요.')
+                                                span.title 엑스레이 반응
+                                                br
+                                                | (X-ray)
+                                        tr
                                             td.text-center.r-form(style='cursor: pointer;', data-rkey='Bl', data-rvalue='Bl') Bl
                                             td.text-center.r-form(style='cursor: pointer;', data-rkey='Bl', data-rvalue='Bl')
-                                                | 피 반응
+                                                span.title 피 반응
                                                 br
                                                 | (Blood)
                                         tr
                                             td.text-center.r-form(style='cursor: pointer;', data-rkey='Sx', data-rvalue='Sx') Sx
                                             td.text-center.r-form(style='cursor: pointer;', data-rkey='Sx', data-rvalue='Sx')
-                                                | 성 반응
+                                                span.title 성 반응
                                                 br
                                                 | (Sex)
-                                        tr
-                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Xy', data-rvalue='Xy') Xy
-                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Xy', data-rvalue='Xy')
-                                                | 엑스레이 반응
-                                                br
-                                                | (X-ray)
-                                table.table.table-striped.table-bordered.table-hover-cells
-                                    tbody
-                                        tr
-                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Fi', data-rvalue='Fi') Fi
-                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Fi', data-rvalue='Fi')
-                                                | 불 반응
-                                                br
-                                                | (Fire)
-                                        tr
-                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Cl', data-rvalue='Cl') Cl
-                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Cl', data-rvalue='Cl')
-                                                | 구름 반응
-                                                br
-                                                | (Clouds)
                             .col-lg-4
                                 table.table.table-striped.table-bordered.table-hover-cells
                                     tbody
                                         tr
-                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Hx', data-rvalue='Hx') Hx
-                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Hx', data-rvalue='Hx')
-                                                | 사람 경험
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Hh', data-rvalue='Hh') Hh
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Hh', data-rvalue='Hh')
+                                                span.title 세간 반응
                                                 br
-                                                | (Human Experience)
+                                                | (Household)
                                         tr
-                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Art', data-rvalue='Art') Art
-                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Art', data-rvalue='Art')
-                                                | 예술 반응
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Cg', data-rvalue='Cg') Cg
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Cg', data-rvalue='Cg')
+                                                span.title 의복 반응
                                                 br
-                                                | (Art)
+                                                | (Clothing)
                                         tr
-                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Ay', data-rvalue='Ay') Ay
-                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Ay', data-rvalue='Ay')
-                                                | 인류학적 반응
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Fd', data-rvalue='Fd') Fd
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Fd', data-rvalue='Fd')
+                                                span.title 음식 반응
                                                 br
-                                                | (Anthropology)
-
+                                                | (Food)
                                 table.table.table-striped.table-bordered.table-hover-cells
                                     tbody
                                         tr
-                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Bt', data-rvalue='Bt') Bt
-                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Bt', data-rvalue='Bt')
-                                                | 식물 반응
-                                                br
-                                                | (Botany)
-                                        tr
-                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Na', data-rvalue='Na') Na
-                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Na', data-rvalue='Na')
-                                                | 자연 반응
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Na', data-rvalue='Na', data-validate='Bt', data-validate-msg='Na를 선택하면 Bt와 Ls는 선택할 수 없습니다.', data-validate2='Ls', data-validate2-msg='Na를 선택하면 Bt와 Ls는 선택할 수 없습니다.') Na
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Na', data-rvalue='Na',data-validate='Bt', data-validate-msg='Na를 선택하면 Bt와 Ls는 선택할 수 없습니다.', data-validate2='Ls', data-validate2-msg='Na를 선택하면 Bt와 Ls는 선택할 수 없습니다.')
+                                                span.title 자연 반응
                                                 br
                                                 | (Nature)
                                         tr
-                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Ls', data-rvalue='Ls') Ls
-                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Ls', data-rvalue='Ls')
-                                                | 풍경 반응
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Bt', data-rvalue='Bt', data-validate='Na', data-validate-msg='Na를 선택하면 Bt와 Ls는 선택할 수 없습니다.', data-validate2='Ls', data-validate2-msg='Bt와 Ls는 함께 선택할 수 없습니다. 둘 중 하나만 선택하세요.') Bt
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Bt', data-rvalue='Bt', data-validate='Na', data-validate-msg='Na를 선택하면 Bt와 Ls는 선택할 수 없습니다.', data-validate2='Ls', data-validate2-msg='Bt와 Ls는 함께 선택할 수 없습니다. 둘 중 하나만 선택하세요.')
+                                                span.title 식물 반응
+                                                br
+                                                | (Botany)
+                                        tr
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Ls', data-rvalue='Ls', data-validate='Na', data-validate-msg='Na를 선택하면 Bt와 Ls는 선택할 수 없습니다.', data-validate2='Bt', data-validate2-msg='Bt와 Ls는 함께 선택할 수 없습니다. 둘 중 하나만 선택하세요.') Ls
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Ls', data-rvalue='Ls', data-validate='Na', data-validate-msg='Na를 선택하면 Bt와 Ls는 선택할 수 없습니다.', data-validate2='Bt', data-validate2-msg='Bt와 Ls는 함께 선택할 수 없습니다. 둘 중 하나만 선택하세요.')
+                                                span.title 풍경 반응
                                                 br
                                                 | (Landscape)
                                         tr
                                             td.text-center.r-form(style='cursor: pointer;', data-rkey='Ge', data-rvalue='Ge') Ge
                                             td.text-center.r-form(style='cursor: pointer;', data-rkey='Ge', data-rvalue='Ge')
-                                                | 지도 반응
+                                                span.title 지도 반응
                                                 br
                                                 | (Geography)
+                                        tr
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Cl', data-rvalue='Cl') Cl
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Cl', data-rvalue='Cl')
+                                                span.title 구름 반응
+                                                br
+                                                | (Clouds)
+                                        tr
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Fi', data-rvalue='Fi') Fi
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Fi', data-rvalue='Fi')
+                                                span.title 불 반응
+                                                br
+                                                | (Fire)
+                                        tr
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Ex', data-rvalue='Ex') Ex
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='Ex', data-rvalue='Ex')
+                                                | 폭발 반응
+                                                br
+                                                | (Explosion)
                                 
                                 table.table.table-striped.table-bordered.table-hover-cells
                                     tbody
                                         tr
                                             td.text-center.r-form(style='cursor: pointer;', data-rkey='Id', data-rvalue='Id') Id
                                             td.text-center.r-form(style='cursor: pointer;', data-rkey='Id', data-rvalue='Id')
-                                                | 특이한 내용
+                                                span.title 특이한 내용
                                                 br
                                                 | (Idiographic Content)
                                         tr
-                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='P', data-rvalue='P') P
+                                            td.text-center.r-form(style='cursor: pointer;', data-rkey='P', data-rvalue='P'): strong P
                                             td.text-center.r-form(style='cursor: pointer;', data-rkey='P', data-rvalue='P')
-                                                | 평범 반응
+                                                span.title: strong 평범 반응
                                                 br
-                                                | (Populars)
+                                                strong (Populars)
                             
                         .row
                             .col-lg-12
@@ -437,7 +470,7 @@ html
             .modal-dialog.modal-lg(role='document')
                 .modal-content
                     .modal-header
-                        h5.modal-title 특수 점수
+                        h2.modal-title(style='display: inline-block; font-weight: bold;') 특수 점수
                         button.close(type='button', data-dismiss='modal', aria-label='Close')
                             span(aria-hidden='true') ×
                     .modal-body
@@ -446,17 +479,17 @@ html
                                 table.table.table-striped.table-bordered.table-hover-cells
                                     thead
                                         tr
-                                            th(colspan=34) 특이한 언어반응 (Unusual Verbalization)
+                                            th.text-center(colspan=34) 특이한 언어반응 (Unusual Verbalization)
                                     tbody
                                         tr
                                             td(colspan=1)
-                                            td(colspan=12) 
-                                                | 특이 언어 반응
+                                            td.text-center(colspan=12) 
+                                                span.title 특이한 언어 반응
                                                 br
                                                 | (Deviant Verbalization Response)
                                             td(colspan=2)
-                                            td(colspan=18)
-                                                | 부적절 반응 결과 부적절한 논리
+                                            td.text-center(colspan=18)
+                                                span.title 부적절 반응 결과 부적절한 논리
                                                 br
                                                 | (Inappropriate Combinations and Logic)
                                             td(colspan=1)
@@ -464,21 +497,21 @@ html
                                             td(colspan=34)
                                         tr
                                             td(colspan=1)
-                                            td.text-center.s-form(style='cursor: pointer;', data-skey='DV1', data-svalue='DV1', colspan=6) DV 1
-                                            td.text-center.s-form(style='cursor: pointer;', data-skey='DR1', data-svalue='DR1', colspan=6) DR 1
+                                            td.text-center.s-form(style='cursor: pointer;', data-skey='DV1', data-svalue='DV1', colspan=6, data-validate='DR1', data-validate2='DR2', data-validate3='CONTAM', data-validate-msg='DV와 DR은 함께 채점되지 않습니다. 둘 다 해당하면 DR로 채점합니다.', data-validate2-msg='DV와 DR은 함께 채점되지 않습니다. 둘 다 해당하면 DR로 채점합니다.', data-validate3-msg='CONTAM이 있을 경우 DV, DR, INCOM, FABCOM, ALOG은 채점되지 않고 CONTAM 만 채점합니다.'): strong DV 1
+                                            td.text-center.s-form(style='cursor: pointer;', data-skey='DR1', data-svalue='DR1', colspan=6, data-validate='DV1', data-validate2='DV2', data-validate3='CONTAM', data-validate-msg='DV와 DR은 함께 채점되지 않습니다. 둘 다 해당하면 DR로 채점합니다.', data-validate2-msg='DV와 DR은 함께 채점되지 않습니다. 둘 다 해당하면 DR로 채점합니다.', data-validate3-msg='CONTAM이 있을 경우 DV, DR, INCOM, FABCOM, ALOG은 채점되지 않고 CONTAM 만 채점합니다.'): strong DR 1
                                             td(colspan=2)
-                                            td.text-center.s-form(style='cursor: pointer;', data-skey='INCOM1', data-svalue='INCOM1', colspan=6) INCOM 1
-                                            td.text-center.s-form(style='cursor: pointer;', data-skey='FABCOM1', data-svalue='FABCOM1', colspan=6) FABCOM 1
-                                            td.text-center.s-form(style='cursor: pointer;', data-skey='COMTAM', data-svalue='COMTAM', colspan=6) COMTAM
+                                            td.text-center.s-form(style='cursor: pointer;', data-skey='INCOM1', data-svalue='INCOM1', colspan=6, data-validate='FABCOM1', data-validate2='FABCOM2',data-validate3='CONTAM', data-validate-msg='INCOM과 FABCOM은 함께 채점되지 않습니다. 둘 다 해당하면 FABCOM으로 채점합니다.', data-validate2-msg='INCOM과 FABCOM은 함께 채점되지 않습니다. 둘 다 해당하면 FABCOM으로 채점합니다.', data-validate3-msg='CONTAM이 있을 경우 DV, DR, INCOM, FABCOM, ALOG은 채점되지 않고 CONTAM 만 채점합니다.'): strong INCOM 1
+                                            td.text-center.s-form(style='cursor: pointer;', data-skey='FABCOM1', data-svalue='FABCOM1', colspan=6,data-validate='INCOM1', data-validate2='INCOM2', data-validate3='CONTAM', data-validate-msg='INCOM과 FABCOM은 함께 채점되지 않습니다. 둘 다 해당하면 FABCOM으로 채점합니다.', data-validate2-msg='INCOM과 FABCOM은 함께 채점되지 않습니다. 둘 다 해당하면 FABCOM으로 채점합니다.', data-validate3-msg='CONTAM이 있을 경우 DV, DR, INCOM, FABCOM, ALOG은 채점되지 않고 CONTAM 만 채점합니다.'): strong FABCOM 1
+                                            td.text-center.s-form(style='cursor: pointer;', data-skey='CONTAM', data-svalue='CONTAM', colspan=6, data-validate-func='validateCONTAM(this)', data-validate-msg='CONTAM이 있을 경우 DV, DR, INCOM, FABCOM, ALOG은 채점되지 않고 CONTAM만 채점합니다.'): strong CONTAM
                                             td(colspan=1)
                                         tr
                                             td(colspan=1)
-                                            td.text-center.s-form(style='cursor: pointer;', data-skey='DV2', data-svalue='DV2', colspan=6) DV 2
-                                            td.text-center.s-form(style='cursor: pointer;', data-skey='DR2', data-svalue='DR2', colspan=6) DR 2
+                                            td.text-center.s-form(style='cursor: pointer;', data-skey='DV2', data-svalue='DV2', colspan=6, data-validate='DR1', data-validate2='DR2', data-validate3='CONTAM', data-validate-msg='DV와 DR은 함께 채점되지 않습니다. 둘 다 해당하면 DR로 채점합니다.', data-validate2-msg='DV와 DR은 함께 채점되지 않습니다. 둘 다 해당하면 DR로 채점합니다.', data-validate3-msg='CONTAM이 있을 경우 DV, DR, INCOM, FABCOM, ALOG은 채점되지 않고 CONTAM 만 채점합니다.'): strong DV 2
+                                            td.text-center.s-form(style='cursor: pointer;', data-skey='DR2', data-svalue='DR2', colspan=6, data-validate='DV1', data-validate2='DV2', data-validate3='CONTAM', data-validate-msg='DV와 DR은 함께 채점되지 않습니다. 둘 다 해당하면 DR로 채점합니다.', data-validate2-msg='DV와 DR은 함께 채점되지 않습니다. 둘 다 해당하면 DR로 채점합니다.', data-validate3-msg='CONTAM이 있을 경우 DV, DR, INCOM, FABCOM, ALOG은 채점되지 않고 CONTAM 만 채점합니다.'): strong DR 2
                                             td(colspan=2)
-                                            td.text-center.s-form(style='cursor: pointer;', data-skey='INCOM2', data-svalue='INCOM2', colspan=6) INCOM 2
-                                            td.text-center.s-form(style='cursor: pointer;', data-skey='FABCOM2', data-svalue='FABCOM2', colspan=6) FABCOM 2
-                                            td.text-center.s-form(style='cursor: pointer;', data-skey='ALOG', data-svalue='ALOG', colspan=6) ALOG
+                                            td.text-center.s-form(style='cursor: pointer;', data-skey='INCOM2', data-svalue='INCOM2', colspan=6, data-validate='FABCOM1', data-validate2='FABCOM2', data-validate3='CONTAM', data-validate-msg='INCOM과 FABCOM은 함께 채점되지 않습니다. 둘 다 해당하면 FABCOM으로 채점합니다.', data-validate2-msg='INCOM과 FABCOM은 함께 채점되지 않습니다. 둘 다 해당하면 FABCOM으로 채점합니다.', data-validate3-msg='CONTAM이 있을 경우 DV, DR, INCOM, FABCOM, ALOG은 채점되지 않고 CONTAM 만 채점합니다.'): strong INCOM 2
+                                            td.text-center.s-form(style='cursor: pointer;', data-skey='FABCOM2', data-svalue='FABCOM2', colspan=6, data-validate='INCOM1', data-validate2='INCOM2', data-validate3='CONTAM', data-validate-msg='INCOM과 FABCOM은 함께 채점되지 않습니다. 둘 다 해당하면 FABCOM으로 채점합니다.', data-validate2-msg='INCOM과 FABCOM은 함께 채점되지 않습니다. 둘 다 해당하면 FABCOM으로 채점합니다.', data-validate3-msg='CONTAM이 있을 경우 DV, DR, INCOM, FABCOM, ALOG은 채점되지 않고 CONTAM 만 채점합니다.'): strong FABCOM 2
+                                            td.text-center.s-form(style='cursor: pointer;', data-skey='ALOG', data-svalue='ALOG', colspan=6, data-validate='CONTAM', data-validate-msg='CONTAM이 있을 경우 DV, DR, INCOM, FABCOM, ALOG은 채점되지 않고 CONTAM 만 채점합니다.'): strong ALOG
                                             td(colspan=1)
                                 
                         .row
@@ -486,22 +519,24 @@ html
                                 table.table.table-striped.table-bordered.table-hover-cells
                                     tbody
                                         tr
-                                            td(colspan=7)
-                                                | 보속 반응
+                                            td.text-center(style='width: 50%;')
+                                                span.title 보속 반응
                                                 br
                                                 | (Perseveration)
-                                            td.text-center.s-form(style='cursor: pointer;', data-skey='PSV', data-svalue='PSV', colspan=6) PSV
+                                                br
+                                                | &nbsp;
+                                            td.text-center.s-form(style='cursor: pointer; width: 50%; line-height: 50px;', data-skey='PSV', data-svalue='PSV'): strong PSV
                             .col-lg-6
                                 table.table.table-striped.table-bordered.table-hover-cells
                                     tbody
                                         tr
-                                            td(colspan=7)
-                                                | 사람 반응
+                                            td.text-center(style='width: 50%;')
+                                                span.title  사람 표상 반응
                                                 br
-                                                | (Human Response)
-                                            td.text-center.s-form(style='cursor: pointer;', data-skey='GHR', data-svalue='GHR', colspan=6) GHR
-                                            td.text-center.s-form(style='cursor: pointer;', data-skey='PHR', data-svalue='PHR', colspan=6) PHR
-                                        
+                                                | (Human Representational Response)
+                                            td.text-center.s-form(style='cursor: pointer; width: 25%; line-height: 50px;', data-skey='GHR', data-svalue='GHR', colspan=6): strong GHR
+                                            td.text-center.s-form(style='cursor: pointer; width: 25%; line-height: 50px;', data-skey='PHR', data-svalue='PHR', colspan=6): strong PHR
+                                      
                                     
                             
                         .row
@@ -509,42 +544,42 @@ html
                                 table.table.table-striped.table-bordered.table-hover-cells
                                     thead
                                         tr
-                                            td(colspan=4) 
-                                                | 특정 내용 특수 점수
+                                            td.text-center(colspan=4) 
+                                                span.title 특수 내용 반응
                                                 br
                                                 | (Special Content Characteristics)
                                     tbody
                                         tr
-                                            td.text-center.s-form(style='cursor: pointer;', data-skey='AB', data-svalue='AB')  AB
-                                            td.text-center.s-form(style='cursor: pointer;', data-skey='MOR', data-svalue='MOR')  MOR
-                                            td.text-center.s-form(style='cursor: pointer;', data-skey='AG', data-svalue='AG')  AG
-                                            td.text-center.s-form(style='cursor: pointer;', data-skey='COP', data-svalue='COP')  COP
+                                            td.text-center.s-form(style='cursor: pointer;', data-skey='AB', data-svalue='AB'): strong  AB
+                                            td.text-center.s-form(style='cursor: pointer;', data-skey='MOR', data-svalue='MOR'): strong  MOR
+                                            td.text-center.s-form(style='cursor: pointer;', data-skey='AG', data-svalue='AG'): strong  AG
+                                            td.text-center.s-form(style='cursor: pointer;', data-skey='COP', data-svalue='COP'): strong  COP
                             .col-lg-2
                                 table.table.table-striped.table-bordered.table-hover-cells
                                     thead
                                         tr
-                                            td
-                                                | 개인적 반응
+                                            td.text-center
+                                                span.title 개인적 반응
                                                 br
                                                 | (Personalized)
                                     tbody
                                         tr
-                                            td.text-center.s-form(style='cursor: pointer;', data-skey='PER', data-svalue='PER')  PER
+                                            td.text-center.s-form(style='cursor: pointer;', data-skey='PER', data-svalue='PER'): strong  PER
                             .col-lg-3
                                 table.table.table-striped.table-bordered.table-hover-cells
                                     thead
                                         tr
-                                            td
-                                                | 특수 색채 현상
+                                            td.text-center
+                                                span.title 특수 색채 현상
                                                 br
-                                                | (Color Phenomena)
+                                                | (Special Color Phenomena)
                                     tbody
                                         tr
-                                            td.text-center.s-form(style='cursor: pointer;', data-skey='CP', data-svalue='CP')  CP
+                                            td.text-center.s-form(style='cursor: pointer;', data-skey='CP', data-svalue='CP'): strong  CP
                         .row
                             .col-lg-12
                                 .form-group
-                                    label 선택한 반응 내용
+                                    label 선택한 특수 점수
                                     #selectedScore
                     .modal-footer
                         //- button.btn.btn-primary(type='button') Save changes
@@ -608,16 +643,22 @@ html
             var currentModalIndex = -1;
 
 
+            // CONTAM validation
+            //
+            function validateCONTAM(e) {
+              var index = currentModalIndex;
+              var score = scores[index];
+              if(!score) {
+                return false;
+              }
+              return score.DV1 || score.DV2 || score.DR1 || score.DR2 || score.INCOM1 || score.INCOM2 || score.FABCOM1 || score.FABCOM2 || score.ALOG;
+            }
             // 결정인 추가 버튼
             $(document).on('click', '.determinant', function(){
                 var idx = $(this).closest('tr').attr('data-index');
                 idx = parseInt(idx);
                 $('#detModal').modal('show');
-                if (dets[idx]) {
-                    parseDet(dets[idx], idx);
-                } else {
-                    $('#selectedDet').html('');
-                }
+                parseDet(dets[idx] || {}, idx);
                 currentModalIndex = idx;
             });
 
@@ -627,11 +668,7 @@ html
                 var idx = $(this).closest('tr').attr('data-index');
                 idx = parseInt(idx);
                 $('#reactModal').modal('show');
-                if (reacts[idx]) {
-                    parseReact(reacts[idx], idx);
-                } else {
-                    $('#selectedReact').html('');
-                }
+                parseReact(reacts[idx] || {}, idx);
                 currentModalIndex = idx;
             });
 
@@ -640,11 +677,7 @@ html
                 var idx = $(this).closest('tr').attr('data-index');
                 idx = parseInt(idx);
                 $('#scoreModal').modal('show');
-                if (scores[idx]) {
-                    parseScore(scores[idx], idx);
-                } else {
-                    $('#selectedScore').html('');
-                }
+                parseScore(scores[idx] || {}, idx);
                 currentModalIndex = idx;
             })
         
@@ -663,6 +696,7 @@ html
                 }
                 
                 parseDet(dets[currentModalIndex], currentModalIndex);
+                parseGPHR(currentModalIndex);
             });
 
             // 반응 모달 테이블 셀 클릭
@@ -670,6 +704,22 @@ html
                 var key = $(this).attr('data-rkey');
                 var value = $(this).attr('data-rvalue');
                 var first = $(this).attr('data-rfirst') == '';
+                var react = reacts[currentModalIndex];
+                var val1 = $(this).attr('data-validate');
+                var valm = $(this).attr('data-validate-msg');
+                var val2 = $(this).attr('data-validate2');
+                var valm2 = $(this).attr('data-validate2-msg');
+
+                console.log($(this))
+                console.log(val1, val2);
+                if (react && val1 && react[val1]) {
+                    alert(valm);
+                    return;
+                }
+                if (react && val2 && react[val2]) {
+                    alert(valm2);
+                    return;
+                }
                 if (!reacts[currentModalIndex]) {
                     reacts[currentModalIndex] = { };
                 }
@@ -679,6 +729,7 @@ html
                     reacts[currentModalIndex][key] = { value: value, first: first };
                 }
                 parseReact(reacts[currentModalIndex], currentModalIndex);
+                parseGPHR(currentModalIndex);
             });
 
             // 특수 점수 모달 테이블 셀 클릭
@@ -686,6 +737,33 @@ html
                 var key = $(this).attr('data-skey');
                 var value = $(this).attr('data-svalue');
                 var first = $(this).attr('data-sfirst') == '';
+                
+                var val1 = $(this).attr('data-validate');
+                var val2 = $(this).attr('data-validate2');
+                var val3 = $(this).attr('data-validate3');
+                var val1m = $(this).attr('data-validate-msg');
+                var val2m = $(this).attr('data-validate2-msg');
+                var val3m = $(this).attr('data-validate3-msg');
+                var score = scores[currentModalIndex];
+                var valf = $(this).attr('data-validate-func');
+
+                if (val1 && score && score[val1]) {
+                    alert(val1m);
+                    return;
+                }
+                if (val2 && score && score[val2]) {
+                    alert(val2m);
+                    return;
+                }
+                if (val3 && score && score[val3]) {
+                    alert(val3m);
+                    return;
+                }
+                if (valf && score && eval(valf)) {
+                    alert(val1m);
+                    return;
+                }
+                
                 if (!scores[currentModalIndex]) {
                     scores[currentModalIndex] = { };
                 }
@@ -695,6 +773,7 @@ html
                     scores[currentModalIndex][key] = { value: value, first: first };
                 }
                 parseScore(scores[currentModalIndex], currentModalIndex);
+                parseGPHR(currentModalIndex);
             })
 
             function parse2(det, index) {
@@ -705,16 +784,21 @@ html
                 }
             }
             function parseDetButton(html, index) {
-              $('#score-table').find('tr[data-index=' + index + ']').find('.determinant').html(html);
+              $('#score-table').find('tr[data-index=' + index + ']').find('.determinant').html(html || '선택');
             }
             function parseDet(det, index) {
+                $('td[data-dkey]').removeClass('active');
+                Object.keys(det).forEach(function(key) {
+                  $('td[data-dkey="' + key + '"]').addClass('active');
+                });
+              
                 var first = Object.keys(det).filter(function(key) {
-                    return det[key].first;
+                    return det[key].first && key != '(2)';
                 }).map(function(key) {
                     return det[key].value;
                 }).join('.');
                 var selected = Object.keys(det).filter(function(key) {
-                    return !det[key].first;
+                    return !det[key].first && key != '(2)';
                 }).map(function(key) {
                     return det[key].value;
                 }).join('.');
@@ -726,6 +810,10 @@ html
             }
 
             function parseScore(score, index) {
+                $('td[data-skey]').removeClass('active');
+                Object.keys(score).forEach(function(key) {
+                  $('td[data-skey="' + key + '"]').addClass('active');
+                });
                 var first = Object.keys(score).filter(function(key) {
                     return score[key].first;
                 }).map(function(key) {
@@ -744,13 +832,17 @@ html
             }
 
             function parseReact(react, index) {
+                $('td[data-rkey]').removeClass('active');
+                Object.keys(react).forEach(function(key) {
+                  $('td[data-rkey="' + key + '"]').addClass('active');
+                });
                 var first = Object.keys(react).filter(function(key) {
-                    return react[key].first;
+                    return react[key].first && key != 'P';
                 }).map(function(key) {
                     return react[key].value;
                 }).join(',');
                 var selected = Object.keys(react).filter(function(key) {
-                    return !react[key].first;
+                    return !react[key].first && key != 'P';
                 }).map(function(key) {
                     return react[key].value;
                 }).join(',');
@@ -770,11 +862,11 @@ html
             }
 
             function parseReactButton(html, index) {
-              $('#score-table').find('tr[data-index=' + index + ']').find('.react-btn').html(html);
+              $('#score-table').find('tr[data-index=' + index + ']').find('.react-btn').html(html || '선택');
             }
 
             function parseScoreButton(html, index) {
-              $('#score-table').find('tr[data-index=' + index + ']').find('.score-btn').html(html);
+              $('#score-table').find('tr[data-index=' + index + ']').find('.score-btn').html(html || '선택');
             }
 
     script.
@@ -908,23 +1000,54 @@ html
 
         $(document).ready(function() {
             
+            // 카드 변경시 G/PHR 계산
             // add event handler for 반응위치+발달질 변경
             $(document).on('change', 'select[name=card], select[name=loc], select[name=dq]', function() {
                 //var index = $(this).closest('tr').index();
                 var index = parseInt($(this).closest('tr').attr('data-index'));
                 changeZ(index);
+                parseGPHR(currentModalIndex);
             });
 
             $(document).on('change', 'select.select2', function() {
-                //var index = $(this).closest('tr').index();
+                var val = $(this).val();
                 var index = parseInt($(this).closest('tr').attr('data-index'));
-
+                if (val != '(2)') {
+                  delete dets[index]['(2)'];
+                } else {
+                    if (!dets[index]) {
+                        dets[index] = { };
+                    }
+                    dets[index]['(2)'] = '(2)';
+                }
+                parseGPHR(index);
             })
+            $(document).on('change', 'select.selectP', function() {
+                var val = $(this).val();
+                var index = parseInt($(this).closest('tr').attr('data-index'));
+                if (val != 'P') {
+                    delete reacts[index]['P'];
+                } else {
+                    if (!reacts[index]) {
+                        reacts[index] = { };
+                    }
+                    reacts[index]['P'] = 'P';
+                }
+                parseGPHR(index);
+            });
+            $(document).on('change', 'select[name=fq], select.selectZ', function() {
+                parseGPHR(index);
+            });
             
 
             // load default Z array
             changeZ(1);
         })
+
+        function parseGPHR(index) {
+          $('#score-table tr[data-index=' + index + ']').find('td.gphr').text(checkGPHR(index));
+        }
+
         function stringifyForm() {
             var rowSize = $('#score-table tr').length;
             var ret = [];
@@ -958,3 +1081,54 @@ html
             $('input[name=stringifyText]').val(JSON.stringify(ret));
             return true;
         }
+        function checkGPHR(index) {
+          score = { };
+          score.react = reacts[index];
+          score.det = dets[index];
+          score.score = scores[index];
+            if (
+              (score.react && (score.react.H || score.react['(H)'] || score.react.Hd || score.react['(Hd)'] || score.react.Hx)) ||
+              (score.det && (score.det.active1 || score.det.passive1 || score.det['a-p1'])) ||
+              (score.det && (score.det.active2 || score.det.passive2 || score.det['a-p2']) && score.score && (score.score.AG || score.score.COP))
+            ) {
+                // 1
+                if (score.react && score.react.H &&
+                  (score.fq == '+' || score.fq == 'o' || score.fq == 'u') &&
+                  (score.score && (!score.score.DR1 && !score.score.DR2 && !score.score.INCOM1 && !score.score.INCOM2 && !score.score.FABCOM1 && !score.score.FABCOM2 && !score.score.CONTAM && !score.score.ALOG && !score.score.AG && !score.score.MOR))
+                ) { 
+                  return 'GHR';
+                }   
+
+                // 2
+                if (
+                  (score.fq == '-' || score.fq == 'none') ||
+                  ((score.fq == '+' || score.fq == 'o' || score.fq == 'u') && ((score.score) && (score.score.ALOG || score.score.CONTAM || score.score.DV2 || score.score.INCOM2 || score.score.DR2 || score.score.FABCOM2)))
+                ) {
+                  return 'PHR';
+                }
+
+                // 3
+                if (score.score && score.score.COP && !score.score.AG) {
+                  return 'GHR';
+                }
+
+                // 4
+                if (score.score && (score.score.FABCOM1 || score.score.FABCOM2 || score.score.MOR || (score.react && score.react.An))) {
+                  return 'PHR';
+                }
+
+                // 5
+                if ((score.card == 3 || score.card == 4 || score.card == 7 || score.card == 9) && score.p === 'P') {
+                  return 'GHR';
+                }
+                    // 6
+                if (score.score && (score.score.AG || score.score.INCOM1 || score.score.INCOM2 || score.score.DR1 || score.score.DR2 || (score.react && score.react.Hd))) {
+                  return 'PHR';
+                }
+
+                // 7
+                return 'GHR';
+              } else {
+                return '';
+              }
+              }
