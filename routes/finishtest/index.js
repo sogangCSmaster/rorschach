@@ -443,6 +443,11 @@ router.route("/finishtest1")
             upper.dq.o = dq.getO(score);
             upper.dq.VSlashPlus = dq.getVSlashPlus(score);
             upper.dq.v = dq.getV(score);
+            indicators.dqplus = upper.dq.plus;
+            indicators.dqo = upper.dq.o;
+            indicators.dqVSlashPlus = upper.dq.VSlashPlus;
+            indicators.dqv = upper.dq.v;
+
     
             upper.form_quality = {};
             upper.form_quality.FQx = form_quality.getFQx(score);
