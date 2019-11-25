@@ -142,7 +142,7 @@ function step3({ fqx_minus, Xminusper }) {
     result.textData = [];
     result.curStep = 3;
 
-    if(Xminusper < 0.15 && 1<=fqx_minus && fqx_minus <=3){
+    if(Xminusper < 0.15){
         result.textData.push(`[잠정 결과1] [정상범주] 왜곡된 형태 비율(X-%)을 고려할 때, 수검자의 중재 활동에서 기능 이상은 대부분의 다른 사람보다 더 많이 발생하지 않을 것이다.`);
         result.textData.push(`적절하지 않은 형태(FQx-) 반응은 대부분의 검사기록에서 나타난다. 그러므로 현재 검사 결과에서 나타난 반응은 인과관계가 뚜렷하지 않은 우연 수준에서 발생한 결과일 수 있다. 이러한 결과가 분노, 거부 등의 감정이 뚜렷하게 영향을 주어 야기된 것이라는 것을 배제하기 위해 적절하지 않은 공간(FQx S-) 반응을 다시 검토할 필요가 있다.`);
         result.goNext = false;
@@ -298,6 +298,67 @@ function step5({ fqx_plus }){
     return result;
 }
 
-function step6({ Lambda, Xplusper, Xuper }){
-    
+function step6({ Lambda, Xplusper, Xuper, Xminusper }){
+    var result = {};
+    result.textData = [];
+    result.curStep = 6;
+    if((0.7<=Xplusper && Xplusper<=0.85) && (0.1<=Xuper && Xuper<=0.2) ){
+        result.textData.push(`[잠정 결과1a] [정상범주] 관습적인 형태 사용 비율(X+%)과 관습적이지 않은 형태 사용 비율(Xu%)을 고려할 때, 수검자의 중재 활동에서 의사결정이나 행동은 사회적 요구나 기대에 일치하는 경향이 높을 것이다. `);
+        result.goNext = true;
+        result.nextStep = 7;
+        return result;
+    }
+
+    if((0.7<=Xplusper && Xplusper<=0.85) && (Xuper>0.2)){
+        result.textData.push(`[잠정 결과1b] 관습적인 형태 사용 비율(X+%)과 관습적이지 않은 형태 사용 비율(Xu%)을 고려할 때, 수검자의 중재 활동에서 어떤 형태의 기능 이상이 간헐적으로 사회적 기대나 요구에 일치하게 의사결정하고 행동하는 것을 방해할 것이다.`);
+        result.goNext = true;
+        result.nextStep = 7;
+        return result;
+    }
+    if(Xplusper>0.85){
+        result.textData.push(`[잠정 결과2] 관습적인 형태 사용 비율(X+%)과 관습적이지 않은 형태 사용 비율(Xu%)을 고려할 때, 수검자의 중재 활동에서 의사결정과 행동을 지나치게 사회적 요구나 기대에 일치하도록 하는 경향이 있을 것이다.`);
+        result.textData.push(`수검자에게 불리한 점(liability)이라고 할 수는 없지만, 사회적으로 받아들여지는 것에 지나친 몰두 때문에 개성이 희생당할 수 있다. `);
+        result.textData.push(`높은 관습적 형태 사용 비율(X+%)은 강박적이거나 완벽주의적인 경향이 반영된 것일 수 있다.`);
+        result.goNext = true;
+        result.nextStep= 7;
+        return result;
+    }
+    if((0.55<=Xplusper && Xplusper<=0.69) && Xuper>=0.2){
+        if(Lambda<=0.99){
+            result.textData.push(`[잠정 결과3a] 관습적인 형태 사용 비율(X+%)과 관습적이지 않은 형태 사용 비율(Xu%)을 고려할 때, 수검자의 중재 활동에서 대부분의 다른 사람들보다 사회적 요구나 기대를 무시하는 의사결정이나 행동을 할 것이다. `);
+            result.textData.push(`수검자는 환경과 갈등을 겪고 있을 수 있으며, 주변 환경과 상당히 다른 가치 체계를 가지고 있을 수도 있다. 이것은 관습적 행동을 적게 할 수 있다는 것을 의미하며, 수용될 수 없는 행동이나 반사회적 행동을 한다는 것을 의미하지 않는다.`);
+            result.goNext = true;
+            result.nextStep = 7;
+            return result;
+        }
+        if(Lambda<=1){
+            result.textData.push(`[잠정 결과3b] 저하된 관습적인 형태 사용 비율(X+%)과 상승한 관습적이지 않은 형태 사용 비율(Xu%)이 회피 유형(avoidant style)과 함께 나타날 경우, 수검자는 사회적으로 소외되어 있거나, 사회적 상황에 방어적 경향을 보일 것이다. `);
+            result.textData.push(`수검자는 우호적이거나 호혜적이지 않으며 위협적으로 생각되는 환경과 거리를 유지하기 위해 관습적 행동을 회피하는 것일 수 있다. `);
+            result.goNext = true;
+            result.nextStep = 7;
+            return result;
+        }
+    }
+
+    if(Xplusper<0.55){
+        if(Xminusper>0.2){
+            result.textData.push(`[잠정 결과4a] 관습적인 형태 사용 비율(X+%)과 관습적이지 않은 형태 사용 비율(Xu%)을 고려할 때, 수검자의 중재 활동에서 기능 이상과 현실검증능력의 문제가 있어서, 의사결정이나 행동이 매우 독특하거나 관습적이지 않고 부적절할 수 있다. 그러므로 해석할 때 이를 강조하고 수검자의 개성적 반응에 대해서는 언급하지 않아야 한다.`);
+            result.goNext = true;
+            result.nextStep = 7;
+            return result;
+        }
+        if((Xminusper<=0.2 && Xuper>=0.25) || (Xminusper<0.15 && Xuper>=0.3)){
+            result.textData.push(`[잠정 결과4b] 관습적인 형태 사용 비율(X+%)과 관습적이지 않은 형태 사용 비율(Xu%)을 고려할 때, 수검자는 중재 활동에서 현실검증능력의 문제는 없으나 매우 관습적이지 않은 반응을 보일 것이다. `);
+            result.textData.push(`수검자의 행동은 일상적이지 않지만, 상황에 적절한 반응이므로 현실검증능력의 문제가 있다고 볼 수 없다. 다만, 중재 활동에서 사회적 요구나 기대에 영향을 받지 않는다는 것을 의미한다. `);
+            result.textData.push(`수검자에게 불리한 점(liability)이라고 할 수는 없지만, 사회적 관습을 무시하거나 회피하는 방식으로 행동할 가능성이 있다. 관습적이지 않은 행동이 효과적인(effective) 정도는 그것이 얼마나 창의적인지, 그리고 개성에 관련된 주변 환경의 융통성에 크게 의존한다. `);
+            result.goNext = true;
+            result.nextStep = 7;
+            return result;
+        }
+    }
+
+
+    result.nextStep = 7;
+    result.goNext = true;
+    return result;
 }
