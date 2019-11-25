@@ -665,40 +665,46 @@ html
                                     tr
                                         th.text-center(colspan="4")
                                             if lower.special_indices.SCONPositive == true
-                                                i.fa.fa-check-square(style="margin-right: 6px; font-size: 11pt;")
+                                                i.fa.fa-check-square-o(style="margin-right: 6px; font-size: 11pt;")
+                                                | S-CON = YES
                                             else
-                                                i.fa.fa-square(style="margin-right: 6px; font-size: 11pt;")
-                                            | S-CON = #{lower.special_indices.SCON}
+                                                i.fa.fa-square-o(style="margin-right: 6px; font-size: 11pt;")
+                                                | S-CON = NO
                                         th.text-center(colspan="4")
                                             if lower.special_indices.PTI>=4
-                                                i.fa.fa-check-square(style="margin-right: 6px; font-size: 11pt;")
+                                                i.fa.fa-check-square-o(style="margin-right: 6px; font-size: 11pt;")
+                                                | PTI = YES(#{lower.special_indices.PTI})
                                             else
-                                                i.fa.fa-square(style="margin-right: 6px; font-size: 11pt;")
-                                            | PTI = #{lower.special_indices.PTI}
+                                                i.fa.fa-square-o(style="margin-right: 6px; font-size: 11pt;")
+                                                | PTI = NO(#{lower.special_indices.PTI})
                                         th.text-center(colspan="4")
                                             if lower.special_indices.DEPIPositive == true
-                                                i.fa.fa-check-square(style="margin-right: 6px; font-size: 11pt;")
+                                                i.fa.fa-check-square-o(style="margin-right: 6px; font-size: 11pt;")
+                                                | DEPI = YES(#{lower.special_indices.DEPI})
                                             else
-                                                i.fa.fa-square(style="margin-right: 6px; font-size: 11pt;")
-                                            | DEPI = #{lower.special_indices.DEPI}
+                                                i.fa.fa-square-o(style="margin-right: 6px; font-size: 11pt;")
+                                                | DEPI = NO(#{lower.special_indices.DEPI})
                                         th.text-center(colspan="4")
                                             if lower.special_indices.CDIPositive == true
-                                                i.fa.fa-check-square(style="margin-right: 6px; font-size: 11pt;")
+                                                i.fa.fa-check-square-o(style="margin-right: 6px; font-size: 11pt;")
+                                                | CDI = YES(#{lower.special_indices.CDI})
                                             else
-                                                i.fa.fa-square(style="margin-right: 6px; font-size: 11pt;")
-                                            | CDI = #{lower.special_indices.CDI}
+                                                i.fa.fa-square-o(style="margin-right: 6px; font-size: 11pt;")
+                                                | CDI = NO(#{lower.special_indices.CDI})
                                         th.text-center(colspan="4")
                                             if lower.special_indices.HVIPositive == true
-                                                i.fa.fa-check-square(style="margin-right: 6px; font-size: 11pt;")
+                                                i.fa.fa-check-square-o(style="margin-right: 6px; font-size: 11pt;")
+                                                | HVI = YES
                                             else
-                                                i.fa.fa-square(style="margin-right: 6px; font-size: 11pt;")
-                                            | HVI = #{lower.special_indices.HVI}
+                                                i.fa.fa-square-o(style="margin-right: 6px; font-size: 11pt;")
+                                                | HVI = NO
                                         th.text-center(colspan="4")
                                             if lower.special_indices.OBSPositive == true
-                                                i.fa.fa-check-square(style="margin-right: 6px; font-size: 11pt;")
+                                                i.fa.fa-check-square-o(style="margin-right: 6px; font-size: 11pt;")
+                                                | OBS = YES
                                             else
-                                                i.fa.fa-square(style="margin-right: 6px; font-size: 11pt;")
-                                            | OBS = #{lower.special_indices.OBS}
+                                                i.fa.fa-square-o(style="margin-right: 6px; font-size: 11pt;")
+                                                | OBS = NO
                                         
 
                                             
