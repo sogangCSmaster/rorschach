@@ -3,6 +3,7 @@ html
     head
         meta(charset="utf-8")
         meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible",content="IE=edge")
         title Rorschach
         link(href="/css/bootstrap.min.css" rel="stylesheet")
         link(href="/font-awesome/css/font-awesome.css" rel="stylesheet")
@@ -52,7 +53,7 @@ html
                                         td.text-center.form-group.number &#9312;
                                         td.text-center.form-group
                                             select.form-control(name="loc")
-                                                option [없음]
+                                                option(selected='selected' hidden) [선택]
                                                 option W
                                                 option D
                                                 option Dd
@@ -61,7 +62,7 @@ html
                                                 option DdS
                                         td.text-center.form-group
                                             select.form-control(name="dq")
-                                                option [없음]
+                                                option(selected='selected' hidden) [선택]
                                                 option +
                                                 option o
                                                 option v/+
@@ -70,7 +71,7 @@ html
                                             button.btn.btn-default.btn-sm.determinant 선택
                                         td.text-center.form-group
                                             select.form-control(name='fq')
-                                                option [없음]
+                                                option(selected='selected' hidden) [선택]
                                                 option +
                                                 option o
                                                 option u
@@ -78,13 +79,13 @@ html
                                                 option None
                                         td.text-center.form-group
                                             select.form-control.select2
-                                                option [없음]
+                                                option(value='') [없음]
                                                 option (2)
                                         td.text-center
                                             button.btn.btn-default.btn-sm.react-btn 선택
                                         td.text-center.form-group
                                             select.form-control.selectP
-                                                option [없음]
+                                                option(value='') [없음]
                                                 option P
                                         td.text-center
                                             select.form-control.selectZ
@@ -118,7 +119,7 @@ html
                                     thead
                                         tr
                                             th.text-center(colspan="2")  형태 반응 (Form)
-                                            th.text-center(colspan="3") (2)/반사 (Reflection)
+                                            th.text-center(colspan="3") 쌍 - 반사 반응 (Reflection)
                                             
                                     tbody
                                         tr
@@ -128,8 +129,12 @@ html
                                             td.text-center 
                                                 span.title 차원
                                                 | (Dimension)
-                                            td.text-center.title 쌍 반응
-                                            td.text-center.title(colspan="2") 반사
+                                            td.text-center
+                                                span.title 쌍
+                                                | (Fair)
+                                            td.text-center(colspan="2")
+                                                span.title 반사
+                                                | (Reflection)
 
                                         tr
                                             td.text-center.d-form(style='cursor: pointer;', data-dkey='form1', data-dvalue='F') F
@@ -199,9 +204,9 @@ html
                                             
                                     tbody
                                         tr
-                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='achromatic3', data-dvalue='FC\'') FC'
-                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='achromatic2', data-dvalue='C\'F') C'F
-                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='achromatic1', data-dvalue='C\'') C'
+                                            td.text-center.d-form(style='cursor: pointer; width: 33.3%;', data-dkey='achromatic3', data-dvalue='FC\'') FC'
+                                            td.text-center.d-form(style='cursor: pointer; width: 33.3%;', data-dkey='achromatic2', data-dvalue='C\'F') C'F
+                                            td.text-center.d-form(style='cursor: pointer; width: 33.3%;', data-dkey='achromatic1', data-dvalue='C\'') C'
                                 
                                 table.table.table-striped.table-bordered.table-hover-cells
                                     thead
@@ -211,26 +216,26 @@ html
                                             
                                     tbody
                                         tr
-                                            td(colspan="2")
+                                            td(colspan="1")
                                                 span.title 재질
                                                 | (Texture)
-                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='texture3', data-dvalue='FT') FT
-                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='texture2', data-dvalue='TF') TF
-                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='texture1', data-dvalue='T') T
+                                            td.text-center.d-form(style='cursor: pointer; width: 25%;', data-dkey='texture3', data-dvalue='FT') FT
+                                            td.text-center.d-form(style='cursor: pointer; width: 25%;', data-dkey='texture2', data-dvalue='TF') TF
+                                            td.text-center.d-form(style='cursor: pointer; width: 25%;', data-dkey='texture1', data-dvalue='T') T
                                         tr
-                                            td(colspan="2")
+                                            td(colspan="1")
                                                 span.title 깊이
                                                 | (Vista)
-                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='vista3', data-dvalue='FV') FV
-                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='vista2', data-dvalue='VF') VF
-                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='vista1', data-dvalue='V') V
+                                            td.text-center.d-form(style='cursor: pointer; width: 25%;', data-dkey='vista3', data-dvalue='FV') FV
+                                            td.text-center.d-form(style='cursor: pointer; width: 25%;', data-dkey='vista2', data-dvalue='VF') VF
+                                            td.text-center.d-form(style='cursor: pointer; width: 25%;', data-dkey='vista1', data-dvalue='V') V
                                         tr
-                                            td(colspan="2")
+                                            td(colspan="1")
                                                 span.title 번짐
                                                 | (Diffuse)
-                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='diffuse3', data-dvalue='FY') FY
-                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='diffuse2', data-dvalue='YF') YF
-                                            td.text-center.d-form(style='cursor: pointer;', data-dkey='diffuse1', data-dvalue='Y') Y
+                                            td.text-center.d-form(style='cursor: pointer; width: 25%;', data-dkey='diffuse3', data-dvalue='FY') FY
+                                            td.text-center.d-form(style='cursor: pointer; width: 25%;', data-dkey='diffuse2', data-dvalue='YF') YF
+                                            td.text-center.d-form(style='cursor: pointer; width: 25%;', data-dkey='diffuse1', data-dvalue='Y') Y
                             
                             
                         .row
@@ -534,8 +539,8 @@ html
                                                 span.title  사람 표상 반응
                                                 br
                                                 | (Human Representational Response)
-                                            td.text-center.s-form(style='cursor: pointer; width: 25%; line-height: 50px;', data-skey='GHR', data-svalue='GHR', colspan=6): strong GHR
-                                            td.text-center.s-form(style='cursor: pointer; width: 25%; line-height: 50px;', data-skey='PHR', data-svalue='PHR', colspan=6): strong PHR
+                                            td.text-center(style='cursor: pointer; width: 25%; line-height: 50px;', data-skey='GHR', data-svalue='GHR', colspan=6): strong GHR
+                                            td.text-center(style='cursor: pointer; width: 25%; line-height: 50px;', data-skey='PHR', data-svalue='PHR', colspan=6): strong PHR
                                       
                                     
                             
@@ -601,8 +606,13 @@ html
         script(src="/js/plugins/datapicker/bootstrap-datepicker.js")
         script(src="/js/plugins/daterangepicker/daterangepicker.js")
         script(src="/js/plugins/clockpicker/clockpicker.js")
+        script(src='/js/plugins/stickytableheaders/jquery.stickytableheaders.min.js')
         script.
             $(document).ready(function(){
+              setTimeout(function() {
+                $('.animated').removeClass('animated'); // for sticky bug
+              }, 1000);
+              $('table').stickyTableHeaders();
 
                 $("#birthday").datepicker({
                     todayBtn: "linked",
@@ -627,11 +637,11 @@ html
                 // 카드 추가 버튼
                 $("#addReact").on('click', function(){
                     var a = $('#score-table').find('tr:eq(0)').clone()
-                    a.insertAfter($('#score-table').find('tr:eq(0)'));
+                    $('#score-table').append(a);
                     a.show();
                     var index = $('#score-table tr').length - 1;
                     a.attr('data-index', index);
-                    $('#score-table tr:eq(1) .number').html('&#93' + (11 + index) + ';');
+                    $('#score-table tr[data-index=' + index + '] .number').html('&#93' + (11 + index) + ';');
                 });
             })
 
@@ -1045,7 +1055,25 @@ html
         })
 
         function parseGPHR(index) {
-          $('#score-table tr[data-index=' + index + ']').find('td.gphr').text(checkGPHR(index));
+            var GPHR = checkGPHR(index);
+            $('#score-table tr[data-index=' + index + ']').find('td.gphr').text(GPHR);
+            $('td[data-skey=PHR]').removeClass('active');
+            $('td[data-skey=GHR]').removeClass('active');
+            if (GPHR != '') {
+                $('td[data-skey=' + GPHR + ']').addClass('active');
+                if (!scores[index]) {
+                    scores[index] = {};
+                }
+                scores[index][GPHR] = { value: GPHR, first: false };
+                parseScore(scores[index], index);
+
+            } else {
+                if (scores[index]) {
+                    delete scores[index].GHR;
+                    delete scores[index].PHR;
+                }
+                parseScore(scores[index], index);
+            }
         }
 
         function stringifyForm() {

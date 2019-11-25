@@ -8432,6 +8432,11 @@ body.md-skin {
   font-size: 15px;
 }
 
+#card-table td.number {
+  font-size: 20px;
+  line-height: 40px;
+}
+
 td[data-dkey].active,
 td[data-rkey].active,
 td[data-skey].active {
