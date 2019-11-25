@@ -19,6 +19,43 @@ function step1({ XAper, WDAper }) {
     var result = {};
     result.textData = [];
     result.curStep = 1;
+
+    if(XAper>0.9 && XAper<=WDAper){
+        result.textData.push(`[잠정 결과2] 확장된 적합한 형태 비율(XA%)과 흔한 영역의 적합한 형태 비율(WDA%)을 고려할 때, 수검자는 중재 활동이 상황에 적합해 보이도록 각별하게 노력할 것이다. 이러한 경향은 강박적 유형(obsessive style)의 사람에서 흔하게 나타나지만, 기계적으로 강박성(obsessiveness)과 같다고 여겨서는 안 된다. 단순히 상황을 정확하게 해석하려는 현저한 경향이 수검자의 중재 활동에 영향을 주고 있는 것을 의미한다. - 강박지표(OBS)가 상승한 경우 흔하게 나타날 수 있다.`);
+        result.nextStep = 2;
+        result.goNext = false;
+        return result;
+    }
+    if(0.78<=XAper && XAper<=0.9 && XAper<=WDAper){
+        result.textData.push(`[잠정 결과1] [정상범주] 확장된 적합한 형태 비율(XA%)과 흔한 영역의 적합한 형태 비율(WDA%)을 고려할 때, 수검자의 중재 활동이 상황에 적합한 행동을 유도하고 있을 것이다. 대개 중재가 상황에 적절하며, 관습적인 현실검증능력에 필요한 기본 요소가 온전할 것이다. `);
+        result.nextStep = 2;
+        result.goNext = false;
+        return result;
+    }
+    if(XAper>=0.78 && XAper>WDAper){
+        result.textData.push(`[잠정 결과8] 확장된 적합한 형태 비율(XA%)과 흔한 영역의 적합한 형태 비율(WDA%)을 고려할 때, 수검자는 일반적으로 적절한 현실검증능력(reality testing)을 보이지만, 때때로 현실(reality)과 환상(fantasy)을 구별하고 적절한 판단을 발휘하는 데 약간의 어려움을 보일 수 있다.<br/>`)
+        result.textData.push(`반응 위치에서 단서가 더 명확한 부분(W, D)의 형태질 보다 단서가 덜 명확한 부분(Dd)의 형태질이 더 좋을 것이다. 확장된 적합한 형태 비율(XA%)에서 나타나는 것보다 일상생활에서 현실(reality)을 효과적으로 다루는 데 더 어려울 것이므로, 현실검증능력(reality testing)의 적절성을 하향 조정하여 해석할 필요가 있다.`);
+        result.nextStep = 2;
+        result.goNext = false;
+        return result;
+    }
+    if(XAper>=0.78 && WDAper<0.75){
+        result.textData.push(`[잠정 결과3] 확장된 적합한 형태 비율(XA%)과 흔한 영역의 적합한 형태 비율(WDA%)을 고려할 때, 수검자의 처리 활동에 문제가 있거나, 수검자가 심한 혼란(disarray)을 겪는 것처럼 가장하는(simulate) 것일 수 있다.<br/>`);
+        result.textData.push(`현재 지표 점수는 매우 드물게 나타나는 것으로 반응 수(R)가 16개 이하이거나, 상당수의 반응 위치가 드문 부분(Dd)인 이상한 조합일 수 있다. 계산 오류가 없으면 반응 위치에서 단서가 더 명확한 부분(W, D)의 형태질(FQ: minus, Noform)보다 단서가 덜 명확한 부분(Dd)의 형태질(FQ: o, u)이 더 좋을 것이다.`);
+        result.nextStep = 2;
+        result.goNext = false;
+        return result;
+    }
+
+    if(0.7<=XAper && XAper <=0.77 && WDAper>=0.8){
+        result.textData.push(`[잠정 결과4] 확장된 적합한 형태 비율(XA%)과 흔한 영역의 적합한 형태 비율(WDA%)을 고려할 때, 수검자의 중재 활동은 단서가 명확한 상황에서는 적절하지만, 단서가 덜 명확한 상황에서는 적절하지 않을 것이다.<br/>`);
+        result.textData.push(`중재 활동의 효율성(effectiveness) 저하는 (또는 현실검증능력의 저하는) 다양한 요인으로 야기될 수 있다. 일반적으로 정서적 또는 관념적 간섭이 원인일 수 있지만, 때로는 처리 활동의 문제가 잘못된 판단(중재 오류)으로 이어질 수 있다. 좋지 않은 형태질(FQ: minus, NoForm) 반응을 재검토하여 그러한 원인에 대한 정보를 얻을 수 있다.`);
+        result.nextStep = 2;
+        result.goNext = false;
+        return result;
+    }
+    
+    
     
     result.goNext = false;
     return result;
