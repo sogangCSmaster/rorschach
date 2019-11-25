@@ -12,7 +12,7 @@ function nextStep(stepNum, result, scores) {
     if (step.goNext == true) {
         return result;
     }
-    return eval(`nextStep(${step.nextStep}, result, scores)`);
+    return eval(`nextStep('${step.nextStep}', result, scores)`);
 }
 
 function step1({ XAper, WDAper }) {
@@ -137,106 +137,167 @@ function step2({ fqx_none }) {
     return result;
 }
 
-function step3({  }) {
-
-}
-
-function step4({  }) {
+function step3({ fqx_minus, Xminusper }) {
     var result = {};
     result.textData = [];
+    result.curStep = 3;
 
-    if (W > M) {
-        if (W / M == 1.5 || W / M == 2 || W / M == 3) {
-            result.textData.push('잠정 결과1a] 처리 노력에 영향을 주는 동기 수준을 결정하는 ‘어떤 행동이 어떤 결과를 가져올 것이라는 믿음’을 반영하는 기대 비율(Aspirational Ratio)과 결과를 얻는데 필요한 가용 자원을 반영하는 경험유형(EBstyle)을 고려할 때, 수검자는 자신이 가지고 있는 성취역량(가용 자원)에 비해 높은 성취목표(기대수준)를 가지고 있을 것이다. ');
-            result.textData.push('성취목표(기대수준)와 성취역량(가용 자원)이 일치하는 것이 적절한 상태이다. 하지만, 수검자는 낮은 자원 수준에도 불구하고 높은 목표를 가지고 있으므로 실패나 좌절의 경험을 자주 겪을 것이다. 이러한 경향은 특히, 발달질(DQ)에서 DQ+의 빈도가 낮으면 더 명확해질 것이다.');
-            result.textData.push('자기 지각 영역에서 자기 효능감에 관련하여 개념화를 할 수도 있다.');
-            result.textData.push('* 기준을 초과하지 않는 점수는 목표와 능력이 균형을 이루는 것이 아니라, 단지 해석적 의미가 없다는 것을 뜻한다.');
-        } else if ((W / M >= 5 && W / M <= 8) || (W / M == 4) || (W / M == 3)) {
-            result.textData.push('[잠정 결과1b] 처리 노력에 영향을 주는 동기 수준을 결정하는 ‘어떤 행동이 어떤 결과를 가져올 것이라는 믿음’을 반영하는 기대 비율(Aspirational Ratio)에서 성취역량(가용 자원)에 비해 높은 성취목표(기대수준)를 가지고 있는 것으로 나타나지만, 수검자의 연령을 고려하면 적절한 수준으로 볼 수 있다.');
-            result.textData.push('아동과 어린 청소년의 경우, 현실적인 역량보다 자신의 능력 수준을 지나치게 높게 평가하고, 그것에 근거하여 상당히 높은 목표를 설정하는 경향이 있다. 하지만 어린 수검자는 그러한 목표에 큰 가치를 부여하지 않는다.');
-            result.textData.push('그렇기에 낮은 자원 수준으로 인해 실패를 겪더라도 크게 신경을 쓰지 않으며, 그로 인한 좌절을 경험하는 기간도 짧을 것이다.');
+    if(Xminusper < 0.15 && 1<=fqx_minus && fqx_minus <=3){
+        result.textData.push(`[잠정 결과1] [정상범주] 왜곡된 형태 비율(X-%)을 고려할 때, 수검자의 중재 활동에서 기능 이상은 대부분의 다른 사람보다 더 많이 발생하지 않을 것이다.`);
+        result.textData.push(`적절하지 않은 형태(FQx-) 반응은 대부분의 검사기록에서 나타난다. 그러므로 현재 검사 결과에서 나타난 반응은 인과관계가 뚜렷하지 않은 우연 수준에서 발생한 결과일 수 있다. 이러한 결과가 분노, 거부 등의 감정이 뚜렷하게 영향을 주어 야기된 것이라는 것을 배제하기 위해 적절하지 않은 공간(FQx S-) 반응을 다시 검토할 필요가 있다.`);
+        result.goNext = false;
+        result.nextStep = '3a';
+        return result;
+    }
+
+    if(0.15<=Xminusper && Xminusper<=0.2){
+        result.textData.push(`[잠정 결과2] 왜곡된 형태 비율(X-%)을 고려할 때, 수검자의 중재 활동에서 기능 이상의 발생이 중등도 수준으로 상승하기 때문에 주의를 기울여야 한다. `);
+        result.textData.push(`적절하지 않은 형태(FQx-) 반응의 동질성을 파악해 보면 기능 장애의 원인이 좀 더 명확해질 수 있다. 만약, 적절하지 않은 형태(FQx-) 반응의 빈도가 적절하지 않은 공간(FQx S-) 반응 빈도와 같거나 비슷할 경우 중재 활동의 기능 이상은 수검자의 정서적 특성과 직접 연결되어 있을 것이다. 거부, 분노 등의 정서 요인에 의해 반점의 형태가 잘못 해석되는 것일 수 있다.  <br/><br/>`);
+        result.textData.push(`반응 수(R)가 평균보다 적으면 해석적 접근을 달리해야 한다. 반응 수(R)가 평균 정도일 때, 적절하지 않은 형태(FQx-) 반응의 빈도가 3개 또는 4개이면 정상범주를 벗어난 것으로 해석하는 기준에 해당하게 된다. 그러므로 평균보다 더 적은 반응 수(R)인 짧은 검사기록(R: 14-16, FQx-: 3)에서 정상범주를 벗어난 것으로 해석하는 기준에 해당하는 왜곡된 형태 비율(X-%)은 실제보다 더 걱정스러운 결과일 수 있다. 신중한 태도로 검사에 임했을 짧은 검사기록을 보이는 수검자에서 이러한 결과가 나타나고, (짧은 기록에서 거의 나타나지 않는) 단서가 덜 명확한 위치(Dd, S)가 아닌 단서가 더 명확한 위치(W, D)에서 잘못된 해석이 발생하는 것이기 때문에 그렇게 볼 수 있다. 그래서 짧은 검사기록에서는 왜곡된 형태 비율(X-%)이 지적하는 것보다 기능 장애가 더 광범위하다고(extensive) 해석해야 한다.`);
+        result.goNext = false;
+        result.nextStep = '3a';
+        return result;
+    }
+    if(0.21<=Xminusper && Xminusper<=0.25){
+        result.textData.push(`[잠정 결과3] 왜곡된 형태 비율(X-%)을 고려할 때, 수검자의 중재 활동에서 기능 이상은 어떤 특정한 문제에 국한되지 않고 아마도 상당히 광범위한(pervasive) 경향을 보일 것이다. 다시 말해서 중재 활동의 기능 이상이 자주 여러 곳에서 나타날 것이다.`);
+        result.textData.push(`반응 수(R)가 평균보다 적으면 해석적 접근을 달리해야 한다. 짧은 검사기록(R: 14-16, FQx-: 3)에서 적절하지 않은 형태(FQx-) 반응이 (반응 빈도가 높은) 단서가 더 명확한 위치(W, D)에서 3개 또는 4개가 나타날 경우, 중재 활동의 기능 이상은 광범위하고(pervasive) 아마도 심한 상태일 것이다. `);
+        result.textData.push(`적절하지 않은 형태(FQx-) 반응의 동질성을 파악해 보면 기능 장애의 원인이 좀 더 명확해질 수 있다. 반응 수(R)가 평균 정도일 때, 적어도 적절하지 않은 형태(FQx-) 반응의 절반 이상이 단서가 덜 명확한 위치(FQx Dd-, FQx S-)이면 중재 활동의 기능 이상이 광범위한(pervasive) 것으로 보면 안 된다. 그보다 정서나 처리활동 같은 특정 문제에 관련하여 보는 게 적절하다. 적절하지 않은 공간(FQx S-) 반응이 적절하지 않은 형태(FQx-) 반응의 절반 이상이라면 부정적 정서가 중재 활동의 기능 이상에 분명하게 관련되어 있을 것이다. `);
+        result.textData.push(`중재 활동의 기능 이상이 광범위한지(pervasive)와 상관없이 손상의 정도를 가볍게 여기면 안 되며, 중재 활동의 문제가 분명히 존재한다는 것을 강조하여 해석해야 한다.`);
+        result.goNext = false;
+        result.nextStep = '3a';
+        return result;
+    }
+    if(Xminusper > 0.25){
+        result.textData.push(`[잠정 결과4] 왜곡된 형태 비율(X-%)을 고려할 때, 수검자의 중재 활동에서 기능 이상은 심한 손상을 보일 수 있다. 특히 왜곡된 형태 비율(X-%)이 0.30 이상일 경우 이러한 경향성이 더 현저할 것이다.`);
+        result.textData.push(`적절한 현실검증능력의 기본요소가 심하게 손상되었기 때문에 수검자는 대개 의사결정에서 적절한 판단을 내리지 못하는 무력한 모습(disabling problem)을 보일 것이다. `);
+        result.textData.push(`현재 지표의 점수는 반응 수(R)의 1/4가 적절하지 않은 형태(FQx-) 반응이라는 것을 의미한다. 적절하지 않은 형태(FQx-) 반응은 어떤 일관성을 보이는 동질성이 있을 것이다. 그리고 기능 이상의 폭은 그것의 광범위함(pervasive)을 극적으로 표현할 것이다. 다시 말해서 기능 이상이 중재 활동의 전반에 퍼져 있어서 적절하게 기능하지 못할 수 있다. `);
+        result.goNext = false;
+        result.nextStep = '3a';
+        return result;
+    }
+    if(Xminusper > 0.7){
+        result.textData.push(`[잠정 결과5] 왜곡된 형태 비율(X-%)을 고려할 때, 수검자의 중재 활동의 기능 이상에 대한 정보는 신뢰할 수 없을 것이다. 증상을 과장하려고 시도하거나 꾀병을 부린 것일 수 있다. 활성기 정신증적 상태(active psychotic-like state)와 일치하는 증거를 확인할 수 없다면 꾀병으로 봐야 한다. `);
+        result.textData.push(`단서가 덜 명확한 위치(FQx Dd-, FQx S-) 반응에 상관없이 현재 지표 점수는 적절하지 않을 것이다. 대개 이 정도의 점수를 보이는 수검자는 검사를 받을 수 없을 정도로 심각한 어려움을 겪고 있는 사람일 것이다. 이러한 어려움은 최근의 행동이력이나 개인력에서 쉽게 드러난다. `);
+        result.goNext = false;
+        result.nextStep = '3a';
+        return result;
+    }
+
+    result.nextStep = '3a';
+    result.goNext = false;
+    return result;
+}
+
+function step3a({}){
+    var result = {};
+    result.textData = [];
+    result.curStep = '3a';
+
+
+
+
+
+    result.nextStep = '3b';
+    result.goNext = false;
+    return result;
+}
+
+
+function step3b({}){
+    var result = {};
+    result.textData = [];
+    result.curStep = '3b';
+    result.textData.push(`[질적 해석]<br/><br/><br/><br/><br/><br/><br/>`);
+    result.nextStep = '4';
+    result.goNext = false;
+    return result;
+}
+
+function step4({ R, P, age }){
+    var result = {};
+    result.textData = [];
+    result.curStep = 4;
+    var pAverage = [];
+
+    if(17<=R && R<=27){
+        if(age>=13){
+            pAverage = [5, 7];
         }
+        if(age<12){
+            pAverage = [4, 7];
+        }
+    }
+    if(R<=16){
+        pAverage = [4, 6];
+    }
+    if(R>=28){
+        pAverage = [6, 9];
+    }
+
+    if (pAverage[0]<= P && P<=pAverage[1]){
+        result.textData.push(`[잠정 결과1] [정상범주] 가장 분명한 원위적 특징(단서)을 사용하는 평범 반응(P)을 고려할 때, 수검자는 어떤 행동이 수용되는지 어떤 행동이 기대되는지 단서가 명확하여 쉽게 알 수 있는 상황에서 그 단서에 적합한 관습적 행동을 할 수 있을 것이다.`);
+        result.textData.push(`정보 처리 과정에 문제가 있더라도 상황이 단순하고 명확하게 정의된 경우에는 관습적이지 않게 반응할 확률이 낮을 것이다. 다시 말해서 잉크 반점의 명확한 원위적 특징(단서)을 활용하여 대상을 표상하는 능력은 정상범주에서 기능하고 있는 것으로 볼 수 있다. `);
         result.goNext = false;
         result.nextStep = 5;
         return result;
     }
 
-    if (W < M) {
-        if (W / M == 0.75 && Zf >= 11) {
-            result.textData.push('[잠정 결과2a] 처리 노력에 영향을 주는 동기 수준을 결정하는 ‘어떤 행동이 어떤 결과를 가져올 것이라는 믿음’을 반영하는 기대 비율(Aspirational Ratio)과 결과를 얻는데 필요한 가용 자원을 반영하는 경험유형(EBstyle)을 고려할 때, 수검자는 자신이 가지고 있는 성취역량(가용 자원)에 비해 낮은 성취목표(기대수준)를 가지고 있을 것이다. 이러한 결과를 보이는 수검자는 성취목표를 설정하는 데 있어서 신중하고 조심스러울 것이다.');
-            result.goNext = false;
-            result.nextStep = 5;
-            return result;
-        } else if (W / M == 1.2 && Zf < 11) {
-            result.textData.push('[잠정 결과2b] 처리 노력에 영향을 주는 동기 수준을 결정하는 ‘어떤 행동이 어떤 결과를 가져올 것이라는 믿음’을 반영하는 기대 비율(Aspirational Ratio)과 결과를 얻는데 필요한 가용 자원을 반영하는 경험유형(EBstyle)을 고려할 때, 수검자는 자신이 가지고 있는 성취역량(가용 자원)에 비해 낮은 성취목표(기대수준)를 가지고 있을 것이다. 이러한 결과를 보이는 수검자는 성취목표를 설정하는데 지나치게 노력을 아끼고 열의가 없을 것이다. 이러한 경향은 회피 유형(Avoidant style)의 검사 결과에서 자주 나타날 수 있다.');
-            result.goNext = false;
-            result.nextStep = 5;
-            return result;
-        }
+    if(P>pAverage[1]){
+        result.textData.push(`[잠정 결과2a] 가장 분명한 원위적 특징(단서)을 사용하는 평범 반응(P)을 고려할 때, 수검자의 관습이나 정확성에 대한 관심은 일반적인 범주를 벗어나 있을 것이다. 사회적으로 어떤 행동이 수용되는지 어떤 행동이 기대되는지에 대한 단서를 찾는데 몰두할 것이다. `);
+        result.textData.push(`수검자에게 불리한 점(liability)이라고 할 수는 없지만, 사회적 수용에 지나치게 관심을 기울이는 것은 아닌지 의문을 제기할 수 있다. `);
+        result.textData.push(`강박적 유형에서는 흔하게 나타난다. 강박적 유형을 보이지 않는다면, 완벽주의에 관련된 분명한 경향이 반영된 것일 수 있다. `);
+        result.goNext = false;
+        result.nextStep = 5;
+        return result;
     }
 
-    result.goNext = true;
+    if(P<pAverage[0]){
+        result.textData.push(`[잠정 결과2b] 가장 분명한 원위적 특징(단서)을 사용하는 평범 반응(P)을 고려할 때, 수검자는 어떤 행동이 수용되는지 어떤 행동이 기대되는지 단서가 단순하고 명확하게 정의된 상황에도 (단서에 부합되지 않는) 관습적이지 않거나 개성적인 반응을 할 것이다. `);
+        result.textData.push(`수검자에게 불리한 점(liability)이라고 할 수는 없지만, 개인적 욕구나 바람을 우선시하기 때문에 지속하여 사회적 관습이나 기대를 고려하지 않는 것인지 의문을 제기할 수 있다. 6단계에서 좀 더 자세히 다룰 것이다. <br/><br/>`);
+        result.textData.push(`<b>* 사회화 관점에서도 분석할 수 있다. </b>`);
+        result.goNext = false;
+        result.nextStep = 5;
+        return result;
+    }
+
+    result.nextStep = 5;
+    result.goNext = false;
     return result;
 }
 
-function step5({ Zd }) {
+function step5({ fqx_plus }){
     var result = {};
-    result.textData = [];
-    if (Zd >= -3.0 && Zd <= 3.0) {
-        result.textData.push('[잠정 결과1] [정상범주] 정보 처리 능률(Zd)을 고려할 때, 수검자는 자극 장의 탐색 활동에서 다른 사람들과 비슷한 수준의 능률(efficiency)을 보일 것이다. 다시 말해서 효과적인(effectively) 처리에 대한 동기가 적절한 수준일 것이다.');
-        result.goNext = false;
-        result.nextStep = 6;
-        return result;
-    }
-    if (Zd < -3.0) {
-        result.textData.push('[잠정결과2] [과소 통합 형태의 탐색 활동: under-incorporative form of scanning activity] 정보 처리 능률(Zd)을 고려할 때, 수검자는 과소 통합 형태의 탐색 활동을 할 것이다. 자극 장을 성급하게 아무렇게나 탐색하고, 자주 자극 장에 존재하는 중요한 부분이나 결정적인 단서를 주의 깊게 살피지 않을 것이다. 다시 말해서 효과적인(effectively) 처리에 대한 동기가 낮을 것이다.');
-        result.textData.push('청소년이나 성인의 경우에서는 상당히 불리한 점(liability)이 될 수 있다. 과소 통합은 현재의 단서를 잘못 해석할 잠재성을 만들어 내며, 효과적이지(effective) 않은 행동 방식으로 이어진다. 과소 통합 형태의 탐색 활동은 지연과 충분한 탐색을 강조하는 인지 재구조화 방법을 통해 쉽게 교정할 수 있다.');
-        result.textData.push('10세 미만의 아동에서는 과소 통합이 흔하게 나타나기 때문에 아동이 심한 어려움을 호소하지 않는다면 크게 관심을 두지 않아도 된다.');
-        result.goNext = false;
-        result.nextStep = 6;
-        return result;
-    }
-    if (Zd > 3.0) {
-        result.textData.push('[잠정 결과3] [과다 통합 형태의 탐색 활동: over-incorporation form of scanning activity] 정보 처리 능률(Zd)을 고려할 때, 수검자는 특성적인 유형인 과다 통합 형태의 탐색 활동을 보일 것이다. 탐색 활동에서 노력을 더 많이 들이는 격심하고 지속적인 수고(exertion)를 보일 것이다. 수검자는 부주의한 것을 명백하게 피하길 원하며, 상황의 특징을 탐색하는데 필요한 것보다 더 많이 노력을 들이는 것에 동기화되어 있을 것이다. 다시 말해서 효과적인(effectively) 처리에 대한 동기가 높을 것이다.');
-        result.textData.push('비록 추가되는 노력 때문에 능률적이지(efficient) 않지만, 입력에 포함되는 모든 자극 단서를 확보하므로 때때로 자원이 될 수 있다.');
-        result.textData.push('이러한 결과는 수검자가 심리적 혼란(disorganization)을 겪고 있으면 불리한 점(liability)이 될 수 있다. 이러한 유형이 과도해지면 의사결정에서 불필요하게 머뭇거릴 수 있다.');
-        result.goNext = false;
-        result.nextStep = 6;
-        return result;
-    }
-
-    result.goNext = true;
-    return result;
-}
-
-function step6({ PSV }) {
-    var result = {};
+    result.curStep = 5;
     result.textData = [];
 
-    if (PSV == 1) {
-        result.textData.push('[잠정 결과1] 보속 반응(PSV)을 고려할 때, 수검자는 때때로 주의전환에 약간의 어려움을 보일 수 있으며, 그로 인해 처리 활동이 능률적이지(efficiency) 않게 될 것이다.');
-        result.textData.push('참고) 카드 내 보속은 처리 능률(efficiency)의 문제로 볼 수 있지만, 내용 보속은 처리 작용과 관련이 없으며 몰두해 있는 주제에 대한 정보를 제공한다. 그리고 기계적 보속은 심각한 인지적-신경학적 문제를 반영한다.');
+    if(fqx_plus==0){
+        result.textData.push(`[잠정 결과1] 지나치게 정교한 관습적 형태(FQx+) 반응을 고려할 때, 수검자는 검사 과정에서 열의가 없었거나, 방어적이었을 것이다. 더욱이 중재 활동에 손상이 있을 가능성이 있다. 다시 말해서 관습적 반응에 대한 노력이 부족할 것이다.`);
+        result.textData.push(`이러한 결론을 내리기 전에 형태질(FQ) 채점이 제대로 이루어졌는지 확인해야 한다. 수검자의 학력 수준과 지적 수준을 고려하여 해석해야 한다. `);
+        result.nextStep = 6;
         result.goNext = false;
-        result.nextStep = 7;
-        return result;
-    }
-    if (PSV >= 2) {
-        result.textData.push('[잠정 결과2] 보속 반응(PSV)을 고려할 때, 수검자는 주의전환에 상당한 어려움을 보일 수 있으며, 그로 인해 처리 활동 활동이 현저하게 능률적이지(efficiency) 않게 될 것이다.');
-        result.textData.push('이러한 결과는 어린 아동, 상당한 심리적 혼란(disarray)을 겪고 있는 사람, 신경학적 문제가 있는 사람에서 나타나므로 로르샤하 검사에 근거한 인지 기능은 더 조심스럽게 평가해야 한다.');
-        result.textData.push('참고) 카드 내 보속은 처리 능률(efficiency)의 문제로 볼 수 있지만, 내용 보속은 처리 작용과 관련이 없으며 몰두해 있는 주제에 대한 정보를 제공한다. 그리고 기계적 보속은 심각한 인지적-신경학적 문제를 반영한다.');
-        result.goNext = false;
-        result.nextStep = 7;
         return result;
     }
 
-    result.goNext = true;
+    if(1<=fqx_plus && fqx_plus<=3){
+        result.textData.push(`[잠정 결과2] [정상범주] 지나치게 정교한 관습적 형태(FQx+) 반응을 고려할 때, 수검자는 검사 과정에서 적절한 동기를 보이고, 중재 활동에서 정확하고 관습적으로 반응하려고 노력했을 것이다. `);
+        result.nextStep = 6;
+        result.goNext = false;
+        return result;
+    }
+
+    if(fqx_plus>=4){
+        result.nextStep.push(`[잠정 결과3] 지나치게 정교한 관습적 형태(FQx+) 반응을 고려할 때, 수검자는 정밀하거나 정확하게 하려는 경향이 현저할 것이다. `);
+        result.nextStep.push(`수검자에게 불리한 점(liability)이라고 할 수는 없지만, 의사결정에서 지나치게 조심스러울 모습을 보일 수 있다. 이러한 결과가 강박적 유형인 수검자에서 나타난다면, 중재 활동에 완벽주의 경향이 더 많다는 것을 반영한다. `);
+        result.nextStep = 6;
+        result.goNext = false;
+        return result;
+    }
+
+    result.goNext = false;
+    result.nextStep = 6;
     return result;
 }
 
-function step7() {
-
-}
-
-function step8() {
-
+function step6({ Lambda, Xplusper, Xuper }){
+    
 }

@@ -34,6 +34,7 @@ const control = require('./explanation/control');
 const affect = require('./explanation/affect');
 const ExnerTable2 = require('./explanation/ExnerTable2');
 const ExnerTable4 = require('./explanation/information_processing');
+const ExnerTable5 = require('./explanation/ExnerTable5');
 
 router.route("/finishtest1")
     .get(async(req, res, next) => {
@@ -454,7 +455,10 @@ router.route("/finishtest1")
             upper.form_quality.MQuality = form_quality.getMQual(score);
             upper.form_quality.WPlusD = form_quality.getWPlusD(score);
             indicators.fqx_none = upper.form_quality.FQx.none;
-    
+            indicators.fqx_minus = upper.form_quality.FQx['-'];
+            indicators.fqx_plus = upper.form_quality.FQx['+'];
+
+
             upper.special_scores = {};
             upper.special_scores.DV1 = special_scores.getDV1(score);
             indicators.DV1 = upper.special_scores.DV1;
@@ -766,7 +770,7 @@ router.route("/finishtest1")
                     steps = control.caculateControl(lower.core.AdjD, lower.special_indices.CDI, lower.core.EA, lower.core.EBLeft, lower.core.EBRight, lower.core.Lambda, age, upper.determinants.M, lower.affection.WSumC, lower.core.Adjes, lower.core.es, lower.core.FM, lower.core.m, lower.core.SumCprime, lower.core.SumV, lower.core.SumT, lower.core.SumY);
                     TESTRESULT.push({resultName, steps});
 
-                    resultName = "평소 통제능력보다 낮은 현재 통제능력을 유발하는 상황 관련 스트레스 평가"
+                    resultName = "평소 통제능력보다 낮은 현재 통제능력을 유발하는 상황 관련 스트레스 평가";
                     steps = ExnerTable2.calculateExnerTable2(indicators);
                     TESTRESULT.push({resultName, steps});
                 }
@@ -777,8 +781,14 @@ router.route("/finishtest1")
                 }
 
                 if(scoreOrder[i]=="정보처리"){
-                    resultName = "Information Processing / Cognitive triad 정보처리"
+                    resultName = "Information Processing / Cognitive triad 정보처리";
                     steps = ExnerTable4.calculateExnerTable4(indicators);
+                    TESTRESULT.push({resultName, steps});
+                }
+
+                if(scoreOrder[i]=="인지적 중재"){
+                    resultName = 'Cognitive Mediation / Cognitive triad 인지적 중재';
+                    steps = ExnerTable5.calculateExnerTable5(indicators);
                     TESTRESULT.push({resultName, steps});
                 }
             }
