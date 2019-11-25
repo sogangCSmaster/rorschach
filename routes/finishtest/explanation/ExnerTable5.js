@@ -54,7 +54,65 @@ function step1({ XAper, WDAper }) {
         result.goNext = false;
         return result;
     }
-    
+    if(0.7<=XAper && XAper <=0.77 && WDAper<0.8){
+        result.textData.push(`[잠정 결과9] 확장된 적합한 형태 비율(XA%)과 흔한 영역의 적합한 형태 비율(WDA%)을 고려할 때, 수검자의 현실검증능력(reality testing)은 경도(mild)에서 중등도(moderate) 수준으로 손상되었을 것이다.`);
+        result.nextStep = 2;
+        result.goNext = false;
+        return result;
+    }
+    if((0.7<=XAper && XAper<=0.77) && (0.75<=WDAper && WDAper<=0.79)){
+        result.textData.push(`[잠정 결과6] 확장된 적합한 형태 비율(XA%)과 흔한 영역의 적합한 형태 비율(WDA%)을 고려할 때, 수검자의 중재 활동은 중등도 수준의 기능 이상을 보일 것이다. * XA%< 0.70, 0.75≤WDA%≤0.79 경우, 더 상당한 수준의 기능 이상을 보일 것이다. <br/>`);
+        result.textData.push(`단서가 명확한 반응 위치(W, D)는 드문 부분(Dd)에 비해 원위적 특성(단서)이 유도하는 반응이 더 다양하고 많으며 서로 독립적이어서 해석 근거의 왜곡 가능성이 작다. 단서가 명확한 반응 위치(W, D)에서 뚜렷한 저하가 나타나는 것은 명확한 특징을 무시하거나 왜곡하는 현실검증능력의 문제가 반영된 것일 수 있다.`);
+        result.textData.push(`이러한 문제는 대개 정서적 또는 관념적 간섭으로 인해 나타난다. 단서가 명확한 반응 위치(W, D)에서 좋지 않은 형태질(FQ: minus, NoForm) 반응을 검토하여 중재 손상의 원인에 대해 이해할 수 있다.`);
+        result.nextStep = 2;
+        result.goNext = false;
+        return result;
+    }
+    if(0.7<=XAper && XAper<=0.77 && WDAper<0.75){
+        result.textData.push(`[잠정 결과10] 확장된 적합한 형태 비율(XA%)과 흔한 영역의 적합한 형태 비율(WDA%)을 고려할 때, 수검자의 현실검증능력(reality testing)은 중등도(moderate) 이상의 현저한(substantial) 수준으로 손상되었을(impairment) 것이다. `);
+        result.nextStep = 2;
+        result.goNext = false;
+        return result;
+    }
+    if(XAper<0.7 && WDAper>=0.8){
+        result.textData.push(`[잠정 결과5] 확장된 적합한 형태 비율(XA%)과 흔한 영역의 적합한 형태 비율(WDA%)을 고려할 때, 수검자는 적절한 해석에 대한 단서가 명확하지 않은 상황에서 중재 활동 또는 현실검증능력이 현저하게 약해질 것이다. <br/>`);
+        result.textData.push(`일반적으로 적합한 형태 비율을 반영하는 두 지표(XA%, WDA%)의 차이는 잘못된 판단이 포함된 드문 부분(Dd) 반응과 상관관계를 이룬다. 여기서 드문 부분(Dd) 반응은 처리의 효율적 사용(economy)을 반영하는 것이 아니라, 그 대신에, 방어, 거부적 태세, 사소한 것에 대한 특이한 몰두 때문에 발생하는 (이전에 얻었던) 심상을 재구성하는 어떤 방식을 반영하는 것이다. 좋지 않은 형태질(FQ: minus, NoForm) 반응을 재검토하여 어떠한 원인이 효과적인(effective) 중재를 방해하는지 정보를 얻을 수 있다.`);
+        result.nextStep = 2;
+        result.goNext = false;
+        return result;
+    }
+    if(XAper<0.7 && WDAper<0.75){
+        result.textData.push(`[잠정 결과7a] 확장된 적합한 형태 비율(XA%)과 흔한 영역의 적합한 형태 비율(WDA%)을 고려할 때, 수검자의 중재 활동이 상당히 손상되었을 것이다. `);
+        result.textData.push(`수검자는 일상적으로 심리적 측면을 관리하는 데 지속적이고 광범위한(pervasive) 어려움을 겪을 것이다. 때때로 정신증적 수준의 혼란(disturbance)을 겪을 것이다.`);
+        result.textData.push(`흔한 영역의 적합한 형태 비율(WDA%)이 낮을수록 정신증적 상태의 가능성이 명확해지고, 일상생활에서 다른 사람의 도움이나 감독이 필요한 정도가 증가할 수 있다. <br/>`);
+        result.textData.push(`정신증적 과정(psychotic-like process)이 존재할 경우 흔하게 나타나지만, 중재 활동에 관련된 모든 자료를 살펴보지 않고 결론은 내리는 것은 적절하지 않다.<br/><br/>`);
+        result.textData.push(`[잠정 결과7b] 확장된 적합한 형태 비율(XA%)과 흔한 영역의 적합한 형태 비율(WDA%)의 점수 차이를 통해, 수검자의 현실검증능력 손상이 일상 기능에 미치는 영향의 정도를 파악할 수 있다.`);
+
+        if(0.65<=WDAper && WDAper<=0.74){
+            result.textData.push(`[잠정결과7a1] 중재 활동의 기능 이상이 심하고, 현실검증능력도 현저하게 영향을 받을 것이다.`);
+            result.nextStep = 2;
+            result.goNext = false;
+            return result;
+        }
+        if(WDAper<0.65){
+            result.textData.push(`[잠정결과7a2] 중재 활동의 기능 이상이 극심하고, 현실검증능력도 현저하게 손상되었을 것이다.`);
+            result.nextStep = 2;
+            result.goNext = false;
+            return result;
+        }
+        if((WDAper-XAper) >= 0.1){
+            result.textData.push(`[잠정결과7b1] 단서가 덜 명확한 상황에서 중재 활동의 기능 장애가 현저해질 것이다.`);
+            result.nextStep = 2;
+            result.goNext = false;
+            return result;
+        }
+        if((WDAper-XAper) <0.1){
+            result.textData.push(`[잠정결과7b2] 현실검증능력의 손상이 전반적이어서 명확한 원위적 특징(단서)에 상관없이 중재 활동에 기능장애가 나타날 것이다.`);
+            result.nextStep = 2;
+            result.goNext =false;
+            return result;
+        }
+    }
     
     
     result.goNext = false;
