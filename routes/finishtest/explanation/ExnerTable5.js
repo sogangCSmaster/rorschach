@@ -119,38 +119,21 @@ function step1({ XAper, WDAper }) {
     return result;
 }
 
-function step2({ Dd, W, D }) {
+function step2({ fqx_none }) {
     var result = {};
     result.textData = [];
+    result.curStep = 2;
 
-    if (Dd <= 3) {
-        if (D >= 1.3 * W || D <= 1.6 * W) {
-            result.textData.push('[잠정 결과1] [정상범주] 반응 위치 비율(W:D:Dd)을 고려할 때, 수검자가 들이는 처리 노력이나 처리 전략은 대부분의 다른 사람들에서 예상할 수 있는 범주에 있을 것이다. 이 결과는 잠정적이므로 3단계(step3)에서 다루는 위치 계열에 따라 노력이나 동기를 더 확인할 필요가 있다.');
-        } else if (W > D) {
-            result.textData.push('[잠정 결과2a] 반응 위치 비율(W:D:Dd)을 고려할 때, 수검자가 들이는 처리 노력이나 처리 전략이 여느 때와 무언가 다를 것이다. 수검자는 처리 노력을 많이 들일 것이다. 이러한 경향성은 전체 반응(W)이 8개를 초과할 경우 더 명확할 것이다.');
-        } else if (W < D) {
-            result.textData.push('[잠정 결과2b] 반응 위치 비율(W:D:Dd)을 고려할 때, 수검자가 들이는 처리 노력이나 처리 전략이 여느 때와 무언가 다를 것이다. 수검자는 처리 노력을 매우 아낄(economical) 것이다. 이러한 경향성은 부분 반응(D)이 전체 반응(W)보다 2배 이상 많으면 더 명확할 것이다.');
-        }
-        result.goNext = false;
-        result.nextStep = 3;
-        return result;
+    if(fqx_none >=2 ){
+        result.textData.push(`[잠정 결과] 형태 없는 반응(FQx none: NoForm)을 고려할 때, 수검자의 중재 활동의 효율성(effectiveness)은 때때로 관념적 태세나 강한 정서의 간섭으로 인해 방해받을 것이다.<br/><br/>`);
+        result.textData.push(`<b>* 형태질 없는 운동 반응: 관념적 태세에 의해 반점의 윤곽이 무시되는 것이다.</b><br/>`);
+        result.textData.push(`<b>* 운동 반응을 제외한 형태질 없는 반응: 강한 정서로 인해 반점 윤곽이 무시되는 것이다.</b><br/>`);
     }
 
-    if (Dd >= 4) {
-        if (W > D) {
-            result.textData.push('[잠정 결과2c1] 반응 위치 비율(W:D:Dd)을 고려할 때, 수검자가 들이는 처리 노력이나 처리 전략이 여느 때와 무언가 다를 것이다. 수검자는 처리 노력을 많이 들일 것이다. 흔하지 않은 부분 반응(Dd)은 자극 장을 엄밀히 검토하고 단기 기억에 저장한 심상을 재구성해야 반응할 수 있으므로, 흔하지 않은 부분 반응(Dd)이 많다는 것은 처리 노력을 더 많이 들인다는 것을 의미한다.');
-        } else if (W < D) {
-            result.textData.push('[잠정 결과2c2] 반응 위치 비율(W:D:Dd)을 고려할 때, 수검자가 들이는 처리 노력이나 처리 전략이 여느 때와 무언가 다를 것이다. 처리 노력이 많이 필요한 흔하지 않은 부분 반응(Dd)이 많은 상황에서 처리 노력이 더 많이 드는 전체 반응(W)보다 처리 노력이 덜 드는 부분 반응(D)이 많다는 것은 아래 사항에 해당하는 경우일 수 있다.');
-            result.textData.push('1) 완벽주의에 가까운 강박적인 경향으로(obsessive-like tendency) 인해 자극 장의 세부적인 면에 불필요하게 몰두할 것이다. 수검자는 자신의 의사결정 능력을 자주 언짢게 느끼고 있으며, 수검자는 덜 복잡하고 더 다루기 쉬운 자극 장을 처리하는 게 더 쉽다는 걸 알기 때문에 전체 반응(W)보다 처리노력이 덜 드는 부분 반응(D)을 더 많이 할 것이다. 특히, 강박지표(OBS)에 해당하면 이러한 경향성이 더 뚜렷할 수 있다.');
-            result.textData.push('2) 수검자는 매우 조심스럽고 의심이 많으며, 무언가 모호하게 지각되는 것에 최소한으로 관여하려고 할 것이다. 모호한 것을 최소화하기 위해 윤곽이 명확한 드문 부분(Dd)을 선택하거나, 반응 위치를 조합하여 윤곽이 명확해 보이는 드문 부분(Dd)을 만들기 때문에 드문 부분 반응(Dd)이 많아질 수 있다. 이러한 결과는 회피 유형(avoidant style)이나 과경계지표(HVI)에 해당하는 수검자에서 흔하게 나타난다.');
-            result.textData.push('3) 수검자가 거부적 태세(Negativistic set)를 가지고 있어서, 공백(white space)을 과도하게 사용하도록 촉진된 것일 수 있다. 어떤 공간 반응은 전체 반응(WS)이나 부분 반응(DS)일 수 있지만, 과도하게 공백을 사용할 경우 드문 부분 반응(DdS)이 흔하게 나타난다. 흔하지 않은 종류의 처리 전략이지만 어떤 집단에서는 특별하지 않을 수 있다. 상당한 정서적 혼란(disarray) 상태에서는 흔하게 나타난다.');
-        }
-        result.goNext = false;
-        result.nextStep = 3;
-        return result;
-    }
+    
 
-    result.goNext = true;
+    result.goNext = false;
+    result.nextStep = 3;
     return result;
 }
 

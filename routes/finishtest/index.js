@@ -453,6 +453,7 @@ router.route("/finishtest1")
             upper.form_quality.FQx = form_quality.getFQx(score);
             upper.form_quality.MQuality = form_quality.getMQual(score);
             upper.form_quality.WPlusD = form_quality.getWPlusD(score);
+            indicators.fqx_none = upper.form_quality.FQx.none;
     
             upper.special_scores = {};
             upper.special_scores.DV1 = special_scores.getDV1(score);
