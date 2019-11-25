@@ -19,43 +19,121 @@ function step1({ XAper, WDAper }) {
     var result = {};
     result.textData = [];
     result.curStep = 1;
+
+    if(XAper>0.9 && XAper<=WDAper){
+        result.textData.push(`[잠정 결과2] 확장된 적합한 형태 비율(XA%)과 흔한 영역의 적합한 형태 비율(WDA%)을 고려할 때, 수검자는 중재 활동이 상황에 적합해 보이도록 각별하게 노력할 것이다. 이러한 경향은 강박적 유형(obsessive style)의 사람에서 흔하게 나타나지만, 기계적으로 강박성(obsessiveness)과 같다고 여겨서는 안 된다. 단순히 상황을 정확하게 해석하려는 현저한 경향이 수검자의 중재 활동에 영향을 주고 있는 것을 의미한다. - 강박지표(OBS)가 상승한 경우 흔하게 나타날 수 있다.`);
+        result.nextStep = 2;
+        result.goNext = false;
+        return result;
+    }
+    if(0.78<=XAper && XAper<=0.9 && XAper<=WDAper){
+        result.textData.push(`[잠정 결과1] [정상범주] 확장된 적합한 형태 비율(XA%)과 흔한 영역의 적합한 형태 비율(WDA%)을 고려할 때, 수검자의 중재 활동이 상황에 적합한 행동을 유도하고 있을 것이다. 대개 중재가 상황에 적절하며, 관습적인 현실검증능력에 필요한 기본 요소가 온전할 것이다. `);
+        result.nextStep = 2;
+        result.goNext = false;
+        return result;
+    }
+    if(XAper>=0.78 && XAper>WDAper){
+        result.textData.push(`[잠정 결과8] 확장된 적합한 형태 비율(XA%)과 흔한 영역의 적합한 형태 비율(WDA%)을 고려할 때, 수검자는 일반적으로 적절한 현실검증능력(reality testing)을 보이지만, 때때로 현실(reality)과 환상(fantasy)을 구별하고 적절한 판단을 발휘하는 데 약간의 어려움을 보일 수 있다.<br/>`)
+        result.textData.push(`반응 위치에서 단서가 더 명확한 부분(W, D)의 형태질 보다 단서가 덜 명확한 부분(Dd)의 형태질이 더 좋을 것이다. 확장된 적합한 형태 비율(XA%)에서 나타나는 것보다 일상생활에서 현실(reality)을 효과적으로 다루는 데 더 어려울 것이므로, 현실검증능력(reality testing)의 적절성을 하향 조정하여 해석할 필요가 있다.`);
+        result.nextStep = 2;
+        result.goNext = false;
+        return result;
+    }
+    if(XAper>=0.78 && WDAper<0.75){
+        result.textData.push(`[잠정 결과3] 확장된 적합한 형태 비율(XA%)과 흔한 영역의 적합한 형태 비율(WDA%)을 고려할 때, 수검자의 처리 활동에 문제가 있거나, 수검자가 심한 혼란(disarray)을 겪는 것처럼 가장하는(simulate) 것일 수 있다.<br/>`);
+        result.textData.push(`현재 지표 점수는 매우 드물게 나타나는 것으로 반응 수(R)가 16개 이하이거나, 상당수의 반응 위치가 드문 부분(Dd)인 이상한 조합일 수 있다. 계산 오류가 없으면 반응 위치에서 단서가 더 명확한 부분(W, D)의 형태질(FQ: minus, Noform)보다 단서가 덜 명확한 부분(Dd)의 형태질(FQ: o, u)이 더 좋을 것이다.`);
+        result.nextStep = 2;
+        result.goNext = false;
+        return result;
+    }
+
+    if(0.7<=XAper && XAper <=0.77 && WDAper>=0.8){
+        result.textData.push(`[잠정 결과4] 확장된 적합한 형태 비율(XA%)과 흔한 영역의 적합한 형태 비율(WDA%)을 고려할 때, 수검자의 중재 활동은 단서가 명확한 상황에서는 적절하지만, 단서가 덜 명확한 상황에서는 적절하지 않을 것이다.<br/>`);
+        result.textData.push(`중재 활동의 효율성(effectiveness) 저하는 (또는 현실검증능력의 저하는) 다양한 요인으로 야기될 수 있다. 일반적으로 정서적 또는 관념적 간섭이 원인일 수 있지만, 때로는 처리 활동의 문제가 잘못된 판단(중재 오류)으로 이어질 수 있다. 좋지 않은 형태질(FQ: minus, NoForm) 반응을 재검토하여 그러한 원인에 대한 정보를 얻을 수 있다.`);
+        result.nextStep = 2;
+        result.goNext = false;
+        return result;
+    }
+    if(0.7<=XAper && XAper <=0.77 && WDAper<0.8){
+        result.textData.push(`[잠정 결과9] 확장된 적합한 형태 비율(XA%)과 흔한 영역의 적합한 형태 비율(WDA%)을 고려할 때, 수검자의 현실검증능력(reality testing)은 경도(mild)에서 중등도(moderate) 수준으로 손상되었을 것이다.`);
+        result.nextStep = 2;
+        result.goNext = false;
+        return result;
+    }
+    if((0.7<=XAper && XAper<=0.77) && (0.75<=WDAper && WDAper<=0.79)){
+        result.textData.push(`[잠정 결과6] 확장된 적합한 형태 비율(XA%)과 흔한 영역의 적합한 형태 비율(WDA%)을 고려할 때, 수검자의 중재 활동은 중등도 수준의 기능 이상을 보일 것이다. * XA%< 0.70, 0.75≤WDA%≤0.79 경우, 더 상당한 수준의 기능 이상을 보일 것이다. <br/>`);
+        result.textData.push(`단서가 명확한 반응 위치(W, D)는 드문 부분(Dd)에 비해 원위적 특성(단서)이 유도하는 반응이 더 다양하고 많으며 서로 독립적이어서 해석 근거의 왜곡 가능성이 작다. 단서가 명확한 반응 위치(W, D)에서 뚜렷한 저하가 나타나는 것은 명확한 특징을 무시하거나 왜곡하는 현실검증능력의 문제가 반영된 것일 수 있다.`);
+        result.textData.push(`이러한 문제는 대개 정서적 또는 관념적 간섭으로 인해 나타난다. 단서가 명확한 반응 위치(W, D)에서 좋지 않은 형태질(FQ: minus, NoForm) 반응을 검토하여 중재 손상의 원인에 대해 이해할 수 있다.`);
+        result.nextStep = 2;
+        result.goNext = false;
+        return result;
+    }
+    if(0.7<=XAper && XAper<=0.77 && WDAper<0.75){
+        result.textData.push(`[잠정 결과10] 확장된 적합한 형태 비율(XA%)과 흔한 영역의 적합한 형태 비율(WDA%)을 고려할 때, 수검자의 현실검증능력(reality testing)은 중등도(moderate) 이상의 현저한(substantial) 수준으로 손상되었을(impairment) 것이다. `);
+        result.nextStep = 2;
+        result.goNext = false;
+        return result;
+    }
+    if(XAper<0.7 && WDAper>=0.8){
+        result.textData.push(`[잠정 결과5] 확장된 적합한 형태 비율(XA%)과 흔한 영역의 적합한 형태 비율(WDA%)을 고려할 때, 수검자는 적절한 해석에 대한 단서가 명확하지 않은 상황에서 중재 활동 또는 현실검증능력이 현저하게 약해질 것이다. <br/>`);
+        result.textData.push(`일반적으로 적합한 형태 비율을 반영하는 두 지표(XA%, WDA%)의 차이는 잘못된 판단이 포함된 드문 부분(Dd) 반응과 상관관계를 이룬다. 여기서 드문 부분(Dd) 반응은 처리의 효율적 사용(economy)을 반영하는 것이 아니라, 그 대신에, 방어, 거부적 태세, 사소한 것에 대한 특이한 몰두 때문에 발생하는 (이전에 얻었던) 심상을 재구성하는 어떤 방식을 반영하는 것이다. 좋지 않은 형태질(FQ: minus, NoForm) 반응을 재검토하여 어떠한 원인이 효과적인(effective) 중재를 방해하는지 정보를 얻을 수 있다.`);
+        result.nextStep = 2;
+        result.goNext = false;
+        return result;
+    }
+    if(XAper<0.7 && WDAper<0.75){
+        result.textData.push(`[잠정 결과7a] 확장된 적합한 형태 비율(XA%)과 흔한 영역의 적합한 형태 비율(WDA%)을 고려할 때, 수검자의 중재 활동이 상당히 손상되었을 것이다. `);
+        result.textData.push(`수검자는 일상적으로 심리적 측면을 관리하는 데 지속적이고 광범위한(pervasive) 어려움을 겪을 것이다. 때때로 정신증적 수준의 혼란(disturbance)을 겪을 것이다.`);
+        result.textData.push(`흔한 영역의 적합한 형태 비율(WDA%)이 낮을수록 정신증적 상태의 가능성이 명확해지고, 일상생활에서 다른 사람의 도움이나 감독이 필요한 정도가 증가할 수 있다. <br/>`);
+        result.textData.push(`정신증적 과정(psychotic-like process)이 존재할 경우 흔하게 나타나지만, 중재 활동에 관련된 모든 자료를 살펴보지 않고 결론은 내리는 것은 적절하지 않다.<br/><br/>`);
+        result.textData.push(`[잠정 결과7b] 확장된 적합한 형태 비율(XA%)과 흔한 영역의 적합한 형태 비율(WDA%)의 점수 차이를 통해, 수검자의 현실검증능력 손상이 일상 기능에 미치는 영향의 정도를 파악할 수 있다.`);
+
+        if(0.65<=WDAper && WDAper<=0.74){
+            result.textData.push(`[잠정결과7a1] 중재 활동의 기능 이상이 심하고, 현실검증능력도 현저하게 영향을 받을 것이다.`);
+            result.nextStep = 2;
+            result.goNext = false;
+            return result;
+        }
+        if(WDAper<0.65){
+            result.textData.push(`[잠정결과7a2] 중재 활동의 기능 이상이 극심하고, 현실검증능력도 현저하게 손상되었을 것이다.`);
+            result.nextStep = 2;
+            result.goNext = false;
+            return result;
+        }
+        if((WDAper-XAper) >= 0.1){
+            result.textData.push(`[잠정결과7b1] 단서가 덜 명확한 상황에서 중재 활동의 기능 장애가 현저해질 것이다.`);
+            result.nextStep = 2;
+            result.goNext = false;
+            return result;
+        }
+        if((WDAper-XAper) <0.1){
+            result.textData.push(`[잠정결과7b2] 현실검증능력의 손상이 전반적이어서 명확한 원위적 특징(단서)에 상관없이 중재 활동에 기능장애가 나타날 것이다.`);
+            result.nextStep = 2;
+            result.goNext =false;
+            return result;
+        }
+    }
+    
     
     result.goNext = false;
     return result;
 }
 
-function step2({ Dd, W, D }) {
+function step2({ fqx_none }) {
     var result = {};
     result.textData = [];
+    result.curStep = 2;
 
-    if (Dd <= 3) {
-        if (D >= 1.3 * W || D <= 1.6 * W) {
-            result.textData.push('[잠정 결과1] [정상범주] 반응 위치 비율(W:D:Dd)을 고려할 때, 수검자가 들이는 처리 노력이나 처리 전략은 대부분의 다른 사람들에서 예상할 수 있는 범주에 있을 것이다. 이 결과는 잠정적이므로 3단계(step3)에서 다루는 위치 계열에 따라 노력이나 동기를 더 확인할 필요가 있다.');
-        } else if (W > D) {
-            result.textData.push('[잠정 결과2a] 반응 위치 비율(W:D:Dd)을 고려할 때, 수검자가 들이는 처리 노력이나 처리 전략이 여느 때와 무언가 다를 것이다. 수검자는 처리 노력을 많이 들일 것이다. 이러한 경향성은 전체 반응(W)이 8개를 초과할 경우 더 명확할 것이다.');
-        } else if (W < D) {
-            result.textData.push('[잠정 결과2b] 반응 위치 비율(W:D:Dd)을 고려할 때, 수검자가 들이는 처리 노력이나 처리 전략이 여느 때와 무언가 다를 것이다. 수검자는 처리 노력을 매우 아낄(economical) 것이다. 이러한 경향성은 부분 반응(D)이 전체 반응(W)보다 2배 이상 많으면 더 명확할 것이다.');
-        }
-        result.goNext = false;
-        result.nextStep = 3;
-        return result;
+    if(fqx_none >=2 ){
+        result.textData.push(`[잠정 결과] 형태 없는 반응(FQx none: NoForm)을 고려할 때, 수검자의 중재 활동의 효율성(effectiveness)은 때때로 관념적 태세나 강한 정서의 간섭으로 인해 방해받을 것이다.<br/><br/>`);
+        result.textData.push(`<b>* 형태질 없는 운동 반응: 관념적 태세에 의해 반점의 윤곽이 무시되는 것이다.</b><br/>`);
+        result.textData.push(`<b>* 운동 반응을 제외한 형태질 없는 반응: 강한 정서로 인해 반점 윤곽이 무시되는 것이다.</b><br/>`);
     }
 
-    if (Dd >= 4) {
-        if (W > D) {
-            result.textData.push('[잠정 결과2c1] 반응 위치 비율(W:D:Dd)을 고려할 때, 수검자가 들이는 처리 노력이나 처리 전략이 여느 때와 무언가 다를 것이다. 수검자는 처리 노력을 많이 들일 것이다. 흔하지 않은 부분 반응(Dd)은 자극 장을 엄밀히 검토하고 단기 기억에 저장한 심상을 재구성해야 반응할 수 있으므로, 흔하지 않은 부분 반응(Dd)이 많다는 것은 처리 노력을 더 많이 들인다는 것을 의미한다.');
-        } else if (W < D) {
-            result.textData.push('[잠정 결과2c2] 반응 위치 비율(W:D:Dd)을 고려할 때, 수검자가 들이는 처리 노력이나 처리 전략이 여느 때와 무언가 다를 것이다. 처리 노력이 많이 필요한 흔하지 않은 부분 반응(Dd)이 많은 상황에서 처리 노력이 더 많이 드는 전체 반응(W)보다 처리 노력이 덜 드는 부분 반응(D)이 많다는 것은 아래 사항에 해당하는 경우일 수 있다.');
-            result.textData.push('1) 완벽주의에 가까운 강박적인 경향으로(obsessive-like tendency) 인해 자극 장의 세부적인 면에 불필요하게 몰두할 것이다. 수검자는 자신의 의사결정 능력을 자주 언짢게 느끼고 있으며, 수검자는 덜 복잡하고 더 다루기 쉬운 자극 장을 처리하는 게 더 쉽다는 걸 알기 때문에 전체 반응(W)보다 처리노력이 덜 드는 부분 반응(D)을 더 많이 할 것이다. 특히, 강박지표(OBS)에 해당하면 이러한 경향성이 더 뚜렷할 수 있다.');
-            result.textData.push('2) 수검자는 매우 조심스럽고 의심이 많으며, 무언가 모호하게 지각되는 것에 최소한으로 관여하려고 할 것이다. 모호한 것을 최소화하기 위해 윤곽이 명확한 드문 부분(Dd)을 선택하거나, 반응 위치를 조합하여 윤곽이 명확해 보이는 드문 부분(Dd)을 만들기 때문에 드문 부분 반응(Dd)이 많아질 수 있다. 이러한 결과는 회피 유형(avoidant style)이나 과경계지표(HVI)에 해당하는 수검자에서 흔하게 나타난다.');
-            result.textData.push('3) 수검자가 거부적 태세(Negativistic set)를 가지고 있어서, 공백(white space)을 과도하게 사용하도록 촉진된 것일 수 있다. 어떤 공간 반응은 전체 반응(WS)이나 부분 반응(DS)일 수 있지만, 과도하게 공백을 사용할 경우 드문 부분 반응(DdS)이 흔하게 나타난다. 흔하지 않은 종류의 처리 전략이지만 어떤 집단에서는 특별하지 않을 수 있다. 상당한 정서적 혼란(disarray) 상태에서는 흔하게 나타난다.');
-        }
-        result.goNext = false;
-        result.nextStep = 3;
-        return result;
-    }
+    
 
-    result.goNext = true;
+    result.goNext = false;
+    result.nextStep = 3;
     return result;
 }
 
