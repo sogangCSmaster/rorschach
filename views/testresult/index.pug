@@ -479,7 +479,7 @@ html
                                     tr
                                         td(colspan="12") GHR : PHR
                                             br
-                                            | active : passive
+                                            | active : passive(a:p)
                                             br
                                             | Food (Fd)
                                             br
@@ -515,7 +515,7 @@ html
                                         th.text-center(colspan="24") 관념화 영역
                                 tbody
                                     tr
-                                        td(colspan="16") active : passive
+                                        td(colspan="16") active : passive(a:p)
                                             br
                                             | M<sup>a</sup> : M<sup>p</sup>
                                             br
@@ -894,13 +894,13 @@ html
                                                     i.fa.fa-check-square-o
                                                 else
                                                     i.fa.fa-square-o
-                                                | &nbsp;(Affective Ratio < 0.46) or (Blends < 4)
+                                                | &nbsp;(Affective Ratio(Afr) < 0.46) or (Blends < 4)
                                             p
                                                 if SpecialIndices.DEPI.SumShading
                                                     i.fa.fa-check-square-o
                                                 else
                                                     i.fa.fa-square-o
-                                                | &nbsp;(SumShading > Fm + m) or (SumC' > 2)
+                                                | &nbsp;(SumShading > FM + m) or (SumC' > 2)
                                             p
                                                 if SpecialIndices.DEPI.MOR
                                                     i.fa.fa-check-square-o
@@ -945,7 +945,7 @@ html
                                                     i.fa.fa-check-square-o
                                                 else
                                                     i.fa.fa-square-o
-                                                | &nbsp;(WsumC < 2.5) or *(Affective < 0.46)
+                                                | &nbsp;(WSumC < 2.5) or *(Affective Ratio(Afr) < 0.46)
                                             p
                                                 if SpecialIndices.CDI.Passive
                                                     i.fa.fa-check-square-o
@@ -982,7 +982,7 @@ html
                                                     i.fa.fa-check-square-o
                                                 else
                                                     i.fa.fa-square-o
-                                                | &nbsp;(1) SumT = 0
+                                                | &nbsp;<u>(1) SumT = 0</u>
                                             p
                                                 if SpecialIndices.HVI.Zf
                                                     i.fa.fa-check-square-o
