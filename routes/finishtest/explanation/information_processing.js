@@ -9,7 +9,6 @@ exports.calculateExnerTable4 = calculateExnerTable4;
 function nextStep(stepNum, result, scores) {
     var step = eval(`step${stepNum}(scores)`);
     result.push(step);
-    console.warn(step);
     if (step.goNext == true) {
         return result;
     }

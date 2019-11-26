@@ -35,6 +35,7 @@ const affect = require('./explanation/affect');
 const ExnerTable2 = require('./explanation/ExnerTable2');
 const ExnerTable4 = require('./explanation/information_processing');
 const ExnerTable5 = require('./explanation/ExnerTable5');
+const ExnerTable6 = require('./explanation/ExnerTable6');
 const step3a = require('./explanation/step3a');
 
 router.route("/finishtest1")
@@ -811,6 +812,12 @@ router.route("/finishtest1")
                     indicators.checkFQminus3andPureF = checkFQminus3andPureF;
                     indicators.checkFQminus3 = checkFQminus3;
                     steps = ExnerTable5.calculateExnerTable5(indicators);
+                    TESTRESULT.push({resultName, steps});
+                }
+
+                if(scoreOrder[i]=="관념화"){
+                    resultName = "Ideation 관념화";
+                    steps = ExnerTable6.calculateExnerTable6(indicators);
                     TESTRESULT.push({resultName, steps});
                 }
             }

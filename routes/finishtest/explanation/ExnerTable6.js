@@ -220,3 +220,214 @@ function step4({ OBSPosivie, HVIPositive, MOR }){
     result.goNext = false;
     return result;
 }
+
+function step5({ FM, m, Lambda}){
+    var result = {};
+    result.textData = [];
+    result.curStep = 5;
+
+    if(3<=FM+m && FM+m<=6){
+        if(FM>m){
+            result.textData.push(`[잠정 결과1a] [정상범주] 스트레스 유형 비율(eb)의 좌항(FM+m)을 고려할 때, 수검자의 관념적 주의 초점에 영향을 미치는 주변적 관념은 일반적인 수준일 것이다. 이 경우 충족되지 않은 욕구로 인해 발생하는 주변적 사고(FM)는 2개 이하일 것이다. `);
+            result.nextStep = 6;
+            result.goNext = false;
+            return result;
+        }
+        if(FM<m){
+            result.textData.push(`[잠정 결과1b] 스트레스 유형 비율(eb)의 좌항(FM+m)을 고려할 때, 수검자의 관념적 주의 초점에 영향을 미치는 주변적 관념은 대개 상황적 스트레스에 의해 증가해 있을 것이다. `);
+            result.nextStep = 6;
+            result.goNext = false;
+            return result;
+        }
+
+        if(FM<=1){
+            result.textData.push(`[잠정 결과1c] 스트레스 유형 비율(eb)의 좌항(FM+m)을 고려할 때, 수검자는 관념의 주의 초점에 영향을 미치는 주변적 관념을 최소화하거나 회피하려고 할 것이다. 다시 말해, 욕구 상태에 의해 자연스럽게 발생하는 정신적 방해를 줄이려는 뚜렷한 경향을 보일 것이다. <br/><br/>`);
+            result.textData.push(`- 회피 유형(avoidant style)일 경우, 욕구를 경험할 때마다 신속하게 감소시키는 행동을 할 것이다.<br/>`);
+            result.textData.push(`- 회피 유형(avoidant style)이 아닐 경우, 주변적 사고를 더 통제되고 더 목표지향적 사고의 흐름에 방어적으로 병합시키는 개념적 책략을 발휘할 것이다. 욕구가 해소되지 않고 그대로 남아 있거나 더 강렬해지더라도, 이러한 책략은 충족되지 않은 욕구에 의한 주변적 사고의 영향력을 일시적으로 줄어들게 할 것이다. <br/><br/>`);
+            result.textData.push(`<em>예) 매우 배고픈 사람이 음식 목록이나 조리법을 떠올리면서 배고픔으로 발생하는 주변적 정신 활동을 중화시키는 것을 볼 수 있다. </em>`);
+            result.nextStep = 6;
+            result.goNext = false;
+            return result;
+        }
+    }
+
+    if(FM+m<=2){
+        if(Lambda<=0.99){
+            result.textData.push(`[잠정 결과2a] 스트레스 유형 비율(eb)의 좌항(FM+m)을 고려할 때, 수검자는 관념의 주의 초점에 영향을 미치는 주변적 관념을 최소화하거나 회피하려는 일상적이지 않은 상태일 것이다. `);
+            result.textData.push(`회피 유형(avoidant style)이 아닐 경우, 수검자는 사고를 목표지향적 개념적 체계에 주변적 사고를 방어적으로 병합시킬 것이다. `);
+            result.nextStep = 6;
+            result.goNext = false;
+            return result;
+        }
+        if(Lambda>=1){
+            result.textData.push(`[잠정 결과2b] 스트레스 유형 비율(eb)의 좌항(FM+m)을 고려할 때, 수검자는 관념의 주의 초점에 영향을 미치는 주변적 관념을 최소화하거나 회피하려는 일상적이지 않은 상태일 것이다. `);
+            result.textData.push(`회피 유형(avoidant coping style)일 경우, 주변적 사고의 방해로 만들어지는 불편(irritation)을 줄이기 위해 빠르게 반응하는 경향을 보일 것이다. 이러한 경향은 충족되지 않은 욕구에 의한 주변적 사고(FM)가 1개 이하라면 더 명확할 것이다. <br/>`);
+            result.textData.push(`이러한 책략은 심리적 균형을 유지하려는 항상성(homeostatic)의 관점에서 볼 때 긍정적일 수 있다. 하지만 조급하게 만들어 낸 반응이라 자주 심사숙고를 거치지 않으며, 장기적으로는 효율성(effectiveness)이 매우 제한적이기 때문에 부정적인 것으로 볼 수 있다.`);
+            result.nextStep = 6;
+            result.goNext = false;
+            return result;
+        }
+    }
+
+    if((FM+m==7 && (FM==7 || (FM==6 && m==1))) || (FM+m>=8 && FM>=6)){
+        if(m<=2){
+            result.textData.push(`[잠정 결과3a] 스트레스 유형 비율(eb)의 좌항(FM+m)을 고려할 때, 수검자는 관념의 주의 초점에 영향을 미치는 주변적 관념을 내적 욕구 상태로 인해 상당한 수준으로 경험하고 있을 것이다. `);
+            result.textData.push(`대개, 증가한 주변적 정신 활동의 상태는 일시적이지 않고 더 만성적일 것이고, 주의와 집중을 방해받는 빈도를 증가시킬 것이다.`);
+            result.nextStep = 6;
+            result.goNext = false;
+            return result;
+        }
+        if(m>=3){
+            result.textData.push(`[잠정 결과3b] 스트레스 유형 비율(eb)의 좌항(FM+m)을 고려할 때, 수검자가 경험하고 있는 관념의 주의 초점에 영향을 미치는 주변적 관념은 상황에 관련된 스트레스로 인해 증가해 있을 것이다.`);
+            result.nextStep = 6;
+            result.goNext = false;
+            return result;
+        }
+    }
+
+    if((FM+m==7 && FM<=3) || (FM+m>=8 || FM<=4)){
+        result.textData.push(`[잠정 결과4] 스트레스 유형 비율(eb)의 좌항(FM+m)을 고려할 때, 수검자는 관념의 주의 초점에 영향을 미치는 주변적 관념을 예기치 않은 상황에 관련된 스트레스로 인해 현저하게 경험하고 있을 것이다. `);
+        result.textData.push(`대개, 증가한 주변적 정신 활동의 상태는 일시적이지만, 주변적 사고가 증가해 있는 동안 줄곧 주의와 집중 활동이 저하된다는 점을 중요하게 보아야 한다. `);
+        result.nextStep = 6;
+        result.goNext = false;
+        return result;
+    }
+
+    result.nextStep = 6;
+    result.goNext = false;
+    return result;
+
+}
+
+function step6({ Ma, Mp }){
+    var result = {};
+    result.textData = [];
+    result.curStep = 6;
+    if(Ma+1==Mp){
+        result.textData.push(`[잠정 결과1] 의식적 사고를 반영하는 인간 운동의 능동-수동 비율(Ma : Mp)을 고려할 때, 수검자는 더 자주 명백하게 다른 사람에 비해 스트레스 상황에서 현실을 환상으로 대체하는 경향을 보일 것이다. `);
+        result.textData.push(`효과적인(effective) 방어전략일 수 있으며, 다른 사람에게 현저하게 의존적이라는 증거가 없다면 불리한 점(liability)으로 고려하지 않아도 된다. 수검자가 다른 사람에게 일상적이지 않은 의존 경향을 보인다면, 환상의 지나친 사용은 그러한 의존 경향을 악화시킬 뿐이다. `);
+        result.nextStep = 7;
+        result.goNext = false;
+        return result;
+    }
+
+    if(Ma+2<=Mp){
+        result.textData.push(`[잠정 결과2] 의식적 사고를 반영하는 인간운동의 능동-수동 비율(Ma : Mp)을 고려할 때, 수검자는 환상으로 도망치는 유형화된 경향을 불쾌한 상황을 다루는 일상적인 책략으로 사용할 것이다. 이러한 경향은 주로 의사결정과 책임을 회피하는 것을 특징으로 하는 백설 공주 증후군이라고도 부른다. `);
+        result.textData.push(`수검자는 현실을 부정하기 위해 환상을 과도하게 남용할 것이다. 하지만, 그 결과는 흔히 수검자가 원하는 것과 정반대인 경우가 많을 것이다. 이러한 대처 형태는 다른 사람에게 의존을 요구하기 때문에 자신에게 스스로 무력함을 부과하게 만든다. 이러한 특징을 가진 수검자는 다른 사람의 조종이나 속임에 빠지기 쉽다. <br/>`);
+        result.textData.push(`특히, 지배적인 내향형의 수검자에게 이러한 방어적 대처방식은 해로울 수 있다. 왜냐하면, 상황이 매우 복잡하거나 잠재적으로 스트레스가 많을 것으로 보이면, 기본적 관념의 지향이 의존 지향으로 종속되기 때문이다.`);
+        result.nextStep = 7;
+        result.goNext = false;
+        return result;
+    }
+
+    result.nextStep = 7;
+    result.goNext = false;
+    return result;
+}
+
+function step7({ twoABplusArtplusAy }){
+    var result = {};
+    result.textData = [];
+    result.curStep = 7;
+
+    if(4<=twoABplusArtplusAy && twoABplusArtplusAy<=6){
+        result.textData.push(`[잠정 결과1] 주지화 지표(Intellectualization index)를 고려할 때, 수검자는 감정을 주지화하는 경향이 강할 것이다. 상황의 실재하는 영향에 대응하여 그것을 부정하고 왜곡된 형태의 개념적 사고를 채택하거나 수용할 수 있다. `);
+        result.nextStep = 8;
+        result.goNext = false;
+        return result;
+    }
+
+    if(twoABplusArtplusAy>=7){
+        result.textData.push(`[잠정 결과2] 주지화 지표(Intellectualization index)를 고려할 때, 수검자는 스트레스가 많을 것으로 지각되는 상황에서 주지화를 주요한 방어 책략으로 사용할 것이다. 부정을 숨기거나 묵인하는 유사 주지화 과정(pseudo-intellectual process)일 수 있다. 결과적으로 직접적 또는 실질적으로 감정을 다룰 가능성을 감소시킬 것이다. `);
+        result.textData.push(`이러한 수검자는 스트레스 자극의 크기가 증가할수록 주지화가 효과적이지(effective) 않게 되기 때문에 강한 정서를 경험하는 동안 관념이 혼란스러워지기(disorganized) 쉽다. 또한, 다른 사람에 비해 왜곡된 개념을 수용하기 쉬울 수 있다.`);
+        result.textData.push(`극단적인 주지화는 망상적 사고에서 보이는 잘못된 개념을 형성하거나 유지하는 기본 요소로 기능할 수도 있다.`);
+        result.nextStep = 8;
+        result.goNext = false;
+        return result;
+    }
+
+    result.nextStep = 8;
+    result.goNext = false;
+    return result;
+}
+
+function step8({ DV1, DV2, DR1, DR2, INCOM1, INCOM2, FABCOM1, FABCOM2, ALOG, CONTAM, WSum6, age }){
+    var result = {};
+    result.curStep = 8;
+    result.textData = [];
+
+    // To do
+    result.textData.push(`To do....조금 복잡함...`);
+
+    result.nextStep = 9;
+    result.goNext = false;
+    return result;
+}
+
+
+function step9(){
+    var result = {};
+    result.curStep = 9;
+    result.textData = [];
+
+    result.textData.push(`[질적 해석]<br/><br/><br/><br/><br/><br/><br/><br/><br/>`);
+
+    result.nextStep = 10;
+    result.goNext = false;
+    return result;
+}
+
+function step10({ Mminus, Mnone }){
+    var result = {};
+    result.textData = [];
+    result.curStep = 10;
+
+    if(Mminus==0 && Mnone==0){
+        result.textData.push(`[잠정 결과1] [정상범주] 가장 명확하게 개념적 사고를 표상하는 인간운동(M)의 형태질을 고려할 때, 수검자의 인지적 중재와 명료성을 방해하는 어떤 몰두가 만들어 내는 사고의 특징이 나타나지 않는다. `);
+        result.goNext = false;
+        result.nextStep = 11;
+        return result;
+    }
+
+    if(Mminus==1 && Mnone==0){
+        result.textData.push(`[잠정결과2] 가장 명확하게 개념적 사고를 표상하는 인간운동(M)의 형태질을 고려할 때, 수검자의 인지적 중재와 사고의 명료성을 방해하는 사고의 특징이 어떤 몰두로 인해 만들어지고 있을 것이다. `);
+        result.textData.push(`적절하지 않은 형태의 인간운동(M-)이 하나만 있는 것은 관념적 혼란(disarray)이 살짝 드러나서 언뜻 보이는 것일 수 있다. 이것이 사실이라면 앞 단계에서 다룬 결정적 특수점수의 의미는 중요할 수밖에 없으며, 사고장애의 가능성에 주의해야 한다.`);
+        result.goNext = false;
+        result.nextStep = 11;
+        return result;
+    }
+
+    if(Mminus==0 && Mnone>=1){
+        result.textData.push(`[잠정 결과3] 가장 명확하게 개념적 사고를 표상하는 인간운동(M)의 형태질을 고려할 때, 수검자는 사고의 명료성을 방해하는 관념적 통제의 문제를 겪고 있을 것이다. `);
+        result.textData.push(`형태 없는 인간 운동(M none)의 대부분은 슬픔, 분노, 고통, 희열, 사랑 등의 감정 요소를 포함하는 경우, 이것은 감정이 사고를 압도하고, 현실로부터 떨어지게 만드는 불안정한(lability) 상태일 수 있다.`);
+        result.textData.push(`형태 없는 인간 운동(M none)의 반응이 평화, 창의, 지성같이 심원할(esoteric) 것일 경우, 이것은 관념이 불안정하고(fluid), 내적인 몰두가 현실에 겹쳐지거나 현실을 대체하는 상태일 수 있다.`);
+        result.textData.push(`감정 요소를 포함하거나 심원한 관념을 포함하는 두 가지 상태는 모두 사고를 통제하는 능력이 손상되어 있을 것이다. 어떻든지, 더 심원한 관념을 포함하는 형태 없는 인간 운동(M none)은 환각 경험이 생기게 하는 것과 유사한 과정을 포함할 수 있다. `);
+        result.goNext = false;
+        result.nextStep = 11;
+        return result;
+    }
+
+    if(Mminus + Mnone>=2){
+        result.textData.push(`[잠정 결과4] 가장 명확하게 개념적 사고를 표상하는 인간운동(M)의 형태질을 고려할 때, 수검자의 사고는 특이하거나 혼란되어(disturbed) 있을 것이다.`);
+        result.textData.push(`이러한 양상은 부분적으로 산발적인(semi-isolated) 몰두의 결과로 발생할 수도 있지만, 아마도 가중치를 부여한 6개의 결정적 특수점수의 합(WSum6)의 상당한 상승으로 확인되는 더 광범위한 형태의 관념적 혼란(disarray)을 의미할 것이다.`);
+        result.goNext = false;
+        result.nextStep = 11;
+        return result;
+    }
+
+    result.nextStep = 11;
+    result.goNext = false;
+    return result;
+}
+
+function step11(){
+    var result = {};
+    result.textData = [];
+    result.curStep = 11;
+
+    result.textData.push(`[질적 해석]<br/><br/><br/><br/><br/><br/><br/><br/><br/>`);
+
+    result.goNext = true;
+    result.nextStep = 11;
+    return result;
+}
