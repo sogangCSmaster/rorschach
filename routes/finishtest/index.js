@@ -683,12 +683,12 @@ router.route("/finishtest1")
             lower.special_indices.OBSPositive = special_indices.getOBSPositive(score);
             lower.special_indices.OBS = special_indices.getOBS(score);
 
-            indicators.SCONPositive = SCONPositive;
-            indicators.PTIPositive = PTIPositive;
-            indicators.DEPIPositive = DEPIPositive;
-            indicators.CDIPositive = CDIPositive;
-            indicators.HVIPositive = HVIPositive;
-            indicators.OBSPositive = OBSPositive;
+            indicators.SCONPositive = lower.special_indices.SCONPositive;
+            indicators.PTIPositive = lower.special_indices.PTIPositive;
+            indicators.DEPIPositive = lower.special_indices.DEPIPositive;
+            indicators.CDIPositive = lower.special_indices.CDIPositive;
+            indicators.HVIPositive = lower.special_indices.HVIPositive;
+            indicators.OBSPositive = lower.special_indices.OBS;
     
             var SpecialIndices = {};
             SpecialIndices.S_Constellation = {};
