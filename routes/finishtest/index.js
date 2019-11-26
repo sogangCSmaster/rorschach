@@ -682,6 +682,13 @@ router.route("/finishtest1")
             lower.special_indices.HVI = special_indices.getHVI(score);
             lower.special_indices.OBSPositive = special_indices.getOBSPositive(score);
             lower.special_indices.OBS = special_indices.getOBS(score);
+
+            indicators.SCONPositive = SCONPositive;
+            indicators.PTIPositive = PTIPositive;
+            indicators.DEPIPositive = DEPIPositive;
+            indicators.CDIPositive = CDIPositive;
+            indicators.HVIPositive = HVIPositive;
+            indicators.OBSPositive = OBSPositive;
     
             var SpecialIndices = {};
             SpecialIndices.S_Constellation = {};
@@ -698,6 +705,8 @@ router.route("/finishtest1")
             SpecialIndices.S_Constellation.P = S_Constellation.getPChecked(score);
             SpecialIndices.S_Constellation.PureH = S_Constellation.getPureHChecked(score);
             SpecialIndices.S_Constellation.R = S_Constellation.getRChecked(score);
+
+            indicators.MOR = SpecialIndices.S_Constellation.MOR;
     
             SpecialIndices.PTI = {};
             SpecialIndices.PTI.XAper = PTI.getXAperChecked(score);
