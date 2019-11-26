@@ -155,3 +155,36 @@ function step2({ EBper, copyingStyle, approachStyle }){
     result.goNext = false;
     return result;
 }
+
+
+function step3({ a, p }){
+    var result = {};
+    result.textData = [];
+    result.curStep = 3;
+
+    if((a+p==4) && (a==0|| p==0)){
+        result.textData.push(`[잠정 결과1] 능동과 수동 운동 비율[a:p]을 고려할 때, 수검자의 생각이나 가치관은 대부분의 다른 사람들보다 대개 더 많이 확고하고 유연하지 않을 것이다. 수검자의 가치관이 경직되어 있어서 상황에 따라 유연하게 접근하기 어려울 수 있다. `);
+        result.nextStep = 4;
+        result.goNext = false;
+        return result;
+    }
+
+    if(a+p>=5){
+        if((2*p<=a && a<=3*p) || (2*a<=p && p<=3*a)){
+            result.textData.push(`[잠정 결과2] 능동과 수동 운동 비율[a:p]을 고려할 때, 수검자의 관념적 태세나 가치관은 상당히 잘 확립되어 있어서 바꾸기 어려울 것이다. 수검자의 가치관이 상당히 경직되어 있어서 상황에 따라 유연하게 접근하기 어려울 것이다.`);
+            result.nextStep = 4;
+            result.goNext= false;
+            return result;
+        }
+
+        if(a>3*p || p>3*a){
+            result.textData.push(`[잠정 결과3] 능동과 수동 운동 비율[a:p]을 고려할 때, 수검자의 관념적 태세나 가치관이 잘 확립되어 있고 비교적 유연하지 않을 것이다. 수검자는 자신의 태도나 의견을 바꾸기 매우 어려울 것이고, 자신이 가지고 있는 관점과 다른 시각에서 문제를 바라보기 어려울 것이다. `);
+            result.nextStep = 4;
+            result.goNext = false;
+            return result;
+        }
+    }
+
+    result.nextStep = 4;
+    return result;
+}
