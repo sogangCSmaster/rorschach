@@ -147,6 +147,8 @@ html
                                     tr
                                         td(style="font-size: 7pt;" colspan="1.5")
                                             .text-center 복합
+                                                br
+                                                | (Blends)
                                             div
                                                 each blends in upper.blends
                                                     p
@@ -156,6 +158,8 @@ html
                                                         
                                         td(style="font-size: 7pt;" colspan="1.5")
                                             .text-center 전체
+                                                br
+                                                | (Total)
                                             div
                                                 | F = #{upper.determinants.F}
                                                 br
@@ -234,54 +238,43 @@ html
                                         td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3") 위치 & 발달질(DQ)
                                     tr
                                         td.text-center(style="font-size: 7pt; padding: 2px;" colspan="1") Ⅰ
-                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")
-                                            each elem in upper.approach[1]
-                                                = elem + ", "
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")= upper.approach[1].join(', ')
                                     tr
                                         td.text-center(style="font-size: 7pt; padding: 2px;" colspan="1") Ⅱ
-                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")
-                                            each elem in upper.approach[2]
-                                                = elem + ", "
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")= upper.approach[2].join(', ')
+                                            
                                     tr
                                         td.text-center(style="font-size: 7pt; padding: 2px;" colspan="1") Ⅲ
-                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")
-                                            each elem in upper.approach[3]
-                                                = elem + ", "
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")=upper.approach[3].join(', ')
+                                            
                                     tr
                                         td.text-center(style="font-size: 7pt; padding: 2px;" colspan="1") Ⅳ
-                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")
-                                            each elem in upper.approach[4]
-                                                = elem + ", "
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")=upper.approach[4].join(', ')
+                                            
                                     tr
                                         td.text-center(style="font-size: 7pt; padding: 2px;" colspan="1") Ⅴ
-                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")
-                                            each elem in upper.approach[5]
-                                                = elem + ", "
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")=upper.approach[5].join(', ')
+                                            
                                     tr
                                         td.text-center(style="font-size: 7pt; padding: 2px;" colspan="1") Ⅵ
-                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")
-                                            each elem in upper.approach[6]
-                                                = elem + ", "
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")=upper.approach[6].join(', ')
+                                            
                                     tr
                                         td.text-center(style="font-size: 7pt; padding: 2px;" colspan="1") Ⅶ
-                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")
-                                            each elem in upper.approach[7]
-                                                = elem + ", "
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")=upper.approach[7].join(', ')
+                                            
                                     tr
                                         td.text-center(style="font-size: 7pt; padding: 2px;" colspan="1") Ⅷ
-                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")
-                                            each elem in upper.approach[8]
-                                                = elem + ", "
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")=upper.approach[8].join(', ')
+                                            
                                     tr
                                         td.text-center(style="font-size: 7pt; padding: 2px;" colspan="1") Ⅸ
-                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")
-                                            each elem in upper.approach[9]
-                                                = elem + ", "
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")=upper.approach[9].join(', ')
+                                            
                                     tr
                                         td.text-center(style="font-size: 7pt; padding: 2px;" colspan="1") Ⅹ
-                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")
-                                            each elem in upper.approach[10]
-                                                = elem + ", "
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")=upper.approach[10].join(', ')
+                                            
                     .row
                         .col-md-4(style="padding-right: 2px; padding-left: 2px;")
                             table.table.table-bordered
@@ -403,7 +396,9 @@ html
                             table.table.table-bordered(style="font-size: 7pt")
                                 thead
                                     tr
-                                        th.text-center(colspan="24") 핵심 영역 (CORE)
+                                        th.text-center(colspan="24") 핵심 영역
+                                            br
+                                            | (CORE)
                                 tbody
                                     tr
                                         td(colspan="12" ) R = #{lower.core.R}
@@ -437,7 +432,9 @@ html
                             table.table.table-bordered(style="font-size: 7pt;")
                                 thead
                                     tr
-                                        th.text-center(colspan="24") 정서 영역 (AFFECT)
+                                        th.text-center(colspan="24") 정서 영역
+                                            br
+                                            | (AFFECT)
                                 tbody
                                     tr
                                         td(colspan="12").text-center FC : CF+C
@@ -472,6 +469,8 @@ html
                                 thead
                                     tr
                                         th.text-center(colspan="24") 대인 지각 영역
+                                            br
+                                            | (INTERPERSONAL PERCEPTION)
                                 tbody
                                     tr
                                         td(colspan="12") COP = #{lower.interpersonal.COP}
@@ -513,6 +512,8 @@ html
                                 thead
                                     tr
                                         th.text-center(colspan="24") 관념화 영역
+                                            br
+                                            | (IDEATION)
                                 tbody
                                     tr
                                         td(colspan="16") active : passive(a:p)
@@ -556,6 +557,8 @@ html
                                 thead
                                     tr
                                         th.text-center(colspan="24") 인지적 중재 영역
+                                            br
+                                            | (COGNITIVE MEDIATION)
                                 tbody
                                     tr
                                         td(colspan="12") XA%
@@ -592,6 +595,8 @@ html
                                 thead
                                     tr
                                         th.text-center(colspan="24") 정보 처리 영역
+                                            br
+                                            | (INFORMATION PROCESSING)
                                 tbody
                                     tr
                                         td(colspan="12") Zf
@@ -628,6 +633,8 @@ html
                                 thead
                                     tr
                                         th.text-center(colspan="24") 자기 지각 영역
+                                            br
+                                            | (SELF-PERCEPTION)
                                 tbody
                                     tr
                                         td(colspan="12") Egocentricity Index
