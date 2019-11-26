@@ -8,6 +8,7 @@ exports.calculateExnerTable5 = calculateExnerTable5;
 
 function nextStep(stepNum, result, scores) {
     var step = eval(`step${stepNum}(scores)`);
+    console.warn(step.curStep);
     result.push(step);
     if (step.goNext == true) {
         return result;
@@ -286,8 +287,8 @@ function step5({ fqx_plus }){
     }
 
     if(fqx_plus>=4){
-        result.nextStep.push(`[잠정 결과3] 지나치게 정교한 관습적 형태(FQx+) 반응을 고려할 때, 수검자는 정밀하거나 정확하게 하려는 경향이 현저할 것이다. `);
-        result.nextStep.push(`수검자에게 불리한 점(liability)이라고 할 수는 없지만, 의사결정에서 지나치게 조심스러울 모습을 보일 수 있다. 이러한 결과가 강박적 유형인 수검자에서 나타난다면, 중재 활동에 완벽주의 경향이 더 많다는 것을 반영한다. `);
+        result.textData.push(`[잠정 결과3] 지나치게 정교한 관습적 형태(FQx+) 반응을 고려할 때, 수검자는 정밀하거나 정확하게 하려는 경향이 현저할 것이다. `);
+        result.textData.push(`수검자에게 불리한 점(liability)이라고 할 수는 없지만, 의사결정에서 지나치게 조심스러울 모습을 보일 수 있다. 이러한 결과가 강박적 유형인 수검자에서 나타난다면, 중재 활동에 완벽주의 경향이 더 많다는 것을 반영한다. `);
         result.nextStep = 6;
         result.goNext = false;
         return result;
