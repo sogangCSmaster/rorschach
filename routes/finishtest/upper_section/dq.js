@@ -9,6 +9,17 @@ function getPlus(scores) {
 }
 exports.getPlus = getPlus;
 
+function getPlusFQxminus(scores) {
+  let FQminus = 0;
+  scores.forEach((score) => {
+    if (score.dq == '+' && score.fq == '-') {
+      FQminus += 1;
+    }
+  });
+  return FQminus;
+}
+exports.getPlusFQxminus = getPlusFQxminus;
+
 function getO(scores) {
   let o = 0;
   scores.forEach((score) => {
@@ -19,6 +30,17 @@ function getO(scores) {
   return o;
 }
 exports.getO = getO;
+
+function getOFQxminus(scores) {
+  let FQminus = 0;
+  scores.forEach((score) => {
+    if (score.dq == 'o' && score.fq == '-') {
+      FQminus += 1;
+    }
+  });
+  return FQminus;
+}
+exports.getOFQxminus = getOFQxminus;
 
 function getVSlashPlus(scores) {
   let vSlashPlus = 0;
@@ -31,6 +53,17 @@ function getVSlashPlus(scores) {
 }
 exports.getVSlashPlus = getVSlashPlus;
 
+function getVSlashPlusFQxminus(scores) {
+  let FQminus = 0;
+  scores.forEach((score) => {
+    if (score.dq == 'v/+' && score.fq == '-') {
+      FQminus += 1;
+    }
+  });
+  return FQminus;
+}
+exports.getVSlashPlusFQxminus = getVSlashPlusFQxminus;
+
 function getV(scores) {
   let v = 0;
   scores.forEach((score) => {
@@ -41,3 +74,14 @@ function getV(scores) {
   return v;
 }
 exports.getV = getV;
+
+function getVFQxminus(scores) {
+  let FQminus = 0;
+  scores.forEach((score) => {
+    if (score.dq == 'v' && score.fq == '-') {
+      FQminus += 1;
+    }
+  });
+  return FQminus;
+}
+exports.getVFQxminus = getVFQxminus;

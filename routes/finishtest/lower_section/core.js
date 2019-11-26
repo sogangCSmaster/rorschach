@@ -79,6 +79,22 @@ function getLambda(scores) {
 }
 exports.getLambda = getLambda;
 
+function getLambdaHighOrLow(scores) {
+  const lambda = getLambda(scores);
+  if (lambda === 'Very Low') {
+    return 'Low';
+  } else if (lambda === 'Very High') {
+    return 'High';
+  } else if (lambda >= 1) {
+    return 'High';
+  } else if (lambda < 0.3) {
+    return 'Low';
+  } else {
+    return '';
+  }
+}
+exports.getLambdaHighOrLow = getLambdaHighOrLow;
+
 function getEA(scores) {
   return getEBLeft(scores) + getEBRight(scores);
 }
@@ -173,10 +189,20 @@ function getSumV(scores) {
 exports.getSumV = getSumV;
 
 function getEBPer(scores) {
-  if (getEBLeft(scores) == 0 || getEBRight(scores) == 0) {
-    return 'N/A';
+  const EA = getEA(scores);
+  const res = (Math.max(getEBLeft(scores), getEBRight(scores)) / Math.min(getEBLeft(scores), getEBRight(scores))).toFixed(2);
+  const lambda = getLambda(scores);
+
+  if (EA >= 4.0) {
+    return res;
+  } else if (lambda < 1.0) {
+    return res;
+  } else if (4.0 <= EA && EA < 10 && Math.abs(getEBLeft(scores) - getEBRight(scores)) > 2.0) {
+    return res;
+  } else if (10 <= EA && Math.abs(getEBLeft(scores) - getEBRight(scores) > 2.5)) {
+    return res;
   } else {
-    return (Math.max(getEBLeft(scores), getEBRight(scores)) / Math.min(getEBLeft(scores), getEBRight(scores))).toFixed(2);
+    return 'N/A';
   }
 }
 exports.getEBPer = getEBPer;

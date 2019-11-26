@@ -36,7 +36,7 @@ exports.getSumV = getSumV;
 function getFD(scores) {
   let FD = 0;
   scores.forEach((score) => {
-    if (score.form2) {
+    if (score.det && score.det.form2) {
       FD += 1;
     }
   });
