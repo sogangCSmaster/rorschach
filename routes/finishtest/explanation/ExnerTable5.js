@@ -8,7 +8,6 @@ exports.calculateExnerTable5 = calculateExnerTable5;
 
 function nextStep(stepNum, result, scores) {
     var step = eval(`step${stepNum}(scores)`);
-    console.warn(step.curStep);
     result.push(step);
     if (step.goNext == true) {
         return result;
@@ -189,12 +188,50 @@ function step3({ fqx_minus, Xminusper }) {
     return result;
 }
 
-function step3a({}){
+function step3a({ checkFQminus, checkFQminusSpaceHalf, checkFQminusMovementHalf, checkFQminusF, checkFQminus3andPureF, checkFQminus3}){
     var result = {};
     result.textData = [];
     result.curStep = '3a';
 
+    if(checkFQminus){
+        result.textData.push(`[잠정 결과1] 적절하지 않은 형태(FQx-)를 고려할 때, 수검자가 보이는 중재 활동의 기능 이상은 검사 상황에 대한 반작용일 것이다. 검사 과제의 특성을 제대로 이해하지 못하여 불안해하거나 매우 거부적인 태도(FQx S-)로 수행한 것일 수 있다. 이 경우에 기능 이상은 일시적일 것이다.`);
+        result.textData.push(`검사 결과를 일반화하는 과정에서 왜곡된 형태 비율(X-%)을 그대로 사용할 경우, 수검자가 친숙한 상황에서도 기능 이상을 보일 것이라고 과대 추정할 수도 있다. 그러므로 검사 상황(의뢰 사유, 수검자의 편견 등), 수검자의 개인력 등을 고려하여 기능 이상이 일시적인지, 또는 친숙하지 않은 상황이나 원치 않은 요구를 받는 상황에서 기능 이상이 반복적으로 나타나는지 확인해야 한다. <br/><br/>`);
+    }
 
+    if(checkFQminusSpaceHalf){
+        result.textData.push(`[잠정 결과2] 적절하지 않은 형태(FQx-)를 고려할 때, 공간 반응(FQx S-)으로 묶이면 수검자가 보이는 중재 활동의 기능 이상은 분노, 거부적 태도 등 정서적 문제의 결과물일 것이다.`);
+        result.textData.push(`다른 정서적 문제로 기능 이상이 발생하면 적절하지 않은 형태(FQx-) 반응의 결정인은 유채색, 무채색, 음영 등으로 묶일 것이다. 정서(Affect) 영역의 해석에서 어떠한 정서가 영향을 미치는지에 대한 정보를 얻을 수 있다. <br/><br/>`);
+    }
+
+    if(checkFQminusMovementHalf==1){
+        result.textData.push(`[잠정 결과3a] 목표 지향적이고 통제된 형태의 사고를 반영하는 인간운동(M) 반응에서 적절하지 않은 형태(FQx-)가 나타나면, 수검자는 일시적인 잘못된 논리로 중재 활동에 이상을 보일 수 있다. <br/><br/>`);
+    }
+    if(checkFQminusMovementHalf==2){
+        result.textData.push(`[잠정 결과3b] 목표 지향적이고 통제된 형태의 사고를 반영하는 인간운동(M) 반응에서 적절하지 않은 형태(FQx-)가 나타나면, 수검자의 중재 활동이 혼란된(disordered) 형태의 사고에 의해 영향을 받는 것일 수 있다. <br/><br/>`);
+    }
+    if(checkFQminusMovementHalf==3){
+        result.textData.push(`[잠정 결과3c] 주변적이고 의도적이지 않은 형태의 관념 활동을 반영하는 운동(FM, m) 반응에서 적절하지 않은 형태(FQx-)가 나타나면, 수검자의 중재 활동이 욕구나 스트레스 경험 때문에 생겨난 주변적인 정신활동으로 방해받을 것이다. <br/>`);
+    }
+
+    if(checkFQminusF){
+        result.textData.push(`[잠정 결과4] 반사 반응에서 적절하지 않은 형태(FQx-)가 나타나면, 수검자의 중재 활동이 자기개념에 관련된 문제로 인해 방해받을 것이다. <br/>`);
+    }
+
+    if(checkFQminus3andPureF==1){
+        result.textData.push(`[잠정 결과5a] 순수 형태(F) 반응에서 적절하지 않은 형태(FQx-)가 나타나면, 수검자는 이제는 효과적이지 않은(ineffective) 회피 유형(avoidant style)을 현실 왜곡을 통해 유지하려고 노력하기 때문에 중재 활동에서 이상이 나타나고 있을 것이다. <br/>`);
+    }
+    if(checkFQminus3andPureF==2){
+        result.textData.push(`[잠정 결과5b] 순수 형태(F) 반응에서 적절하지 않은 형태(FQx-)가 나타나면, 수검자는 더 의도적이고 방어적으로 현실을 왜곡하고 있을 것이다. 불편을 유발하는 명료한 현실에 직면하는 것을 회피하기 위해 명료하지 않은 심상을 만들어 내는 것일 수 있다. 이러한 노력 때문에 이러한 노력 때문에 중재 활동에 이상이 나타날 것이다. `);
+    }
+
+    if(checkFQminus3==1){
+        result.textData.push(`[잠정 결과7a] 적절하지 않은 형태(FQx-)가 각 카드의 첫 반응일 경우, 수검자가 중재 활동에 열의가 없거나 성급하게 접근한다는 것을 의미한다. 그로 인해 중재 활동에 이상이 나타날 수 있다. `);
+        result.textData.push(`처리 활동의 문제로 발생할 수도 있지만, 중재 활동의 충동적인 경향으로 나타날 수도 있다. 첫 반응 이후에 나타나는 반응이 적절할 경우 충동성에 대한 가설이 더 확실할 것이다.`);
+    }
+    if(checkFQminus3==2){
+        result.textData.push(`[잠정 결과7b] 적절하지 않은 형태(FQx-)가 각 카드의 마지막 반응일 경우, 수검자에게 그 반응의 내용은 특별한 의미가 있을 것이다. 내용 분석을 통해 그것에 대해 명확히 할 수 있을 것이다.`);
+        result.textData.push(`다만, 적절하지 않은 형태(FQx-) 반응이 모두 각 카드의 마지막 반응일 경우, 수검자가 어떤 원인으로 인해 혼란된(disturbance) 특징을 과장하는 것일 수 있다. 그러므로 해석에 신중해야 한다. `);
+    }
 
 
 

@@ -35,6 +35,7 @@ const affect = require('./explanation/affect');
 const ExnerTable2 = require('./explanation/ExnerTable2');
 const ExnerTable4 = require('./explanation/information_processing');
 const ExnerTable5 = require('./explanation/ExnerTable5');
+const step3a = require('./explanation/step3a');
 
 router.route("/finishtest1")
     .get(async(req, res, next) => {
@@ -788,6 +789,18 @@ router.route("/finishtest1")
 
                 if(scoreOrder[i]=="인지적 중재"){
                     resultName = 'Cognitive Mediation / Cognitive triad 인지적 중재';
+                    var checkFQminus = step3a.checkFQminus(score);
+                    var checkFQminusSpaceHalf = step3a.checkFQminusSpaceHalf(score);
+                    var checkFQminusMovementHalf = step3a.checkFQminusMovementHalf(score);
+                    var checkFQminusF = step3a.checkFQminusF(score);
+                    var checkFQminus3andPureF = step3a.checkFQminus3andPureF(score);
+                    var checkFQminus3 = step3a.checkFQminus3(score);
+                    indicators.checkFQminus = checkFQminus;
+                    indicators.checkFQminusSpaceHalf = checkFQminusSpaceHalf;
+                    indicators.checkFQminusMovementHalf = checkFQminusMovementHalf;
+                    indicators.checkFQminusF = checkFQminusF;
+                    indicators.checkFQminus3andPureF = checkFQminus3andPureF;
+                    indicators.checkFQminus3 = checkFQminus3;
                     steps = ExnerTable5.calculateExnerTable5(indicators);
                     TESTRESULT.push({resultName, steps});
                 }
