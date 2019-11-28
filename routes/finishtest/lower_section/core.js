@@ -190,17 +190,18 @@ exports.getSumV = getSumV;
 
 function getEBPer(scores) {
   const EA = getEA(scores);
-  const res = (Math.max(getEBLeft(scores), getEBRight(scores)) / Math.min(getEBLeft(scores), getEBRight(scores))).toFixed(2);
   const lambda = getLambda(scores);
 
-  if (EA >= 4.0) {
-    return res;
-  } else if (lambda < 1.0) {
-    return res;
-  } else if (4.0 <= EA && EA < 10 && Math.abs(getEBLeft(scores) - getEBRight(scores)) > 2.0) {
-    return res;
-  } else if (10 <= EA && Math.abs(getEBLeft(scores) - getEBRight(scores) > 2.5)) {
-    return res;
+  if (EA >= 4.0 && lambda < 1.0) {
+    if (4.0 <= EA && EA < 10 && Math.abs(getEBLeft(scores) - getEBRight(scores)) > 2.0) {
+      const res = (Math.max(getEBLeft(scores), getEBRight(scores)) / Math.min(getEBLeft(scores), getEBRight(scores))).toFixed(2);
+      return res;
+    } else if (10 <= EA && Math.abs(getEBLeft(scores) - getEBRight(scores) > 2.5)) {
+      const res = (Math.max(getEBLeft(scores), getEBRight(scores)) / Math.min(getEBLeft(scores), getEBRight(scores))).toFixed(2);
+      return res;
+    } else {
+      return 'N/A';
+    }
   } else {
     return 'N/A';
   }

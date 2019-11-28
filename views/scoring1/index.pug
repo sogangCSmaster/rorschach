@@ -33,7 +33,6 @@ html
                                     th.text-center(scope="col") 내용
                                     th.text-center.col-xs-1(scope="col") P
                                     th.text-center.col-xs-1(scope="col") Z
-                                    th.text-center.col-xs-1(scope='col') G/PHR
                                     th.text-center(scope="col") 특수점수
                             tbody#score-table
                                 mixin card-tr(display, index)
@@ -89,7 +88,6 @@ html
                                                 option P
                                         td.text-center
                                             select.form-control.selectZ
-                                        td.text-center.gphr
                                         td.text-center
                                             button.btn.btn-default.btn-sm.score-btn 선택
                                 +card-tr('hidden', 0)
@@ -1057,7 +1055,6 @@ html
 
         function parseGPHR(index) {
             var GPHR = checkGPHR(index);
-            $('#score-table tr[data-index=' + index + ']').find('td.gphr').text(GPHR);
             $('td[data-skey=PHR]').removeClass('active');
             $('td[data-skey=GHR]').removeClass('active');
             if (GPHR != '') {
