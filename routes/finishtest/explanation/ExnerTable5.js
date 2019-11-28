@@ -188,7 +188,7 @@ function step3({ fqx_minus, Xminusper }) {
     return result;
 }
 
-function step3a({ checkFQminus, checkFQminusSpaceHalf, checkFQminusMovementHalf, checkFQminusF, checkFQminus3andPureF, checkFQminus3}){
+function step3a({ checkFQminus, checkFQminusSpaceHalf, checkFQminusMovementHalf, checkFQminusF, checkFQminus3andPureF, checkFQminus3, checkHomogeneousContent }){
     var result = {};
     result.textData = [];
     result.curStep = '3a';
@@ -224,6 +224,9 @@ function step3a({ checkFQminus, checkFQminusSpaceHalf, checkFQminusMovementHalf,
         result.textData.push(`[잠정 결과5b] 순수 형태(F) 반응에서 적절하지 않은 형태(FQx-)가 나타나면, 수검자는 더 의도적이고 방어적으로 현실을 왜곡하고 있을 것이다. 불편을 유발하는 명료한 현실에 직면하는 것을 회피하기 위해 명료하지 않은 심상을 만들어 내는 것일 수 있다. 이러한 노력 때문에 이러한 노력 때문에 중재 활동에 이상이 나타날 것이다. `);
     }
 
+    if(checkHomogeneousContent) {
+        result.textData.push(`[잠정 결과6] 적절하지 않은 형태(FQx-) 반응에서 동일한 내용이 관찰될 경우, 수검자가 몰두하고 있는 특정한 주제로 인해 중재 활동에 이상이 유발되고 있을 것이다. 내용 범주 또는 자기지각(self-perception) 군집에 관련된 자료에 수검자가 몰두하는 주제가 반영되어 있을 것이다.`);
+    }
     if(checkFQminus3==1){
         result.textData.push(`[잠정 결과7a] 적절하지 않은 형태(FQx-)가 각 카드의 첫 반응일 경우, 수검자가 중재 활동에 열의가 없거나 성급하게 접근한다는 것을 의미한다. 그로 인해 중재 활동에 이상이 나타날 수 있다. `);
         result.textData.push(`처리 활동의 문제로 발생할 수도 있지만, 중재 활동의 충동적인 경향으로 나타날 수도 있다. 첫 반응 이후에 나타나는 반응이 적절할 경우 충동성에 대한 가설이 더 확실할 것이다.`);

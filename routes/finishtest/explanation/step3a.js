@@ -121,7 +121,28 @@ function checkFQminus3andPureF(scores) {
 exports.checkFQminus3andPureF = checkFQminus3andPureF;
 
 function checkHomogeneousContent(scores) {
+  var checkDict = {};
+  scores.forEach((score) => {
+    if (score.fq == '-') {
+      if (score.react) {
+        Object.keys(score.react).forEach((key) => {
+          if (checkDict[key]) {
+            checkDict[key] += 1;
+          } else {
+            checkDict[key] = 1;
+          }
+        });
+      }
+    }
+  });
 
+  var homoCont = false;
+  Object.keys(checkDict).forEach((key) => {
+    if (checkDict[key] >= 2) {
+      homoCont = true;
+    }
+  });
+  return homoCont;
 }
 exports.checkHomogeneousContent = checkHomogeneousContent;
 

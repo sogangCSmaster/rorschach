@@ -805,12 +805,14 @@ router.route("/finishtest1")
                     var checkFQminusF = step3a.checkFQminusF(score);
                     var checkFQminus3andPureF = step3a.checkFQminus3andPureF(score);
                     var checkFQminus3 = step3a.checkFQminus3(score);
+                    var homogeneousContent = step3a.checkHomogeneousContent(score);
                     indicators.checkFQminus = checkFQminus;
                     indicators.checkFQminusSpaceHalf = checkFQminusSpaceHalf;
                     indicators.checkFQminusMovementHalf = checkFQminusMovementHalf;
                     indicators.checkFQminusF = checkFQminusF;
                     indicators.checkFQminus3andPureF = checkFQminus3andPureF;
                     indicators.checkFQminus3 = checkFQminus3;
+                    indicators.checkHomogeneousContent = homogeneousContent;
                     steps = ExnerTable5.calculateExnerTable5(indicators);
                     TESTRESULT.push({resultName, steps});
                 }
