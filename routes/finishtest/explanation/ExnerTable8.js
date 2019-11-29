@@ -126,43 +126,104 @@ function step5({SumT, SumCprime, SumV, SumY, R, age, Lambda}) {
     return result;
 }
 
-function step6({ Hrest, H, R}) {
+function step6({ Hrest, H, R, copyingStyle, approachStyle }) {
 
-  var HumanCont = Hrest + H;
-  var result = {};
-  result.textData = [];
-  result.curStep = 6;
-  result.nextStep = 7;
-  result.goNext = false;
+    var HumanCont = Hrest + H;
+    var result = {};
+    result.textData = [];
+    result.curStep = 6;
+    result.nextStep = 7;
+    result.goNext = false;
+    // copyingStyle: 내향형(Introversive), 외향형(Extratensive), 양향형(Ambitent)
+    // approachStyle: 진성(True), 회피(Avoidant)
 
-  // 예상범위
-  if (R >= 14 && R <= 16) {
-    // 진성 내향형
-    if (HumanCont >= 4 && HumanCont <= 6) {
-      if (H > HumanCont / 2) {
-        result.textData.push(`[잠정 결과1] [정상범주] 순수 인간 내용(Pure H) 반응을 고려할 때, 수검자는 대부분의 다른 사람들만큼 다른 사람에게 관심을 보일 것이다. 그리고 현실에 근거하여 다른 사람을 개념화할 것이다.`);
-        return result;
+    var Rconditions = [[14, 16], [17, 27], [28, 55]];
+    var TrueIntroversive = [[4, 6], [5, 8], [7, 11]];
+    var TrueExtratensive = [[2, 4], [3, 6], [4, 7]];
+    var TrueAmbitent = [[2, 5], [4, 7], [5, 9]];
+    var AvoidantIntroversive = [[2, 5], [4, 7], [5, 9]];
+    var AvoidantExtratensive = [[2, 5], [4, 7], [5, 9]];
+    var AvoidantAmbitent = [[2, 5], [4, 7], [5, 9]];
 
-      } else {
-        // PureH <= 1/2 SumH
-        result.textData.push(`[잠정 결과2] 순수 인간 내용(Pure H) 반응을 고려할 때, 수검자는 대부분의 다른 사람들만큼 다른 사람에게 관심을 보일 것이다. 하지만 수검자는 다른 사람을 아주 잘 이해하지는 못할 것이다. 수검자는 다른 사람의 (의도를) 잘못 읽는 경향을 보일 수 있고, 자주 사회적 표현(gesture)을 잘못 해석할 수 있다.`);
-        result.textData.push(`때때로, 이러한 수검자는 합리적인 것보다 자신의 관계에 대한 기대가 더 클 수 있다. 다른 경우에는, 수검자의 이해 결여는 잠재적으로 다른 사람들로부터 소외시키는 사회적 실수로 이어질 수 있다.`);
-        return result;
-      }
+    for (var i = 0; i < 3; i++) {
+        // R check
+        if (R >= Rconditions[i][0] && R <= Rconditions[i][1]) {
+            // 진성 내향형
+            if (approachStyle == 'True' && copyingStyle == 'Introversive') {
+                var cond1 = eval(approachStyle + copyingStyle + '[i][0]');
+                var cond2 = eval(approachStyle + copyingStyle + '[i][1]');
+
+                // 예상 범위
+                if (HumanCont >= cond1 && HumanCont <= cond2 && H > HumanCont / 2) {
+                    result.textData.push(`[잠정 결과1] [정상범주] 순수 인간 내용(Pure H) 반응을 고려할 때, 수검자는 대부분의 다른 사람들만큼 다른 사람에게 관심을 보일 것이다. 그리고 현실에 근거하여 다른 사람을 개념화할 것이다.`);
+                    return result;
+                    
+                }
+                if (HumanCont >= cond1 && HumanCont <= cond2 && H <= HumanCont / 2) {
+                    result.textData.push(`[잠정 결과2] 순수 인간 내용(Pure H) 반응을 고려할 때, 수검자는 대부분의 다른 사람들만큼 다른 사람에게 관심을 보일 것이다. 하지만 수검자는 다른 사람을 아주 잘 이해하지는 못할 것이다. 수검자는 다른 사람의 (의도를) 잘못 읽는 경향을 보일 수 있고, 자주 사회적 표현(gesture)을 잘못 해석할 수 있다.`);
+                    result.textData.push(`때때로, 이러한 수검자는 합리적인 것보다 자신의 관계에 대한 기대가 더 클 수 있다. 다른 경우에는, 수검자의 이해 결여는 잠재적으로 다른 사람들로부터 소외시키는 사회적 실수로 이어질 수 있다.`);
+                    return result;
+                }
+                // > 예상 범위
+                if (HumanCont > cond2 && H > HumanCont / 2) {
+                    result.textData.push(`[잠정 결과3] 순수 인간 내용(Pure H) 반응을 고려할 때, 수검자는 현실에 근거한 다른 사람에 대한 이해를 바탕으로 다른 사람에게 상당한 관심을 보일 것이다.`);
+                    result.textData.push(`대개 이러한 수검자는 다른 사람에 대한 건강한 관심을 보인다. 하지만, 강하게 다른 사람에 대해 신뢰하지 않은 느낌을 포함하는 과잉경계를 보이는 수검자에서는 건강하지 않은 몰두를 반영하는 것일 수도 있다.`);
+                    return result;
+                }
+                if (HumanCont > cond2 && H <= HumanCont / 2) {
+                    result.textData.push(`[잠정 결과4] 순수 인간 내용(Pure H) 반응을 고려할 때, 수검자는 다른 사람에게 강한 관심을 보일 것이다. 하지만 수검자는 다른 사람을 아주 잘 이해하지는 못할 것이다.`)
+                    result.textData.push(`다른 사람에 갖는 관심은 긍정적인 신호지만, 어떤 경우에는 단순히 조심스럽고 다른 사람을 믿지 못하는 건강하지 않은 몰두를 나타내는 것일 수 있다.`);
+                    result.textData.push(`어떤 경우든지, 다른 사람에 대한 이해의 결여는 관계에 대한 현실적이지 않은 기대 또는 다른 사람들로부터 소외시키는 사회적 실수로 이어진다.`);
+                    return result;
+                }
+                // < 예상 범위
+                if (HumanCont < cond1 && R >= 17 && H > HumanCont / 2) {
+                    result.textData.push(`[잠정 결과5] 순수 인간 내용(Pure H) 반응을 고려할 때, 수검자는 대부분의 다른 사람들만큼 다른 사람에게 관심을 보이지 않을 것이다. 다시 말해서, 다른 사람에 갖는 관심이 일반적인 수준보다 적을 것이다.`);
+                    result.textData.push(`이러한 결과는 환경으로부터 정서적으로 위축되거나, 사회적으로 고립된 수검자에서 자주 나타난다.`);
+                    result.textData.push(`전체 반응수(R)가 평균 범주(R≥17)일 경우, 다른 사람에 갖는 관심이 적고 고립되어 있지만 다른 사람에 대한 이해는 현실에 기초하고 있을 것이다.`);
+                    return result;
+                }
+            }
+            // 외향형, 양향형, 회피형
+            if (
+                (approachStyle == 'True' && copyingStyle == 'Extratensive') ||
+                (approachStyle == 'True' && copyingStyle == 'Ambitent') ||
+                (approachStyle == 'Avoidant')
+            ) {
+                // 예상 범위
+                if (HumanCont >= cond1 && HumanCont <= cond2 && H >= HumanCont / 2) {
+                    result.textData.push(`[잠정 결과1] [정상범주] 순수 인간 내용(Pure H) 반응을 고려할 때, 수검자는 대부분의 다른 사람들만큼 다른 사람에게 관심을 보일 것이다. 그리고 현실에 근거하여 다른 사람을 개념화할 것이다.`);
+                    return result;
+                }
+                if (HumanCont >= cond1 && HumanCont <= cond2 && H < HumanCont / 2) {
+                    result.textData.push(`[잠정 결과2] 순수 인간 내용(Pure H) 반응을 고려할 때, 수검자는 대부분의 다른 사람들만큼 다른 사람에게 관심을 보일 것이다. 하지만 수검자는 다른 사람을 아주 잘 이해하지는 못할 것이다. 수검자는 다른 사람의 (의도를) 잘못 읽는 경향을 보일 수 있고, 자주 사회적 표현(gesture)을 잘못 해석할 수 있다.`);
+                    result.textData.push(`때때로, 이러한 수검자는 합리적인 것보다 자신의 관계에 대한 기대가 더 클 수 있다. 다른 경우에는, 수검자의 이해 결여는 잠재적으로 다른 사람들로부터 소외시키는 사회적 실수로 이어질 수 있다.`);
+                    return result;
+                }
+                // > 예상 범위
+                if (HumanCont > cond2 && H >= HumanCont / 2) {
+                    result.textData.push(`[잠정 결과3] 순수 인간 내용(Pure H) 반응을 고려할 때, 수검자는 현실에 근거한 다른 사람에 대한 이해를 바탕으로 다른 사람에게 상당한 관심을 보일 것이다.`);
+                    result.textData.push(`대개 이러한 수검자는 다른 사람에 대한 건강한 관심을 보인다. 하지만, 강하게 다른 사람에 대해 신뢰하지 않은 느낌을 포함하는 과잉경계를 보이는 수검자에서는 건강하지 않은 몰두를 반영하는 것일 수도 있다.`);
+                    return result;
+                }
+                if (HumanCont > cond2 && H < HumanCont / 2) {
+                    result.textData.push(`[잠정 결과4] 순수 인간 내용(Pure H) 반응을 고려할 때, 수검자는 다른 사람에게 강한 관심을 보일 것이다. 하지만 수검자는 다른 사람을 아주 잘 이해하지는 못할 것이다.`)
+                    result.textData.push(`다른 사람에 갖는 관심은 긍정적인 신호지만, 어떤 경우에는 단순히 조심스럽고 다른 사람을 믿지 못하는 건강하지 않은 몰두를 나타내는 것일 수 있다.`);
+                    result.textData.push(`어떤 경우든지, 다른 사람에 대한 이해의 결여는 관계에 대한 현실적이지 않은 기대 또는 다른 사람들로부터 소외시키는 사회적 실수로 이어진다.`);
+                    return result;
+                }
+                // < 예상 범위
+                if (HumanCont < cond1 && R >= 17 && H >= HumanCont / 2) {
+                    result.textData.push(`[잠정 결과5] 순수 인간 내용(Pure H) 반응을 고려할 때, 수검자는 대부분의 다른 사람들만큼 다른 사람에게 관심을 보이지 않을 것이다. 다시 말해서, 다른 사람에 갖는 관심이 일반적인 수준보다 적을 것이다.`);
+                    result.textData.push(`이러한 결과는 환경으로부터 정서적으로 위축되거나, 사회적으로 고립된 수검자에서 자주 나타난다.`);
+                    result.textData.push(`전체 반응수(R)가 평균 범주(R≥17)일 경우, 다른 사람에 갖는 관심이 적고 고립되어 있지만 다른 사람에 대한 이해는 현실에 기초하고 있을 것이다.`);
+                    return result;
+                }
+            }
+        }
     }
-    // 외향형, 양향형, 회피형 2~4, 2~4, 2~5
-    if (HumanCont >= 2 && HumanCont <= 5) {
-      if (H >= HumanCont / 2) {
-        result.textData.push(`[잠정 결과1] [정상범주] 순수 인간 내용(Pure H) 반응을 고려할 때, 수검자는 대부분의 다른 사람들만큼 다른 사람에게 관심을 보일 것이다. 그리고 현실에 근거하여 다른 사람을 개념화할 것이다.`);
-        return result;
-      } else {
-        // PureH <= 1/2 SumH
-        result.textData.push(`[잠정 결과2] 순수 인간 내용(Pure H) 반응을 고려할 때, 수검자는 대부분의 다른 사람들만큼 다른 사람에게 관심을 보일 것이다. 하지만 수검자는 다른 사람을 아주 잘 이해하지는 못할 것이다. 수검자는 다른 사람의 (의도를) 잘못 읽는 경향을 보일 수 있고, 자주 사회적 표현(gesture)을 잘못 해석할 수 있다.`);
-        result.textData.push(`때때로, 이러한 수검자는 합리적인 것보다 자신의 관계에 대한 기대가 더 클 수 있다. 다른 경우에는, 수검자의 이해 결여는 잠재적으로 다른 사람들로부터 소외시키는 사회적 실수로 이어질 수 있다.`);
-        return result;
-      }
-    }
-  }
+
+    return result;
 }
 
 function step7({ GHR, PHR }) {
