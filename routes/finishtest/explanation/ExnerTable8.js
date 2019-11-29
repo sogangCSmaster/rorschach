@@ -126,8 +126,43 @@ function step5({SumT, SumCprime, SumV, SumY, R, age, Lambda}) {
     return result;
 }
 
-function step6({}) {
+function step6({ Hrest, H, R}) {
 
+  var HumanCont = Hrest + H;
+  var result = {};
+  result.textData = [];
+  result.curStep = 6;
+  result.nextStep = 7;
+  result.goNext = false;
+
+  // 예상범위
+  if (R >= 14 && R <= 16) {
+    // 진성 내향형
+    if (HumanCont >= 4 && HumanCont <= 6) {
+      if (H > HumanCont / 2) {
+        result.textData.push(`[잠정 결과1] [정상범주] 순수 인간 내용(Pure H) 반응을 고려할 때, 수검자는 대부분의 다른 사람들만큼 다른 사람에게 관심을 보일 것이다. 그리고 현실에 근거하여 다른 사람을 개념화할 것이다.`);
+        return result;
+
+      } else {
+        // PureH <= 1/2 SumH
+        result.textData.push(`[잠정 결과2] 순수 인간 내용(Pure H) 반응을 고려할 때, 수검자는 대부분의 다른 사람들만큼 다른 사람에게 관심을 보일 것이다. 하지만 수검자는 다른 사람을 아주 잘 이해하지는 못할 것이다. 수검자는 다른 사람의 (의도를) 잘못 읽는 경향을 보일 수 있고, 자주 사회적 표현(gesture)을 잘못 해석할 수 있다.`);
+        result.textData.push(`때때로, 이러한 수검자는 합리적인 것보다 자신의 관계에 대한 기대가 더 클 수 있다. 다른 경우에는, 수검자의 이해 결여는 잠재적으로 다른 사람들로부터 소외시키는 사회적 실수로 이어질 수 있다.`);
+        return result;
+      }
+    }
+    // 외향형, 양향형, 회피형 2~4, 2~4, 2~5
+    if (HumanCont >= 2 && HumanCont <= 5) {
+      if (H >= HumanCont / 2) {
+        result.textData.push(`[잠정 결과1] [정상범주] 순수 인간 내용(Pure H) 반응을 고려할 때, 수검자는 대부분의 다른 사람들만큼 다른 사람에게 관심을 보일 것이다. 그리고 현실에 근거하여 다른 사람을 개념화할 것이다.`);
+        return result;
+      } else {
+        // PureH <= 1/2 SumH
+        result.textData.push(`[잠정 결과2] 순수 인간 내용(Pure H) 반응을 고려할 때, 수검자는 대부분의 다른 사람들만큼 다른 사람에게 관심을 보일 것이다. 하지만 수검자는 다른 사람을 아주 잘 이해하지는 못할 것이다. 수검자는 다른 사람의 (의도를) 잘못 읽는 경향을 보일 수 있고, 자주 사회적 표현(gesture)을 잘못 해석할 수 있다.`);
+        result.textData.push(`때때로, 이러한 수검자는 합리적인 것보다 자신의 관계에 대한 기대가 더 클 수 있다. 다른 경우에는, 수검자의 이해 결여는 잠재적으로 다른 사람들로부터 소외시키는 사회적 실수로 이어질 수 있다.`);
+        return result;
+      }
+    }
+  }
 }
 
 function step7({ GHR, PHR }) {

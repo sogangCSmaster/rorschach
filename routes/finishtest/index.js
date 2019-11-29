@@ -318,8 +318,29 @@ router.route("/finishtest1")
         SpecialIndices.OBS.FQplusChecked = OBS.getFQplusChecked3(score);
 
         
+        console.log(score);
+        // parse score to pdf format
+        score = score.map((score) => {
+            score.det = score.det || {};
+            score.det = Object.keys(score.det).map((key) => {
+                return score.det[key].value;
+            }).join('.');
+            score.react = score.react || {};
+            score.react = Object.keys(score.react).map((key) => {
+                return score.react[key].value;
+            }).join(',');
+            score.score = score.score || {};
+            score.score = Object.keys(score.score).map((key) => {
+                return score.score[key].value;
+            }).join(',');
+            return score;
+        });
+        // length 50 채움
+        for (var i = score.length; i <= 50; i++) {
+            score.push({});
+        }
 
-        res.render('testresult/index', { testconfig, moment, upper, lower, SpecialIndices });
+        res.render('testresult/index', { testconfig, moment, upper, lower, SpecialIndices, scores: score });
 
     })
     .post(async(req, res, next) => {

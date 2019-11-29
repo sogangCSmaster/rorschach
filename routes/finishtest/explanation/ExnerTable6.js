@@ -351,13 +351,38 @@ function step7({ twoABplusArtplusAy }){
     return result;
 }
 
-function step8({ DV1, DV2, DR1, DR2, INCOM1, INCOM2, FABCOM1, FABCOM2, ALOG, CONTAM, WSum6, age }){
+function step8({ step8 }){
     var result = {};
     result.curStep = 8;
     result.textData = [];
 
     // To do
-    result.textData.push(`To do....조금 복잡함...`);
+    if (step8 == '1a') {
+        result.textData.push(`[장점 결과1a] [정상범주] 6개의 결정적 특수점수(Six Critical Special Score)의 빈도와 가중치를 부여한 6개의 결정적 특수점수의 합(WSum6)을 고려할 때, 수검자는 인지적 오류나 관념적 어긋남을 뚜렷하게 보이지 않을 것이다. 다시 말해서 개념적 사고의 명료성은 적절할 것이다.`);
+    }
+    if (step8 == '1b') {
+        result.textData.push(`[잠정 결과1b] [정상범주] 6개의 결정적 특수점수(Six Critical Special Score)의 빈도와 가중치를 부여한 6개의 결정적 특수점수의 합(WSum6)을 고려할 때, 수검자는 인지적 오류나 관념적 어긋남을 뚜렷하게 보이지 않을 것이다. 다시 말해서 개념적 사고의 명료성은 적절할 것이다.`);
+        result.textData.push(`아동의 개념적 사고에는 인지적 오류나 관념적 어긋남이 흔하게 나타나기 때문에 나이가 많은 청소년이나 성인에서 볼 수 있는 명료함이나 정교함을 기대하기 어렵다. 그렇기에 심각한 사고 문제를 반영하는 특수점수(CONTAM)가 없다면 개념적 사고의 명료성은 적절할 것이다.`);
+    }
+    if (step8 == '2') {
+        result.textData.push(`[장점 결과2] 6개의 결정적 특수점수(Six Critical Special Score)의 빈도와 가중치를 부여한 6개의 결정적 특수점수의 합(WSum6)을 고려할 때, 수검자의 사고는 일반적인 수준보다 더 자주 잘못된 판단이나 관념적 어긋남을 뚜렷하게 보일 것이다.`);
+        result.textData.push(`이러한 결과가 반드시 사고 문제를 반영하는 것은 아니지만, 수검자의 사고가 예상보다 명료하지 않은 것을 시사하며, 개념 형성과 응용에서 일부가 성숙하지 않고 정교하지 않은 것을 시사한다.`);
+    }
+    if (step8 == '3') {
+        result.textData.push(`[잠정 결과3] 6개의 결정적 특수점수(Six Critical Special Score)의 빈도와 가중치를 부여한 6개의 결정적 특수점수의 합(WSum6)을 고려할 때, 수검자의 관념 활동은 일반적인 수준보다 더 자주 뚜렷하게 잘못된 판단이나 관념적 어긋남을 보일 것이다.`);
+        result.textData.push(`이러한 결과가 반드시 사고 문제를 반영하는 것은 아니지만, 수검자의 사고가 명료하지 않은 경향이 있고, 전형적인 것보다 상당히 정교하지 않은 것을 의미한다.`);
+
+    }
+    if (step8 == '4') {
+        result.textData.push(`[잠정 결과4] 6개의 결정적 특수점수(Six Critical Special Score)의 빈도와 가중치를 부여한 6개의 결정적 특수점수의 합(WSum6)을 고려할 때, 수검자는 심한 사고 문제를 가지고 있을 것이다.`);
+        result.textData.push(`명료하지 않은 사고와 잘못된 판단을 증가시키는 잘못된 개념 형성과 응용 또는 관념의 불연속 삽화가 바람직한 것보다 흔하게 나타날 것이다. 결과적으로 결함 있는 의사결정을 할 가능성이 상당하다. 연상이완(loosening of association)을 고려할 필요가 있다.`);
+    }
+    if (step8 == '5') {
+        result.textData.push(`[잠정 결과5] 6개의 결정적 특수점수(Six Critical Special Score)의 빈도와 가중치를 부여한 6개의 결정적 특수점수의 합(WSum6)을 고려할 때, 수검자의 사고는 심하게 혼란되어(disturbed) 있을 가능성이 있다. 개념 형성과 응용이 이 정도 수준으로 손상되어 있다면, 수검자의 현실검증능력은 대개 최저 수준일 것이다.`);
+        result.textData.push(`사고는 혼란되는(disorganized) 경향이 있으며, 조리가 없어 앞뒤가 맞지 않으며, 결함 있는 판단이 매우 빈번하게 나타날 것이다. 다시 말해서 심한 사고 문제가 있을 것이다.`);
+        result.textData.push(`기이한 개념 형성과 응용이 흔하게 나타날 것이다. 대개 이러한 상태의 수검자는 일상생활의 요구에 안정적이고 효과적인(effective) 방법으로 대응하는 게 불가능할 것이다.`);
+        result.textData.push(`심각한 연상이완(loosening of association) 상태인 지리멸렬(incoherence)에 대해 고려할 필요가 있다.`);
+    }
 
     result.nextStep = 9;
     result.goNext = false;

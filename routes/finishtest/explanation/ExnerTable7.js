@@ -206,7 +206,7 @@ function step7({ HumanCont, H, Hrest, R, step7b }) {
     }
 
     // 7b, 7a 에서 이동해온다.
-    var [cond1, cond2, cond3, cond4] = step7b;
+    var [cond1, cond2, cond3, cond4, cond5] = step7b;
     if (cond1) {
         result.textData.push(`[7b.잠정 결과1] 인간 내용 반응이 포함된 반응의 결정인 형태질(FQx)을 고려할 때, 수검자는 혼란되어(confused) 있거나 자기개념에 대하여 왜곡된 관념을 가지고 있을 것이다.`);
     }

@@ -23,12 +23,15 @@ function step7b(scores) {
         if (score.react && (score.react['H'] || score.react['(H)'] || score.react['Hd'] || score.react['(Hd)']) && score.score && score.score.MOR) {
             cond3 = true;
         }
-        if (score.react && score.react['Hx'] && score.score && score.score.AB) {
+        if (score.react && score.react['Hx']) {
             cond4 = true;
+        }
+        if (score.react && score.react['Hx'] && score.score && score.score.AB) {
+            cond5 = true;
         }
     });
 
-    return [cond1, cond2, cond3, cond4];
+    return [cond1, cond2, cond3, cond4, cond5];
 }
 
 exports.step7b = step7b;
