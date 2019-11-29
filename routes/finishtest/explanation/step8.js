@@ -1,4 +1,4 @@
-export default function step8(scores, { age, WSum6, R }) {
+function step8(scores, { age, WSum6, R }) {
   // normal 1 
   // 14세 이상 청소년과 성인 집단 예상 범위
   // DV1, DR1, INCOM1 중 1개만 있음
@@ -109,3 +109,5 @@ export default function step8(scores, { age, WSum6, R }) {
     return '5';
   }
 }
+
+exports.step8 = step8;

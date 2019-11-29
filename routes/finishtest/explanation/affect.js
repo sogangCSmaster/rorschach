@@ -871,3 +871,100 @@ function step12(copyingStyle, approachStyle, Blends, R){
     return result;
 
 }
+
+function step13({ t3step13, copyingStyle, approachStyle }) {
+    var result = {};
+    result.textData = [];
+    result.curStep = 13;
+    result.nextStep = 14;
+    result.goNext = false;
+    // step12 와 같은 범위
+    if (
+        (approachStyle == 'True' && copyingStyle == 'Extratensive' && t3step13 >= 0.19 && t3step13 <= 0.33) ||
+        (approachStyle == 'True' && copyingStyle == 'Introversive' && t3step13 >= 0.13 && t3step13 <= 0.26) ||
+        (copyingStyle == 'Avoidant' && t3step13 >= 0.08 && t3step13 <= 0.14)
+    ) {
+        result.textData.push(`[잠정 결과1] 상황 관련 변인(m & Y)을 고려할 때, 상황요인에 의한 복잡성의 변화가 나타나지 않는 것으로 볼 수 있다. 12단계의 해석적 가정을 수정할 필요가 없다.`);
+        return result;
+    } else {
+        result.textData.push(`[잠정 결과2] 상황 관련 변인(m & Y)을 고려할 때, 상황요인에 의해 평상시보다 심리 기능이 더 복잡해져 있는 것으로 보이며, 상황요인이 해결될 경우 복잡성은 감소할 것이다. 12 단계의 해석적 가정을 수정할 필요가 있다.`);
+        return result;
+    }
+    return result;
+}
+
+function step14({ t3step14 }) {
+    var result = {};
+    result.textData = [];
+    result.curStep = 14;
+    result.nextStep = 15;
+    result.goNext = false;
+
+    // 결정인이 3개인 복합반응이 전체 복합반 수의 1/4를 초과하는 경우
+    // 결정인이 4개 이상인 복합 반응이 1개 이상인 경우
+    if (t3step14 == 1 || t3step14 == 2) {
+        result.textData.push(`[잠정 결과] 복잡한 복합반응을 통해 볼 때, 수검자의 심리기능이 때때로 지나치게 복잡해지는 것으로 볼 수 있다. 12단계의 해석적 가정을 수정할 필요가 있다.`);
+        result.textData.push(`복잡성의 증가는 대부분 정서경험으로 인해 나타난다. 이것이 반드시 불리한 점(liability)은 아니지만, 가용 자원이 제한되어 있거나 통제나 조절의 문제가 있는 경우 역기능의 원인이 되기 쉽다.`);
+    }
+    return result;
+}
+
+// specialScore color-shading : ChromaticDiffuse
+function step15({ AchromaticTextureAndVista, approachStyle, copyingStyle, lambda, ChromaticDiffuse }) {
+
+    var result = {};
+    result.textData = [];
+    result.curStep = 15;
+    result.nextStep = 16;
+    result.goNext = false;
+
+    // Color-Shading: t3step15
+    if (AchromaticTextureAndVista == 1) {
+        if (
+            (approachStyle == 'True' && copyingStyle == 'Extratensive') ||
+            (approachStyle == 'True' && copyingStyle == 'Ambitent') ||
+        ) {
+            result.textData.push(`[잠정 결과1] 색채-음영 복합반응(color-shading blends)을 고려할 때, 수검자는 때때로 정서 또는 정서적 상황에 확신하지 못하거나 혼란스러워(confused)할 것이다.`);
+            result.textData.push(`다른 대처 유형의 사람들에 비해 감정의 관여가 더 많은 외향형의 수검자에서는 부정적인 것으로 볼 필요가 없다. 외향형의 수검자가 때때로 감정에 확신하지 못하는 것은 어느 정도 일상적이기 때문에 수검자는 그러한 상황에도 당황하지 않고 다른 유형에 비해 감정을 편안하게 다룰 것이다.`);
+            return result;
+        }
+        if (
+            (approachStyle == 'True' && copyingStyle == 'Introversive') ||
+            (approachStyle == 'Avoidant' && lambda > 0.99)
+        ) {
+            result.textData.push(`[잠정 결과2] 색채-음영 복합반응(color-shading blends)을 고려할 때, 수검자는 정서 또는 정서적 상황에 자주 혼란스러워(confused)할 것이다. 다른 사람들보다 감정을 더 강렬하게 느끼고, 때로는 정서적 상황을 마무리하기 어려워할 수 있다`);
+            result.textData.push(`내향형이나 회피형의 대처 유형을 가진 사람들에게 정서 경험은 다른 유형에 비해 익숙하지 않아 정서 문제를 다루는 방법을 찾는 데 큰 어려움을 겪을 수 있으므로 더 혼란스러울(disruptive) 수 있다.`);
+            return result;
+        }
+    }
+    if (AchromaticTextureAndVista >= 2) {
+        if (
+            (approachStyle == 'True' && copyingStyle == 'Extratensive') ||
+            (approachStyle == 'True' && copyingStyle == 'Ambitent')
+        ) {
+            result.textData.push(`[잠정 결과2] 색채-음영 복합반응(color-shading blends)을 고려할 때, 수검자는 정서 또는 정서적 상황에 자주 혼란스러워(confused)할 것이다. 다른 사람들보다 감정을 더 강렬하게 느끼고, 때로는 정서적 상황을 마무리하기 어려워할 수 있다`);
+            result.textData.push(`내향형이나 회피형의 대처 유형을 가진 사람들에게 정서 경험은 다른 유형에 비해 익숙하지 않아 정서 문제를 다루는 방법을 찾는 데 큰 어려움을 겪을 수 있으므로 더 혼란스러울(disruptive) 수 있다.`);
+            return result;
+        }
+    }
+    if (ChromaticDiffuse >= 1) {
+        result.textData.push(`[잠정 결과3] 색채-음영 복합반응(color-shading blends)을 고려할 때, 수검자는 상황요인으로 인해 정서적 상황에 확신하지 못하거나 혼란스러워(confusion)할 것이다. 이러한 형태의 혼란은 외향형이나 양향형의 대처 유형을 가진 사람보다 내향형과 회피형의 대처 유형인 사람에게 더 심하게 나타날 수 있다.`);
+        result.textData.push(`15단계의 잠정 결과 1이나 2에 해당한다면, 앞선 해석 가설에 이 결과를 첨가해서 해석을 다듬어야 한다.`);
+        return result;
+    }
+    return result;
+}
+
+function step16({ OnlyShading }) {
+    var result = {};
+    result.textData = [];
+    result.curStep = 16;
+    result.nextStep = 16;
+    result.goNext = true;
+
+    if (OnlyShading >= 1) {
+        result.textData.push(`[잠정 결과] 음영 복합반응(shading blends)을 고려할 때, 수검자는 매우 고통스러운 정서를 경험하고 있을 것이다. 이렇게 매우 강한 불편(irritation)은 심리 기능 전반에 혼란(disruptive)을 줄 것이다.`);
+        result.textData.push(`정서 상태뿐만 아니라 사고에도 만연하게 영향을 주어, 주의력과 집중력이 영향을 받을 수 있으며, 괴로움으로 인해 판단력이 현저하게 흔들릴 수 있다.`);
+    }
+    return result;
+}
