@@ -33,7 +33,6 @@ html
                                     th.text-center(scope="col") 내용
                                     th.text-center.col-xs-1(scope="col") P
                                     th.text-center.col-xs-1(scope="col") Z
-                                    th.text-center.col-xs-1(scope='col') G/PHR
                                     th.text-center(scope="col") 특수점수
                             tbody#score-table
                                 mixin card-tr(display, index)
@@ -76,7 +75,7 @@ html
                                                 option o
                                                 option u
                                                 option -
-                                                option None
+                                                option none
                                         td.text-center.form-group
                                             select.form-control.select2
                                                 option(value='') [없음]
@@ -89,7 +88,6 @@ html
                                                 option P
                                         td.text-center
                                             select.form-control.selectZ
-                                        td.text-center.gphr
                                         td.text-center
                                             button.btn.btn-default.btn-sm.score-btn 선택
                                 +card-tr('hidden', 0)
@@ -268,7 +266,7 @@ html
                                         tr
                                             td.text-center.r-form(style='cursor: pointer;', data-rkey='(H)', data-rvalue='(H)') (H)
                                             td.text-center.r-form(style='cursor: pointer;', data-rkey='(H)', data-rvalue='(H)')
-                                                span.title 가상 사람 반응
+                                                span.title 가상 전체 사람 반응
                                                 br
                                                 | (Whole Human,
                                                 br
@@ -325,13 +323,13 @@ html
                                         tr
                                             td.text-center.r-form(style='cursor: pointer;', data-rkey='A', data-rvalue='A') A
                                             td.text-center.r-form(style='cursor: pointer;', data-rkey='A', data-rvalue='A')
-                                                span.title 동물 전체
+                                                span.title 전체 동물 반응
                                                 br
                                                 | (Whole Animal)
                                         tr
                                             td.text-center.r-form(style='cursor: pointer;', data-rkey='(A)', data-rvalue='(A)') (A)
                                             td.text-center.r-form(style='cursor: pointer;', data-rkey='(A)', data-rvalue='(A)')
-                                                span.title 가상 동물 반응
+                                                span.title 가상 전체 동물 반응
                                                 br
                                                 | (Whole Animal, 
                                                 br
@@ -1046,6 +1044,7 @@ html
                 parseGPHR(index);
             });
             $(document).on('change', 'select[name=fq], select.selectZ', function() {
+                var index = parseInt($(this).closest('tr').attr('data-index'));
                 parseGPHR(index);
             });
             
@@ -1056,7 +1055,6 @@ html
 
         function parseGPHR(index) {
             var GPHR = checkGPHR(index);
-            $('#score-table tr[data-index=' + index + ']').find('td.gphr').text(GPHR);
             $('td[data-skey=PHR]').removeClass('active');
             $('td[data-skey=GHR]').removeClass('active');
             if (GPHR != '') {
@@ -1072,7 +1070,7 @@ html
                     delete scores[index].GHR;
                     delete scores[index].PHR;
                 }
-                parseScore(scores[index], index);
+                parseScore(scores[index] || {}, index);
             }
         }
 
