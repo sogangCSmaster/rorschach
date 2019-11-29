@@ -1,4 +1,4 @@
-export default function step7b(scores) {
+function step7b(scores) {
     //1 : Human Cont (H, (H), Hd, (Hd)) 에서 fq 가 -
     //2: Human Cont 에서 DV, DR, INCOM, FABCOM, ALOG, CONTAM 이 있을 때
     //3: Human Cont 에서 MOR이 있을 때
@@ -30,3 +30,5 @@ export default function step7b(scores) {
 
     return [cond1, cond2, cond3, cond4];
 }
+
+exports.step7b = step7b;

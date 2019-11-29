@@ -82,8 +82,48 @@ function step4({ age, Fd }) {
     return result;
 }
 
-function step5({}) {
+function step5({SumT, SumCprime, SumV, SumY, R, age, Lambda}) {
+    var result = {};
+    result.textData = [];
+    result.curStep = 5;
+    if(SumT==0 && SumCprime!=0 && SumV!=0 && sumY!=0){
+        result.textData.push(`[잠정 결과2a] 재질(Texture) 반응을 고려할 때, 수검자는 대부분의 다른 사람들과 다른 방식으로 친밀감의 욕구를 인정하고 표현할 것이다. 이것은 수검자가 친밀감의 욕구가 부족하다는 것을 의미하지는 않는다. 다른 사람들보다 더 친밀한 대인 상황에서 조심스러운 것일 수 있다. 특히, 촉각 교환이 포함되는 경우 그러할 것이다.`);
+        result.textData.push(`재질(Texture) 반응이 없는 수검자는 개인적 공간에 지나치게 관심을 가지며, 다른 사람과 친밀한 정서적 연결을 만들고 유지하는데 신중한 경향이 있다.`);
+        result.nextStep = 6;
+        result.goNext = false;
+        return result;
+    }
 
+    if(SumCprime==0 && SumT==0 && SumV==0 && SumY==0){
+        if(age<19 || Lambda>=1 || (R<=20 && Lambda>1.2)){
+            result.textData.push(`[잠정 결과2b] 재질(Texture) 반응, 다른 음영(SumY, SumV) 반응, 무채색(SumC’) 반응을 고려할 때, 친밀감의 욕구를 인정하고 표현하는 방식을 평가하는데 필요한 정보가 충분히 드러나지 않은 것으로 볼 수 있다. 일반적으로 이러한 양상은 검사에 대한 수검자의 방어적 접근이 반영되었거나, 단순히 성격 구조가 빈곤하여 측정할 수 있는 정보 자체가 적은 것으로 볼 수 있다.<br/><br/>`);
+            result.textData.push(`<b>* 과경계지표(HVI)의 첫 번째 항목에 ‘재질(Texture) 반응 없음’이 포함되므로 과경계지표(HVI)를 점검해야 할 것처럼 보일 수 있다. 과경계지표(HVI)는 상당히 복잡한 검사 결과에서 나타나므로, 복잡성과 다른 결정인도 거의 없는 검사 결과를 보이는 음영 반응과 무채색 반응이 나타나지 않으면 과경계지표(HVI)에 해당하지 않을 것이다. </b><br/>`)
+            result.textData.push(`<b>* 음영이나 무채색을 표현하는 데 어려움이 있는 9세 미만의 아동에서는 이러한 경향이 흔하게 나타날 수 있으며, 회피 유형에서 반응 수(R)가 20개 이하이고 Lambda(L)값이 1.2를 초과하면 흔하게 나타날 수 있다.</b><br />`);
+            result.textData.push(`<br/>재질(Texture) 반응이 없는 경우에 대한 해석적 접근을 지지하는 개인력이 있는지 신중하게 확인할 필요가 있다.`);
+            result.goNext = false;
+            result.nextStep = 6;
+            return result;
+        }
+    }
+
+    if(SumT==1){
+        result.textData.push(`[잠정 결과1] [정상범주] 재질(Texture) 반응을 고려할 때, 수검자는 대부분의 다른 사람들과 비슷한 방식으로 친밀감의 욕구를 인정하고 표현할 것이다. 이러한 결과를 보이는 사람들은 대개 친밀한 관계를 맺을 수 있고, 일상적인 촉각교환을 관계를 형성하고 유지하는 한 가지 방법으로 받아들일 수 있다.`);
+        result.goNext = false;
+        result.nextStep = 6;
+        return result;
+    }
+    if(SumT>1){
+        result.textData.push(`[잠정 결과3] 재질(Texture) 반응을 고려할 때, 수검자는 충족되지 않은 강렬한 친밀감의 욕구가 있을 것이다. 대부분, 이렇게 증가한 본질적 그리움의 강도는 최근에 겪은 정서적 상실로 야기된 일시적인 반응일 수 있다. 그러나 어떤 경우에는 전혀 적절하게 보상받거나 대체되지 않은 실망으로 발생한 더 지속적인 상태를 의미할 수 있다. `);
+        result.textData.push(`일시적이든 지속적이든 어떤 경우에도 대개 수검자는 그리움이나 외로움으로 인해 불편해진다(irritating). 일반적으로, 이러한 종류의 불편(irritation)을 경험하는 사람은 다른 사람과 친밀한 정서적 관계를 원하지만, 어떻게 그것을 달성할 수 있는 가장 좋은 방법인지 몰라 쩔쩔매게 된다. `);
+        result.textData.push(`때때로, 이러한 욕구의 강도는 그들의 판단을 흐리고, 다른 사람의 농간에 당하기 쉽게 만든다. 특히, 수검자가 수동적이거나 의존적일 때 그러하다.`);
+        result.goNext = false;
+        result.nextStep = 6;
+        return result;
+    }
+
+    result.nextStep = 6;
+    result.goNext = false;
+    return result;
 }
 
 function step6({}) {

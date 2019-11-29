@@ -37,6 +37,9 @@ const ExnerTable4 = require('./explanation/information_processing');
 const ExnerTable5 = require('./explanation/ExnerTable5');
 const ExnerTable6 = require('./explanation/ExnerTable6');
 const step3a = require('./explanation/step3a');
+const ExnerTable7 = require('./explanation/ExnerTable7');
+const ExnerTable8 = require('./explanation/ExnerTable8');
+const step7b = require('./explanation/step7b');
 
 router.route("/finishtest1")
     .get(async(req, res, next) => {
@@ -820,6 +823,14 @@ router.route("/finishtest1")
                 if(scoreOrder[i]=="관념화"){
                     resultName = "Ideation 관념화";
                     steps = ExnerTable6.calculateExnerTable6(indicators);
+                    TESTRESULT.push({resultName, steps});
+                }
+
+                if(scoreOrder[i]=="자기지각"){
+                    resultName = "Self-perception 자기개념(자기상), 자기중심성(자기관여), 자기가치(자존감), 자기효능감 평가";
+                    var stepSevenB = step7b.step7b(score);
+                    indicators.step7b = stepSevenB;
+                    steps = ExnerTable7.calculateExnerTable7(indicators);
                     TESTRESULT.push({resultName, steps});
                 }
             }
