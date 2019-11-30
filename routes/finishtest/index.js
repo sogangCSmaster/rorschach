@@ -40,6 +40,10 @@ const step3a = require('./explanation/step3a');
 const ExnerTable7 = require('./explanation/ExnerTable7');
 const ExnerTable8 = require('./explanation/ExnerTable8');
 const step7b = require('./explanation/step7b');
+const { t3step13: step13 } = require('./explanation/t3step13');
+const { t3step14: step14 } = require('./explanation/t3step14');
+const { t6step8: step8 } = require('./explanation/t6step8');
+const ColorShading = require('./special_indices/color_shading');
 
 router.route("/finishtest1")
     .get(async(req, res, next) => {
@@ -115,9 +119,13 @@ router.route("/finishtest1")
 
         upper.dq = {};
         upper.dq.plus = dq.getPlus(score);
+        upper.dq.plusFQxminus = dq.getPlusFQxminus(score);
         upper.dq.o = dq.getO(score);
+        upper.dq.oFQxminus = dq.getOFQxminus(score);
         upper.dq.VSlashPlus = dq.getVSlashPlus(score);
+        upper.dq.vSlashPlusFQxminus = dq.getVSlashPlusFQxminus(score);
         upper.dq.v = dq.getV(score);
+        upper.dq.vFQxminus = dq.getVFQxminus(score);
 
         upper.form_quality = {};
         upper.form_quality.FQx = form_quality.getFQx(score);
@@ -152,6 +160,7 @@ router.route("/finishtest1")
         lower.core = {};
         lower.core.R = core.getR(score);
         lower.core.Lambda = core.getLambda(score);
+        lower.core.LambdaHighOrLow = core.getLambdaHighOrLow(score);
         lower.core.EBLeft = core.getEBLeft(score);
         lower.core.ebLeft = core.getebLeft(score);
         lower.core.EBRight = core.getEBRight(score);
@@ -811,7 +820,13 @@ router.route("/finishtest1")
                 }
                 if(scoreOrder[i]=='정서'){
                     resultName = "Affect 정서 자원이 사용되는 방식, 정서 상태, 정서의 역기능 평가";
-                    steps = affect.caculateAffect(lower.special_indices.DEPI, lower.special_indices.CDI, lower.core.Lambda, upper.determinants.M, lower.core.EBLeft, lower.core.EBRight, lower.affection.WSumC, lower.core.EA, lower.core.EBPer, lower.core.FM, lower.core.m, lower.core.SumCprime, lower.core.SumT, lower.core.SumV, lower.core.SumY, lower.affection.Afr, lower.ideation.twoABplusArtplusAy, upper.special_scores.CP, upper.determinants.FC, upper.determinants.CF, upper.determinants.C, age, experienceClassification.copyingStyle, experienceClassification.approachStyle, lower.affection.PureC, upper.location_features.S, upper.approach, lower.affection.Blends, lower.affection.R);
+                    const t3step13 = step13(score);
+                    const t3step14 = step14(score);
+                    const AchromaticTextureAndVista = ColorShading.getAchromaticTextureAndVista(score);
+                    const ChromaticDiffuse = ColorShading.getChromaticDiffuse(score);
+                    const OnlyShading = ColorShading.getOnlyShading(score);
+
+                    steps = affect.caculateAffect(lower.special_indices.DEPI, lower.special_indices.CDI, lower.core.Lambda, upper.determinants.M, lower.core.EBLeft, lower.core.EBRight, lower.affection.WSumC, lower.core.EA, lower.core.EBPer, lower.core.FM, lower.core.m, lower.core.SumCprime, lower.core.SumT, lower.core.SumV, lower.core.SumY, lower.affection.Afr, lower.ideation.twoABplusArtplusAy, upper.special_scores.CP, upper.determinants.FC, upper.determinants.CF, upper.determinants.C, age, experienceClassification.copyingStyle, experienceClassification.approachStyle, lower.affection.PureC, upper.location_features.S, upper.approach, lower.affection.Blends, lower.affection.R, AchromaticTextureAndVista, ChromaticDiffuse, OnlyShading);
                     TESTRESULT.push({resultName, steps});
                 }
 
@@ -843,6 +858,8 @@ router.route("/finishtest1")
 
                 if(scoreOrder[i]=="관념화"){
                     resultName = "Ideation 관념화";
+                    const t6step8 = step8(score, indicators);
+                    indicators.t6step8 = t6step8;
                     steps = ExnerTable6.calculateExnerTable6(indicators);
                     TESTRESULT.push({resultName, steps});
                 }

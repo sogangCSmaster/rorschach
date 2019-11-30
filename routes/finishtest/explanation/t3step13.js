@@ -9,7 +9,7 @@ function t3step13(scores) {
 
     let mOrYBlends = 0;
     scores.forEach((score) => {
-        if (score.det && Object.keys(det).length >= 2 && (
+        if (score.det && Object.keys(score.det).length >= 2 && (
             (score.det.active3 || score.det.passive3 || score.det['a-p3']) ||
             (score.det.diffuse1 || score.det.diffuse2 || score.det.diffuse3)
         )) {

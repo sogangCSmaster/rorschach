@@ -25,6 +25,7 @@ function getChromaticDiffuse(scores) {
     })
     return count;
 }
+exports.getChromaticDiffuse = getChromaticDiffuse;
 
 function getAchromaticTextureAndVista(scores) {
     let count = 0;
@@ -39,6 +40,7 @@ function getAchromaticTextureAndVista(scores) {
     })
     return count;
 }
+exports.getAchromaticTextureAndVista = getAchromaticTextureAndVista;
 
 function getOnlyShading(scores) {
     let count = 0;
@@ -68,3 +70,4 @@ function getOnlyShading(scores) {
     });
     return count;
 }
+exports.getOnlyShading = getOnlyShading;

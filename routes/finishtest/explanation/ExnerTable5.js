@@ -12,6 +12,7 @@ function nextStep(stepNum, result, scores) {
     if (step.goNext == true) {
         return result;
     }
+    console.log('step', stepNum);
     return eval(`nextStep('${step.nextStep}', result, scores)`);
 }
 
@@ -114,7 +115,8 @@ function step1({ XAper, WDAper }) {
         }
     }
     
-    
+      
+    result.nextStep = 2;
     result.goNext = false;
     return result;
 }

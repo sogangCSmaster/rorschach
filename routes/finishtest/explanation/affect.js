@@ -1,4 +1,4 @@
-function caculateAffect(DEPI, CDI, Lambda, M, EBLeft, EBRight, WSumC, EA, EBPer, FM, m, SumCprime, SumT, SumV, SumY, Afr, twoABplusArtplusAy, CP, FC, CF, C, age, copyingStyle, approachStyle, PureC, S, approach, Blends, R){
+function caculateAffect(DEPI, CDI, Lambda, M, EBLeft, EBRight, WSumC, EA, EBPer, FM, m, SumCprime, SumT, SumV, SumY, Afr, twoABplusArtplusAy, CP, FC, CF, C, age, copyingStyle, approachStyle, PureC, S, approach, Blends, R, t3step13, t3step14, AchromaticTextureAndVista, ChromaticDiffuse, OnlyShading){
     var IntellectualIndex = twoABplusArtplusAy;
     var result = [];
     var nextStep = 1;
@@ -98,6 +98,38 @@ function caculateAffect(DEPI, CDI, Lambda, M, EBLeft, EBRight, WSumC, EA, EBPer,
             return result;
         }
         nextStep = STEP12.nextStep;
+    }
+    if (nextStep==13) {
+        var STEP13 = step13({ t3step13, copyingStyle, approachStyle });
+        result.push(STEP13);
+        if (STEP13.goNext==true){
+            return result;
+        }
+        nextStep = STEP13.nextStep;
+    }
+    if (nextStep==14) {
+        var STEP14 = step14({ t3step14 });
+        result.push(STEP14);
+        if (STEP14.goNext==true){
+            return result;
+        }
+        nextStep = STEP14.nextStep;
+    }
+    if (nextStep==15) {
+        var STEP15 = step15({ AchromaticTextureAndVista, approachStyle, copyingStyle, lambda: Lambda, ChromaticDiffuse });
+        result.push(STEP15);
+        if (STEP15.goNext==true){
+            return result;
+        }
+        nextStep = STEP15.nextStep;
+    }
+    if (nextStep==16) {
+        var STEP16 = step16({ OnlyShading });
+        result.push(STEP16);
+        if (STEP16.goNext==true){
+            return result;
+        }
+        nextStep = STEP16.nextStep;
     }
 
     return result;
