@@ -15,7 +15,7 @@ function nextStep(stepNum, result, scores) {
     return eval(`nextStep('${step.nextStep}', result, scores)`);
 }
 
-function step1({ CDIpositive }) {
+function step1({ CDIpositive, CDI }) {
     var result = {};
     result.textData = [];
     result.curStep = 1;

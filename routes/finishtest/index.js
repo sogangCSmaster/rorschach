@@ -854,9 +854,34 @@ router.route("/finishtest1")
                     steps = ExnerTable7.calculateExnerTable7(indicators);
                     TESTRESULT.push({resultName, steps});
                 }
+                if(scoreOrder[i]=="대인지각"){
+                    resultName = "Interpersonal Perception and Behavior  대인지각과 대인행동 평가";
+                    steps = ExnerTable8.calculateExnerTable8(indicators);
+                    TESTRESULT.push({resultName, steps});
+                }
             }
 
-            res.render('testresult/index2', { testconfig, age, moment, upper, lower, SpecialIndices, step0, getExnerTable1, experienceClassification, Order, TESTRESULT });
+            score = score.map((score) => {
+                score.det = score.det || {};
+                score.det = Object.keys(score.det).map((key) => {
+                    return score.det[key].value;
+                }).join('.');
+                score.react = score.react || {};
+                score.react = Object.keys(score.react).map((key) => {
+                    return score.react[key].value;
+                }).join(',');
+                score.score = score.score || {};
+                score.score = Object.keys(score.score).map((key) => {
+                    return score.score[key].value;
+                }).join(',');
+                return score;
+            });
+            // length 50 채움
+            for (var i = score.length; i <= 50; i++) {
+                score.push({});
+            }
+
+            res.render('testresult/index2', { testconfig, age, moment, upper, lower, SpecialIndices, step0, getExnerTable1, experienceClassification, Order, TESTRESULT, scores: score });
         })
         .post(async(req, res, next) => {
             var { stringifyText, testID } = req.body;
