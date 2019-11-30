@@ -922,7 +922,7 @@ function step15({ AchromaticTextureAndVista, approachStyle, copyingStyle, lambda
     if (AchromaticTextureAndVista == 1) {
         if (
             (approachStyle == 'True' && copyingStyle == 'Extratensive') ||
-            (approachStyle == 'True' && copyingStyle == 'Ambitent') ||
+            (approachStyle == 'True' && copyingStyle == 'Ambitent')
         ) {
             result.textData.push(`[잠정 결과1] 색채-음영 복합반응(color-shading blends)을 고려할 때, 수검자는 때때로 정서 또는 정서적 상황에 확신하지 못하거나 혼란스러워(confused)할 것이다.`);
             result.textData.push(`다른 대처 유형의 사람들에 비해 감정의 관여가 더 많은 외향형의 수검자에서는 부정적인 것으로 볼 필요가 없다. 외향형의 수검자가 때때로 감정에 확신하지 못하는 것은 어느 정도 일상적이기 때문에 수검자는 그러한 상황에도 당황하지 않고 다른 유형에 비해 감정을 편안하게 다룰 것이다.`);
