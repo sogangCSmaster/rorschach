@@ -101,7 +101,7 @@ exports.getWPlusD = getWPlusD;
 function getWv(scores) {
   let Wv = 0;
   scores.forEach((score) => {
-    if (score.loc == 'W' && score.dq == '+') {
+    if (score.loc == 'W' && score.dq == 'v') {
       Wv += 1;
     }
   });

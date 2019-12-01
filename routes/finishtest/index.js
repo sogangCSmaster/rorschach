@@ -71,6 +71,13 @@ router.route("/finishtest1")
         score = JSON.parse(score);
         score = score.slice(1);
 
+        score = score.map((s) => {
+            if (s.det && Object.keys(s.det).length) {
+              delete s.det['(2)'];
+            }
+            return s;
+        })
+
         //testconfig => 이름, 검사주체 등 기본정보
         //score => 테스트
 
@@ -331,13 +338,26 @@ router.route("/finishtest1")
         // parse score to pdf format
         score = score.map((score) => {
             score.det = score.det || {};
-            score.det = Object.keys(score.det).map((key) => {
-                return score.det[key].value;
-            }).join('.');
+            console.log(score.det);
+            score.det = Object.keys(score.det)
+              .filter((key) => {
+                return key != '(2)';
+              })
+              .map((key) => {
+                  return score.det[key].value;
+              })
+              .join('.');
+            console.log(score.det);
+
             score.react = score.react || {};
-            score.react = Object.keys(score.react).map((key) => {
-                return score.react[key].value;
-            }).join(',');
+            score.react = Object.keys(score.react)
+              .filter((key) => {
+                return key != 'P';
+              })
+              .map((key) => {
+                  return score.react[key].value;
+              })
+              .join(',');
             score.score = score.score || {};
             score.score = Object.keys(score.score).map((key) => {
                 return score.score[key].value;
@@ -880,13 +900,21 @@ router.route("/finishtest1")
 
             score = score.map((score) => {
                 score.det = score.det || {};
-                score.det = Object.keys(score.det).map((key) => {
-                    return score.det[key].value;
-                }).join('.');
+                score.det = Object.keys(score.det)
+                  .filter((key) => {
+                    return key != '(2)';
+                  })
+                  .map((key) => {
+                      return score.det[key].value;
+                  }).join('.');
                 score.react = score.react || {};
-                score.react = Object.keys(score.react).map((key) => {
-                    return score.react[key].value;
-                }).join(',');
+                score.react = Object.keys(score.react)
+                  .filter((key) => {
+                    return key != 'P';
+                  })
+                  .map((key) => {
+                      return score.react[key].value;
+                  }).join(',');
                 score.score = score.score || {};
                 score.score = Object.keys(score.score).map((key) => {
                     return score.score[key].value;

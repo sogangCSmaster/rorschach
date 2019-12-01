@@ -1026,7 +1026,7 @@ html
                     if (!dets[index]) {
                         dets[index] = { };
                     }
-                    dets[index]['(2)'] = '(2)';
+                    dets[index]['(2)'] = { value: '(2)', first: false };
                 }
                 parseGPHR(index);
             })
@@ -1039,7 +1039,7 @@ html
                     if (!reacts[index]) {
                         reacts[index] = { };
                     }
-                    reacts[index]['P'] = 'P';
+                    reacts[index]['P'] = { value: 'P', first: false };
                 }
                 parseGPHR(index);
             });
