@@ -1058,6 +1058,10 @@ html
             $('td[data-skey=PHR]').removeClass('active');
             $('td[data-skey=GHR]').removeClass('active');
             if (GPHR != '') {
+                if (scores[index]) {
+                    delete scores[index].GHR;
+                    delete scores[index].PHR;
+                }
                 $('td[data-skey=' + GPHR + ']').addClass('active');
                 if (!scores[index]) {
                     scores[index] = {};
@@ -1108,10 +1112,19 @@ html
             return true;
         }
         function checkGPHR(index) {
+          var row = $('#score-table tr[data-index=' + index + ']');
+          var fq = row.find('select[name=fq] option:selected').val();
+          var card = row.find('select[name=card] option:selected').val();
+          var cardNum = numberMapper[card];
+          var p = row.find('select.selectP option:selected').val();
           score = { };
           score.react = reacts[index];
           score.det = dets[index];
           score.score = scores[index];
+          score.fq = fq;
+          score.card =  cardNum;
+          score.p = p;
+          console.log(score);
             if (
               (score.react && (score.react.H || score.react['(H)'] || score.react.Hd || score.react['(Hd)'] || score.react.Hx)) ||
               (score.det && (score.det.active1 || score.det.passive1 || score.det['a-p1'])) ||
