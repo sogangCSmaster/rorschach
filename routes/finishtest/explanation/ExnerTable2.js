@@ -256,9 +256,11 @@ function step7({ blends }) {
 
     for(var i=0;i<blends.length;i++){
         for(var l=0; l<blends[i].length;l++){
-            if(blends[i][l].includes('T') || blends[i][l].includes('V') || blends[i][l].includes("C'")){
-                otherColorBlends += 1;
-                break;
+            if(blends[i][l]){
+                if(blends[i][l].includes('T') || blends[i][l].includes('V') || blends[i][l].includes("C'")){
+                    otherColorBlends += 1;
+                    break;
+                }
             }
         }
     }
