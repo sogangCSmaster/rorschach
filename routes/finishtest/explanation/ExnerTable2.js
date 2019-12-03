@@ -195,9 +195,11 @@ function step6({ blends }) {
     var totalBlends = blends.length;
     for(var i=0;i<blends.length;i++){
         for(var l=0; l<blends[i].length;l++){
-            if(blends[i][l].includes('m') || blends[i][l].includes('Y')){
-                countmY += 1;
-                break;
+            if(blends[i][l]){
+                if(blends[i][l].includes('m') || blends[i][l].includes('Y')){
+                    countmY += 1;
+                    break;
+                }
             }
         }
     }
