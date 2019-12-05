@@ -8450,3 +8450,19 @@ td[data-skey].active {
   color: rgba(97, 178, 191);
 }
 
+
+#locModal .card-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 250px;
+    min-width: 100%;
+}
+
+#locModal .card-img.hover {
+    filter: invert(61%) sepia(84%) saturate(3429%) hue-rotate(157deg) brightness(89%) contrast(103%) !important;
+}
+
+#locModal .card-img:not(:first-child) {
+    filter: brightness(0%);
+}

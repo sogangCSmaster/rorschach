@@ -23,6 +23,7 @@
   <script>
 
       $('.svg').on('click', function(event, pageX, pageY, clientX, clientY) {
+          console.log(pageX, pageY, clientX, clientY);
         pageX = pageX || event.pageX;
         pageY = pageY || event.pageY;
         clientX = clientX || event.clientX;

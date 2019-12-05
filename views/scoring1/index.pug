@@ -51,6 +51,7 @@ html
                                                 option Ⅹ
                                         td.text-center.form-group.number 1
                                         td.text-center.form-group
+                                            button.btn.btn-default.loc-btn 선택
                                             select.form-control(name="loc" style="text-align-last:center;")
                                                 option(selected='selected' hidden) [선택]
                                                 option W
@@ -103,6 +104,27 @@ html
                                     input(type="hidden" name="stringifyText")
                                     input(type="hidden" name="testID" value=session.insertId)
                                     button.btn.btn-primary(type="submit") 채 점
+
+
+
+        .modal.fade#locModal(tabindex='-1', role='dialog')
+            .modal-dialog.modal-lg(role='document')
+                .modal-content
+                    .modal-header
+                        h2.modal-title(style='display: inline-block; font-weight: bold') CARD
+
+                    .modal-body
+                        .row(style='height: 300px;')
+                            .col-lg-4.text-center(data-cindex='1')
+                            .col-lg-4.text-center(data-cindex='2')
+                            .col-lg-4.text-center(data-cindex='3')
+                        .row(style='height: 300px;')
+                            .col-lg-4.text-center(data-cindex='4')
+                            .col-lg-4.text-center(data-cindex='5')
+                            .col-lg-4.text-center(data-cindex='6')
+                    .modal-footer
+                        //- button.btn.btn-primary(type='button') Save changes
+                        button.btn.btn-secondary(type='button', data-dismiss='modal') 확인
 
         .modal.fade#detModal(tabindex='-1', role='dialog')
             .modal-dialog.modal-lg(role='document')
@@ -608,6 +630,43 @@ html
         script(src='/js/plugins/stickytableheaders/jquery.stickytableheaders.min.js')
         script.
             $(document).ready(function(){
+                $(document).on('click', '.card-img', function(event, pageX, pageY, clientX, clientY) {
+                    pageX = pageX || event.pageX;
+                    pageY = pageY || event.pageY;
+                    clientX = clientX || event.clientX;
+                    clientY = clientY || event.clientY;
+                    var canvas = document.createElement('canvas');
+                    var ctx = canvas.getContext('2d');
+                    var x = pageX - $(this).offset().left,
+                        y = pageY - $(this).offset().top,
+                        w = ctx.canvas.width = this.width,
+                        h = ctx.canvas.height = this.height,
+                        alpha;
+
+
+
+                    console.log('pageX', pageX, 'clientX', clientX, this.offsetLeft);
+                    console.log($(this).offset());
+                    console.log('x', x, 'y', y);
+                    console.log('cx', this.clientLeft, 'cy', this.clientTop);
+                    console.log('width', w, 'height', h);
+                    console.log('this', this);
+                    ctx.drawImage(this, 0, 0, w, h);
+                    console.log(ctx.getImageData(x, y, 10, 10));
+                    alpha = ctx.getImageData(x, y, 1, 1).data[3];
+
+                    console.log(pageX, pageY, clientX, clientY);
+                    console.log('alpha', alpha);
+                    if (alpha == 0) {
+                        $(this).hide();
+                        $(document.elementFromPoint(clientX, clientY)).trigger('click', [pageX, pageY, clientX, clientY]);
+                        $(this).show();
+                    } else {
+                        $(this).closest('div').find('.card-img').removeClass('hover');
+                        $(this).addClass('hover');
+                        console.log(this);
+                    }   
+                }); 
               setTimeout(function() {
                 $('.animated').removeClass('animated'); // for sticky bug
               }, 1000);
@@ -652,6 +711,27 @@ html
             var currentModalIndex = -1;
 
 
+            function selectLocImageInModal(index, card) {
+                var name = {
+                    '1': [
+                        ['layer', 'D1', 'Dd24'],
+                        ['layer', 'D3', 'Dd28', 'Dd22', 'D2'],
+                        ['layer', 'D4', 'Dd25', 'Dd23'],
+                        ['layer', 'D7', 'Dd35', 'Dd21', 'Dd34', 'Dd33'],
+                        ['layer', 'Dd27', 'DdS29', 'DdS30'],
+                        ['layer', 'DdS32', 'DdS26', 'Dd31'],
+                    ],
+                }
+                for (var i = 1; i <= 6; i++) {
+                    var col = $('#locModal').find('[data-cindex=' + i + ']');
+                    console.log(name[card][i-1]);
+                    col.html('');
+                    for (var j = 0; j < name[card][i-1].length; j++) {
+                        col.append('<img class="card-img" src="/img/cards/' + card + '/' + card + '-' + i + '/' + name[card][i-1][j] + '.png" title="' + name[card][i-1][j] + '">');
+                    }
+                }
+                //$('.card-img').tooltip('show');
+            }
             // CONTAM validation
             //
             function validateCONTAM(e) {
@@ -662,6 +742,18 @@ html
               }
               return score.DV1 || score.DV2 || score.DR1 || score.DR2 || score.INCOM1 || score.INCOM2 || score.FABCOM1 || score.FABCOM2 || score.ALOG;
             }
+            // 반응 위치 추가 버튼
+            $(document).on('click', '.loc-btn', function() {
+                var idx = $(this).closest('tr').attr('data-index');
+                idx = parseInt(idx);
+                var row = $('#score-table tr[data-index=' + idx + ']');
+                var card = row.find('select[name=card] option:selected').val();
+                var cardNum = numberMapper[card];
+                currentModalIndex = idx;
+                selectLocImageInModal(currentModalIndex, cardNum);
+                $('#locModal').modal('show');
+
+            });
             // 결정인 추가 버튼
             $(document).on('click', '.determinant', function(){
                 var idx = $(this).closest('tr').attr('data-index');
