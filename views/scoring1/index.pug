@@ -38,7 +38,7 @@ html
                                 mixin card-tr(display, index)
                                     tr(data-index=index, style=(display == 'hidden' ? 'display: none' : ''))
                                         td.form-group.text-center(scope="row")
-                                            select.form-control.card-select(name="card")
+                                            select.form-control.card-select(name="card" style="text-align-last:center;")
                                                 option Ⅰ
                                                 option Ⅱ
                                                 option Ⅲ
@@ -51,7 +51,7 @@ html
                                                 option Ⅹ
                                         td.text-center.form-group.number &#9312;
                                         td.text-center.form-group
-                                            select.form-control(name="loc")
+                                            select.form-control(name="loc" style="text-align-last:center;")
                                                 option(selected='selected' hidden) [선택]
                                                 option W
                                                 option D
@@ -60,7 +60,7 @@ html
                                                 option DS
                                                 option DdS
                                         td.text-center.form-group
-                                            select.form-control(name="dq")
+                                            select.form-control(name="dq" style="text-align-last:center;")
                                                 option(selected='selected' hidden) [선택]
                                                 option +
                                                 option o
@@ -69,7 +69,7 @@ html
                                         td.text-center
                                             button.btn.btn-default.btn-sm.determinant 선택
                                         td.text-center.form-group
-                                            select.form-control(name='fq')
+                                            select.form-control(name='fq' style="text-align-last:center;")
                                                 option(selected='selected' hidden) [선택]
                                                 option +
                                                 option o
@@ -77,17 +77,17 @@ html
                                                 option -
                                                 option none
                                         td.text-center.form-group
-                                            select.form-control.select2
+                                            select.form-control.select2(style="text-align-last:center;")
                                                 option(value='') [없음]
                                                 option (2)
                                         td.text-center
                                             button.btn.btn-default.btn-sm.react-btn 선택
                                         td.text-center.form-group
-                                            select.form-control.selectP
+                                            select.form-control.selectP(style="text-align-last:center;")
                                                 option(value='') [없음]
                                                 option P
                                         td.text-center
-                                            select.form-control.selectZ
+                                            select.form-control.selectZ(style="text-align-last:center;")
                                         td.text-center
                                             button.btn.btn-default.btn-sm.score-btn 선택
                                 +card-tr('hidden', 0)
@@ -639,7 +639,7 @@ html
                     a.show();
                     var index = $('#score-table tr').length - 1;
                     a.attr('data-index', index);
-                    $('#score-table tr[data-index=' + index + '] .number').html('&#93' + (11 + index) + ';');
+                    $('#score-table tr[data-index=' + index + '] .number').html((index));
                 });
             })
 
