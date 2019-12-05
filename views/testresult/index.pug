@@ -83,7 +83,7 @@ html
                     .container-fluid
                         .row
                             .col-md-12.text-center
-                                h6 NO : #{testconfig.id} &nbsp&nbsp&nbsp&nbsp 이름 : #{testconfig.name} &nbsp&nbsp&nbsp&nbsp 생년월일 : #{moment(testconfig.birthday).format('YYYY년 MM월 DD일')}(만 #{testconfig.age}세) &nbsp&nbsp&nbsp&nbsp 성별 : #{testconfig.sex} &nbsp&nbsp&nbsp&nbsp 검사일 : #{moment(testconfig.testdate).format('YYYY년 MM월 DD일')}
+                                h6 NO : #{testconfig.id} &nbsp&nbsp&nbsp&nbsp 이름 : #{testconfig.name} &nbsp&nbsp&nbsp&nbsp 성별 : #{testconfig.sex} &nbsp&nbsp&nbsp&nbsp 생년월일 : #{moment(testconfig.birthday).format('YYYY년 MM월 DD일')}(만 #{testconfig.age}세) &nbsp&nbsp&nbsp&nbsp 검사일 : #{moment(testconfig.testdate).format('YYYY년 MM월 DD일')}
                             
                     .row
                         .col-md-12.text-center
@@ -104,8 +104,30 @@ html
                                 tbody
                                     each score, index in scores.slice(0, 25)
                                         tr(style='font-size: 7px;')
-                                            td= score.card
-                                            td= index + 1
+                                            td
+                                                if score.card==1
+                                                    = "Ⅰ"
+                                                else if score.card==2
+                                                    = "Ⅱ"
+                                                else if score.card==3
+                                                    = "Ⅲ"
+                                                else if score.card==4
+                                                    = "Ⅳ"
+                                                else if score.card==5
+                                                    = "Ⅴ"
+                                                else if score.card==6
+                                                    = "Ⅵ"
+                                                else if score.card==7
+                                                    = "Ⅶ"
+                                                else if score.card==8
+                                                    = "Ⅷ"
+                                                else if score.card==9
+                                                    = "Ⅸ"
+                                                else if score.card==10
+                                                    = "Ⅹ"
+                                            td
+                                                if score.card
+                                                    = index + 1
                                             td= score.loc
                                             td= score.dq
                                             td!= score.det
@@ -115,45 +137,68 @@ html
                                             td= score.p
                                             td= score.z
                                             td= score.score
-            .page
-                .subpage#page0
-                    .row
-                        .col-md-12.text-center
-                            h3 Rorschach Test Sequence of Scores
-                    .container-fluid
+            if scores[25].card
+                .page
+                    .subpage#page0
                         .row
                             .col-md-12.text-center
-                                h6 NO : #{testconfig.id} &nbsp&nbsp&nbsp&nbsp 이름 : #{testconfig.name} &nbsp&nbsp&nbsp&nbsp 생년월일 : #{moment(testconfig.birthday).format('YYYY년 MM월 DD일')}(만 #{testconfig.age}세) &nbsp&nbsp&nbsp&nbsp 성별 : #{testconfig.sex} &nbsp&nbsp&nbsp&nbsp 검사일 : #{moment(testconfig.testdate).format('YYYY년 MM월 DD일')}
-                    .row
-                        .col-md-12.text-center
-                            table.table.table-bordered
-                                thead
-                                    tr(style='font-size: 7px;')
-                                        th.text-center(style='width: 35px;') 카드
-                                        th.text-center(style='width: 35px;') 번호
-                                        th.text-center(style='width: 35px;') 위치
-                                        th.text-center(style='width: 35px;') DQ
-                                        th.text-center(style='min-width: 100px;') 결정인
-                                        th.text-center(style='width: 35px;') FQ
-                                        th.text-center(style='width: 35px;') (2)
-                                        th.text-center(style='min-width: 100px;') 내용
-                                        th.text-center(style='width: 35px;')  P
-                                        th.text-center(style='width: 50px;')  Z
-                                        th.text-center(style='min-width: 100px;')  특수점수
-                                tbody
-                                    each score, index in scores.slice(26)
+                                h3 Rorschach Test Sequence of Scores
+                        .container-fluid
+                            .row
+                                .col-md-12.text-center
+                                    h6 NO : #{testconfig.id} &nbsp&nbsp&nbsp&nbsp 이름 : #{testconfig.name} &nbsp&nbsp&nbsp&nbsp 성별 : #{testconfig.sex} &nbsp&nbsp&nbsp&nbsp 생년월일 : #{moment(testconfig.birthday).format('YYYY년 MM월 DD일')}(만 #{testconfig.age}세) &nbsp&nbsp&nbsp&nbsp 검사일 : #{moment(testconfig.testdate).format('YYYY년 MM월 DD일')}
+                        .row
+                            .col-md-12.text-center
+                                table.table.table-bordered
+                                    thead
                                         tr(style='font-size: 7px;')
-                                            td= score.card
-                                            td= index + 26
-                                            td= score.loc
-                                            td= score.dq
-                                            td!= score.det
-                                            td= score.fq
-                                            td= score['(2)']
-                                            td= score.react
-                                            td= score.p
-                                            td= score.z
-                                            td= score.score
+                                            th.text-center(style='width: 35px;') 카드
+                                            th.text-center(style='width: 35px;') 번호
+                                            th.text-center(style='width: 35px;') 위치
+                                            th.text-center(style='width: 35px;') DQ
+                                            th.text-center(style='min-width: 100px;') 결정인
+                                            th.text-center(style='width: 35px;') FQ
+                                            th.text-center(style='width: 35px;') (2)
+                                            th.text-center(style='min-width: 100px;') 내용
+                                            th.text-center(style='width: 35px;')  P
+                                            th.text-center(style='width: 50px;')  Z
+                                            th.text-center(style='min-width: 100px;')  특수점수
+                                    tbody
+                                        each score, index in scores.slice(26)
+                                            tr(style='font-size: 7px;')
+                                                td
+                                                    if score.card==1
+                                                        = "Ⅰ"
+                                                    else if score.card==2
+                                                        = "Ⅱ"
+                                                    else if score.card==3
+                                                        = "Ⅲ"
+                                                    else if score.card==4
+                                                        = "Ⅳ"
+                                                    else if score.card==5
+                                                        = "Ⅴ"
+                                                    else if score.card==6
+                                                        = "Ⅵ"
+                                                    else if score.card==7
+                                                        = "Ⅶ"
+                                                    else if score.card==8
+                                                        = "Ⅷ"
+                                                    else if score.card==9
+                                                        = "Ⅸ"
+                                                    else if score.card==10
+                                                        = "Ⅹ"
+                                                td
+                                                    if score.card
+                                                        = index + 26
+                                                td= score.loc
+                                                td= score.dq
+                                                td!= score.det
+                                                td= score.fq
+                                                td= score['(2)']
+                                                td= score.react
+                                                td= score.p
+                                                td= score.z
+                                                td= score.score
                                         
 
             .page
@@ -840,7 +885,7 @@ html
                                 thead
                                     tr
                                         th.text-center S-Constellation (Suicide Potential) : 만 14세 이상만 적용
-                                tbody
+                                tbody(style="text-indent: 5px;")
                                     tr
                                         td
                                             p(style="font-weight:bold;")
@@ -928,39 +973,47 @@ html
                                 thead
                                     tr
                                         th.text-center PTI (Perceptual Thinking Index)
-                                tbody
+                                        - var PTITotal = 0
+                                tbody(style="text-indent: 5px;")
                                     tr
                                         td
                                             p
                                                 if SpecialIndices.PTI.XAper
                                                     i.fa.fa-check-square-o
+                                                    - PTITotal += 1;
                                                 else
                                                     i.fa.fa-square-o
                                                 | &nbsp;(XA% < 0.70) and (WDA% < 0.75)
                                             p
                                                 if SpecialIndices.PTI.Xminusper
                                                     i.fa.fa-check-square-o
+                                                    - PTITotal += 1;
                                                 else
                                                     i.fa.fa-square-o
                                                 | &nbsp;X-% > 0.29
                                             p
                                                 if SpecialIndices.PTI.Level2
                                                     i.fa.fa-check-square-o
+                                                    - PTITotal += 1;
                                                 else
                                                     i.fa.fa-square-o
                                                 | &nbsp;(Sum Level2 Special Score > 2) and (FABCOM Level2 > 0)
                                             p
                                                 if SpecialIndices.PTI.R
                                                     i.fa.fa-check-square-o
+                                                    - PTITotal += 1;
                                                 else
                                                     i.fa.fa-square-o
                                                 | &nbsp;{(R < 17) and (WSum6 > 12)} or {(R > 16) and (WSum6 > 17)}
                                             p
                                                 if SpecialIndices.PTI.M
                                                     i.fa.fa-check-square-o
+                                                    - PTITotal += 1;
                                                 else
                                                     i.fa.fa-square-o
                                                 | &nbsp;(M- > 1) or (X-% > 0.40)
+                                            P(style="font-weight: bold;")="Total = " + PTITotal.toString()
+
                     
                     .row
                         .col-md-6(style="padding-right: 2px; padding-left: 2px;height: 300px;")
@@ -968,7 +1021,7 @@ html
                                 thead
                                     tr
                                         th.text-center DEPI (Depression Index)
-                                tbody
+                                tbody(style="text-indent: 5px;")
                                     tr
                                         td
                                             p(style="font-weight: bold;")
@@ -1025,7 +1078,7 @@ html
                                 thead
                                     tr
                                         th.text-center CDI (Coping Deficit Index)
-                                tbody
+                                tbody(style="text-indent: 5px;")
                                     tr
                                         td
                                             p(style="font-weight: bold;")
@@ -1074,7 +1127,7 @@ html
                                 thead
                                     tr
                                         th.text-center HVI (Hypervigilance Index)
-                                tbody
+                                tbody(style="text-indent: 5px;")
                                     tr
                                         td
                                             p(style="font-weight: bold;")
@@ -1140,7 +1193,7 @@ html
                                 thead
                                     tr
                                         th.text-center OBS (Obsessive Style Index)
-                                tbody
+                                tbody(style="text-indent: 5px;")
                                     tr
                                         td
                                             p
