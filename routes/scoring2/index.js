@@ -11,8 +11,20 @@ router.route("/scoring2")
         if(!insertId){
             return res.redirect("/");
         }
+        var sql = "select score.id, test.name, test.sex, test.testdate from score left join test on score.id=test.id";
+        var datas = await query.executeSQL(sql);
 
-        res.render('scoring2/index');
+        res.render('scoring2/index', { datas });
+        // res.render('scoring2/index');
     })
-
+    .post(async(req, res, next) => {
+        var { insertId } = req.session;
+        var { id } = req.body;
+        var sql = "SELECT score FROM score WHERE id=?";
+        var score = await query.executeSQL(sql, [id]);
+        score = score[0].score;
+        var sql = "INSERT INTO score (id, score) VALUES (?, ?)";
+        await query.executeSQL(sql, [insertId, score]);
+        res.redirect("/");
+    })
 module.exports = router
