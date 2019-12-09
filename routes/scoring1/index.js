@@ -12,7 +12,20 @@ router.route("/scoring1")
             return res.redirect("/");
         }
 
-        res.render('scoring1/index');
+        var sql = "select score.id as id, test.name as name, test.sex as sex, test.testdate as testdate from score left join test on score.id=test.id";
+        var datas = await query.executeSQL(sql);
+
+        res.render('scoring1/index', { datas });
+    })
+    .post(async(req, res, next) => {
+        var { insertId } = req.session;
+        var { id } = req.body;
+        var sql = "SELECT score FROM score WHERE id=?";
+        var score = await query.executeSQL(sql, [id]);
+        score = score[0].score;
+        var sql = "INSERT INTO score (id, score) VALUES (?, ?)";
+        await query.executeSQL(sql, [insertId, score]);
+        res.redirect("/");
     })
 
 module.exports = router
