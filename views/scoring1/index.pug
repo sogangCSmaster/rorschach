@@ -705,6 +705,21 @@ html
                 //-     $('#detModal').modal('show');
                 //- })
 
+                // 카드 삭제 버튼
+                $('#deleteReact').on('click', function() {
+                    var tbody = $('#score-table');
+                    var index = tbody.find('tr').length - 1;
+                    if (index == 0) {
+                        return;
+                    }
+                    console.log(index);
+                    var tr = tbody.find('tr[data-index=' + index + ']');
+                    console.log(tr);
+                    tr.remove();
+                    dets.pop();
+                    reacts.pop();
+                    scores.pop();
+                })
                 // 카드 추가 버튼
                 $("#addReact").on('click', function(){
                     var a = $('#score-table').find('tr:eq(0)').clone()
