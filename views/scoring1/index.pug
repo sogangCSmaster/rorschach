@@ -63,7 +63,7 @@ html
                                                 option Ⅹ
                                         td.text-center.form-group.number 1
                                         td.text-center.form-group
-                                            button.btn.btn-default.loc-btn 선택
+                                            //-button.btn.btn-default.loc-btn 선택
                                             select.form-control(name="loc" style="text-align-last:center;")
                                                 option(selected='selected' hidden) [선택]
                                                 option W
@@ -101,6 +101,7 @@ html
                                                 option P
                                         td.text-center
                                             select.form-control.selectZ(style="text-align-last:center;")
+                                                option(value='') [없음]
                                         td.text-center
                                             button.btn.btn-default.btn-sm.score-btn.btn-block 선택
                                 +card-tr('hidden', 0)
@@ -1102,6 +1103,7 @@ html
 
             var zDom = row.find('.selectZ');
             zDom.html('');
+            zDom.append($('<option value="">[없음]</option>'));
             if (zArr) {
                 zArr.forEach(function(val) {
                     var option = $('<option value="' + val + '">' + val + '</option>');
