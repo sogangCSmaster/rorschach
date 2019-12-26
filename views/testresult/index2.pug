@@ -202,6 +202,1064 @@ html
                                                 td= score.z
                                                 td= score.score
             .page
+                .subpage#page1
+                    .row
+                        .col-md-12.text-center
+                            h3 Rorschach Test Structural Summary
+                    .container-fluid
+                        .row
+                            .col-md-12.text-center
+                                h6 NO : #{testconfig.id} &nbsp&nbsp&nbsp&nbsp 이름 : #{testconfig.name} &nbsp&nbsp&nbsp&nbsp 생년월일 : #{moment(testconfig.birthday).format('YYYY년 MM월 DD일')}(만 #{testconfig.age}세) &nbsp&nbsp&nbsp&nbsp 성별 : #{testconfig.sex} &nbsp&nbsp&nbsp&nbsp 검사일 : #{moment(testconfig.testdate).format('YYYY년 MM월 DD일')}
+                    .row
+                        .col-md-3.col-3-print(style="padding-right: 2px; padding-left: 2px;")
+                            table.table.table-bordered
+                                thead
+                                    tr
+                                        th.text-center(style="font-size: 7pt" colspan="3") 반응위치 특징
+                                            br
+                                            | (Location Features)
+                                tbody
+                                    tr
+                                        td(style="font-size: 7pt;")
+                                            .text-center 조직화 활동
+                                            div(style="margin-left: 10px;")
+                                                | Zf = #{upper.location_features.Zf}
+                                                br
+                                                | ZSum = #{upper.location_features.ZSum}
+                                                br
+                                                | ZEst = #{upper.location_features.ZEst}
+                                    tr
+                                        td(style="font-size: 7pt;")
+                                            .text-center 반응 위치
+                                            div(style="margin-left: 10px;")
+                                                | W = #{upper.location_features.W}
+                                                span.pull-right ( Wv=#{upper.location_features.Wv} )
+                                                br
+                                                | D = #{upper.location_features.D}
+                                                span.pull-right ( W+D=#{upper.location_features.WPlusD} )
+                                                br
+                                                | Dd = #{upper.location_features.Dd}
+                                                br
+                                                | S = #{upper.location_features.S}
+                            
+                            table.table.table-bordered
+                                thead
+                                    tr
+                                        th.text-center(style="font-size: 7pt" colspan="3") 발달질
+                                            br
+                                            | (Developmental Quality)
+                                tbody
+                                    tr
+                                        td(style="font-size: 7pt;")
+                                            div(style="margin-left: 10px;")
+                                                | + = #{upper.dq.plus} 
+                                                br
+                                                | o = #{upper.dq.o}
+                                                br
+                                                | v/o = #{upper.dq.VSlashPlus}
+                                                br
+                                                | v = #{upper.dq.v}
+                                        td(style='font-size: 7pt;')
+                                            div(style='margin-left: 10px;')
+                                                | (FQx- = #{upper.dq.plusFQxminus})
+                                                br
+                                                | (FQx- = #{upper.dq.oFQxminus})
+                                                br
+                                                | (FQx- = #{upper.dq.vSlashPlusFQxminus})
+                                                br
+                                                | (FQx- = #{upper.dq.vFQxminus})
+
+
+
+                        .col-md-3.col-3-print(style="padding-right: 2px; padding-left: 2px;")
+                            table.table.table-bordered
+                                thead
+                                    tr
+                                        th.text-center(style="font-size: 7pt" colspan="3") 결정인
+                                            br
+                                            | (Determinants)
+                                tbody
+                                    tr
+                                        td(style="font-size: 7pt;" colspan="1.5")
+                                            .text-center 복합
+                                                br
+                                                | (Blends)
+                                            div
+                                                each blends in upper.blends
+                                                    p
+                                                        each blend, index in blends
+                                                            span !{blend}
+                                                            if index != blends.length - 1
+                                                                |.
+                                                            span &nbsp;
+                                                        
+                                        td(style="font-size: 7pt;" colspan="1.5")
+                                            .text-center 전체
+                                                br
+                                                | (Total)
+                                            div
+                                                | F = #{upper.determinants.F}
+                                                br
+                                                | M = #{upper.determinants.M}
+                                                br
+                                                | FM = #{upper.determinants.FM}
+                                                br
+                                                | m = #{upper.determinants.m}
+                                                br
+                                                br
+                                                | FC = #{upper.determinants.FC}
+                                                br
+                                                | CF = #{upper.determinants.CF}
+                                                br
+                                                | C = #{upper.determinants.C}
+                                                br
+                                                | Cn = #{upper.determinants.Cn}
+                                                br
+                                                br
+                                                | FC' = #{upper.determinants.FCprime}
+                                                br
+                                                | C'F = #{upper.determinants.CprimeF}
+                                                br
+                                                | C' = #{upper.determinants.Cprime}
+                                                br
+                                                br
+                                                | FY = #{upper.determinants.FY}
+                                                br
+                                                | YF = #{upper.determinants.YF}
+                                                br
+                                                | Y = #{upper.determinants.Y}
+                                                br
+                                                | FT = #{upper.determinants.FT}
+                                                br
+                                                | TF = #{upper.determinants.TF}
+                                                br
+                                                | T = #{upper.determinants.T}
+                                                br
+                                                | FV = #{upper.determinants.FV}
+                                                br
+                                                | VF = #{upper.determinants.VF}
+                                                br
+                                                | V = #{upper.determinants.V}
+                                                br
+                                                | FD = #{upper.determinants.FD}
+                                                br
+                                                br
+                                                | Fr = #{upper.determinants.Fr}
+                                                br
+                                                | rF = #{upper.determinants.rF}
+                                                br
+                                                | (2) = #{upper.determinants.two}
+                                                //- br
+                                                //- | P = #{upper.determinants.P}
+                        .col-md-2.col-2-print(style="padding-right: 2px; padding-left: 2px;")
+                            table.table.table-bordered
+                                thead
+                                    tr
+                                        th.text-center(style="font-size: 7pt" colspan="3") 반응내용
+                                            br
+                                            | (Contents)
+                                tbody
+                                    tr
+                                        td(style="font-size: 7pt;" colspan="3")
+                                            div(style="margin-left: 10px;")
+                                                - var order = ['H', '(H)', 'Hd', '(Hd)', 'Hx', 'A', '(A)', 'Ad', '(Ad)', 'An', 'Xy', 'Bl', 'Sx', 'Sc', 'Art', 'Ay', 'Hh', 'Fd', 'Cg', 'Na', 'Bt', 'Ls', 'Ge', 'Cl', 'Fi', 'Ex', 'Id', 'P']
+                                                each key in order
+                                                    | &nbsp #{key} = #{upper.contents[key]}
+                                                    br
+                                                    if key == 'Hx' || key=='(Ad)' || key == 'Sx' || key == 'Cg' || key == 'Ex'
+                                                        br
+                        .col-md-4.col-3-print(style="padding-right: 2px; padding-left: 2px;")
+                            table.table.table-bordered
+                                thead
+                                    tr
+                                        th.text-center(style="font-size: 7pt" colspan="3") 접근방식
+                                            br
+                                            | (Summary of Approach)
+                                tbody
+                                    tr
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="1") 카드
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3") 위치 & 발달질(DQ)
+                                    tr
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="1") Ⅰ
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")= upper.approach[1].slice(0, 6).join(', ')
+                                    tr
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="1") Ⅱ
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")= upper.approach[2].slice(0, 6).join(', ')
+                                            
+                                    tr
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="1") Ⅲ
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")=upper.approach[3].slice(0, 6).join(', ')
+                                            
+                                    tr
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="1") Ⅳ
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")=upper.approach[4].slice(0, 6).join(', ')
+                                            
+                                    tr
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="1") Ⅴ
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")=upper.approach[5].slice(0, 6).join(', ')
+                                            
+                                    tr
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="1") Ⅵ
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")=upper.approach[6].slice(0, 6).join(', ')
+                                            
+                                    tr
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="1") Ⅶ
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")=upper.approach[7].slice(0, 6).join(', ')
+                                            
+                                    tr
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="1") Ⅷ
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")=upper.approach[8].slice(0, 6).join(', ')
+                                            
+                                    tr
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="1") Ⅸ
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")=upper.approach[9].slice(0, 6).join(', ')
+                                            
+                                    tr
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="1") Ⅹ
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")=upper.approach[10].slice(0, 6).join(', ')
+                                            
+                    .row
+                        .col-md-4(style="padding-right: 2px; padding-left: 2px;")
+                            table.table.table-bordered
+                                thead
+                                    tr
+                                        th.text-center(style="font-size: 7pt" colspan="4") 형태질
+                                            br
+                                            | (Form Quality)
+                                tbody(style="font-size: 7pt")
+                                    tr
+                                        td.text-center(style="padding: 2px;")
+                                        td.text-center(style="padding: 2px;") FQx
+                                        td.text-center(style="padding: 2px;") MQuality
+                                        td.text-center(style="padding: 2px;") W+D
+                                    tr
+                                        td.text-center(style="padding: 2px;") +
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.FQx['+']}
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.MQuality['+']}
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.WPlusD['+']}
+                                    tr
+                                        td.text-center(style="padding: 2px;") o
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.FQx['o']}
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.MQuality['o']}
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.WPlusD['o']}
+                                    tr
+                                        td.text-center(style="padding: 2px;") u
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.FQx['u']}
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.MQuality['u']}
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.WPlusD['u']}
+                                    tr
+                                        td.text-center(style="padding: 2px;") -
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.FQx['-']}
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.MQuality['-']}
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.WPlusD['-']}
+                                    tr
+                                        td.text-center(style="padding: 2px;") none
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.FQx['none']}
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.MQuality['none']}
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.WPlusD['none']}
+                        .col-md-4(style="padding-right: 2px; padding-left: 2px;")
+                            table.table.table-bordered
+                                thead
+                                    tr
+                                        th.text-center(style="font-size: 7pt" colspan="24") 특수점수
+                                            br
+                                            | (Special Scores)
+                                tbody(style="font-size: 7pt")
+                                    tr
+                                        td.text-center(style="padding: 2px;" colspan="6")
+                                        td.text-center(style="padding: 2px;" colspan="9") LV1
+                                        td.text-center(style="padding: 2px;" colspan="9") LV2
+                                    tr
+                                        td.text-center(style="padding: 2px;" colspan="6") DV
+                                        td.text-center(style="padding: 2px;" colspan="9") #{upper.special_scores.DV1} × 1 (#{upper.special_scores.DV1*1})
+                                        td.text-center(style="padding: 2px;" colspan="9") #{upper.special_scores.DV2} × 2 (#{upper.special_scores.DV2*2})
+                                    tr
+                                        td.text-center(style="padding: 2px;" colspan="6") INCOM
+                                        td.text-center(style="padding: 2px;" colspan="9") #{upper.special_scores.INCOM1} × 2 (#{upper.special_scores.INCOM1*2})
+                                        td.text-center(style="padding: 2px;" colspan="9") #{upper.special_scores.INCOM2} × 4 (#{upper.special_scores.INCOM2*4})
+                                    tr
+                                        td.text-center(style="padding: 2px;" colspan="6") DR
+                                        td.text-center(style="padding: 2px;" colspan="9") #{upper.special_scores.DR1} × 3 (#{upper.special_scores.DR1*3})
+                                        td.text-center(style="padding: 2px;" colspan="9") #{upper.special_scores.DR2} × 6 (#{upper.special_scores.DR2*6})
+                                    tr
+                                        td.text-center(style="padding: 2px;" colspan="6") FABCOM
+                                        td.text-center(style="padding: 2px;" colspan="9") #{upper.special_scores.FABCOM1} × 4 (#{upper.special_scores.FABCOM1*4})
+                                        td.text-center(style="padding: 2px;" colspan="9") #{upper.special_scores.FABCOM2} × 7 (#{upper.special_scores.FABCOM2*7})
+                                    tr
+                                        td.text-center(style="padding: 2px;" colspan="6") ALOG
+                                        td.text-center(style="padding: 2px;" colspan="9") #{upper.special_scores.ALOG} × 5 (#{upper.special_scores.ALOG*5})
+                                        td.text-center(style="padding: 2px;" colspan="9")
+                                    tr
+                                        td.text-center(style="padding: 2px;" colspan="6") CONTAM
+                                        td.text-center(style="padding: 2px;" colspan="9") #{upper.special_scores.CONTAM} × 7 (#{upper.special_scores.CONTAM*7})
+                                        td.text-center(style="padding: 2px;" colspan="9")
+                                thead(style="font-size: 7pt")
+                                    tr
+                                        th.text-center(style="padding: 2px;" colspan="24") Sum6 = #{upper.special_scores.Sum6} &nbsp;&nbsp; WSum6 = #{upper.special_scores.WSum6}
+                                tbody(style="font-size: 7pt")
+                                    tr
+                                        td.text-center(style="padding: 2px;" colspan="4") AG
+                                        td.text-center(style="padding: 2px;" colspan="8") #{upper.special_scores.AG}
+                                        td.text-center(style="padding: 2px;" colspan="4") AB
+                                        td.text-center(style="padding: 2px;" colspan="8") #{upper.special_scores.AB}
+                                    tr
+                                        td.text-center(style="padding: 2px;" colspan="4") COP
+                                        td.text-center(style="padding: 2px;" colspan="8") #{upper.special_scores.COP}
+                                        td.text-center(style="padding: 2px;" colspan="4") CP
+                                        td.text-center(style="padding: 2px;" colspan="8") #{upper.special_scores.CP}
+                                    tr
+                                        td.text-center(style="padding: 2px;" colspan="4") GHR
+                                        td.text-center(style="padding: 2px;" colspan="8") #{upper.special_scores.GHR}
+                                        td.text-center(style="padding: 2px;" colspan="4") MOR
+                                        td.text-center(style="padding: 2px;" colspan="8") #{upper.special_scores.MOR}
+                                    tr
+                                        td.text-center(style="padding: 2px;" colspan="4") PHR
+                                        td.text-center(style="padding: 2px;" colspan="8") #{upper.special_scores.PHR}
+                                        td.text-center(style="padding: 2px;" colspan="4") PSV
+                                        td.text-center(style="padding: 2px;" colspan="8") #{upper.special_scores.PSV}
+                                    tr
+                                        td.text-center(style="padding: 2px;" colspan="4") PER
+                                        td.text-center(style="padding: 2px;" colspan="8") #{upper.special_scores.PER}
+                                        td.text-center(style="padding: 2px;" colspan="12") 
+                                        
+
+
+
+            .page
+                .subpage#page2
+                    .row
+                        .col-md-12(style="padding-right: 2px; padding-left: 2px;")
+                            table.table.table-bordered
+                                thead
+                                    tr
+                                        th.text-center 비율(RAIOS), 백분율(PERCENTAGES), 산출한 점수(DERIVATIONS)
+                    
+                    .row
+                        .col-md-4(style="padding-right: 2px; padding-left: 2px;")
+                            table.table.table-bordered(style="font-size: 7pt")
+                                thead
+                                    tr
+                                        th.text-center(colspan="24") 핵심 영역
+                                            br
+                                            | (CORE)
+                                tbody
+                                    tr
+                                        td(colspan="8" ) R = #{lower.core.R}
+                                        td(colspan="8") 
+                                            | Lambda(L) = #{lower.core.Lambda}
+                                        td(colspan='4')
+                                            if lower.core.LambdaHighOrLow == 'High'
+                                                i.fa.fa-check-square-o(style="margin-right: 6px; font-size: 11pt;")
+                                                | High
+                                            else
+                                                i.fa.fa-square-o(style="margin-right: 6px; font-size: 11pt;")
+                                                | High
+                                            br
+                                            if lower.core.LambdaHighOrLow == 'Low'
+                                                i.fa.fa-check-square-o(style="margin-right: 6px; font-size: 11pt;")
+                                                | Low
+                                            else
+                                                i.fa.fa-square-o(style="margin-right: 6px; font-size: 11pt;")
+                                                | Low
+                                    tr
+                                        td(colspan="8") EB = #{lower.core.EBLeft} : #{lower.core.EBRight}
+                                            br
+                                            | eb = #{lower.core.ebLeft} : #{lower.core.ebRight}
+                                        td(colspan="8") EA = #{lower.core.EA}
+                                            br
+                                            | es = #{lower.core.es}
+                                            br
+                                            | Adj es = #{lower.core.Adjes}
+                                        td(colspan="8") EBPer = #{lower.core.EBPer}
+                                            br
+                                            | D = #{lower.core.D}
+                                            br
+                                            | Adj D = #{lower.core.AdjD}
+                                    tr
+                                        td(colspan="8") FM = #{lower.core.FM}
+                                            br
+                                            | m = #{lower.core.m}
+                                        td(colspan="8") Sum C' = #{lower.core.SumCprime}
+                                            br
+                                            | Sum V = #{lower.core.SumV}
+                                        td(colspan="8") Sum T = #{lower.core.SumT}
+                                            br
+                                            | Sum Y = #{lower.core.SumY}
+                        
+                        .col-md-4(style="padding-right: 2px; padding-left: 2px;")
+                            table.table.table-bordered(style="font-size: 7pt;")
+                                thead
+                                    tr
+                                        th.text-center(colspan="24") 정서 영역
+                                            br
+                                            | (AFFECT)
+                                tbody
+                                    tr
+                                        td(colspan="12").text-center FC : CF+C
+                                            br
+                                            | Pure C
+                                            br
+                                            | SumC' : WSumC
+                                            br
+                                            | Affective Ratio (Afr)
+                                            br
+                                            | S
+                                            br
+                                            | Blends : R
+                                            br
+                                            | Color Projection (CP)
+                                        td(colspan="12").text-center #{lower.affection.FCCFCLeft} : #{lower.affection.FCCFCRight}
+                                            br
+                                            | #{lower.affection.PureC}
+                                            br
+                                            | #{lower.affection.SumCprime} : #{lower.affection.WSumC.toFixed(1)}
+                                            br
+                                            | #{lower.affection.Afr}
+                                            br
+                                            | #{lower.affection.S}
+                                            br
+                                            | #{lower.affection.Blends} : #{lower.affection.R} (#{(lower.affection.Blends * 100 / lower.affection.R).toFixed(0)}%)
+                                            br
+                                            | #{lower.affection.CP}
+
+                        .col-md-4(style="padding-right: 2px; padding-left: 2px;")
+                            table.table.table-bordered(style="font-size: 7pt;")
+                                thead
+                                    tr
+                                        th.text-center(colspan="24") 대인 지각 영역
+                                            br
+                                            | (INTERPERSONAL PERCEPTION)
+                                tbody
+                                    tr
+                                        td(colspan="12") COP = #{lower.interpersonal.COP}
+                                        td(colspan="12") AG = #{lower.interpersonal.AG}
+                                    tr
+                                        td(colspan="12") GHR : PHR
+                                            br
+                                            | active : passive(a:p)
+                                            br
+                                            | Food (Fd)
+                                            br
+                                            | SumT
+                                            br
+                                            | Human Contents
+                                            br
+                                            | Pure H
+                                            br
+                                            | PER
+                                            br
+                                            | Isolation Index
+                                        td(colspan="12") #{lower.interpersonal.GHR} : #{lower.interpersonal.PHR}
+                                            br
+                                            | #{lower.interpersonal.a} : #{lower.interpersonal.p}
+                                            br
+                                            | #{lower.interpersonal.Food}
+                                            br
+                                            | #{lower.interpersonal.SumT}
+                                            br
+                                            | #{lower.interpersonal.HumanCont}
+                                            br
+                                            | #{lower.interpersonal.PureH}
+                                            br
+                                            | #{lower.interpersonal.PER}
+                                            br
+                                            | #{lower.interpersonal.ISOIndex}
+                    .row
+                        .col-md-3(style="padding-right: 2px; padding-left: 2px;")
+                            table.table.table-bordered(style="font-size: 7pt;")
+                                thead
+                                    tr
+                                        th.text-center(colspan="24") 관념화 영역
+                                            br
+                                            | (IDEATION)
+                                tbody
+                                    tr
+                                        td(colspan="16") active : passive(a:p)
+                                            br
+                                            | M<sup>a</sup> : M<sup>p</sup>
+                                            br
+                                            | Intellectual Index
+                                            br
+                                            | MOR
+                                            br
+                                            | Sum6
+                                            br
+                                            | Lv2 Special Scores
+                                            br
+                                            | WSum6
+                                            br
+                                            | M-
+                                            br
+                                            | M none
+                                        td(colspan="8") #{lower.ideation.a} : #{lower.ideation.p}
+                                            br
+                                            | #{lower.ideation.Ma} : #{lower.ideation.Mp}
+                                            br
+                                            | #{lower.ideation.twoABplusArtplusAy}
+                                            br
+                                            | #{lower.ideation.MOR}
+                                            br
+                                            | #{lower.ideation.Sum6}
+                                            br
+                                            | #{lower.ideation.Lv2}
+                                            br
+                                            | #{lower.ideation.WSum6}
+                                            br
+                                            | #{lower.ideation.Mminus}
+                                            br
+                                            | #{lower.ideation.Mnone}
+
+
+                        .col-md-3(style="padding-right: 2px; padding-left: 2px;")
+                            table.table.table-bordered(style="font-size: 7pt;")
+                                thead
+                                    tr
+                                        th.text-center(colspan="24") 인지적 중재 영역
+                                            br
+                                            | (COGNITIVE MEDIATION)
+                                tbody
+                                    tr
+                                        td(colspan="12") XA%
+                                            br
+                                            | XDA%
+                                            br
+                                            | X-%
+                                            br
+                                            | S-
+                                            br
+                                            | Popular (P)
+                                            br
+                                            | X+%
+                                            br
+                                            | Xu%
+                                            
+                                        td(colspan="12") #{lower.cognitive_mediation.XAper}
+                                            br
+                                            | #{lower.cognitive_mediation.WDAper}
+                                            br
+                                            | #{lower.cognitive_mediation.Xminusper.toFixed(2)}
+                                            br
+                                            | #{lower.cognitive_mediation.Sminus}
+                                            br
+                                            | #{lower.cognitive_mediation.P}
+                                            br
+                                            | #{lower.cognitive_mediation.Xplusper}
+                                            br
+                                            | #{lower.cognitive_mediation.Xuper}
+
+
+                        .col-md-3(style="padding-right: 2px; padding-left: 2px;")
+                            table.table.table-bordered(style="font-size: 7pt;")
+                                thead
+                                    tr
+                                        th.text-center(colspan="24") 정보 처리 영역
+                                            br
+                                            | (INFORMATION PROCESSING)
+                                tbody
+                                    tr
+                                        td(colspan="12") Zf
+                                            br
+                                            | W : D : Dd
+                                            br
+                                            | W : M
+                                            br
+                                            | Zd
+                                            br
+                                            | PSV
+                                            br
+                                            | DQ+
+                                            br
+                                            | DQv
+                                            
+                                        td(colspan="12") #{lower.information_processing.Zf}
+                                            br
+                                            | #{lower.information_processing.W} : #{lower.information_processing.D} : #{lower.information_processing.Dd}
+                                            br
+                                            | #{lower.information_processing.W} : #{lower.information_processing.M}
+                                            br
+                                            | #{lower.information_processing.Zd}
+                                            br
+                                            | #{lower.information_processing.PSV}
+                                            br
+                                            | #{lower.information_processing.DQplus}
+                                            br
+                                            | #{lower.information_processing.DQv}
+
+
+                        .col-md-3(style="padding-right: 2px; padding-left: 2px;")
+                            table.table.table-bordered(style="font-size: 7pt;")
+                                thead
+                                    tr
+                                        th.text-center(colspan="24") 자기 지각 영역
+                                            br
+                                            | (SELF-PERCEPTION)
+                                tbody
+                                    tr
+                                        td(colspan="12") Egocentricity Index
+                                            br
+                                            | Reflections (Fr+rf)
+                                            br
+                                            | SumV
+                                            br
+                                            | FD
+                                            br
+                                            | An+Xy
+                                            br
+                                            | MOR
+                                            br
+                                            | H : (H)+Hd+(Hd)
+                                            
+                                        td(colspan="12") #{lower.self_perception.EgocentricityIndex}
+                                            br
+                                            | #{lower.self_perception.Reflections}
+                                            br
+                                            | #{lower.self_perception.SumV}
+                                            br
+                                            | #{lower.self_perception.FD}
+                                            br
+                                            | #{lower.self_perception.AnPlusXy}
+                                            br
+                                            | #{lower.self_perception.MOR}
+                                            br
+                                            | #{lower.self_perception.H} : #{lower.self_perception.Hrest}
+
+                    .row
+                        .col-md-12(style="padding-right: 2px; padding-left: 2px;")
+                            table.table.table-bordered(style="font-size: 7pt;")
+                                thead
+                                    tr
+                                        th.text-center(colspan="4")
+                                            if lower.special_indices.SCONPositive == true
+                                                i.fa.fa-check-square-o(style="margin-right: 6px; font-size: 11pt;")
+                                                | S-CON = YES
+                                            else
+                                                i.fa.fa-square-o(style="margin-right: 6px; font-size: 11pt;")
+                                                | S-CON = NO
+                                        th.text-center(colspan="4")
+                                            if lower.special_indices.PTI>=4
+                                                i.fa.fa-check-square-o(style="margin-right: 6px; font-size: 11pt;")
+                                                | PTI = YES(#{lower.special_indices.PTI})
+                                            else
+                                                i.fa.fa-square-o(style="margin-right: 6px; font-size: 11pt;")
+                                                | PTI = NO(#{lower.special_indices.PTI})
+                                        th.text-center(colspan="4")
+                                            if lower.special_indices.DEPIPositive == true
+                                                i.fa.fa-check-square-o(style="margin-right: 6px; font-size: 11pt;")
+                                                | DEPI = YES(#{lower.special_indices.DEPI})
+                                            else
+                                                i.fa.fa-square-o(style="margin-right: 6px; font-size: 11pt;")
+                                                | DEPI = NO(#{lower.special_indices.DEPI})
+                                        th.text-center(colspan="4")
+                                            if lower.special_indices.CDIPositive == true
+                                                i.fa.fa-check-square-o(style="margin-right: 6px; font-size: 11pt;")
+                                                | CDI = YES(#{lower.special_indices.CDI})
+                                            else
+                                                i.fa.fa-square-o(style="margin-right: 6px; font-size: 11pt;")
+                                                | CDI = NO(#{lower.special_indices.CDI})
+                                        th.text-center(colspan="4")
+                                            if lower.special_indices.HVIPositive == true
+                                                i.fa.fa-check-square-o(style="margin-right: 6px; font-size: 11pt;")
+                                                | HVI = YES
+                                            else
+                                                i.fa.fa-square-o(style="margin-right: 6px; font-size: 11pt;")
+                                                | HVI = NO
+                                        th.text-center(colspan="4")
+                                            if lower.special_indices.OBSPositive == true
+                                                i.fa.fa-check-square-o(style="margin-right: 6px; font-size: 11pt;")
+                                                | OBS = YES
+                                            else
+                                                i.fa.fa-square-o(style="margin-right: 6px; font-size: 11pt;")
+                                                | OBS = NO
+                                        
+
+                                            
+            .page
+                .subpage#page3
+                    .row
+                        .col-md-12.text-center
+                            h3 특수지표 (Constellation Worksheet)
+
+                    .row
+                        .col-md-6(style="padding-right: 2px; padding-left: 2px;height: 380px;")
+                            table.table.table-bordered(style="font-size: 7pt;height: 360px;")
+                                thead
+                                    tr
+                                        th.text-center S-Constellation (Suicide Potential) : 만 14세 이상만 적용
+                                tbody(style="text-indent: 5px;")
+                                    tr
+                                        td
+                                            p(style="font-weight:bold;")
+                                                if SpecialIndices.S_Constellation.Up8Checked
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;Positive if 8 or more conditions are true
+                                            
+                                            p
+                                                if SpecialIndices.S_Constellation.SumVplusFD
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;SumV + FD > 2
+                                            p
+                                                if SpecialIndices.S_Constellation.ColorShadingBlends
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;Color-Shading Blends > 0
+                                            p
+                                                if SpecialIndices.S_Constellation.Ego
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;Egocentricity Index < 0.31 or Egocentricity Index > 0.44
+                                            p
+                                                if SpecialIndices.S_Constellation.MOR
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;MOR > 3
+                                            p
+                                                if SpecialIndices.S_Constellation.Zd
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(Zd > +3.5) or (Zd < -3.5)
+                                            p
+                                                if SpecialIndices.S_Constellation.es
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;es > EA
+                                            p
+                                                if SpecialIndices.S_Constellation.CF
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;CF + C > FC
+                                            p
+                                                if SpecialIndices.S_Constellation.XPlus
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;X+% < 0.70
+                                            p
+                                                if SpecialIndices.S_Constellation.S
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;S > 3
+                                            p
+                                                if SpecialIndices.S_Constellation.P
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(Populars(P) < 3) or (Populars(P) > 8)
+                                            p
+                                                if SpecialIndices.S_Constellation.PureH
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;Pure H < 2
+                                            p
+                                                if SpecialIndices.S_Constellation.R
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;R < 17
+
+                        .col-md-6(style="padding-right: 2px; padding-left: 2px;height: 380px;")
+                            table.table.table-bordered(style="font-size: 7pt;height: 360px;")
+                                thead
+                                    tr
+                                        th.text-center PTI (Perceptual Thinking Index)
+                                        - var PTITotal = 0
+                                tbody(style="text-indent: 5px;")
+                                    tr
+                                        td
+                                            p
+                                                if SpecialIndices.PTI.XAper
+                                                    i.fa.fa-check-square-o
+                                                    - PTITotal += 1;
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(XA% < 0.70) and (WDA% < 0.75)
+                                            p
+                                                if SpecialIndices.PTI.Xminusper
+                                                    i.fa.fa-check-square-o
+                                                    - PTITotal += 1;
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;X-% > 0.29
+                                            p
+                                                if SpecialIndices.PTI.Level2
+                                                    i.fa.fa-check-square-o
+                                                    - PTITotal += 1;
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(Sum Level2 Special Score > 2) and (FABCOM Level2 > 0)
+                                            p
+                                                if SpecialIndices.PTI.R
+                                                    i.fa.fa-check-square-o
+                                                    - PTITotal += 1;
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;{(R < 17) and (WSum6 > 12)} or {(R > 16) and (WSum6 > 17)}
+                                            p
+                                                if SpecialIndices.PTI.M
+                                                    i.fa.fa-check-square-o
+                                                    - PTITotal += 1;
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(M- > 1) or (X-% > 0.40)
+                                            P(style="font-weight: bold;")="Total = " + PTITotal.toString()
+
+                    
+                    .row
+                        .col-md-6(style="padding-right: 2px; padding-left: 2px;height: 300px;")
+                            table.table.table-bordered(style="font-size: 7pt;height: 280px;")
+                                thead
+                                    tr
+                                        th.text-center DEPI (Depression Index)
+                                tbody(style="text-indent: 5px;")
+                                    tr
+                                        td
+                                            p(style="font-weight: bold;")
+                                                if SpecialIndices.DEPI.Up5Checked
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;Positive if 5 or more conditions are true
+                                            p
+                                                if SpecialIndices.DEPI.FV
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(SumV > 0) or (FD > 2)
+                                            p
+                                                if SpecialIndices.DEPI.ColorShadingBlends
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(Color-Shading Blends > 0) or (S > 2)
+                                            p
+                                                if SpecialIndices.DEPI.Ego
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(Egocentricity Index > 0.44 and Reflection(Fr+rF) = 0) or (Egocentricity Index < 0.33)
+                                            p
+                                                if SpecialIndices.DEPI.Afr
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(Affective Ratio(Afr) < 0.46) or (Blends < 4)
+                                            p
+                                                if SpecialIndices.DEPI.SumShading
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(SumShading > FM + m) or (SumC' > 2)
+                                            p
+                                                if SpecialIndices.DEPI.MOR
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(MOR > 2) or (Intellectualization Index > 3)
+                                            p
+                                                if SpecialIndices.DEPI.COP
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(COP < 2) or (Isolation Index > 0.24)
+
+                        .col-md-6(style="padding-right: 2px; padding-left: 2px;height: 300px;")
+                            table.table.table-bordered(style="font-size: 7pt;height: 280px;")
+                                thead
+                                    tr
+                                        th.text-center CDI (Coping Deficit Index)
+                                tbody(style="text-indent: 5px;")
+                                    tr
+                                        td
+                                            p(style="font-weight: bold;")
+                                                if SpecialIndices.CDI.Up4Checked
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;Positive if 4 or more conditions are true
+                                            p
+                                                if SpecialIndices.CDI.EA
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(EA < 6) or (Adj D < 0)
+                                            p
+                                                if SpecialIndices.CDI.COP
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(COP < 2) and (AG < 2)
+                                            p
+                                                if SpecialIndices.CDI.WSumC
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(WSumC < 2.5) or *(Affective Ratio(Afr) < 0.46)
+                                            p
+                                                if SpecialIndices.CDI.Passive
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(Passive(p) > Active(a)+1) or (Pure H < 2)
+                                            p
+                                                if SpecialIndices.CDI.SumT
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(Sum T > 1) or (Isloation Index > 0.24) or (Food > 0)
+                                            p
+                                                br
+                                                br
+                                                br
+                    .row
+                        .col-md-6(style="padding-right: 2px; padding-left: 2px;")
+                            table.table.table-bordered(style="font-size: 7pt;")
+                                thead
+                                    tr
+                                        th.text-center HVI (Hypervigilance Index)
+                                tbody(style="text-indent: 5px;")
+                                    tr
+                                        td
+                                            p(style="font-weight: bold;")
+                                                if SpecialIndices.HVI.Up4Checked
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;Positive if (1) is true and at least 4 of the others are true
+                                            p
+                                                if SpecialIndices.HVI.FT
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;<u>(1) SumT = 0</u>
+                                            p
+                                                if SpecialIndices.HVI.Zf
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(2) Zf > 12
+                                            p
+                                                if SpecialIndices.HVI.Zd
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(3) Zd > +3.5
+                                            p
+                                                if SpecialIndices.HVI.S
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(4) S > 3
+                                            p
+                                                if SpecialIndices.HVI.H
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(5) Human Content > 6
+                                            p
+                                                if SpecialIndices.HVI.ParH
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(6) (H) + (A) + (Hd) + (Ad) > 3
+                                            p
+                                                if SpecialIndices.HVI.HplusA
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(7) H + A : Hd + Ad < 4 : 1
+                                            p
+                                                if SpecialIndices.HVI.Cg
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(8) Cg > 3
+                                            br
+                                            br
+                                            br
+                                            
+                        .col-md-6(style="padding-right: 2px; padding-left: 2px;")
+                            table.table.table-bordered(style="font-size: 7pt;")
+                                thead
+                                    tr
+                                        th.text-center OBS (Obsessive Style Index)
+                                tbody(style="text-indent: 5px;")
+                                    tr
+                                        td
+                                            p
+                                                if SpecialIndices.OBS.Dd
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(1) Dd > 3
+                                            p
+                                                if SpecialIndices.OBS.Zf
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(2) Zf > 12
+                                            p
+                                                if SpecialIndices.OBS.Zd
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(3) Zd > +3.0
+                                            p
+                                                if SpecialIndices.OBS.Populars
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(4) Populars(P) > 7
+                                            p
+                                                if SpecialIndices.OBS.FQplus
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(5) FQx+ > 1
+                                    tr
+                                        td
+                                            p(style="font-weight: bold;")
+                                                if SpecialIndices.OBS.Up1Checked
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;Positive if one or more is true
+                                            p
+                                                if SpecialIndices.OBS.AllChecked
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;Conditions (1) to (5) are all true
+                                            p
+                                                if SpecialIndices.OBS.Up2Checked
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;2 or more of (1) to (4) are true and (FQx+ > 3)
+                                            p
+                                                if SpecialIndices.OBS.Up3Checked
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;3 or more of (1) to (5) are true and (X+% > 0.89)
+                                            p
+                                                if SpecialIndices.OBS.FQplusChecked
+                                                    i.fa.fa-check-square-o
+                                                else
+                                                    i.fa.fa-square-o
+                                                | &nbsp;(FQx+ > 3) and (X+% > 0.89)
+            
+            .page
                 .subpage
                     .row
                         .col-md-12.text-center
