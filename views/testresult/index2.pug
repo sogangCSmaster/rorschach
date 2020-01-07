@@ -1579,6 +1579,71 @@ html
 
 
             each T in TESTRESULT
+                if T.resultName == "Interpersonal Perception and Behavior  대인지각과 대인행동 평가"
+                    .page
+                        .subpage
+                            .row
+                                .col-md-12.text-center
+                                    h3=T.resultName
+                            .row
+                                .col-md-12
+                                    table.table.table-striped.table-bordered(style='font-size: 9pt;')
+                                        thead
+                                            tr
+                                                th.text-center 대인 지각 영역(Interpersonal Perception) 분석 단계
+                                        tbody
+                                            tr
+                                                td
+                                                    .row
+                                                        .col-md-6
+                                                            p
+                                                                span Step 1: 
+                                                                if lower.special_indices.CDIPositive == true
+                                                                    i.fa.fa-check-square-o
+                                                                else
+                                                                    i.fa.fa-square-o
+                                                                |  CDI = [ #{lower.special_indices.CDI} ]
+                                                                br
+                                                                span Step 2: 
+                                                                if lower.special_indices.HVIPositive == true
+                                                                    i.fa.fa-check-square-o
+                                                                    |  HVI = [ Yes ]
+                                                                else
+                                                                    i.fa.fa-square-o
+                                                                    |  HVI = [ No ]
+                                                                br
+                                                                span Step 3: active : passive (a:p) = [ #{lower.interpersonal.a} : #{lower.interpersonal.p} ]
+                                                                br
+                                                                sapn Step 4: Food(Fd) responses =  [ #{upper.determinants.FD} ]
+                                                                br
+                                                                span Step 5: Sum T =  [ #{lower.core.SumT} ]
+                                                                br
+                                                                span Step 6: Human Contents = [ #{lower.interpersonal.HumanCont} ] & Pure H = [ #{lower.interpersonal.PureH} ]
+                                                                br
+                                                                span Step 7: GHR : PHR = [ #{lower.interpersonal.GHR} : #{lower.interpersonal.PHR} ]
+                                                        .col-md-6
+                                                            p
+                                                                span Step 8: COP frequencies = [ #{upper.special_scores.COP} ]
+                                                                br
+                                                                span & AG frequencies = [ #{upper.special_scores.AG} ] & coding (질적 분석)
+                                                                br
+                                                                span Step 9: PER = [ #{upper.special_scores.PER} ]
+                                                                br
+                                                                span Step 10: Isolation Index = [ #{lower.interpersonal.ISOIndex} ]
+                                            tr
+                                                td
+                                                    p ❊ 대인지각 중요변인: 소외지표(Isolation Index), 인간표상반응 (GHR : PHR)
+                                                    p ❊ 대인지각 관련개념: 대인관계(Interpersonal Relationships: Social Cognition, Social Skill), 자기중심성(Self-Centeredness), 관계적 자기(Relational Self), 의심과 방어(Suspiciousness & Defensiveness)
+                            .row
+                                .col-md-12
+                                    each step in T.steps
+                                        if step.textData.length != 0
+                                            span(style="color: blue; font-size: 8pt;") [Step #{step.curStep}]
+                                        p(style="font-size: 8pt;")
+                                            if step.textData.length == 0
+                                            else
+                                                each text in step.textData
+                                                    !=text
                 if T.resultName == "Affect 정서 자원이 사용되는 방식, 정서 상태, 정서의 역기능 평가"
                     - var steps = T.steps;
                     - var stepLeft = steps.splice(0, 9);
