@@ -828,6 +828,7 @@ router.route("/finishtest1")
 
             var TESTRESULT = [];
             var resultName = "";
+            console.warn(scoreOrder);
             for(var i=0; i< scoreOrder.length; i++){
                 if(scoreOrder[i]=='통제력'){
                     resultName = "Control and Stress Tolerance 통제 능력과 스트레스 저항력 평가";
@@ -876,6 +877,8 @@ router.route("/finishtest1")
                     TESTRESULT.push({resultName, steps});
                 }
 
+                
+
                 if(scoreOrder[i]=="관념화"){
                     resultName = "Ideation 관념화";
                     const t6step8 = step8(score, indicators);
@@ -892,7 +895,7 @@ router.route("/finishtest1")
                     TESTRESULT.push({resultName, steps});
                 }
                 if(scoreOrder[i]=="대인지각"){
-                    resultName = "Interpersonal Perception and Behavior  대인지각과 대인행동 평가";
+                    resultName = "Interpersonal Perception and Behavior 대인지각과 대인행동 평가";
                     steps = ExnerTable8.calculateExnerTable8(indicators);
                     TESTRESULT.push({resultName, steps});
                 }
