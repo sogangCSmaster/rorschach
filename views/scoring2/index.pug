@@ -1068,6 +1068,10 @@ html
             $('td[data-skey=PHR]').removeClass('active');
             $('td[data-skey=GHR]').removeClass('active');
             if (GPHR != '') {
+                if (scores[index]) {
+                    delete scores[index].GHR;
+                    delete scores[index].PHR;
+                }
                 $('td[data-skey=' + GPHR + ']').addClass('active');
                 if (!scores[index]) {
                     scores[index] = {};
@@ -1118,20 +1122,29 @@ html
             return true;
         }
         function checkGPHR(index) {
+          var row = $('#score-table tr[data-index=' + index + ']');
+          var fq = row.find('select[name=fq] option:selected').val();
+          var card = row.find('select[name=card] option:selected').val();
+          var cardNum = numberMapper[card];
+          var p = row.find('select.selectP option:selected').val();
           score = { };
           score.react = reacts[index];
           score.det = dets[index];
           score.score = scores[index];
+          score.fq = fq;
+          score.card =  cardNum;
+          score.p = p;
             if (
               (score.react && (score.react.H || score.react['(H)'] || score.react.Hd || score.react['(Hd)'] || score.react.Hx)) ||
               (score.det && (score.det.active1 || score.det.passive1 || score.det['a-p1'])) ||
               (score.det && (score.det.active2 || score.det.passive2 || score.det['a-p2']) && score.score && (score.score.AG || score.score.COP))
             ) {
                 // 1
+                console.log(score)
                 if (score.react && score.react.H &&
                   (score.fq == '+' || score.fq == 'o' || score.fq == 'u') &&
-                  (score.score && (!score.score.DR1 && !score.score.DR2 && !score.score.INCOM1 && !score.score.INCOM2 && !score.score.FABCOM1 && !score.score.FABCOM2 && !score.score.CONTAM && !score.score.ALOG && !score.score.AG && !score.score.MOR))
-                ) { 
+                  (!score.score || (score.score && (!score.score.DR1 && !score.score.DR2 && !score.score.INCOM1 && !score.score.INCOM2 && !score.score.FABCOM1 && !score.score.FABCOM2 && !score.score.CONTAM && !score.score.ALOG && !score.score.AG && !score.score.MOR))
+                )) { 
                   return 'GHR';
                 }   
 
@@ -1149,7 +1162,7 @@ html
                 }
 
                 // 4
-                if (score.score && (score.score.FABCOM1 || score.score.FABCOM2 || score.score.MOR || (score.react && score.react.An))) {
+                if ((score.score && (score.score.FABCOM1 || score.score.FABCOM2 || score.score.MOR)) || (score.react && score.react.An)) {
                   return 'PHR';
                 }
 
@@ -1158,7 +1171,7 @@ html
                   return 'GHR';
                 }
                     // 6
-                if (score.score && (score.score.AG || score.score.INCOM1 || score.score.INCOM2 || score.score.DR1 || score.score.DR2 || (score.react && score.react.Hd))) {
+                if ((score.score && (score.score.AG || score.score.INCOM1 || score.score.INCOM2 || score.score.DR1 || score.score.DR2))|| (score.react && score.react.Hd)) {
                   return 'PHR';
                 }
 

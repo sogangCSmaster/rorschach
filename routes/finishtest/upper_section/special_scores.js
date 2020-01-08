@@ -168,8 +168,8 @@ function checkGHRorPHR(score) {
     // 1
     if (score.react && score.react.H &&
       (score.fq == '+' || score.fq == 'o' || score.fq == 'u') &&
-      (score.score && (!score.score.DR1 && !score.score.DR2 && !score.score.INCOM1 && !score.score.INCOM2 && !score.score.FABCOM1 && !score.score.FABCOM2 && !score.score.CONTAM && !score.score.ALOG && !score.score.AG && !score.score.MOR))
-    ) {
+      (!score.score || (score.score && (!score.score.DR1 && !score.score.DR2 && !score.score.INCOM1 && !score.score.INCOM2 && !score.score.FABCOM1 && !score.score.FABCOM2 && !score.score.CONTAM && !score.score.ALOG && !score.score.AG && !score.score.MOR))
+    )) {
       return 'GHR';
     }
 
@@ -187,7 +187,7 @@ function checkGHRorPHR(score) {
     }
 
     // 4
-    if (score.score && (score.score.FABCOM1 || score.score.FABCOM2 || score.score.MOR || (score.react && score.react.An))) {
+    if ((score.score && (score.score.FABCOM1 || score.score.FABCOM2 || score.score.MOR)) || (score.react && score.react.An)) {
       return 'PHR';
     }
 
@@ -197,7 +197,7 @@ function checkGHRorPHR(score) {
     }
     
     // 6
-    if (score.score && (score.score.AG || score.score.INCOM1 || score.score.INCOM2 || score.score.DR1 || score.score.DR2 || (score.react && score.react.Hd))) {
+    if ((score.score && (score.score.AG || score.score.INCOM1 || score.score.INCOM2 || score.score.DR1 || score.score.DR2)) || (score.react && score.react.Hd)) {
       return 'PHR';
     }
 

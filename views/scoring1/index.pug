@@ -1238,8 +1238,9 @@ html
                 // 1
                 if (score.react && score.react.H &&
                   (score.fq == '+' || score.fq == 'o' || score.fq == 'u') &&
-                  (score.score && (!score.score.DR1 && !score.score.DR2 && !score.score.INCOM1 && !score.score.INCOM2 && !score.score.FABCOM1 && !score.score.FABCOM2 && !score.score.CONTAM && !score.score.ALOG && !score.score.AG && !score.score.MOR))
-                ) { 
+                  (!score.score || (score.score && (!score.score.DR1 && !score.score.DR2 && !score.score.INCOM1 && !score.score.INCOM2 && !score.score.FABCOM1 && !score.score.FABCOM2 && !score.score.CONTAM && !score.score.ALOG && !score.score.AG && !score.score.MOR))
+                )) { 
+                console.log('1')
                   return 'GHR';
                 }   
 
@@ -1248,29 +1249,36 @@ html
                   (score.fq == '-' || score.fq == 'none') ||
                   ((score.fq == '+' || score.fq == 'o' || score.fq == 'u') && ((score.score) && (score.score.ALOG || score.score.CONTAM || score.score.DV2 || score.score.INCOM2 || score.score.DR2 || score.score.FABCOM2)))
                 ) {
+                console.log('2')
                   return 'PHR';
                 }
 
                 // 3
                 if (score.score && score.score.COP && !score.score.AG) {
+                console.log('3')
                   return 'GHR';
                 }
 
                 // 4
-                if (score.score && (score.score.FABCOM1 || score.score.FABCOM2 || score.score.MOR || (score.react && score.react.An))) {
+                if ((score.score && (score.score.FABCOM1 || score.score.FABCOM2 || score.score.MOR)) || (score.react && score.react.An)) {
+                console.log('4')
                   return 'PHR';
                 }
 
                 // 5
                 if ((score.card == 3 || score.card == 4 || score.card == 7 || score.card == 9) && score.p === 'P') {
+                console.log('5')
                   return 'GHR';
                 }
                     // 6
-                if (score.score && (score.score.AG || score.score.INCOM1 || score.score.INCOM2 || score.score.DR1 || score.score.DR2 || (score.react && score.react.Hd))) {
+                console.log(score)
+                if ((score.score && (score.score.AG || score.score.INCOM1 || score.score.INCOM2 || score.score.DR1 || score.score.DR2)) || (score.react && score.react.Hd)) {
+                console.log('6')
                   return 'PHR';
                 }
 
                 // 7
+                console.log('7')
                 return 'GHR';
               } else {
                 return '';
