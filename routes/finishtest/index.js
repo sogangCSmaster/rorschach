@@ -942,7 +942,7 @@ router.route("/finishtest1")
             // 코인 사용
             var api = config.api;
             var { m } = req.session;
-            api = api + `/coinProcess.php?m=${m}&c=RORS&n=${testID}&p=add`;
+            api = api + `/coinProcess.php?m=${m}&c=RORS2&n=${testID}&p=add`;
             axios.get(api);
 
 
