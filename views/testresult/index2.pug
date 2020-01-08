@@ -1641,6 +1641,22 @@ html
                                                 each text in step.textData
                                                     if !text.includes('질적')
                                                         !=text
+                            .row
+                                .col-md-12
+                                    table.table.table-bordered(style='font-size: 9pt;')
+                                        thead
+                                            tr
+                                                th.text-center 질적 해석
+                                        tbody
+                                            tr
+                                                td
+                                                    p
+                                                        br
+                                                        br
+                                                        br
+                                                        br
+                                                        br
+                                                        br
                 if T.resultName == "Affect 정서 자원이 사용되는 방식, 정서 상태, 정서의 역기능 평가"
                     - var steps = T.steps;
                     - var stepLeft = steps.splice(0, 5);
@@ -1762,6 +1778,22 @@ html
                                                 each text in step.textData
                                                     if !text.includes('질적')
                                                         !=text
+                            .row
+                                .col-md-12
+                                    table.table.table-bordered(style='font-size: 9pt;')
+                                        thead
+                                            tr
+                                                th.text-center 질적 해석
+                                        tbody
+                                            tr
+                                                td
+                                                    p
+                                                        br
+                                                        br
+                                                        br
+                                                        br
+                                                        br
+                                                        br
                 if T.resultName == 'Ideation 관념화'
                     .page
                         .subpage
@@ -1858,6 +1890,22 @@ html
                                                 each text in step.textData
                                                     if !text.includes('질적')
                                                         !=text
+                            .row
+                                .col-md-12
+                                    table.table.table-bordered(style='font-size: 9pt;')
+                                        thead
+                                            tr
+                                                th.text-center 질적 해석
+                                        tbody
+                                            tr
+                                                td
+                                                    p
+                                                        br
+                                                        br
+                                                        br
+                                                        br
+                                                        br
+                                                        br
                 if T.resultName == 'Cognitive Mediation / Cognitive triad 인지적 중재'
                     .page
                         .subpage
@@ -1931,6 +1979,22 @@ html
                                                 each text in step.textData
                                                     if !text.includes('질적')
                                                         !=text
+                            .row
+                                .col-md-12
+                                    table.table.table-bordered(style='font-size: 9pt;')
+                                        thead
+                                            tr
+                                                th.text-center 질적 해석
+                                        tbody
+                                            tr
+                                                td
+                                                    p
+                                                        br
+                                                        br
+                                                        br
+                                                        br
+                                                        br
+                                                        br
                 if T.resultName == 'Information Processing / Cognitive triad 정보처리'
                     .page
                         .subpage
@@ -2012,6 +2076,22 @@ html
                                                 each text in step.textData
                                                     if !text.includes('질적')
                                                         !=text
+                            .row
+                                .col-md-12
+                                    table.table.table-bordered(style='font-size: 9pt;')
+                                        thead
+                                            tr
+                                                th.text-center 질적 해석
+                                        tbody
+                                            tr
+                                                td
+                                                    p
+                                                        br
+                                                        br
+                                                        br
+                                                        br
+                                                        br
+                                                        br
                 if T.resultName == 'Self-perception 자기개념(자기상), 자기중심성(자기관여), 자기가치(자존감), 자기효능감 평가'
                     .page
                         .subpage
@@ -2092,12 +2172,66 @@ html
                                                 each text in step.textData
                                                     if !text.includes('질적')
                                                         !=text
-                else
+                            .row
+                                .col-md-12
+                                    table.table.table-bordered(style='font-size: 9pt;')
+                                        thead
+                                            tr
+                                                th.text-center 질적 해석
+                                        tbody
+                                            tr
+                                                td
+                                                    p
+                                                        br
+                                                        br
+                                                        br
+                                                        br
+                                                        br
+                                                        br
+                if T.resultName == 'Control and Stress Tolerance 통제 능력과 스트레스 저항력 평가'
                     .page
                         .subpage
                             .row
                                 .col-md-12.text-center
                                     h3=T.resultName
+                            .row
+                                .col-md-12
+                                    table.table.table-striped.table-bordered(style="font-size: 9pt;")
+                                        thead
+                                            tr
+                                                th.text-center 통제력과 스트레스 저항력(Control and Stress Tolerance) 분석 단계
+                                        tbody
+                                            tr
+                                                td
+                                                    .row
+                                                        .col-md-6
+                                                            p
+                                                                span Step 1: Adjusted D(Adj D) Score = [#{lower.core.AdjD}] & 
+                                                                    if lower.special_indices.CDIPositive == true
+                                                                        i.fa.fa-check-square-o
+                                                                    else
+                                                                        i.fa.fa-square-o
+                                                                    |  CDI = [#{lower.special_indices.CDI}]
+                                                                br
+                                                                span Step 2: EA = [ #{lower.core.EA} ]
+                                                                br
+                                                                span Step 3: EB = [ #{lower.core.EBLeft} : #{lower.core.EBRight} ] & Lambda(L) = [ #{lower.core.Lambda} ]
+                                                                    if lower.core.Lambda > 0.99
+                                                                        |  [High]
+                                                                    else if lower.core.Lambda < 0.3
+                                                                        |  [Low]
+                                                        .col-md-6
+                                                            p
+                                                                span Step 4: es = [ #{lower.core.es} ] & Adjusted es(Adj es) = [ #{lower.core.Adjes} ]
+                                                                br
+                                                                span Step 5: eb = [ #{lower.core.ebLeft} : #{lower.core.ebRight} ]
+                                            tr
+                                                td
+                                                    p ❊ 통제력 중요변인: 조정된 자원-스트레스 차이 점수(Adjusted Difference Score: Adj D), 대처결함지표(CDI)
+                                                        br
+                                                        | ❊ 통제력 관련개념: 전반적 적응 상태(General Adjustment Condition), 심리적 자원(Psychological Resources), 자아 강도(Ego Strength), 자기 조절(Self-Regulation), 스트레스 수준(Quantity of Stress), 정서의 통제(Emotional Control),  정서의 억제(Emotional Constraint)
+                                                        br
+                                                        | <span class='text-danger'>2차 사고과정(secondary process thinking) vs 1차 사고과정(primary process thinking)</span>
                             .row
                                 .col-md-12
                                     each step in T.steps
@@ -2109,6 +2243,107 @@ html
                                                 each text in step.textData
                                                     if !text.includes('질적')
                                                         !=text
+                            .row
+                                .col-md-12
+                                    table.table.table-bordered(style='font-size: 9pt;')
+                                        thead
+                                            tr
+                                                th.text-center 질적 해석
+                                        tbody
+                                            tr
+                                                td
+                                                    p
+                                                        br
+                                                        br
+                                                        br
+                                                        br
+                                                        br
+                                                        br
+                if T.resultName == '평소 통제능력보다 낮은 현재 통제능력을 유발하는 상황 관련 스트레스 평가'
+                    .page
+                        .subpage
+                            .row
+                                .col-md-12.text-center
+                                    h3=T.resultName
+                            .row
+                                .col-md-12
+                                    table.table.table-striped.table-bordered(style='font-size: 9pt;')
+                                        thead
+                                            tr
+                                                th.text-center 상황 관련 스트레스(Situation-Related Stress) 분석 단계
+                                        tbody
+                                            tr
+                                                td
+                                                    .row
+                                                        .col-md-6
+                                                            p
+                                                                span Step 1: D Score in relation to as and Adj es
+                                                                br
+                                                                span D = [ #{lower.core.D} ], Adj D = [ #{lower.core.AdjD} ], es - Adj es = [ #{lower.core.es - lower.core.Adjes}]
+                                                                br
+                                                                span Step 2: Difference between D Score & Adj D Score AdjD - D = [ #{lower.core.D - lower.core.AdjD} ]
+                                                                br
+                                                                span Step 3: m = [ #{upper.determinants.m} ] & Sum Y = [ #{lower.core.SumY} ]
+                                                        .col-md-6
+                                                            p
+                                                                span Step 4: Sum T = [ #{lower.interpersonal.SumT} ], Sum V = [ #{lower.self_perception.SumV} ],
+                                                                br
+                                                                span Egocentricity Index = [ #{lower.self_perception.EgocentricityIndex} ] in relation to History
+                                                                br
+                                                                span Step 5: D Score = [ #{lower.core.D - lower.core.AdjD} ] (re Pure C, M-, no Form)
+                                                                br
+                                                                span Step 6: Blends created by m or Y = [ ]
+                                                                br
+                                                                span Step 7: Color-Shading Blends
+                                                                br
+                                                                span Y-Color-Shading Blends = [ #{lower.affection.Blends} ], Other Color-Shading Blends = [ #{OnlyShading} ]
+                                            tr
+                                                td
+                                                    p ❊ 상황 관련 스트레스 개념: 생활사건(Life Event: Personal History), 자극 과부하(Stimulus Overload), 정서적 혼란(Emotional Confusion)
+                            .row
+                                .col-md-12
+                                    each step in T.steps
+                                        if step.textData.length != 0 && !JSON.stringify(step.textData).includes('질적')
+                                            span(style="color: blue; font-size: 8pt;") [Step #{step.curStep}]
+                                        p(style="font-size: 8pt;")
+                                            if step.textData.length == 0
+                                            else
+                                                each text in step.textData
+                                                    if !text.includes('질적')
+                                                        !=text
+                            .row
+                                .col-md-12
+                                    table.table.table-bordered(style='font-size: 9pt;')
+                                        thead
+                                            tr
+                                                th.text-center 질적 해석
+                                        tbody
+                                            tr
+                                                td
+                                                    p
+                                                        br
+                                                        br
+                                                        br
+                                                        br
+                                                        br
+                                                        br
+                //- else
+                //-     .page
+                //-         .subpage
+                //-             .row
+                //-                 .col-md-12.text-center
+                //-                     h3=T.resultName
+                //-             .row
+                //-                 .col-md-12
+                //-                     each step in T.steps
+                //-                         if step.textData.length != 0 && !JSON.stringify(step.textData).includes('질적')
+                //-                             span(style="color: blue; font-size: 8pt;") [Step #{step.curStep}]
+                //-                         p(style="font-size: 8pt;")
+                //-                             if step.textData.length == 0
+                //-                             else
+                //-                                 each text in step.textData
+                //-                                     if !text.includes('질적')
+                //-                                         !=text
                                 
                             
                     

@@ -847,6 +847,7 @@ router.route("/finishtest1")
                     const ChromaticDiffuse = ColorShading.getChromaticDiffuse(score);
                     const OnlyShading = ColorShading.getOnlyShading(score);
 
+
                     steps = affect.caculateAffect(lower.special_indices.DEPI, lower.special_indices.CDI, lower.core.Lambda, upper.determinants.M, lower.core.EBLeft, lower.core.EBRight, lower.affection.WSumC, lower.core.EA, lower.core.EBPer, lower.core.FM, lower.core.m, lower.core.SumCprime, lower.core.SumT, lower.core.SumV, lower.core.SumY, lower.affection.Afr, lower.ideation.twoABplusArtplusAy, upper.special_scores.CP, upper.determinants.FC, upper.determinants.CF, upper.determinants.C, age, experienceClassification.copyingStyle, experienceClassification.approachStyle, lower.affection.PureC, upper.location_features.S, upper.approach, lower.affection.Blends, lower.affection.R, AchromaticTextureAndVista, ChromaticDiffuse, OnlyShading);
                     TESTRESULT.push({resultName, steps});
                 }
@@ -928,8 +929,9 @@ router.route("/finishtest1")
             for (var i = score.length; i <= 50; i++) {
                 score.push({});
             }
+            const OnlyShading = ColorShading.getOnlyShading(score);
 
-            res.render('testresult/index2', { testconfig, age, moment, upper, lower, SpecialIndices, step0, getExnerTable1, experienceClassification, Order, TESTRESULT, scores: score });
+            res.render('testresult/index2', { testconfig, age, moment, upper, lower, SpecialIndices, step0, getExnerTable1, experienceClassification, Order, TESTRESULT, scores: score, OnlyShading });
         })
         .post(async(req, res, next) => {
             var { stringifyText, testID } = req.body;
