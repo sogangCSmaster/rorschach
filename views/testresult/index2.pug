@@ -12,6 +12,7 @@ html
         link(href="/css/plugins/datapicker/datepicker3.css" rel="stylesheet" media="all")
         link(href="/css/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" media="all")
         link(href='/css/table-hover-cells.css', rel='stylesheet' media="all")
+        //- link(rel="stylesheet" href="http://getbootstrap.com.vn/examples/equal-height-columns/equal-height-columns.css")
         style.
             body {
                 width: 100%;
@@ -74,6 +75,20 @@ html
             }
             .a {
                 text-indent: 2em;
+            }
+            .row-eq-height {
+                display: -webkit-box;
+                display: -webkit-flex;
+                display: -ms-flexbox;
+                display:         flex;
+            }
+            .row.display-flex {
+                display: flex;
+                flex-wrap: wrap;
+            }
+            .row.display-flex > [class*='col-'] {
+                display: flex;
+                flex-direction: column;
             }
             
     body.gray-bg
@@ -417,47 +432,6 @@ html
                                     tr
                                         td.text-center(style="font-size: 7pt; padding: 2px;" colspan="1") Ⅹ
                                         td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")=upper.approach[10].slice(0, 6).join(', ')
-                                            
-                    .row
-                        .col-md-4(style="padding-right: 2px; padding-left: 2px;")
-                            table.table.table-bordered
-                                thead
-                                    tr
-                                        th.text-center(style="font-size: 7pt" colspan="4") 형태질
-                                            br
-                                            | (Form Quality)
-                                tbody(style="font-size: 7pt")
-                                    tr
-                                        td.text-center(style="padding: 2px;")
-                                        td.text-center(style="padding: 2px;") FQx
-                                        td.text-center(style="padding: 2px;") MQuality
-                                        td.text-center(style="padding: 2px;") W+D
-                                    tr
-                                        td.text-center(style="padding: 2px;") +
-                                        td.text-center(style="padding: 2px;") #{upper.form_quality.FQx['+']}
-                                        td.text-center(style="padding: 2px;") #{upper.form_quality.MQuality['+']}
-                                        td.text-center(style="padding: 2px;") #{upper.form_quality.WPlusD['+']}
-                                    tr
-                                        td.text-center(style="padding: 2px;") o
-                                        td.text-center(style="padding: 2px;") #{upper.form_quality.FQx['o']}
-                                        td.text-center(style="padding: 2px;") #{upper.form_quality.MQuality['o']}
-                                        td.text-center(style="padding: 2px;") #{upper.form_quality.WPlusD['o']}
-                                    tr
-                                        td.text-center(style="padding: 2px;") u
-                                        td.text-center(style="padding: 2px;") #{upper.form_quality.FQx['u']}
-                                        td.text-center(style="padding: 2px;") #{upper.form_quality.MQuality['u']}
-                                        td.text-center(style="padding: 2px;") #{upper.form_quality.WPlusD['u']}
-                                    tr
-                                        td.text-center(style="padding: 2px;") -
-                                        td.text-center(style="padding: 2px;") #{upper.form_quality.FQx['-']}
-                                        td.text-center(style="padding: 2px;") #{upper.form_quality.MQuality['-']}
-                                        td.text-center(style="padding: 2px;") #{upper.form_quality.WPlusD['-']}
-                                    tr
-                                        td.text-center(style="padding: 2px;") none
-                                        td.text-center(style="padding: 2px;") #{upper.form_quality.FQx['none']}
-                                        td.text-center(style="padding: 2px;") #{upper.form_quality.MQuality['none']}
-                                        td.text-center(style="padding: 2px;") #{upper.form_quality.WPlusD['none']}
-                        .col-md-4(style="padding-right: 2px; padding-left: 2px;")
                             table.table.table-bordered
                                 thead
                                     tr
@@ -521,6 +495,47 @@ html
                                         td.text-center(style="padding: 2px;" colspan="4") PER
                                         td.text-center(style="padding: 2px;" colspan="8") #{upper.special_scores.PER}
                                         td.text-center(style="padding: 2px;" colspan="12") 
+                                            
+                    .row
+                        .col-md-4(style="padding-right: 2px; padding-left: 2px;")
+                            table.table.table-bordered
+                                thead
+                                    tr
+                                        th.text-center(style="font-size: 7pt" colspan="4") 형태질
+                                            br
+                                            | (Form Quality)
+                                tbody(style="font-size: 7pt")
+                                    tr
+                                        td.text-center(style="padding: 2px;")
+                                        td.text-center(style="padding: 2px;") FQx
+                                        td.text-center(style="padding: 2px;") MQuality
+                                        td.text-center(style="padding: 2px;") W+D
+                                    tr
+                                        td.text-center(style="padding: 2px;") +
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.FQx['+']}
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.MQuality['+']}
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.WPlusD['+']}
+                                    tr
+                                        td.text-center(style="padding: 2px;") o
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.FQx['o']}
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.MQuality['o']}
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.WPlusD['o']}
+                                    tr
+                                        td.text-center(style="padding: 2px;") u
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.FQx['u']}
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.MQuality['u']}
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.WPlusD['u']}
+                                    tr
+                                        td.text-center(style="padding: 2px;") -
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.FQx['-']}
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.MQuality['-']}
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.WPlusD['-']}
+                                    tr
+                                        td.text-center(style="padding: 2px;") none
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.FQx['none']}
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.MQuality['none']}
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.WPlusD['none']}
+                        
                                         
 
 
@@ -534,9 +549,9 @@ html
                                     tr
                                         th.text-center 비율(RAIOS), 백분율(PERCENTAGES), 산출한 점수(DERIVATIONS)
                     
-                    .row
+                    .row.display-flex
                         .col-md-4(style="padding-right: 2px; padding-left: 2px;")
-                            table.table.table-bordered(style="font-size: 7pt")
+                            table.table.table-bordered.h-100(style="font-size: 7pt; height: 100%;")
                                 thead
                                     tr
                                         th.text-center(colspan="24") 핵심 영역
@@ -587,7 +602,7 @@ html
                                             | Sum Y = #{lower.core.SumY}
                         
                         .col-md-4(style="padding-right: 2px; padding-left: 2px;")
-                            table.table.table-bordered(style="font-size: 7pt;")
+                            table.table.table-bordered.h-100(style="font-size: 7pt; height: 100%;")
                                 thead
                                     tr
                                         th.text-center(colspan="24") 정서 영역
@@ -623,7 +638,7 @@ html
                                             | #{lower.affection.CP}
 
                         .col-md-4(style="padding-right: 2px; padding-left: 2px;")
-                            table.table.table-bordered(style="font-size: 7pt;")
+                            table.table.table-bordered.h-100(style="font-size: 7pt; height: 100%;")
                                 thead
                                     tr
                                         th.text-center(colspan="24") 대인 지각 영역
@@ -664,9 +679,9 @@ html
                                             | #{lower.interpersonal.PER}
                                             br
                                             | #{lower.interpersonal.ISOIndex}
-                    .row
+                    .row.display-flex
                         .col-md-3(style="padding-right: 2px; padding-left: 2px;")
-                            table.table.table-bordered(style="font-size: 7pt;")
+                            table.table.table-bordered(style="font-size: 7pt; height: 100%;")
                                 thead
                                     tr
                                         th.text-center(colspan="24") 관념화 영역
@@ -711,7 +726,7 @@ html
 
 
                         .col-md-3(style="padding-right: 2px; padding-left: 2px;")
-                            table.table.table-bordered(style="font-size: 7pt;")
+                            table.table.table-bordered(style="font-size: 7pt; height: 100%;")
                                 thead
                                     tr
                                         th.text-center(colspan="24") 인지적 중재 영역
@@ -749,7 +764,7 @@ html
 
 
                         .col-md-3(style="padding-right: 2px; padding-left: 2px;")
-                            table.table.table-bordered(style="font-size: 7pt;")
+                            table.table.table-bordered(style="font-size: 7pt; height: 100%;")
                                 thead
                                     tr
                                         th.text-center(colspan="24") 정보 처리 영역
@@ -787,7 +802,7 @@ html
 
 
                         .col-md-3(style="padding-right: 2px; padding-left: 2px;")
-                            table.table.table-bordered(style="font-size: 7pt;")
+                            table.table.table-bordered(style="font-size: 7pt; height: 100%;")
                                 thead
                                     tr
                                         th.text-center(colspan="24") 자기 지각 영역
@@ -1121,9 +1136,9 @@ html
                                                 br
                                                 br
                                                 br
-                    .row
+                    .row.display-flex
                         .col-md-6(style="padding-right: 2px; padding-left: 2px;")
-                            table.table.table-bordered(style="font-size: 7pt;")
+                            table.table.table-bordered(style="font-size: 7pt; height: 90%;")
                                 thead
                                     tr
                                         th.text-center HVI (Hypervigilance Index)
@@ -1189,7 +1204,7 @@ html
                                             br
                                             
                         .col-md-6(style="padding-right: 2px; padding-left: 2px;")
-                            table.table.table-bordered(style="font-size: 7pt;")
+                            table.table.table-bordered(style="font-size: 7pt; height: 90%;")
                                 thead
                                     tr
                                         th.text-center OBS (Obsessive Style Index)
