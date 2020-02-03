@@ -72,6 +72,23 @@ html
                     page-break-after: always;
                 }
             }
+            .a {
+                text-indent: 2em;
+            }
+            .row-eq-height {
+                display: -webkit-box;
+                display: -webkit-flex;
+                display: -ms-flexbox;
+                display:         flex;
+            }
+            .row.display-flex {
+                display: flex;
+                flex-wrap: wrap;
+            }
+            .row.display-flex > [class*='col-'] {
+                display: flex;
+                flex-direction: column;
+            }
             
     body.gray-bg
         .book
@@ -225,9 +242,9 @@ html
                                             div(style="margin-left: 10px;")
                                                 | Zf = #{upper.location_features.Zf}
                                                 br
-                                                | ZSum = #{upper.location_features.ZSum}
+                                                | ZSum = #{(upper.location_features.ZSum).toFixed(1)}
                                                 br
-                                                | ZEst = #{upper.location_features.ZEst}
+                                                | ZEst = #{(upper.location_features.ZEst).toFixed(1)}
                                     tr
                                         td(style="font-size: 7pt;")
                                             .text-center 반응 위치
@@ -381,83 +398,42 @@ html
                                         td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3") 위치 & 발달질(DQ)
                                     tr
                                         td.text-center(style="font-size: 7pt; padding: 2px;" colspan="1") Ⅰ
-                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")= upper.approach[1].slice(0, 6).join(', ')
+                                        td(style="font-size: 7pt; padding: 2px;" colspan="3")= upper.approach[1].slice(0, 6).join(', ')
                                     tr
                                         td.text-center(style="font-size: 7pt; padding: 2px;" colspan="1") Ⅱ
-                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")= upper.approach[2].slice(0, 6).join(', ')
+                                        td(style="font-size: 7pt; padding: 2px;" colspan="3")= upper.approach[2].slice(0, 6).join(', ')
                                             
                                     tr
                                         td.text-center(style="font-size: 7pt; padding: 2px;" colspan="1") Ⅲ
-                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")=upper.approach[3].slice(0, 6).join(', ')
+                                        td(style="font-size: 7pt; padding: 2px;" colspan="3")=upper.approach[3].slice(0, 6).join(', ')
                                             
                                     tr
                                         td.text-center(style="font-size: 7pt; padding: 2px;" colspan="1") Ⅳ
-                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")=upper.approach[4].slice(0, 6).join(', ')
+                                        td(style="font-size: 7pt; padding: 2px;" colspan="3")=upper.approach[4].slice(0, 6).join(', ')
                                             
                                     tr
                                         td.text-center(style="font-size: 7pt; padding: 2px;" colspan="1") Ⅴ
-                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")=upper.approach[5].slice(0, 6).join(', ')
+                                        td(style="font-size: 7pt; padding: 2px;" colspan="3")=upper.approach[5].slice(0, 6).join(', ')
                                             
                                     tr
                                         td.text-center(style="font-size: 7pt; padding: 2px;" colspan="1") Ⅵ
-                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")=upper.approach[6].slice(0, 6).join(', ')
+                                        td(style="font-size: 7pt; padding: 2px;" colspan="3")=upper.approach[6].slice(0, 6).join(', ')
                                             
                                     tr
                                         td.text-center(style="font-size: 7pt; padding: 2px;" colspan="1") Ⅶ
-                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")=upper.approach[7].slice(0, 6).join(', ')
+                                        td(style="font-size: 7pt; padding: 2px;" colspan="3")=upper.approach[7].slice(0, 6).join(', ')
                                             
                                     tr
                                         td.text-center(style="font-size: 7pt; padding: 2px;" colspan="1") Ⅷ
-                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")=upper.approach[8].slice(0, 6).join(', ')
+                                        td(style="font-size: 7pt; padding: 2px;" colspan="3")=upper.approach[8].slice(0, 6).join(', ')
                                             
                                     tr
                                         td.text-center(style="font-size: 7pt; padding: 2px;" colspan="1") Ⅸ
-                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")=upper.approach[9].slice(0, 6).join(', ')
+                                        td(style="font-size: 7pt; padding: 2px;" colspan="3")=upper.approach[9].slice(0, 6).join(', ')
                                             
                                     tr
                                         td.text-center(style="font-size: 7pt; padding: 2px;" colspan="1") Ⅹ
-                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3")=upper.approach[10].slice(0, 6).join(', ')
-                                            
-                    .row
-                        .col-md-4(style="padding-right: 2px; padding-left: 2px;")
-                            table.table.table-bordered
-                                thead
-                                    tr
-                                        th.text-center(style="font-size: 7pt" colspan="4") 형태질
-                                            br
-                                            | (Form Quality)
-                                tbody(style="font-size: 7pt")
-                                    tr
-                                        td.text-center(style="padding: 2px;")
-                                        td.text-center(style="padding: 2px;") FQx
-                                        td.text-center(style="padding: 2px;") MQuality
-                                        td.text-center(style="padding: 2px;") W+D
-                                    tr
-                                        td.text-center(style="padding: 2px;") +
-                                        td.text-center(style="padding: 2px;") #{upper.form_quality.FQx['+']}
-                                        td.text-center(style="padding: 2px;") #{upper.form_quality.MQuality['+']}
-                                        td.text-center(style="padding: 2px;") #{upper.form_quality.WPlusD['+']}
-                                    tr
-                                        td.text-center(style="padding: 2px;") o
-                                        td.text-center(style="padding: 2px;") #{upper.form_quality.FQx['o']}
-                                        td.text-center(style="padding: 2px;") #{upper.form_quality.MQuality['o']}
-                                        td.text-center(style="padding: 2px;") #{upper.form_quality.WPlusD['o']}
-                                    tr
-                                        td.text-center(style="padding: 2px;") u
-                                        td.text-center(style="padding: 2px;") #{upper.form_quality.FQx['u']}
-                                        td.text-center(style="padding: 2px;") #{upper.form_quality.MQuality['u']}
-                                        td.text-center(style="padding: 2px;") #{upper.form_quality.WPlusD['u']}
-                                    tr
-                                        td.text-center(style="padding: 2px;") -
-                                        td.text-center(style="padding: 2px;") #{upper.form_quality.FQx['-']}
-                                        td.text-center(style="padding: 2px;") #{upper.form_quality.MQuality['-']}
-                                        td.text-center(style="padding: 2px;") #{upper.form_quality.WPlusD['-']}
-                                    tr
-                                        td.text-center(style="padding: 2px;") none
-                                        td.text-center(style="padding: 2px;") #{upper.form_quality.FQx['none']}
-                                        td.text-center(style="padding: 2px;") #{upper.form_quality.MQuality['none']}
-                                        td.text-center(style="padding: 2px;") #{upper.form_quality.WPlusD['none']}
-                        .col-md-4(style="padding-right: 2px; padding-left: 2px;")
+                                        td(style="font-size: 7pt; padding: 2px;" colspan="3")=upper.approach[10].slice(0, 6).join(', ')
                             table.table.table-bordered
                                 thead
                                     tr
@@ -521,9 +497,47 @@ html
                                         td.text-center(style="padding: 2px;" colspan="4") PER
                                         td.text-center(style="padding: 2px;" colspan="8") #{upper.special_scores.PER}
                                         td.text-center(style="padding: 2px;" colspan="12") 
-                                        
-
-
+                                            
+                    .row
+                        .col-md-4(style="padding-right: 2px; padding-left: 2px;")
+                            table.table.table-bordered
+                                thead
+                                    tr
+                                        th.text-center(style="font-size: 7pt" colspan="4") 형태질
+                                            br
+                                            | (Form Quality)
+                                tbody(style="font-size: 7pt")
+                                    tr
+                                        td.text-center(style="padding: 2px;")
+                                        td.text-center(style="padding: 2px;") FQx
+                                        td.text-center(style="padding: 2px;") MQuality
+                                        td.text-center(style="padding: 2px;") W+D
+                                    tr
+                                        td.text-center(style="padding: 2px;") +
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.FQx['+']}
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.MQuality['+']}
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.WPlusD['+']}
+                                    tr
+                                        td.text-center(style="padding: 2px;") o
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.FQx['o']}
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.MQuality['o']}
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.WPlusD['o']}
+                                    tr
+                                        td.text-center(style="padding: 2px;") u
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.FQx['u']}
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.MQuality['u']}
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.WPlusD['u']}
+                                    tr
+                                        td.text-center(style="padding: 2px;") -
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.FQx['-']}
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.MQuality['-']}
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.WPlusD['-']}
+                                    tr
+                                        td.text-center(style="padding: 2px;") none
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.FQx['none']}
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.MQuality['none']}
+                                        td.text-center(style="padding: 2px;") #{upper.form_quality.WPlusD['none']}
+                        
 
             .page
                 .subpage#page2
@@ -534,9 +548,9 @@ html
                                     tr
                                         th.text-center 비율(RAIOS), 백분율(PERCENTAGES), 산출한 점수(DERIVATIONS)
                     
-                    .row
+                    .row.display-flex
                         .col-md-4(style="padding-right: 2px; padding-left: 2px;")
-                            table.table.table-bordered(style="font-size: 7pt")
+                            table.table.table-bordered.h-100(style="font-size: 7pt; height: 100%;")
                                 thead
                                     tr
                                         th.text-center(colspan="24") 핵심 영역
@@ -562,9 +576,9 @@ html
                                                 i.fa.fa-square-o(style="margin-right: 6px; font-size: 11pt;")
                                                 | Low
                                     tr
-                                        td(colspan="8") EB = #{lower.core.EBLeft} : #{lower.core.EBRight}
+                                        td(colspan="8") EB=#{lower.core.EBLeft}:#{(lower.core.EBRight).toFixed(1)}
                                             br
-                                            | eb = #{lower.core.ebLeft} : #{lower.core.ebRight}
+                                            | eb=#{lower.core.ebLeft}:#{lower.core.ebRight}
                                         td(colspan="8") EA = #{lower.core.EA}
                                             br
                                             | es = #{lower.core.es}
@@ -587,7 +601,7 @@ html
                                             | Sum Y = #{lower.core.SumY}
                         
                         .col-md-4(style="padding-right: 2px; padding-left: 2px;")
-                            table.table.table-bordered(style="font-size: 7pt;")
+                            table.table.table-bordered.h-100(style="font-size: 7pt; height: 100%;")
                                 thead
                                     tr
                                         th.text-center(colspan="24") 정서 영역
@@ -608,7 +622,7 @@ html
                                             | Blends : R
                                             br
                                             | Color Projection (CP)
-                                        td(colspan="12").text-center #{lower.affection.FCCFCLeft} : #{lower.affection.FCCFCRight}
+                                        td(colspan="12") #{lower.affection.FCCFCLeft} : #{lower.affection.FCCFCRight}
                                             br
                                             | #{lower.affection.PureC}
                                             br
@@ -623,7 +637,7 @@ html
                                             | #{lower.affection.CP}
 
                         .col-md-4(style="padding-right: 2px; padding-left: 2px;")
-                            table.table.table-bordered(style="font-size: 7pt;")
+                            table.table.table-bordered.h-100(style="font-size: 7pt; height: 100%;")
                                 thead
                                     tr
                                         th.text-center(colspan="24") 대인 지각 영역
@@ -631,8 +645,8 @@ html
                                             | (INTERPERSONAL PERCEPTION)
                                 tbody
                                     tr
-                                        td(colspan="12") COP = #{lower.interpersonal.COP}
-                                        td(colspan="12") AG = #{lower.interpersonal.AG}
+                                        td(colspan="12" style="width: 50%;") COP = #{lower.interpersonal.COP}
+                                        td(colspan="12" style="width: 50%;") AG = #{lower.interpersonal.AG}
                                     tr
                                         td(colspan="12") GHR : PHR
                                             br
@@ -664,9 +678,9 @@ html
                                             | #{lower.interpersonal.PER}
                                             br
                                             | #{lower.interpersonal.ISOIndex}
-                    .row
+                    .row.display-flex
                         .col-md-3(style="padding-right: 2px; padding-left: 2px;")
-                            table.table.table-bordered(style="font-size: 7pt;")
+                            table.table.table-bordered(style="font-size: 7pt; height: 100%;")
                                 thead
                                     tr
                                         th.text-center(colspan="24") 관념화 영역
@@ -711,7 +725,7 @@ html
 
 
                         .col-md-3(style="padding-right: 2px; padding-left: 2px;")
-                            table.table.table-bordered(style="font-size: 7pt;")
+                            table.table.table-bordered(style="font-size: 7pt; height: 100%;")
                                 thead
                                     tr
                                         th.text-center(colspan="24") 인지적 중재 영역
@@ -749,7 +763,7 @@ html
 
 
                         .col-md-3(style="padding-right: 2px; padding-left: 2px;")
-                            table.table.table-bordered(style="font-size: 7pt;")
+                            table.table.table-bordered(style="font-size: 7pt; height: 100%;")
                                 thead
                                     tr
                                         th.text-center(colspan="24") 정보 처리 영역
@@ -787,7 +801,7 @@ html
 
 
                         .col-md-3(style="padding-right: 2px; padding-left: 2px;")
-                            table.table.table-bordered(style="font-size: 7pt;")
+                            table.table.table-bordered(style="font-size: 7pt; height: 100%;")
                                 thead
                                     tr
                                         th.text-center(colspan="24") 자기 지각 영역
