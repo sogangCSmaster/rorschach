@@ -1713,13 +1713,24 @@ html
                                                                         i.fa.fa-square-o
                                                                         |  CDI = [ #{lower.special_indices.CDI} ]
                                                                 br
-                                                                span Step 2: EB = [ #{lower.core.EBLeft} : #{lower.core.EBRight} ] & Lambda(L) = [ #{lower.core.Lambda} ]
+                                                                span Step 2: EB = [ #{(lower.core.EBLeft).toFixed(1)} : #{(lower.core.EBRight).toFixed(1)} ] & Lambda(L) = [ #{lower.core.Lambda} ]
+                                                                    br
+                                                                    | ( 
                                                                     if lower.core.Lambda > 0.99
-                                                                        |  [High]
-                                                                    else if lower.core.Lambda < 0.3
+                                                                        i.fa.fa-check-square-o
+                                                                        |  High  
+                                                                    else
+                                                                        i.fa.fa-square-o
+                                                                        |  High  
+                                                                    if lower.core.Lambda < 0.3
+                                                                        i.fa.fa-check-square-o
                                                                         |  [Low]
+                                                                    else
+                                                                        i.fa.fa-square-o
+                                                                        |  [Low]
+                                                                    |  )
                                                                 br
-                                                                span Step 3: EBPer = [ #{lower.core.EBPer} ]
+                                                                span Step 3: EBPer = [ #{parseFloat(lower.core.EBPer).toFixed(1)} ]
                                                                 br
                                                                 span Step 4: Right Side eb = [ #{lower.core.EBRight} ] & variables related to it
                                                                 br
@@ -1861,9 +1872,9 @@ html
                                                     .row
                                                         .col-md-6
                                                             p
-                                                                span Step 1: EB = [ #{lower.core.EBLeft} : #{lower.core.EBRight} ] & Lambda(L) = [ #{lower.core.Lambda} ] #{lower.core.LambdaHighOrLow}
+                                                                span Step 1: EB = [ #{(lower.core.EBLeft).toFixed(1)} : #{(lower.core.EBRight).toFixed(1)} ] & Lambda(L) = [ #{lower.core.Lambda} ] #{lower.core.LambdaHighOrLow}
                                                                 br
-                                                                span Step 2: EBPer = [ #{lower.core.EBPer} ]
+                                                                span Step 2: EBPer = [ #{parseFloat(lower.core.EBPer).toFixed(1)} ]
                                                                 br
                                                                 span Step 3: active : passive (a:p) = [ #{lower.interpersonal.a} : #{lower.interpersonal.p} ]
                                                                 br
@@ -2173,7 +2184,7 @@ html
                                                                 br
                                                                 span Step 7: H : (H) + Hd + (Hd) = [ #{lower.self_perception.H} : #{lower.self_perception.Hrest} ]
                                                                 br
-                                                                span & Review codings for Human Content responses (질적 분석)
+                                                                span(style="display: inline-block;") Review codings for Human Content responses (질적 분석)
                                                         .col-md-6
                                                             p
                                                                 span Step 8: Search for projections in: (질적 분석)
@@ -2182,7 +2193,9 @@ html
                                                                 br
                                                                 span b: MOR responses = [ #{upper.special_scores.MOR} ]
                                                                 br
-                                                                span c: M responses = [ #{lower.information_processing.M}] & Human Content responses = [ #{lower.interpersonal.HumanCont} ]
+                                                                span c: M responses = [ #{lower.information_processing.M}]
+                                                                br
+                                                                span Human Content responses = [ #{lower.interpersonal.HumanCont} ]
                                                                 br
                                                                 span d: FM responses = [ #{upper.determinants.FM} ] & m responses = [ #{upper.determinants.m} ]
                                                                 br
@@ -2255,9 +2268,9 @@ html
                                                                         i.fa.fa-square-o
                                                                     |  CDI = [#{lower.special_indices.CDI}]
                                                                 br
-                                                                span Step 2: EA = [ #{lower.core.EA} ]
+                                                                span Step 2: EA = [ #{lower.core.EA.toFixed(1)} ]
                                                                 br
-                                                                span Step 3: EB = [ #{lower.core.EBLeft} : #{lower.core.EBRight} ] & Lambda(L) = [ #{lower.core.Lambda} ]
+                                                                span Step 3: EB = [ #{lower.core.EBLeft.toFixed(1)} : #{lower.core.EBRight.toFixed(1)} ] & Lambda(L) = [ #{lower.core.Lambda} ]
                                                                     br
                                                                     | (
                                                                     if parseFloat(lower.core.Lambda) > 0.99
@@ -2319,7 +2332,7 @@ html
                                                                 br
                                                                 span D = [ #{lower.core.D} ], Adj D = [ #{lower.core.AdjD} ], es - Adj es = [ #{lower.core.es - lower.core.Adjes}]
                                                                 br
-                                                                span Step 2: Difference between D Score & Adj D Score AdjD - D = [ #{lower.core.D - lower.core.AdjD} ]
+                                                                span Step 2: Difference between D Score & Adj D Score AdjD - D = [ #{(lower.core.D - lower.core.AdjD).toFixed(1)} ]
                                                                 br
                                                                 span Step 3: m = [ #{upper.determinants.m} ] & Sum Y = [ #{lower.core.SumY} ]
                                                         .col-md-6
