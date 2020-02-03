@@ -413,6 +413,14 @@ router.route("/finishtest1")
             data = data[0];
             var score = data.score;
             score = JSON.parse(score);
+            score = score.slice(1);
+
+            score = score.map((s) => {
+                if (s.det && Object.keys(s.det).length) {
+                  delete s.det['(2)'];
+                }
+                return s;
+            })
     
             //testconfig => 이름, 검사주체 등 기본정보
             //score => 테스트

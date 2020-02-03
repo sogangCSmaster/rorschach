@@ -103,6 +103,7 @@ html
                                                 option P
                                         td.text-center
                                             select.form-control.selectZ(style="text-align-last:center;")
+                                                option(value='') [없음]
                                         td.text-center
                                             button.btn.btn-default.btn-sm.score-btn.btn-block 선택
                                 +card-tr('hidden', 0)
@@ -1007,6 +1008,7 @@ html
 
             var zDom = row.find('.selectZ');
             zDom.html('');
+            zDom.append($('<option value="">[없음]</option>'));
             if (zArr) {
                 zArr.forEach(function(val) {
                     var option = $('<option value="' + val + '">' + val + '</option>');
