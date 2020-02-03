@@ -35,6 +35,7 @@ html
                 border-radius: 5px;
                 background: white;
                 box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+                overflow: hidden;
             }
             .subpage {
                 padding: 0.2cm;
@@ -271,7 +272,7 @@ html
                                                 br
                                                 | o = #{upper.dq.o}
                                                 br
-                                                | v/o = #{upper.dq.VSlashPlus}
+                                                | v/+ = #{upper.dq.VSlashPlus}
                                                 br
                                                 | v = #{upper.dq.v}
                                         td(style='font-size: 7pt;')
@@ -1641,7 +1642,7 @@ html
                                                                 span Step 9: PER = [ #{upper.special_scores.PER} ]
                                                                 br
                                                                 span Step 10: Isolation Index = [ #{lower.interpersonal.ISOIndex} ]
-                                            tr
+                                            //- tr
                                                 td
                                                     p ❊ 대인지각 중요변인: 소외지표(Isolation Index), 인간표상반응 (GHR : PHR)
                                                     p ❊ 대인지각 관련개념: 대인관계(Interpersonal Relationships: Social Cognition, Social Skill), 자기중심성(Self-Centeredness), 관계적 자기(Relational Self), 의심과 방어(Suspiciousness & Defensiveness)
@@ -1759,15 +1760,13 @@ html
                                                                 //- span Step 13: Blends related to situational stress
                                                                 //- br
                                                                 //- span Step 14: 
-                                            tr   
+                                            //- tr   
                                                 td
                                                     p ❊ 정서 중요 변인: 정서비율(Affective Ratio: Afr), 형태-유채색 비율(FC : CF + C), 순수 유채색(PureC)
                                                         br
                                                         | ❊ 정서 관련 개념: 정서 기능(Affective Functioning), 문제해결과 대처 전략(Coping Strategy with Problem Solving), 정서적 감수성(Emotional Receptivity), 심리적 복잡성과 불안정성(Psychological Complexity & lability)
                                                         br
                                                         | ❊ 내인성 우울(Endogenous Depression), 반응성 우울(Reactive Depression), 양극성 특성(Bipolar Characteristics)
-                                                        br
-                                                        | ❊ 주의 사항: 자살 잠재성(Suicide Potential)
                                                                     
                             .row
                                 .col-md-12
@@ -1889,7 +1888,7 @@ html
                                                                 span Step 10: M- = [ #{lower.ideation.Mminus} ], M none = [ #{lower.ideation.Mnone} ]
                                                                 br
                                                                 span Step 11: Quality of M responses (질적 분석)
-                                            tr
+                                            //- tr
                                                 td
                                                     p ❊ 관념화 중요변인: 가중특수점수(WSum6), 형태질 없는 인간운동(M none)
                                                         br
@@ -1978,7 +1977,7 @@ html
                                                                 span Step 5: FQ+ frequency = []
                                                                 br
                                                                 span Step 6: X+% = [ #{lower.cognitive_mediation.Xplusper} ] & Xu% = [ #{lower.cognitive_mediation.Xuper} ]
-                                            tr
+                                            //- tr
                                                 td
                                                     p ❊ 인지적 중재 중요변인: 적절한 형태질(XA%), 일반적 위치의 적절한 형태질(WDA%), 왜곡된 형태질(X-%)
                                                         br
@@ -2074,7 +2073,7 @@ html
                                                                 span Step 7: DQ+ = [ #{lower.information_processing.DQplus} ], DQv = [ #{lower.information_processing.DQv} ]
                                                                 br
                                                                 span Step 8: DQ sequencing (질적 분석)
-                                            tr
+                                            //- tr
                                                 td
                                                     p ❊ 정보처리 중요변인: 기대지표(Aspirational Ratio: W:M), 처리 효율성(Processing Efficiency: Zd)
                                                         br
@@ -2169,7 +2168,7 @@ html
                                                                 span e: Embellishments in other responses
                                                                 br
                                                                 span *윤색(각색: Embellishment): 꾸미는 말이 포함되어 있어 일반적   반응보다 더 내용이 풍부한 반응. 왜곡된 반응도 해당함.
-                                            tr
+                                            //- tr
                                                 td
                                                     p ❊ 자기지각 영역의 중요변인: 자기중심지표(Egocentricity Index), 해부-엑스레이(An+Xy), 병적인 내용(MOR)
                                                         br
@@ -2240,7 +2239,7 @@ html
                                                                 span Step 4: es = [ #{lower.core.es} ] & Adjusted es(Adj es) = [ #{lower.core.Adjes} ]
                                                                 br
                                                                 span Step 5: eb = [ #{lower.core.ebLeft} : #{lower.core.ebRight} ]
-                                            tr
+                                            //- tr
                                                 td
                                                     p ❊ 통제력 중요변인: 조정된 자원-스트레스 차이 점수(Adjusted Difference Score: Adj D), 대처결함지표(CDI)
                                                         br
@@ -2312,7 +2311,7 @@ html
                                                                 span Step 7: Color-Shading Blends
                                                                 br
                                                                 span Y-Color-Shading Blends = [ #{lower.affection.Blends} ], Other Color-Shading Blends = [ #{OnlyShading} ]
-                                            tr
+                                            //- tr
                                                 td
                                                     p ❊ 상황 관련 스트레스 개념: 생활사건(Life Event: Personal History), 자극 과부하(Stimulus Overload), 정서적 혼란(Emotional Confusion)
                             .row
