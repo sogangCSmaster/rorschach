@@ -2,45 +2,18 @@ extends ../template/layout
 
 block head
     link(href="/css/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet")
-    link(href="/css/plugins/datapicker/datepicker3.css" rel="stylesheet")
-    link(href="/css/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet")
+    //- link(href="/css/plugins/datapicker/datepicker3.css" rel="stylesheet")
+    //- link(href="/css/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet")
+    link(rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css")
     link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css")
 
 block script
     script(src="/js/plugins/fullcalendar/moment.min.js")
-    script(src="/js/plugins/datapicker/bootstrap-datepicker.js")
-    script(src="/js/plugins/daterangepicker/daterangepicker.js")
-    script(src="/js/plugins/clockpicker/clockpicker.js")
+    //- script(src="/js/plugins/datapicker/bootstrap-datepicker.js")
+    //- script(src="/js/plugins/daterangepicker/daterangepicker.js")
+    //- script(src="/js/plugins/clockpicker/clockpicker.js")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js")
-    script.
-        /**
-        * Korean translation for bootstrap-datepicker
-        * This is a port from https://github.com/moment/moment/blob/develop/src/locale/ko.js
-        */
-        ;(function($){
-            $.fn.datepicker.dates['ko'] = {
-                days: ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"],
-                daysShort: ["일", "월", "화", "수", "목", "금", "토"],
-                daysMin: ["일", "월", "화", "수", "목", "금", "토"],
-                months: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
-                monthsShort: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
-                today: "오늘",
-                clear: "삭제",
-                format: "yyyy-mm-dd",
-                titleFormat: "yyyy년mm월",
-                weekStart: 0
-            };
-        }(jQuery));
-    script.
-        $(document).ready(function(){
-            $('#daterange .input-daterange').datepicker({
-                keyboardNavigation: false,
-                forceParse: false,
-                autoclose: true,
-                language: "ko",
-                calendarWeeks: true,
-            });
-        })
+    script(src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js")
     script.
         $("#rors1button").on('click', function(){
             var user = !{JSON.stringify(session)};
@@ -93,6 +66,31 @@ block script
                     }
                 }
             })
+        })
+    script.
+        $(document).ready(function(){
+            $("#startDate" ).datepicker({
+                changeMonth: true,
+                changeYear: true,
+                dateFormat: "yy-mm-dd",
+                showMonthAfterYear:true,
+                dayNames: ['일요일','월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+                dayNamesMin: ['일','월', '화', '수', '목', '금', '토'],
+                monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
+                monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월']    
+            });
+
+            $("#endDate" ).datepicker({
+                changeMonth: true,
+                changeYear: true,
+                dateFormat: "yy-mm-dd",
+                showMonthAfterYear:true,
+                dayNames: ['일요일','월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+                dayNamesMin: ['일','월', '화', '수', '목', '금', '토'],
+                monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
+                monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월']    
+            });
+                
         })
 
         
@@ -161,11 +159,11 @@ block content
                     h5 검사
                 .ibox-content
                     form.row.form-group(method="POST" action="/")
-                        .col-lg-3.col-lg-offset-3.form-group#daterange
-                            .input-daterange.input-group#datepicker
-                                input.input-sm.form-control(type="text" name="start" value="2019-01-01")
+                        .col-lg-3.col-lg-offset-3.form-group
+                            .input-daterange.input-group
+                                input#startDate.input-sm.form-control(type="text" name="start" value="2019-01-01")
                                 span.input-group-addon ~
-                                input.input-sm.form-control(type="text" name="end" value=moment().format('YYYY-MM-DD'))
+                                input#endDate.input-sm.form-control(type="text" name="end" value=moment().format('YYYY-MM-DD'))
                         .col-lg-2
                             select.form-control(name="searchfor")
                                 option(value="name") 수검자
