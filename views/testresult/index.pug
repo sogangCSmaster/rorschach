@@ -244,7 +244,7 @@ html
                                                 br
                                                 | ZSum = #{(upper.location_features.ZSum).toFixed(1)}
                                                 br
-                                                | ZEst = #{(upper.location_features.ZEst).toFixed(1)}
+                                                = upper.location_features.ZEst? 'ZEst = '+ (upper.location_features.ZEst).toFixed(1) : 'Zest = ' + upper.location_features.ZEst
                                     tr
                                         td(style="font-size: 7pt;")
                                             .text-center 반응 위치

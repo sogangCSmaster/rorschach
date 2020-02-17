@@ -13,6 +13,8 @@ html
         link(href="/css/plugins/datapicker/datepicker3.css" rel="stylesheet")
         link(href="/css/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet")
         link(href='/css/table-hover-cells.css', rel='stylesheet')
+        link(href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.css" rel='stylesheet')
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js")
         style.
             .table > tbody > tr > td {
                 vertical-align: middle !important;
@@ -1192,10 +1194,15 @@ html
         }
 
         function stringifyForm() {
+
+            var result = confirm('채점을 하시면 수정이 불가능합니다. 채점하시겠습니까?');
+            if(!result){
+                return false;
+            }
             var rowSize = $('#score-table tr').length;
             var ret = [];
             for (var index = 0; index < rowSize; index++) {
-              var row = $('#score-table tr[data-index=' + index + ']');
+            var row = $('#score-table tr[data-index=' + index + ']');
                 var card = row.find('select[name=card] option:selected').val();
                 var cardNum = numberMapper[card];
                 var loc = row.find('select[name=loc] option:selected').val();
@@ -1223,6 +1230,8 @@ html
             }
             $('input[name=stringifyText]').val(JSON.stringify(ret));
             return true;
+
+            
         }
         function checkGPHR(index) {
           var row = $('#score-table tr[data-index=' + index + ']');
