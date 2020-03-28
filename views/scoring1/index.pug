@@ -635,6 +635,14 @@ html
         script(src="/js/plugins/clockpicker/clockpicker.js")
         script(src='/js/plugins/stickytableheaders/jquery.stickytableheaders.min.js')
         script.
+            function addCard(){
+                var a = $('#score-table').find('tr:eq(0)').clone()
+                $('#score-table').append(a);
+                a.show();
+                var index = $('#score-table tr').length - 1;
+                a.attr('data-index', index);
+                $('#score-table tr[data-index=' + index + '] .number').html((index));
+            }
             $(document).ready(function(){
                 $(document).on('click', '.card-img', function(event, pageX, pageY, clientX, clientY) {
                     pageX = pageX || event.pageX;
@@ -714,22 +722,57 @@ html
                     scores.pop();
                 })
                 // 카드 추가 버튼
-                $("#addReact").on('click', function(){
-                    var a = $('#score-table').find('tr:eq(0)').clone()
-                    $('#score-table').append(a);
-                    a.show();
-                    var index = $('#score-table tr').length - 1;
-                    a.attr('data-index', index);
-                    $('#score-table tr[data-index=' + index + '] .number').html((index));
-                });
+                $("#addReact").on('click', addCard);
             })
 
-        script.
+            var reverseNumberMapper = {
+                1: 'Ⅰ',
+                2: 'Ⅱ',
+                3: 'Ⅲ',
+                4: 'Ⅳ',
+                5: 'Ⅴ',
+                6: 'Ⅵ',
+                7: 'Ⅶ',
+                8: 'Ⅷ',
+                9: 'Ⅸ',
+                10: 'Ⅹ'
+            }
 
             var dets = [ ];
             var reacts = [ ];
             var scores = [ ];
             var currentModalIndex = -1;
+
+            var dbScores = JSON.parse(!{JSON.stringify(score || '{"score": []}')})
+            dbScores = dbScores.score
+            function loadScore() {
+                var tbody = $('#score-table')
+                for (var i = 0; i < dbScores.length - 1; i++) {
+                    addCard();
+                }
+                for (var i = 0; i < dbScores.length; i++) {
+                    var index = i + 1;
+                    var tr = tbody.find('tr[data-index=' + index + ']');
+                    console.log(reverseNumberMapper[dbScores[i].card]);
+                    tr.find('.card-select').val(reverseNumberMapper[dbScores[i].card]);
+                    tr.find('select[name=loc]').val(dbScores[i].loc);
+                    tr.find('select[name=dq]').val(dbScores[i].dq);
+                    tr.find('.select2').val(dbScores[i].select2);
+                    tr.find('.selectP').val(dbScores[i].p);
+                    changeZ(index)
+                    tr.find('.selectZ').val(dbScores[i].z);
+                    dets[index] = dbScores[i].det;
+                    parseDet(dets[index] || {}, index);
+                    reacts[index] = dbScores[i].react;
+                    parseReact(reacts[index] || {}, index);
+                    scores[index] = dbScores[i].score;
+                    parseScore(scores[index] || {}, index);
+                }
+            }
+            $(document).ready(function() {
+                loadScore();
+            })
+
 
 
             function selectLocImageInModal(index, card) {
