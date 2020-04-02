@@ -375,8 +375,17 @@ router.route("/finishtest1")
     .post(async(req, res, next) => {
         var { stringifyText, testID } = req.body;
         var score = stringifyText;
-        var sql = "INSERT IGNORE INTO score (id, score) VALUES (?, ?)";
-        query.executeSQL(sql, [testID, score]);
+        var sql1 = "SELECT id FROM score WHERE id=?";
+        var result = await query.executeSQL(sql1, [testID]);
+        if (result.length) {
+            // 이미 있으면 update
+            var sql = "UPDATE score SET score=? WHERE id=?";
+            await query.executeSQL(sql, [score, testID]);
+        } else {
+            // 없으면 insert 
+            var sql = "INSERT IGNORE INTO score (id, score) VALUES (?, ?)";
+            await query.executeSQL(sql, [testID, score]);
+        }
 
         // 코인 사용
         var api = config.api;
