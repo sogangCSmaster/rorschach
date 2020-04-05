@@ -8398,7 +8398,7 @@ body.md-skin {
   line-height: 40px;
 }
 #card-table.table thead tr th {
-  background-color: #ffffff !important;
+  /* background-color: #ffffff !important; */
 }
 #card-table.table-bordered tr:not(:last-child) td {
   border-top: 1px solid black !important;

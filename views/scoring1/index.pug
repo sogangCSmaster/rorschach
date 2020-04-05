@@ -362,22 +362,14 @@ html
                                 table.table.table-striped.table-bordered.table-hover-cells
                                     thead
                                         tr
-                                            th.text-center(colspan=34) 특이한 언어반응 (Unusual Verbalization)
-                                    tbody
-                                        tr
                                             td(colspan=1)
                                             td.text-center(colspan=12) 
                                                 span.title 특이한 언어 반응
-                                                br
-                                                | (Deviant Verbalization Response)
                                             td(colspan=2)
                                             td.text-center(colspan=18)
-                                                span.title 부적절 반응 결과 부적절한 논리
-                                                br
-                                                | (Inappropriate Combinations and Logic)
+                                                span.title 부적절한 반응 결합과 부적절한 논리
                                             td(colspan=1)
-                                        tr
-                                            td(colspan=34)
+                                    tbody
                                         tr
                                             td(colspan=1)
                                             td.text-center.s-form(style='cursor: pointer;font-size: 12pt; font-weight: bold;', data-skey='DV1', data-svalue='DV1', colspan=6, data-validate='DR1', data-validate2='DR2', data-validate3='CONTAM', data-validate-msg='DV와 DR은 함께 채점되지 않습니다. 둘 다 해당하면 DR로 채점합니다.', data-validate2-msg='DV와 DR은 함께 채점되지 않습니다. 둘 다 해당하면 DR로 채점합니다.', data-validate3-msg='CONTAM이 있을 경우 DV, DR, INCOM, FABCOM, ALOG은 채점되지 않고 CONTAM 만 채점합니다.'): strong DV 1
@@ -398,65 +390,56 @@ html
                                             td(colspan=1)
                                 
                         .row
-                            .col-lg-4
-                                table.table.table-striped.table-bordered.table-hover-cells
-                                    tbody
-                                        tr
-                                            td.text-center.align-middle(style='width: 50%; vertical-align: center;')
-                                                span.title: strong 보속 반응
-                                                br
-                                                | (Perseveration)
-                                            td.text-center.s-form(style='cursor: pointer; width: 50%; line-height: 50px;font-size: 12pt; font-weight: bold;', data-skey='PSV', data-svalue='PSV'): strong PSV
-                            .col-lg-8
-                                table.table.table-striped.table-bordered.table-hover-cells
-                                    tbody
-                                        tr
-                                            td.text-center(style='width: 50%;')
-                                                span.title: strong 사람 표상 반응
-                                                br
-                                                | (Human Representational Response)
-                                            td.text-center(style='cursor: pointer; width: 25%; line-height: 50px;font-size: 12pt; font-weight: bold;', data-skey='GHR', data-svalue='GHR', colspan=6): strong GHR
-                                            td.text-center(style='cursor: pointer; width: 25%; line-height: 50px;font-size: 12pt; font-weight: bold;', data-skey='PHR', data-svalue='PHR', colspan=6): strong PHR
-                                      
-                                    
-                            
-                        .row
-                            .col-lg-7
+                            .col-lg-12
                                 table.table.table-striped.table-bordered.table-hover-cells
                                     thead
                                         tr
                                             td.text-center(colspan=4) 
                                                 span.title: strong 특수 내용 반응
-                                                br
-                                                | (Special Content Characteristics)
                                     tbody
                                         tr
                                             td.text-center.s-form(style='cursor: pointer;font-size: 12pt; font-weight: bold; width: 25%', data-skey='AB', data-svalue='AB'): strong  AB
                                             td.text-center.s-form(style='cursor: pointer;font-size: 12pt; font-weight: bold; width: 25%', data-skey='MOR', data-svalue='MOR'): strong  MOR
                                             td.text-center.s-form(style='cursor: pointer;font-size: 12pt; font-weight: bold; width: 25%', data-skey='AG', data-svalue='AG'): strong  AG
                                             td.text-center.s-form(style='cursor: pointer;font-size: 12pt; font-weight: bold; width: 25%', data-skey='COP', data-svalue='COP'): strong  COP
+                        .row
                             .col-lg-2
                                 table.table.table-striped.table-bordered.table-hover-cells
                                     thead
                                         tr
-                                            td.text-center
-                                                span.title: strong 개인적 반응
-                                                br
-                                                | (Personalized)
+                                            td.text-center.align-middle(style='width: 50%; vertical-align: center;')
+                                                span.title: strong 보속 반응
                                     tbody
                                         tr
-                                            td.text-center.s-form(style='cursor: pointer;font-size: 12pt; font-weight: bold;', data-skey='PER', data-svalue='PER'): strong  PER
+                                            td.text-center.s-form(style='cursor: pointer; width: 50%;font-size: 12pt; font-weight: bold;', data-skey='PSV', data-svalue='PSV'): strong PSV
                             .col-lg-3
                                 table.table.table-striped.table-bordered.table-hover-cells
                                     thead
                                         tr
                                             td.text-center
-                                                span.title: strong 특수 색채 현상
-                                                br
-                                                | (Special Color Phenomena)
+                                                span.title: strong 특수 색채 반응
                                     tbody
                                         tr
                                             td.text-center.s-form(style='cursor: pointer;font-size: 12pt; font-weight: bold;', data-skey='CP', data-svalue='CP'): strong  CP
+                            .col-lg-3
+                                table.table.table-striped.table-bordered.table-hover-cells
+                                    thead
+                                        tr
+                                            td.text-center
+                                                span.title: strong 개인화 반응
+                                    tbody
+                                        tr
+                                            td.text-center.s-form(style='cursor: pointer;font-size: 12pt; font-weight: bold;', data-skey='PER', data-svalue='PER'): strong  PER
+                            .col-lg-4
+                                table.table.table-striped.table-bordered.table-hover-cells
+                                    thead
+                                        tr
+                                            td.text-center(style='width: 50%;', colspan=12)
+                                                span.title: strong 사람 표상 반응
+                                    tbody
+                                        tr
+                                            td.text-center(style='cursor: pointer; width: 25%;font-size: 12pt; font-weight: bold;', data-skey='GHR', data-svalue='GHR', colspan=6): strong GHR
+                                            td.text-center(style='cursor: pointer; width: 25%;font-size: 12pt; font-weight: bold;', data-skey='PHR', data-svalue='PHR', colspan=6): strong PHR
                         .row
                             .col-lg-12
                                 .form-group
@@ -1111,7 +1094,7 @@ html
         function stringifyForm(ignoreConfirm) {
 
             if (!ignoreConfirm) {
-                var result = confirm('채점을 하시면 수정이 불가능합니다. 채점하시겠습니까?');
+                var result = confirm('채점을 하시면 코인이 차감되며 변경할 수 없습니다. 채점하시겠습니까?');
                 if(!result){
                     return false;
                 }
