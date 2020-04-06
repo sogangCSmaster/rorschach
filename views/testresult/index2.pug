@@ -12,8 +12,14 @@ html
         link(href="/css/plugins/datapicker/datepicker3.css" rel="stylesheet" media="all")
         link(href="/css/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" media="all")
         link(href='/css/table-hover-cells.css', rel='stylesheet' media="all")
+        link(href='/css/print.css', rel='stylesheet', media='print')
         //- link(rel="stylesheet" href="http://getbootstrap.com.vn/examples/equal-height-columns/equal-height-columns.css")
         style.
+
+            .td-small {
+                padding-top: 2px !important;
+                padding-bottom: 2px !important;
+            }
             body {
                 width: 100%;
                 height: 100%;
@@ -35,7 +41,6 @@ html
                 border-radius: 5px;
                 background: white;
                 box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-                overflow: hidden;
             }
             .subpage {
                 padding: 0.2cm;
@@ -148,13 +153,13 @@ html
                                                     = index + 1
                                             td= score.loc
                                             td= score.dq
-                                            td!= score.det
+                                            td.text-justify!= score.det
                                             td= score.fq
                                             td= score['(2)']
-                                            td= score.react
+                                            td.text-justify= score.react
                                             td= score.p
                                             td= score.z
-                                            td= score.score
+                                            td.text-justify= score.score
             if scores[25].card
                 .page
                     .subpage#page0
@@ -217,21 +222,23 @@ html
                                                 td= score.p
                                                 td= score.z
                                                 td= score.score
+
+
             .page
-                .subpage#page1
+                .subpage#page1: div(style='margin-top: -10mm;')
                     .row
                         .col-md-12.text-center
                             h3 Rorschach Test Structural Summary
-                    .container-fluid
+                    //-.container-fluid
                         .row
                             .col-md-12.text-center
                                 h6 NO : #{testconfig.id} &nbsp&nbsp&nbsp&nbsp 이름 : #{testconfig.name} &nbsp&nbsp&nbsp&nbsp 생년월일 : #{moment(testconfig.birthday).format('YYYY년 MM월 DD일')}(만 #{testconfig.age}세) &nbsp&nbsp&nbsp&nbsp 성별 : #{testconfig.sex} &nbsp&nbsp&nbsp&nbsp 검사일 : #{moment(testconfig.testdate).format('YYYY년 MM월 DD일')}
                     .row
                         .col-md-3.col-3-print(style="padding-right: 2px; padding-left: 2px;")
-                            table.table.table-bordered
+                            table.table.table-bordered(style='margin-bottom: 0;')
                                 thead
                                     tr
-                                        th.text-center(style="font-size: 7pt" colspan="3") 반응위치 특징
+                                        th.td-small.text-center(style="font-size: 7pt" colspan="3") 반응위치 특징
                                             br
                                             | (Location Features)
                                 tbody
@@ -261,7 +268,7 @@ html
                             table.table.table-bordered
                                 thead
                                     tr
-                                        th.text-center(style="font-size: 7pt" colspan="3") 발달질
+                                        th.td-small.text-center(style="font-size: 7pt" colspan="3") 발달질
                                             br
                                             | (Developmental Quality)
                                 tbody
@@ -272,9 +279,16 @@ html
                                                 br
                                                 | o = #{upper.dq.o}
                                                 br
-                                                | v/+ = #{upper.dq.VSlashPlus}
+                                                | v/o = #{upper.dq.VSlashPlus}
                                                 br
                                                 | v = #{upper.dq.v}
+                                                br
+                                                br
+                                                br
+                                                br
+                                                br
+                                                br
+                                                br
                                         td(style='font-size: 7pt;')
                                             div(style='margin-left: 10px;')
                                                 | (FQx- = #{upper.dq.plusFQxminus})
@@ -284,111 +298,142 @@ html
                                                 | (FQx- = #{upper.dq.vSlashPlusFQxminus})
                                                 br
                                                 | (FQx- = #{upper.dq.vFQxminus})
+                                                br
+                                                br
+                                                br
+                                                br
+                                                br
+                                                br
+                                                br
 
-
-
-                        .col-md-3.col-3-print(style="padding-right: 2px; padding-left: 2px;")
-                            table.table.table-bordered
+                        .col-md-3.col-3-print(style="padding-right: 2px; padding-left: 2px; padding-right: 1px;")
+                            table.table.table-bordered(style='margin-bottom: 0; border-bottom: 0;')
                                 thead
-                                    tr
-                                        th.text-center(style="font-size: 7pt" colspan="3") 결정인
+                                    tr(style='border-bottom-width: 0;')
+                                        th.td-small.text-center(style="font-size: 7pt; border-bottom: 0;" colspan="3") 결정인
                                             br
                                             | (Determinants)
-                                tbody
-                                    tr
-                                        td(style="font-size: 7pt;" colspan="1.5")
-                                            .text-center 복합
-                                                br
-                                                | (Blends)
-                                            div
-                                                each blends in upper.blends
-                                                    p
-                                                        each blend, index in blends
-                                                            span !{blend}
-                                                            if index != blends.length - 1
-                                                                |.
-                                                            span &nbsp;
-                                                        
-                                        td(style="font-size: 7pt;" colspan="1.5")
-                                            .text-center 전체
-                                                br
-                                                | (Total)
-                                            div
-                                                | F = #{upper.determinants.F}
-                                                br
-                                                | M = #{upper.determinants.M}
-                                                br
-                                                | FM = #{upper.determinants.FM}
-                                                br
-                                                | m = #{upper.determinants.m}
+                            .col-md-8(style='margin: 0; padding: 0;')
+                                table.table.table-bordered(style='border-right: 0; margin: 0;border-bottom: 0;')
+                                    tbody
+                                        tr
+                                            td(style="font-size: 7pt; border-right: 0; border-bottom: 0;" colspan="1.5")
+                                                .text-center 복합
+                                                    br
+                                                    | (Blends)
+                                                div
+                                                    each blends in upper.blends
+                                                        p
+                                                            each blend, index in blends
+                                                                span !{blend}
+                                                                if index != blends.length - 1
+                                                                    |.
+                                                                span &nbsp;
                                                 br
                                                 br
-                                                | FC = #{upper.determinants.FC}
-                                                br
-                                                | CF = #{upper.determinants.CF}
-                                                br
-                                                | C = #{upper.determinants.C}
-                                                br
-                                                | Cn = #{upper.determinants.Cn}
                                                 br
                                                 br
-                                                | FC' = #{upper.determinants.FCprime}
-                                                br
-                                                | C'F = #{upper.determinants.CprimeF}
-                                                br
-                                                | C' = #{upper.determinants.Cprime}
                                                 br
                                                 br
-                                                | FY = #{upper.determinants.FY}
-                                                br
-                                                | YF = #{upper.determinants.YF}
-                                                br
-                                                | Y = #{upper.determinants.Y}
-                                                br
-                                                | FT = #{upper.determinants.FT}
-                                                br
-                                                | TF = #{upper.determinants.TF}
-                                                br
-                                                | T = #{upper.determinants.T}
-                                                br
-                                                | FV = #{upper.determinants.FV}
-                                                br
-                                                | VF = #{upper.determinants.VF}
-                                                br
-                                                | V = #{upper.determinants.V}
-                                                br
-                                                | FD = #{upper.determinants.FD}
                                                 br
                                                 br
-                                                | Fr = #{upper.determinants.Fr}
                                                 br
-                                                | rF = #{upper.determinants.rF}
                                                 br
-                                                | (2) = #{upper.determinants.two}
-                                                //- br
-                                                //- | P = #{upper.determinants.P}
+                                                br
+                                                br
+                                                br
+                                                br
+                            .col-md-4(style='margin: 0; padding: 0')
+                                table.table.table-bordered(style='margin-bottom: 0;')
+                                    tbody
+                                        tr
+                                            td(style="font-size: 7pt;" colspan="1.5")
+                                                .text-center 전체
+                                                    br
+                                                    | (Total)
+                                                div
+                                                    | F = #{upper.determinants.F}
+                                                    br
+                                                    | M = #{upper.determinants.M}
+                                                    br
+                                                    | FM = #{upper.determinants.FM}
+                                                    br
+                                                    | m = #{upper.determinants.m}
+                                                    br
+                                                    br
+                                                    | FC = #{upper.determinants.FC}
+                                                    br
+                                                    | CF = #{upper.determinants.CF}
+                                                    br
+                                                    | C = #{upper.determinants.C}
+                                                    br
+                                                    | Cn = #{upper.determinants.Cn}
+                                                    br
+                                                    br
+                                                    | FC' = #{upper.determinants.FCprime}
+                                                    br
+                                                    | C'F = #{upper.determinants.CprimeF}
+                                                    br
+                                                    | C' = #{upper.determinants.Cprime}
+                                                    br
+                                                    br
+                                                    | FY = #{upper.determinants.FY}
+                                                    br
+                                                    | YF = #{upper.determinants.YF}
+                                                    br
+                                                    | Y = #{upper.determinants.Y}
+                                                    br
+                                                    | FT = #{upper.determinants.FT}
+                                                    br
+                                                    | TF = #{upper.determinants.TF}
+                                                    br
+                                                    | T = #{upper.determinants.T}
+                                                    br
+                                                    | FV = #{upper.determinants.FV}
+                                                    br
+                                                    | VF = #{upper.determinants.VF}
+                                                    br
+                                                    | V = #{upper.determinants.V}
+                                                    br
+                                                    | FD = #{upper.determinants.FD}
+                                                    br
+                                                    br
+                                                    | Fr = #{upper.determinants.Fr}
+                                                    br
+                                                    | rF = #{upper.determinants.rF}
+                                                    br
+                                                    | (2) = #{upper.determinants.two}
+                                                    br
+                                                    br
+                                                    br
+                                                    br
+                                                    br
+                                                    //- br
+                                                    //- | P = #{upper.determinants.P}
                         .col-md-2.col-2-print(style="padding-right: 2px; padding-left: 2px;")
-                            table.table.table-bordered
+                            table.table.table-bordered(style='margin-bottom: 0;')
                                 thead
                                     tr
-                                        th.text-center(style="font-size: 7pt" colspan="3") 반응내용
+                                        th.td-small.text-center(style="font-size: 7pt;" colspan="3") 반응내용
                                             br
                                             | (Contents)
                                 tbody
                                     tr
                                         td(style="font-size: 7pt;" colspan="3")
-                                            div(style="margin-left: 10px;")
+                                            div(style="margin-left: 0px;")
                                                 - var order = ['H', '(H)', 'Hd', '(Hd)', 'Hx', 'A', '(A)', 'Ad', '(Ad)', 'An', 'Xy', 'Bl', 'Sx', 'Sc', 'Art', 'Ay', 'Hh', 'Fd', 'Cg', 'Na', 'Bt', 'Ls', 'Ge', 'Cl', 'Fi', 'Ex', 'Id', 'P']
                                                 each key in order
                                                     | &nbsp #{key} = #{upper.contents[key]}
                                                     br
                                                     if key == 'Hx' || key=='(Ad)' || key == 'Sx' || key == 'Cg' || key == 'Ex'
                                                         br
+                                            br
+                                    
                         .col-md-4.col-3-print(style="padding-right: 2px; padding-left: 2px;")
-                            table.table.table-bordered
+                            table.table.table-bordered(style='margin-bottom: 0')
                                 thead
                                     tr
-                                        th.text-center(style="font-size: 7pt" colspan="3") 접근방식
+                                        th.td-small.text-center(style="font-size: 7pt" colspan="3") 접근방식
                                             br
                                             | (Summary of Approach)
                                 tbody
@@ -433,10 +478,10 @@ html
                                     tr
                                         td.text-center(style="font-size: 7pt; padding: 2px;" colspan="1") Ⅹ
                                         td(style="font-size: 7pt; padding: 2px;" colspan="3")=upper.approach[10].slice(0, 6).join(', ')
-                            table.table.table-bordered
+                            table.table.table-bordered(style='margin-bottom: 0;')
                                 thead
                                     tr
-                                        th.text-center(style="font-size: 7pt" colspan="24") 특수점수
+                                        th.td-small.text-center(style="font-size: 7pt" colspan="24") 특수점수
                                             br
                                             | (Special Scores)
                                 tbody(style="font-size: 7pt")
@@ -470,7 +515,7 @@ html
                                         td.text-center(style="padding: 2px;" colspan="9")
                                 thead(style="font-size: 7pt")
                                     tr
-                                        th.text-center(style="padding: 2px;" colspan="24") Sum6 = #{upper.special_scores.Sum6} &nbsp;&nbsp; WSum6 = #{upper.special_scores.WSum6}
+                                        th.td-small.text-center(style="padding-top: 5px !important;" colspan="24") Sum6 = #{upper.special_scores.Sum6} &nbsp;&nbsp; WSum6 = #{upper.special_scores.WSum6}
                                 tbody(style="font-size: 7pt")
                                     tr
                                         td.text-center(style="padding: 2px;" colspan="4") AG
@@ -498,11 +543,11 @@ html
                                         td.text-center(style="padding: 2px;" colspan="12") 
                                             
                     .row
-                        .col-md-4(style="padding-right: 2px; padding-left: 2px;")
-                            table.table.table-bordered
+                        .col-md-5(style="padding-right: 0px; padding-left: 0px; margin-top: -148px; margin-left: 2px;")
+                            table.table.table-bordered(style='margin-bottom: 0;')
                                 thead
                                     tr
-                                        th.text-center(style="font-size: 7pt" colspan="4") 형태질
+                                        th.td-small.text-center(style="font-size: 7pt" colspan="4") 형태질
                                             br
                                             | (Form Quality)
                                 tbody(style="font-size: 7pt")
@@ -537,25 +582,20 @@ html
                                         td.text-center(style="padding: 2px;") #{upper.form_quality.MQuality['none']}
                                         td.text-center(style="padding: 2px;") #{upper.form_quality.WPlusD['none']}
                         
-                                        
 
-
-
-            .page
-                .subpage#page2
                     .row
                         .col-md-12(style="padding-right: 2px; padding-left: 2px;")
-                            table.table.table-bordered
+                            table.table.table-bordered(style='margin-bottom: 0;')
                                 thead
                                     tr
                                         th.text-center 비율(RAIOS), 백분율(PERCENTAGES), 산출한 점수(DERIVATIONS)
                     
                     .row.display-flex
-                        .col-md-4(style="padding-right: 2px; padding-left: 2px;")
+                        .col-md-5(style="padding-right: 2px; padding-left: 2px;")
                             table.table.table-bordered.h-100(style="font-size: 7pt; height: 100%;")
                                 thead
                                     tr
-                                        th.text-center(colspan="24") 핵심 영역
+                                        th.td-small.text-center(colspan="24") 핵심 영역
                                             br
                                             | (CORE)
                                 tbody
@@ -602,11 +642,11 @@ html
                                             br
                                             | Sum Y = #{lower.core.SumY}
                         
-                        .col-md-4(style="padding-right: 2px; padding-left: 2px;")
+                        .col-md-3(style="padding-right: 2px; padding-left: 2px;")
                             table.table.table-bordered.h-100(style="font-size: 7pt; height: 100%;")
                                 thead
                                     tr
-                                        th.text-center(colspan="24") 정서 영역
+                                        th.td-small.text-center(colspan="24") 정서 영역
                                             br
                                             | (AFFECT)
                                 tbody
@@ -642,7 +682,7 @@ html
                             table.table.table-bordered.h-100(style="font-size: 7pt; height: 100%;")
                                 thead
                                     tr
-                                        th.text-center(colspan="24") 대인 지각 영역
+                                        th.td-small.text-center(colspan="24") 대인 지각 영역
                                             br
                                             | (INTERPERSONAL PERCEPTION)
                                 tbody
@@ -682,10 +722,10 @@ html
                                             | #{lower.interpersonal.ISOIndex}
                     .row.display-flex
                         .col-md-3(style="padding-right: 2px; padding-left: 2px;")
-                            table.table.table-bordered(style="font-size: 7pt; height: 100%;")
+                            table.table.table-bordered(style="font-size: 7pt; height: 100%; margin-bottom: 0;")
                                 thead
                                     tr
-                                        th.text-center(colspan="24") 관념화 영역
+                                        th.td-small.text-center(colspan="24") 관념화 영역
                                             br
                                             | (IDEATION)
                                 tbody
@@ -730,7 +770,7 @@ html
                             table.table.table-bordered(style="font-size: 7pt; height: 100%;")
                                 thead
                                     tr
-                                        th.text-center(colspan="24") 인지적 중재 영역
+                                        th.td-small.text-center(colspan="24") 인지적 중재 영역
                                             br
                                             | (COGNITIVE MEDIATION)
                                 tbody
@@ -768,7 +808,7 @@ html
                             table.table.table-bordered(style="font-size: 7pt; height: 100%;")
                                 thead
                                     tr
-                                        th.text-center(colspan="24") 정보 처리 영역
+                                        th.td-small.text-center(colspan="24", style='padding-left: 0; padding-right: 0;') 정보 처리 영역
                                             br
                                             | (INFORMATION PROCESSING)
                                 tbody
@@ -787,13 +827,18 @@ html
                                             br
                                             | DQv
                                             
+                                        mixin parseSign(value)
+                                            if value > 0
+                                                | +
+                                            = value
+                                                
                                         td(colspan="12") #{lower.information_processing.Zf}
                                             br
                                             | #{lower.information_processing.W} : #{lower.information_processing.D} : #{lower.information_processing.Dd}
                                             br
                                             | #{lower.information_processing.W} : #{lower.information_processing.M}
                                             br
-                                            | #{lower.information_processing.Zd}
+                                            +parseSign(lower.information_processing.Zd)
                                             br
                                             | #{lower.information_processing.PSV}
                                             br
@@ -806,7 +851,7 @@ html
                             table.table.table-bordered(style="font-size: 7pt; height: 100%;")
                                 thead
                                     tr
-                                        th.text-center(colspan="24") 자기 지각 영역
+                                        th.td-small.text-center(colspan="24") 자기 지각 영역
                                             br
                                             | (SELF-PERCEPTION)
                                 tbody
@@ -886,9 +931,8 @@ html
                                             else
                                                 i.fa.fa-square-o(style="margin-right: 6px; font-size: 11pt;")
                                                 | OBS = NO
-                                        
 
-                                            
+
             .page
                 .subpage#page3
                     .row
@@ -896,8 +940,8 @@ html
                             h3 특수지표 (Constellation Worksheet)
 
                     .row
-                        .col-md-6(style="padding-right: 2px; padding-left: 2px;height: 380px;")
-                            table.table.table-bordered(style="font-size: 7pt;height: 360px;")
+                        .col-md-6(style="padding-right: 2px; padding-left: 2px;height: 360px;")
+                            table.table.table-bordered(style="font-size: 7pt; margin-bottom: 0; height: 100%;")
                                 thead
                                     tr
                                         th.text-center S-Constellation (Suicide Potential) : 만 14세 이상만 적용
@@ -984,8 +1028,8 @@ html
                                                     i.fa.fa-square-o
                                                 | &nbsp;R < 17
 
-                        .col-md-6(style="padding-right: 2px; padding-left: 2px;height: 380px;")
-                            table.table.table-bordered(style="font-size: 7pt;height: 360px;")
+                        .col-md-6(style="padding-right: 2px; padding-left: 2px;height: 360px;")
+                            table.table.table-bordered(style="font-size: 7pt; margin-bottom: 0; height: 100%;")
                                 thead
                                     tr
                                         th.text-center PTI (Perceptual Thinking Index)
@@ -1032,8 +1076,8 @@ html
 
                     
                     .row
-                        .col-md-6(style="padding-right: 2px; padding-left: 2px;height: 300px;")
-                            table.table.table-bordered(style="font-size: 7pt;height: 280px;")
+                        .col-md-6(style="padding-right: 2px; padding-left: 2px;height: 250px;")
+                            table.table.table-bordered(style="font-size: 7pt;height: 100%; margin-bottom: 0;")
                                 thead
                                     tr
                                         th.text-center DEPI (Depression Index)
@@ -1089,8 +1133,8 @@ html
                                                     i.fa.fa-square-o
                                                 | &nbsp;(COP < 2) or (Isolation Index > 0.24)
 
-                        .col-md-6(style="padding-right: 2px; padding-left: 2px;height: 300px;")
-                            table.table.table-bordered(style="font-size: 7pt;height: 280px;")
+                        .col-md-6(style="padding-right: 2px; padding-left: 2px;height: 250px;")
+                            table.table.table-bordered(style="font-size: 7pt;height: 100%; margin-bottom: 0;")
                                 thead
                                     tr
                                         th.text-center CDI (Coping Deficit Index)
@@ -1137,9 +1181,9 @@ html
                                                 br
                                                 br
                                                 br
-                    .row.display-flex
-                        .col-md-6(style="padding-right: 2px; padding-left: 2px;")
-                            table.table.table-bordered(style="font-size: 7pt; height: 90%;")
+                    .row
+                        .col-md-6(style="padding-right: 2px; padding-left: 2px; height: 320px;")
+                            table.table.table-bordered(style="font-size: 7pt; height: 100%; margin-bottom: 0;")
                                 thead
                                     tr
                                         th.text-center HVI (Hypervigilance Index)
@@ -1200,12 +1244,9 @@ html
                                                 else
                                                     i.fa.fa-square-o
                                                 | &nbsp;(8) Cg > 3
-                                            br
-                                            br
-                                            br
                                             
-                        .col-md-6(style="padding-right: 2px; padding-left: 2px;")
-                            table.table.table-bordered(style="font-size: 7pt; height: 90%;")
+                        .col-md-6(style="padding-right: 2px; padding-left: 2px; height: 320px;")
+                            table.table.table-bordered(style="font-size: 7pt; height: 100%; margin-bottom: 0;")
                                 thead
                                     tr
                                         th.text-center OBS (Obsessive Style Index)
@@ -1274,7 +1315,10 @@ html
                                                 else
                                                     i.fa.fa-square-o
                                                 | &nbsp;(FQx+ > 3) and (X+% > 0.89)
-            
+
+
+
+        
             .page
                 .subpage
                     .row

@@ -22,6 +22,13 @@ html
             table#card-table.table-bordered tr td.cell-selected {
                 border: 3px solid green !important;
             }
+            .determinant,
+            .react-btn,
+            .score-btn {
+                width: 100%;
+                white-space: normal;
+                word-wrap: break-word;
+            }
     body.gray-bg
         .container-fluid.animated.fadeInDown.m-t-lg
             .row
@@ -44,17 +51,17 @@ html
                         table#card-table.table.table-sm.table-striped.table-bordered
                             thead
                                 tr
-                                    th.text-center.col-xs-1(scope="col") 카드
-                                    th.text-center.col-xs-1(scope="col") 번호
-                                    th.text-center.col-xs-1(scope="col") 위치
-                                    th.text-center.col-xs-1(scope="col") DQ
-                                    th.text-center(scope="col") 결정인
-                                    th.text-center.col-xs-1(scope="col") FQ
-                                    th.text-center.col-xs-1(scope="col") (2)
-                                    th.text-center(scope="col") 내용
-                                    th.text-center.col-xs-1(scope="col") P
-                                    th.text-center.col-xs-1(scope="col") Z
-                                    th.text-center(scope="col") 특수점수
+                                    th.text-center.col-xs-1(scope="col", style='width: 5%;min-width: 80px;') 카드
+                                    th.text-center.col-xs-1(scope="col", style='width: 3%;min-width: 60px;') 번호
+                                    th.text-center.col-xs-1(scope="col", style='width: 5%;min-width: 80px;') 위치
+                                    th.text-center.col-xs-1(scope="col", style='width: 5%;min-width: 80px;') DQ
+                                    th.text-center(scope="col", style='width: 10%;min-width: 180px;') 결정인
+                                    th.text-center.col-xs-1(scope="col", style='width: 5%;min-width: 80px;') FQ
+                                    th.text-center.col-xs-1(scope="col", style='width: 5%;min-width: 80px;') (2)
+                                    th.text-center(scope="col", style='width: 10%; min-width: 180px;') 내용
+                                    th.text-center.col-xs-1(scope="col", style='width: 5%;min-width: 80px;') P
+                                    th.text-center.col-xs-1(scope="col", style='width: 5%;min-width: 80px;') Z
+                                    th.text-center(scope="col", style='width: 10%; min-width: 180px;') 특수점수
                             tbody#score-table
                                 mixin card-tr(display, index)
                                     tr(data-index=index, style=(display == 'hidden' ? 'display: none' : ''))
@@ -804,14 +811,14 @@ html
                     return det[key].first && key != '(2)';
                 }).map(function(key) {
                     return det[key].value;
-                }).join('.');
+                }).join('. ');
                 var selected = Object.keys(det).filter(function(key) {
                     return !det[key].first && key != '(2)';
                 }).map(function(key) {
                     return det[key].value;
-                }).join('.');
+                }).join('. ');
 
-                var merged = [first, selected].filter(function(str) { return str; }).join('.');
+                var merged = [first, selected].filter(function(str) { return str; }).join('. ');
                 $('#selectedDet').html(merged); 
                 parse2(det, index);       
                 parseDetButton(merged, index);
@@ -826,14 +833,14 @@ html
                     return score[key].first;
                 }).map(function(key) {
                     return score[key].value;
-                }).join(',');
+                }).join(', ');
                 var selected = Object.keys(score).filter(function(key) {
                     return !score[key].first;
                 }).map(function(key) {
                     return score[key].value;
-                }).join(',');
+                }).join(', ');
 
-                var merged = [first, selected].filter(function(str) { return str; }).join(',');
+                var merged = [first, selected].filter(function(str) { return str; }).join(', ');
                 $('#selectedScore').html(merged); 
                 parseScoreButton(merged, index);
 
@@ -848,14 +855,14 @@ html
                     return react[key].first && key != 'P';
                 }).map(function(key) {
                     return react[key].value;
-                }).join(',');
+                }).join(', ');
                 var selected = Object.keys(react).filter(function(key) {
                     return !react[key].first && key != 'P';
                 }).map(function(key) {
                     return react[key].value;
-                }).join(',');
+                }).join(', ');
 
-                var merged = [first, selected].filter(function(str) { return str; }).join(',');
+                var merged = [first, selected].filter(function(str) { return str; }).join(', ');
                 $('#selectedReact').html(merged);
                 parseP(react, index);
                 parseReactButton(merged, index);

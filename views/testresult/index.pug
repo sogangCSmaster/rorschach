@@ -153,13 +153,13 @@ html
                                                     = index + 1
                                             td= score.loc
                                             td= score.dq
-                                            td!= score.det
+                                            td.text-justify!= score.det
                                             td= score.fq
                                             td= score.select2
-                                            td= score.react
+                                            td.text-justify= score.react
                                             td= score.p
                                             td= score.z
-                                            td= score.score
+                                            td.text-justify= score.score
             if scores[25].card
                 .page
                     .subpage#page0
@@ -226,7 +226,7 @@ html
 
             .page
                 .subpage#page1: div(style='margin-top: -10mm;')
-                    //-.row
+                    .row
                         .col-md-12.text-center
                             h3 Rorschach Test Structural Summary
                     //-.container-fluid
@@ -595,7 +595,7 @@ html
                             table.table.table-bordered.h-100(style="font-size: 7pt; height: 100%;")
                                 thead
                                     tr
-                                        th.text-center(colspan="24") 핵심 영역
+                                        th.td-small.text-center(colspan="24") 핵심 영역
                                             br
                                             | (CORE)
                                 tbody
@@ -646,7 +646,7 @@ html
                             table.table.table-bordered.h-100(style="font-size: 7pt; height: 100%;")
                                 thead
                                     tr
-                                        th.text-center(colspan="24") 정서 영역
+                                        th.td-small.text-center(colspan="24") 정서 영역
                                             br
                                             | (AFFECT)
                                 tbody
@@ -682,7 +682,7 @@ html
                             table.table.table-bordered.h-100(style="font-size: 7pt; height: 100%;")
                                 thead
                                     tr
-                                        th.text-center(colspan="24") 대인 지각 영역
+                                        th.td-small.text-center(colspan="24") 대인 지각 영역
                                             br
                                             | (INTERPERSONAL PERCEPTION)
                                 tbody
@@ -725,7 +725,7 @@ html
                             table.table.table-bordered(style="font-size: 7pt; height: 100%; margin-bottom: 0;")
                                 thead
                                     tr
-                                        th.text-center(colspan="24") 관념화 영역
+                                        th.td-small.text-center(colspan="24") 관념화 영역
                                             br
                                             | (IDEATION)
                                 tbody
@@ -770,7 +770,7 @@ html
                             table.table.table-bordered(style="font-size: 7pt; height: 100%;")
                                 thead
                                     tr
-                                        th.text-center(colspan="24") 인지적 중재 영역
+                                        th.td-small.text-center(colspan="24") 인지적 중재 영역
                                             br
                                             | (COGNITIVE MEDIATION)
                                 tbody
@@ -808,7 +808,7 @@ html
                             table.table.table-bordered(style="font-size: 7pt; height: 100%;")
                                 thead
                                     tr
-                                        th.text-center(colspan="24") 정보 처리 영역
+                                        th.td-small.text-center(colspan="24", style='padding-left: 0; padding-right: 0;') 정보 처리 영역
                                             br
                                             | (INFORMATION PROCESSING)
                                 tbody
@@ -851,7 +851,7 @@ html
                             table.table.table-bordered(style="font-size: 7pt; height: 100%;")
                                 thead
                                     tr
-                                        th.text-center(colspan="24") 자기 지각 영역
+                                        th.td-small.text-center(colspan="24") 자기 지각 영역
                                             br
                                             | (SELF-PERCEPTION)
                                 tbody
