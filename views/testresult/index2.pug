@@ -42,6 +42,22 @@ html
                 background: white;
                 box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
             }
+            .wide-page {
+                width: 210mm;
+                min-height: 297mm;
+                padding: 10mm;
+                margin: 10mm auto;
+                border: 1px #D3D3D3 solid;
+                border-radius: 5px;
+                background: white;
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            }
+            .wide-subpage {
+                padding: 0.2cm;
+                border: 1px #FFFFFF solid;
+                height: 257mm;
+                outline: 1cm #FFFFFF solid;
+            }
             .subpage {
                 padding: 0.2cm;
                 border: 1px #FFFFFF solid;
@@ -1319,8 +1335,8 @@ html
 
 
         
-            .page
-                .subpage
+            .wide-page(style='margin-top: 0;')
+                .wide-subpage
                     .row
                         .col-md-12.text-center
                             h3(style="font-size: 16pt;") 로르샤하 검사 해석 보고서
@@ -1337,64 +1353,31 @@ html
                                         td.text-center #{testconfig.name}
                                         td.text-center 성 별
                                         td.text-center #{testconfig.sex}
-                                        td.text-center 검사일자
-                                        td.text-center #{moment(testconfig.testdate).format('YYYY년 MM월 DD일')}
+                                        td.text-center 채점 번호
+                                        td.text-center 
                                     tr
                                         td.text-center 생년월일
                                         td.text-center #{moment(testconfig.birthday).format('YYYY년 MM월 DD일')}
                                         td.text-center 나 이
                                         td.text-center 만 #{age}세
-                                        td.text-center 진 단
-                                        td.text-center #{testconfig.diagnosis}
-                                    tr
                                         td.text-center 직 업
                                         td.text-center #{testconfig.job}
+                                    tr
+                                        td.text-center 검사일자
+                                        td.text-center #{moment(testconfig.testdate).format('YYYY년 MM월 DD일')}
                                         td.text-center 학 력
                                         td.text-center #{testconfig.graduate}
+                                        td.text-center 진 단
+                                        td.text-center #{testconfig.diagnosis}
+                                    //- 
                                         td.text-center 검사기관
                                         td.text-center #{testconfig.comName_input}
-
-
-                    .row
-                        .col-md-12(style="font-size: 10pt;")
-                            p.a The Rorschach Interpretation Assistance System version 1 (RIAS™)은 ‘The Rorschach Test: A Comprehensive System Volume 1: Basic Foundations and Principes of Interpretation 4th edition (Exner, 2003)과 A Rorschach Workbook for the Comprehensive System, 5th edition (Exner, 2001)’의 채점기준(scoring guidelines)과 해석전략(interpretive strategies)을 참고하여 개발되었습니다. 이 프로그램에서는 Beck (1937), Hertz (1942), Klopfer (1942), Piotrowski (1957), Rapaport, Gill, Schafer (1946) 등에 의해 성립된 접근 방식(실시, 기호화, 채점, 지표, 해석)은 제공하지 않습니다.
-                            br
-                            p.a ‘로르샤하 종합체계 1권 4판과 로르샤하 종합체계 워크북 5판’은 만 5세에서 만 70세까지의 연령집단을 대상으로 기술 통계 자료를 수집하였으며, 규준 집단(n=600)의 인종 구성은 백인(82%), 흑인(10%), 라틴아메리카인(6%), 아시아인(2%)순으로 구성되어 있습니다.
-                            br
-                            p.a 한국인을 대상으로 한 표준화 연구가 부족하기 때문에 수검자의 반응을 기호화하고 산출된 지표를 해석하는 과정에서 문화적 차이가 나타나므로 이 프로그램에서 제공하는 구조적 요약의 지표와 자동해석을 사용할 때는 이러한 점을 고려해야 합니다. 이 프로그램에서 제공하는 정보에 대한 의문이 있을 경우 한국인 수검자를 대상으로 한 The Rorschach Test의 연구 결과를 참고하시기 바랍니다.
-                            br
-                            p.a The Rorschach Interpretation Assistance System version 1 (RIAS™)에서는 점수계열(Sequence of Scores), 구조요약(Structural Summary), 특수지표(Constellations Table)를 제공하며 이를 바탕으로 요약된 자동 해석을 제공합니다. 자동 해석에서 제공하는 정보는 일반적인 경향성을 반영하므로 수검자 개인의 특성이 여실히 드러나지 않을 수 있습니다. 그러므로 수검자 개인에 초점을 맞춘 종합적인 평가를 위해서는 다른 출처의 정보를 통한 추가적인 분석이 필요합니다.
-                            br
-                            p.a The Rorschach Interpretation Assistance System version 1 (RIAS™)은 심리평가(Psychological Assessment)와 로르샤하 검사(The Rorschach Test)에 대한 충분하고 적절한 훈련을 받은 전문가가 사용하도록 개발되었습니다. 그러므로 이 프로그램을 사용하기 전에 충분한 교육과 훈련을 받을 것을 권장합니다.
-
                     .row
                         .col-md-12
-                            br
-                            br
-                            h3 로르샤하 검사의 실시와 해석에 활용할 수 있는 참고 문헌
-                            p(style="font-size: 7pt;") ① The Rorschach: A Comprehensive System, Volume 1: Basic Foundations and Principes of Interpretation, 4th edition(Exner, 2003)
-                                br
-                                | ② A Rorschach Workbook for the Comprehensive System, 5th edition(Exner, 2001)
-                                br
-                                | ③ The Rorschach: A Comprehensive System, Volume 3: Assessment of Children and Adolescents, Second edition(Exner & Weiner, 1995)
-                                br
-                                | ④ A Primer for Rorschach Interpretation(Exner, 2000)
-                                br
-                                | ⑤ Principles of Rorschach Interpretation Second edition(Weiner, 2003)
-                                br
-                                | ⑥ Psychoanalytic Perspectives on the Rorschach(Lerner,1998), approach of Rapaport(1946)
-                    
-            .page
-                .subpage
-                    .row
-                        .col-md-12.text-center
-                            h3(style="font-size: 16pt;") 로르샤하 보고서
-                            h3 해석의 가설(Interpretive Hypotheses)
-
-                    .row
-                        .col-md-12
-                            h4.text-danger 타당도 확인 단계
+                            h4.text-danger 1. 로르샤하 검사의 타당성 검증
+                        //-
                             p.a(style="font-size: 9pt;") 수검태도에서 각 카드에 대해 ‘아무것도 전혀 볼 수 없다(반응거부)’고 호소하지 않고 각 카드에서 1개 이상의 반응을 모두 보였다면 아래 조건에 따라 타당한 것으로 볼 수 있습니다. 전체 반응수(R)에서 볼 때 <span style="color: #007bff; font-weight: bold;">(#{step0.R.validate})</span>에 해당하고 있으며, 형태질에서 순수형태의 반응비율(Lambda(L))에서 볼 때 <span style="color: #007bff; font-weight: bold;">(#{step0.L.validate})</span>에 해당하는 수준의 수행을 보이고 있다. 타당하지 않는 것으로 나타날 경우에는 극단 값에 해당하는 지표를 기준으로 해석해야 하고 타당하지 않은 이유에 대해 질적 분석을 해야 하며 해석의 타당성은 제한적입니다.
+
                     .row
                         .col-md-12
                             table.table.table-bordered(style="font-size: 8pt;")
@@ -1416,13 +1399,13 @@ html
                                                     i.fa.fa-check-square-o
                                                 else
                                                     i.fa.fa-square-o
-                                                | &nbsp;타당함 낮음: 조건 (3)에 해당할 경우
+                                                | &nbsp;타당성 낮음: 조건 (3)에 해당할 경우
                                             p(style="font-weight: bold;")
                                                 if step0.R.validate=='타당도 없음'
                                                     i.fa.fa-check-square-o
                                                 else
                                                     i.fa.fa-square-o
-                                                | &nbsp;타당함 없음: 조건 (4)에 해당할 경우
+                                                | &nbsp;타당성 없음: 조건 (4)에 해당할 경우
                                             p
                                                 if step0.R.check1
                                                     i.fa.fa-check-square-o
@@ -1446,7 +1429,7 @@ html
                                                     i.fa.fa-check-square-o
                                                 else
                                                     i.fa.fa-square-o
-                                                | &nbsp; (4) Brief R : 14 > R
+                                                | &nbsp; (4) Brief R : R < 14
                                         td(colspan="1")
                                             p(style="font-weight: bold;")
                                                 if step0.L.validate=='타당함'
@@ -1459,7 +1442,7 @@ html
                                                     i.fa.fa-check-square-o
                                                 else
                                                     i.fa.fa-square-o
-                                                | &nbsp;타당하지 않음: 조건 (2)또는 (3)에 해당할 경우
+                                                | &nbsp;타당성 낮음: 조건 (2)또는 (3)에 해당할 경우
                                             p
                                                 if step0.L.check1
                                                     i.fa.fa-check-square-o
@@ -1485,6 +1468,8 @@ html
                                 tbody
                                     tr
                                         td
+                                            h5 &#x27B2; 수검자가 방어적이거나, 경험유형(EB style)이 회피 유형이거나, 반응을 왜곡하려고 시도했거나, 신경학적 기능 이상이 있는 것으로 의심된다면 다른 정보를 통해 검사 결과의 타당성을 확인하세요.
+                                        //-
                                             h5 아래 조건에 해당하는 것으로 의심될 경우 다른 정보를 통해 타당성을 다시 평가하시기 바랍니다.
                                             p 1. 방어적인 수검자
                                                 br
@@ -1493,12 +1478,9 @@ html
                                                 | 3. 반응을 왜곡하려는 수검자
                                                 br
                                                 | 4. 신경학적 기능 이상이 있는 수검자
-
-
                     .row
                         .col-md-12
-                            h4.text-danger 로르샤하 검사 결과의 군집별 해석 전략의 선택
-                            p(style="font-size: 9pt;") 1) 대처 방식에 따른 경험 유형 분류 (문제해결 또는 의사결정)
+                            h4.text-danger 2. 로르샤하 검사 결과의 군집별 해석 전략의 선택
 
                     .row
                         .col-md-12
@@ -1537,11 +1519,11 @@ html
                                         if experienceClassification.copyingStyle=="Extratensive" && experienceClassification.dominantStyle=="Flexible"
                                             td.text-center.bg-warning(colspan="3") Flexible Extratensive
                                         else
-                                            td.text-center(colspan="3") Flexible Introversive
+                                            td.text-center(colspan="3") Flexible Extratensive
                                         if experienceClassification.copyingStyle=="Extratensive" && experienceClassification.dominantStyle=="Pervasive"
                                             td.text-center.bg-warning(colspan="3") Pervasive Extratensive
                                         else
-                                            td.text-center(colspan="3") Pervasive Introversive
+                                            td.text-center(colspan="3") Pervasive Extratensive
                                         td.text-center(colspan="6")
                                     tr
                                         td.text-center(colspan="6") High Lambda(L)
@@ -1557,6 +1539,39 @@ html
                                             td.text-center.bg-warning(colspan="6") Avoidant Ambitent
                                         else
                                             td.text-center(colspan="6") Avoidant Ambitent
+                                    tr
+                                        td.text-center(colspan='6') 경 험 유 형
+                                        td.text-center(colspan='18')
+                                            if experienceClassification.approachStyle == 'True'
+                                                | 진성&nbsp;
+                                                if experienceClassification.copyingStyle == 'Introversive'
+                                                    | 내향형
+                                                else if experienceClassification.copyingStyle == 'Extratensive'
+                                                    | 외향형
+                                                else if experienceClassification.copyingStyle == 'Ambitent'
+                                                    | 양향형
+                                                if experienceClassification.copyingStyle != 'Ambitent'
+                                                    | &nbsp;&&nbsp;
+                                                    if experienceClassification.dominantStyle == 'Flexible'
+                                                        | 유연한
+                                                    else
+                                                        | 지배적
+                                                    | &nbsp;
+                                                    if experienceClassification.copyingStyle =='Introversive'
+                                                        | 내향형
+                                                    else if experienceClassification.copyingStyle == 'Extratensive'
+                                                        | 외향형
+                                                    else if experienceClassification.copyingStyle == 'Ambitent'
+                                                        | 양향형
+                                            else
+                                                | 회피&nbsp;
+                                                if experienceClassification.copyingStyle =='Introversive'
+                                                    | 내향형
+                                                else if experienceClassification.copyingStyle == 'Extratensive'
+                                                    | 외향형
+                                                else if experienceClassification.copyingStyle == 'Ambitent'
+                                                    | 양향형
+
 
                     if experienceClassification.approachStyle == "" && experienceClassification.copyingStyle == "" && experienceClassification.dominantStyle == ""
                         .row
@@ -1564,12 +1579,6 @@ html
                                 h5.text-warning 이 수검자는 대처 방식 유형(EB Style)을 계산할 수 없습니다.
                     .row
                         .col-md-12
-                            p(style="font-size: 9pt;") 2) 임상 증후군을 반영하는 특수지표
-                                                
-                    
-                    
-                    .row
-                        .col-md-12(style="padding-right: 2px; padding-left: 2px;")
                             table.table.table-bordered(style="font-size: 7pt;")
                                 thead
                                     tr
@@ -1616,31 +1625,41 @@ html
                                                 i.fa.fa-square-o(style="margin-right: 6px; font-size: 11pt;")
                                                 | OBS = NO
             
-            
-            .page
-                .subpage
-                    .row
-                        .col-md-12
-                            p(style="font-size: 9pt;") 3) 군집별 해석 순서의 선택 방법
                     .row
                         .col-md-12
                             table.table.table-bordered.table-striped(style="font-size: 8pt;")
                                 tbody
                                     tr
-                                        td 핵심변인 : #{Order.main.join(', ')}
+                                        td(colspan='2')
+                                            | 핵심변인 : 
+                                            if Order.main.length == 0
+                                                | 해당 사항 없음
+                                            else
+                                                | #{Order.main.join(', ')}
                                     tr
-                                        td 제 3변인 : #{Order.thirdParty.join(', ')}
+                                        td
+                                            | 제 3변인 : 
+                                            if Order.thirdParty.length == 0
+                                                | 해당 사항 없음
+                                            else
+                                                | #{Order.thirdParty.join(', ')}
+                                        td(width='15%') 
+                                            if Order.main.length == 0 && Order.thirdParty.length == 0
+                                                i.fa.fa-check-square-o(style="margin-right: 6px; font-size: 11pt;")
+                                            else
+                                                i.fa.fa-square-o(style="margin-right: 6px; font-size: 11pt;")
+                                            | 임의 순서
                                     tr
-                                        td(style="font-weight: bold;") 군집별 해석 순서 : #{Order.order.join(' > ')}
+                                        td(colspan='2', style="font-weight: bold;") 군집별 해석 순서 : #{Order.order.join(' > ')}
 
 
             each T in TESTRESULT
                 if T.resultName == "Interpersonal Perception and Behavior 대인지각과 대인행동 평가"
-                    .page
-                        .subpage
+                    .wide-page
+                        .wide-subpage
                             .row
-                                .col-md-12.text-center
-                                    img(src='/img/interpersonal_perception.jpg', style='max-width: 100%;')
+                                .col-md-12
+                                    img(src='/img/interpersonal_perception.jpg', style='max-width: 100%; height: 60px;')
                                     //-h3 대인 지각 영역 (Interpersonal Perception)
                             .row
                                 .col-md-12
@@ -1693,8 +1712,12 @@ html
                                                     p ❊ 대인지각 관련개념: 대인관계(Interpersonal Relationships: Social Cognition, Social Skill), 자기중심성(Self-Centeredness), 관계적 자기(Relational Self), 의심과 방어(Suspiciousness & Defensiveness)
                             .row
                                 .col-md-12
+                                    - var flag = true;
                                     each step in T.steps
                                         if step.textData.length != 0 && !JSON.stringify(step.textData).includes('질적')
+                                            if flag
+                                                | &#x27B2;
+                                                - flag = false
                                             span(style="color: blue; font-size: 8pt;") [Step #{step.curStep}]
                                         p(style="font-size: 8pt;")
                                             if step.textData.length == 0
@@ -1704,11 +1727,12 @@ html
                                                         !=text
                             .row
                                 .col-md-12(style="font-size: 9pt;")
-                                    p ❊ 질적 분석할 단계(실시와 해석에 활용할 수 있는 참고 문헌 목록에 제시된 해석 분석과정을 참고하세요.)
+                                    p ❊ 질적 분석할 단계
                                         br
                                         | Step 8: COP frequencies = [ #{upper.special_scores.COP} ] & AG frequencies = [ #{upper.special_scores.AG} ] & coding
                                         br
                                         | Step 11: Contents of M responses with pairs(2) = [ #{lower.information_processing.M} ] & Contents of FM responses with pairs(2) = [ #{upper.determinants.FM} ]
+                                //-
                                     table.table.table-bordered(style='font-size: 9pt;')
                                         thead
                                             tr
@@ -1726,18 +1750,18 @@ html
                 if T.resultName == "Affect 정서 자원이 사용되는 방식, 정서 상태, 정서의 역기능 평가"
                     - var steps = T.steps;
                     - var stepLeft = steps.splice(0, 5);
-                    .page
-                        .subpage
+                    .wide-page
+                        .wide-subpage
                             .row
-                                .col-md-12.text-center
+                                .col-md-12
                                     //-h3 정서 영역 (Affect)
-                                    img(src='/img/affect.jpg', style='max-width: 100%;')
+                                    img(src='/img/affect.jpg', style='max-width: 100%;height: 60px;')
                             .row
                                 .col-md-12
                                     table.table.table-striped.table-bordered(style='font-size: 9pt;')
                                         thead
                                             tr
-                                                th.text-center 정서영역(Affect) 분석 단계
+                                                th.text-center 정서 영역(Affect) 분석 단계
                                         tbody
                                             tr
                                                 td
@@ -1759,7 +1783,7 @@ html
                                                                         i.fa.fa-square-o
                                                                         |  CDI = [ #{lower.special_indices.CDI} ]
                                                                 br
-                                                                span Step 2: EB = [ #{(lower.core.EBLeft).toFixed(1)} : #{(lower.core.EBRight).toFixed(1)} ] & Lambda(L) = [ #{lower.core.Lambda} ]
+                                                                span Step 2: EB = [ #{(lower.core.EBLeft).toFixed(0)} : #{(lower.core.EBRight).toFixed(1)} ] & Lambda(L) = [ #{lower.core.Lambda} ]
                                                                     br
                                                                     | ( 
                                                                     if lower.core.Lambda > 0.99
@@ -1778,7 +1802,7 @@ html
                                                                 br
                                                                 span Step 3: EBPer = [ #{parseFloat(lower.core.EBPer).toFixed(1)} ]
                                                                 br
-                                                                span Step 4: Right Side eb = [ #{lower.core.EBRight} ] & variables related to it
+                                                                span Step 4: Right Side eb = [ #{lower.core.ebRight} ] & variables related to it
                                                                 br
                                                                 span Step 5: SumC' : WSumC = [ #{lower.core.SumCprime} : #{lower.affection.WSumC.toFixed(1)} ]
                                                                 br
@@ -1832,8 +1856,12 @@ html
                                                                     
                             .row
                                 .col-md-12
+                                    - var flag = true;
                                     each step in stepLeft
                                         if step.textData.length != 0 && !JSON.stringify(step.textData).includes('질적')
+                                            if flag
+                                                | &#x27B2;
+                                                - flag = false
                                             span(style="color: blue; font-size: 8pt;") [Step #{step.curStep}]
                                         p(style="font-size: 8pt;")
                                             if step.textData.length == 0
@@ -1841,12 +1869,16 @@ html
                                                 each text in step.textData
                                                     if !text.includes('질적')
                                                         !=text
-                    .page
-                        .subpage
+                    .wide-page
+                        .wide-subpage
                             .row
                                 .col-md-12
+                                    - var flag = true;
                                     each step in steps
                                         if step.textData.length != 0 && !JSON.stringify(step.textData).includes('질적')
+                                            if flag
+                                                | &#x27B2;
+                                                - flag = false
                                             span(style="color: blue; font-size: 8pt;") [Step #{step.curStep}]
                                         p(style="font-size: 8pt;")
                                             if step.textData.length == 0
@@ -1856,9 +1888,10 @@ html
                                                         !=text
                             .row
                                 .col-md-12(style='font-size: 9pt;')
-                                    p ❊ 질적 분석할 단계(실시와 해석에 활용할 수 있는 참고 문헌 목록에 제시된 해석 분석과정을 참고하세요.) 
+                                    p ❊ 질적 분석할 단계
                                         br
                                         | Step 10: Pure C = [ #{lower.affection.PureC} ]
+                                //-
                                     table.table.table-bordered(style='font-size: 9pt;')
                                         thead
                                             tr
@@ -1874,18 +1907,18 @@ html
                                                         br
                                                         br
                 if T.resultName == 'Ideation 관념화'
-                    .page
-                        .subpage
+                    .wide-page
+                        .wide-subpage
                             .row
-                                .col-md-12.text-center
-                                    img(src='/img/ideation.jpg', style='max-width: 100%;')
+                                .col-md-12
+                                    img(src='/img/ideation.jpg', style='max-width: 100%;height: 60px')
                                     //-h3 관념화 영역 (Ideation)
                             .row
                                 .col-md-12
                                     table.table.table-striped.table-bordered(style='font-size: 9pt;')
                                         thead
                                             tr
-                                                th.text-center 관념화(Ideation) 분석 단계 
+                                                th.text-center 관념화 영역(Ideation) 분석 단계 
                                         tbody
                                             tr
                                                 td
@@ -1961,8 +1994,12 @@ html
                                                         | ❊ 관념화 관련개념: 사고기능(Ideational Functioning), 사고 문제(Thinking Problems), 의사결정(Decision-Making) 문제해결과 대처전략(Coping Strategy with Problem Solving), 자아 손상(Ego Impairment)
                             .row
                                 .col-md-12
+                                    - var flag = true;
                                     each step in T.steps
                                         if step.textData.length != 0 && !JSON.stringify(step.textData).includes('질적')
+                                            if flag
+                                                | &#x27B2;
+                                                - flag = false
                                             span(style="color: blue; font-size: 8pt;") [Step #{step.curStep}]
                                         p(style="font-size: 8pt;")
                                             if step.textData.length == 0
@@ -1972,11 +2009,12 @@ html
                                                         !=text
                             .row
                                 .col-md-12(style="font-size: 9pt;")
-                                    p ❊ 질적 분석할 단계(실시와 해석에 활용할 수 있는 참고 문헌 목록에 제시된 해석 분석과정을 참고하세요.) 
+                                    p ❊ 질적 분석할 단계
                                         br
                                         | Step 9: Quality 6 Special Scores (연령과 지적기능 고려)
                                         br
                                         | Step 11: Quality of M responses (연령 고려)
+                                //-
                                     table.table.table-bordered(style='font-size: 9pt;')
                                         thead
                                             tr
@@ -1992,18 +2030,18 @@ html
                                                         br
                                                         br
                 if T.resultName == 'Cognitive Mediation / Cognitive triad 인지적 중재'
-                    .page
-                        .subpage
+                    .wide-page
+                        .wide-subpage
                             .row
-                                .col-md-12.text-center
-                                    img(src='/img/cognitive_mediation.jpg', style='max-width: 100%;')
+                                .col-md-12
+                                    img(src='/img/cognitive_mediation.jpg', style='max-width: 100%;height: 60px;')
                                     //-h3 인지적 중재 (Cognitive Mediation)
                             .row
                                 .col-md-12
                                     table.table.table-striped.table-bordered(style='font-size: 9pt;')
                                         thead
                                             tr
-                                                th.text-center 인지적 중재 (Cognitive Mediation) 분석 단계
+                                                th.text-center 인지적 중재 영역(Cognitive Mediation) 분석 단계
                                         tbody
                                             tr
                                                 td
@@ -2056,8 +2094,12 @@ html
                                                         | ❊ 인지적 중재 관련개념: 사고기능(Ideational Functioning), 현실 검증 능력(Reality Testing), 판단력(Judgment), 관습적 행동(Conventional Behavior)
                             .row
                                 .col-md-12
+                                    - var flag = true;
                                     each step in T.steps
                                         if step.textData.length != 0 && !JSON.stringify(step.textData).includes('질적')
+                                            if flag
+                                                | &#x27B2;
+                                                - flag = false
                                             span(style="color: blue; font-size: 8pt;") [Step #{step.curStep}]
                                         p(style="font-size: 8pt;")
                                             if step.textData.length == 0
@@ -2067,9 +2109,10 @@ html
                                                         !=text
                             .row
                                 .col-md-12(style="font-size: 9pt;")
-                                    p ❊ 질적 분석할 단계(실시와 해석에 활용할 수 있는 참고 문헌 목록에 제시된 해석 분석과정을 참고하세요.)
+                                    p ❊ 질적 분석할 단계
                                         br
                                         | Step 3b: Minus distortion levels (형태 왜곡 수준 분석)
+                                //-
                                     table.table.table-bordered(style='font-size: 9pt;')
                                         thead
                                             tr
@@ -2085,18 +2128,18 @@ html
                                                         br
                                                         br
                 if T.resultName == 'Information Processing / Cognitive triad 정보처리'
-                    .page
-                        .subpage
+                    .wide-page
+                        .wide-subpage
                             .row
-                                .col-md-12.text-center
-                                    img(src='/img/information_processing.jpg', style='max-width: 100%;')
+                                .col-md-12
+                                    img(src='/img/information_processing.jpg', style='max-width: 100%;height: 60px;')
                                     //-h3 정보 처리 영역 (Information Processing)
                             .row
                                 .col-md-12
                                     table.table.table-striped.table-bordered(style='font-size: 9pt;')
                                         thead
                                             tr
-                                                th.text-center 정보 처리 (Information Processing) 분석 단계
+                                                th.text-center 정보 처리 영역(Information Processing) 분석 단계
                                         tbody
                                             tr
                                                 td
@@ -2142,7 +2185,10 @@ html
                                                                 span Step 4: W : M [ #{lower.information_processing.W} : #{lower.information_processing.M} ]
                                                         .col-md-6
                                                             p
-                                                                span Step 5: Zd = [ #{lower.information_processing.Zd} ]
+                                                                span 
+                                                                    | Step 5: Zd = [ 
+                                                                    +parseSign(lower.information_processing.Zd)
+                                                                    | &nbsp;]
                                                                 br
                                                                 span Step 6: PSV = [ #{lower.information_processing.PSV} ]
                                                                 br
@@ -2157,8 +2203,12 @@ html
 
                             .row
                                 .col-md-12
+                                    - var flag = true;
                                     each step in T.steps
                                         if step.textData.length != 0 && !JSON.stringify(step.textData).includes('질적')
+                                            if flag
+                                                | &#x27B2;
+                                                - flag = false
                                             span(style="color: blue; font-size: 8pt;") [Step #{step.curStep}]
                                         p(style="font-size: 8pt;")
                                             if step.textData.length == 0
@@ -2168,11 +2218,12 @@ html
                                                         !=text
                             .row
                                 .col-md-12(style="font-size: 9pt;")
-                                    p ❊ 질적 분석할 단계(실시와 해석에 활용할 수 있는 참고 문헌 목록에 제시된 해석 분석과정을 참고하세요.)
+                                    p ❊ 질적 분석할 단계
                                         br
                                         | Step 3: Location Sequencing 
                                         br
                                         | Step 8: DQ sequencing 
+                                //-
                                     table.table.table-bordered(style='font-size: 9pt;')
                                         thead
                                             tr
@@ -2188,11 +2239,11 @@ html
                                                         br
                                                         br
                 if T.resultName == 'Self-perception 자기개념(자기상), 자기중심성(자기관여), 자기가치(자존감), 자기효능감 평가'
-                    .page
-                        .subpage
+                    .wide-page
+                        .wide-subpage
                             .row
-                                .col-md-12.text-center
-                                    img(src='/img/self_perception.jpg', style='max-width: 100%;')
+                                .col-md-12
+                                    img(src='/img/self_perception.jpg', style='max-width: 100%;height: 60px;')
                                     //-h3 자기 지각 영역 (Self-Perception)
                             .row
                                 .col-md-12
@@ -2239,17 +2290,17 @@ html
                                                             p
                                                                 span Step 8: Search for projections in: (질적 분석)
                                                                 br
-                                                                span a: Minus responses(FQx-) = [ #{upper.dq.plusFQxminus} ]
+                                                                span(style='margin-left: 28px;') a: Minus responses(FQx-) = [ #{upper.dq.plusFQxminus} ]
                                                                 br
-                                                                span b: MOR responses = [ #{upper.special_scores.MOR} ]
+                                                                span(style='margin-left: 28px;') b: MOR responses = [ #{upper.special_scores.MOR} ]
                                                                 br
-                                                                span c: M responses = [ #{lower.information_processing.M}]
+                                                                span(style='margin-left: 28px;') c: M responses = [ #{lower.information_processing.M}]
                                                                 br
-                                                                span Human Content responses = [ #{lower.interpersonal.HumanCont} ]
+                                                                span(style='margin-left: 42px;') & Human Content responses = [ #{lower.interpersonal.HumanCont} ]
                                                                 br
-                                                                span d: FM responses = [ #{upper.determinants.FM} ] & m responses = [ #{upper.determinants.m} ]
+                                                                span(style='margin-left: 28px;') d: FM responses = [ #{upper.determinants.FM} ] & m responses = [ #{upper.determinants.m} ]
                                                                 br
-                                                                span e: Embellishments in other responses
+                                                                span(style='margin-left: 28px;') e: Embellishments in other responses
                                                                 br
                                                                 span *윤색(각색: Embellishment): 꾸미는 말이 포함되어 있어 일반적   반응보다 더 내용이 풍부한 반응. 왜곡된 반응도 해당함.
                                             tr
@@ -2261,8 +2312,12 @@ html
 
                             .row
                                 .col-md-12
+                                    - var flag = true;
                                     each step in T.steps
                                         if step.textData.length != 0 && !JSON.stringify(step.textData).includes('질적')
+                                            if flag
+                                                | &#x27B2;
+                                                - flag = false
                                             span(style="color: blue; font-size: 8pt;") [Step #{step.curStep}]
                                         p(style="font-size: 8pt;")
                                             if step.textData.length == 0
@@ -2272,13 +2327,14 @@ html
                                                         !=text
                             .row
                                 .col-md-12(style="font-size: 9pt;")
-                                    p ❊ 질적 분석할 단계(실시와 해석에 활용할 수 있는 참고 문헌 목록에 제시된 해석 분석과정을 참고하세요.)
+                                    p ❊ 질적 분석할 단계
                                         br
                                         | Step 4: FD  = [ #{upper.determinants.FD} ] & Sum V(Vista) = [ #{lower.self_perception.SumV} ] (in relation to History)
                                         br
                                         | Step 7: Review codings for Human Content reponses   
                                         br
                                         | Step 8: Searching for projected material 
+                                //-
                                     table.table.table-bordered(style='font-size: 9pt;')
                                         thead
                                             tr
@@ -2294,18 +2350,18 @@ html
                                                         br
                                                         br
                 if T.resultName == 'Control and Stress Tolerance 통제 능력과 스트레스 저항력 평가'
-                    .page
-                        .subpage
+                    .wide-page
+                        .wide-subpage
                             .row
-                                .col-md-12.text-center
-                                    img(src='/img/control_and_stress_tolerance.jpg', style='max-width: 100%;')
+                                .col-md-12
+                                    img(src='/img/control_and_stress_tolerance.jpg', style='max-width: 100%;height: 60px;')
                                     //-h3 통제력과 스트레스 저항력 (Control and Stress Tolerance)
                             .row
                                 .col-md-12
                                     table.table.table-striped.table-bordered(style="font-size: 9pt;")
                                         thead
                                             tr
-                                                th.text-center 통제력과 스트레스 저항력(Control and Stress Tolerance) 분석 단계
+                                                th.text-center 통제력과 스트레스 저항력 영역(Control and Stress Tolerance) 분석 단계
                                         tbody
                                             tr
                                                 td
@@ -2321,8 +2377,11 @@ html
                                                                 br
                                                                 span Step 2: EA = [ #{lower.core.EA.toFixed(1)} ]
                                                                 br
-                                                                span Step 3: EB = [ #{lower.core.EBLeft.toFixed(1)} : #{lower.core.EBRight.toFixed(1)} ] & Lambda(L) = [ #{lower.core.Lambda} ]
+                                                                span 
+                                                                    |Step 3: EB = [ #{lower.core.EBLeft.toFixed(1)} : #{lower.core.EBRight.toFixed(1)} ] 
                                                                     br
+                                                                span(style='margin-left: 40px;')
+                                                                    |& Lambda(L) = [ #{lower.core.Lambda} ]
                                                                     | (
                                                                     if parseFloat(lower.core.Lambda) > 0.99
                                                                         i.fa.fa-check-square-o
@@ -2352,8 +2411,12 @@ html
                                                         | <span class='text-danger'>2차 사고과정(secondary process thinking) vs 1차 사고과정(primary process thinking)</span>
                             .row
                                 .col-md-12
+                                    - var flag = true;
                                     each step in T.steps
                                         if step.textData.length != 0 && !JSON.stringify(step.textData).includes('질적')
+                                            if flag
+                                                | &#x27B2;
+                                                - flag = false
                                             span(style="color: blue; font-size: 8pt;") [Step #{step.curStep}]
                                         p(style="font-size: 8pt;")
                                             if step.textData.length == 0
@@ -2362,18 +2425,18 @@ html
                                                     if !text.includes('질적')
                                                         !=text
                 if T.resultName == '평소 통제능력보다 낮은 현재 통제능력을 유발하는 상황 관련 스트레스 평가'
-                    .page
-                        .subpage
+                    .wide-page
+                        .wide-subpage
                             .row
-                                .col-md-12.text-center
-                                    img(src='/img/situation_related_stress.jpg', style='max-width: 100%;')
+                                .col-md-12
+                                    img(src='/img/situation_related_stress.jpg', style='max-width: 100%;height: 60px;')
                                     //-h3 상황 관련 스트레스 영역 (Situation-Related Stress)
                             .row
                                 .col-md-12
                                     table.table.table-striped.table-bordered(style='font-size: 9pt;')
                                         thead
                                             tr
-                                                th.text-center 상황 관련 스트레스(Situation-Related Stress) 분석 단계
+                                                th.text-center 상황 관련 스트레스 영역(Situation-Related Stress) 분석 단계
                                         tbody
                                             tr
                                                 td
@@ -2384,7 +2447,7 @@ html
                                                                 br
                                                                 span D = [ #{lower.core.D} ], Adj D = [ #{lower.core.AdjD} ], es - Adj es = [ #{lower.core.es - lower.core.Adjes}]
                                                                 br
-                                                                span Step 2: Difference between D Score & Adj D Score AdjD - D = [ #{(lower.core.D - lower.core.AdjD).toFixed(1)} ]
+                                                                span Step 2: Difference between D Score & Adj D Score AdjD - D = [ #{(lower.core.D - lower.core.AdjD).toFixed(0)} ]
                                                                 br
                                                                 span Step 3: m = [ #{upper.determinants.m} ] & Sum Y = [ #{lower.core.SumY} ]
                                                         .col-md-6
@@ -2405,8 +2468,13 @@ html
                                                     p ❊ 상황 관련 스트레스 개념: 생활사건(Life Event: Personal History), 자극 과부하(Stimulus Overload), 정서적 혼란(Emotional Confusion)
                             .row
                                 .col-md-12
+                                    h5 ❊ 심리적 문제와 관련된 것으로 추정되는 최근 사건을 함께 고려하세요.
+                                    - var flag = true;
                                     each step in T.steps
                                         if step.textData.length != 0 && !JSON.stringify(step.textData).includes('질적')
+                                            if flag
+                                                | &#x27B2;
+                                                - flag = false
                                             span(style="color: blue; font-size: 8pt;") [Step #{step.curStep}]
                                         p(style="font-size: 8pt;")
                                             if step.textData.length == 0
@@ -2414,6 +2482,7 @@ html
                                                 each text in step.textData
                                                     if !text.includes('질적')
                                                         !=text
+                        //-
                             .row
                                 .col-md-12
                                     table.table.table-bordered(style='font-size: 9pt;')
@@ -2430,8 +2499,9 @@ html
                                                         br
                                                         br
                                                         br
-            .page
-                .subpage
+        //-
+            .wide-page
+                .wide-subpage
                     .row
                         .col-md-12.text-center
                             h3 진단적 인상과 치료적 고려사항
