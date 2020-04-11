@@ -120,7 +120,8 @@ html
                     width: 210mm;
                     height: 297mm;        
                 }
-                .page {
+                .page,
+                .wide-page {
                     margin: 0;
                     border: initial;
                     border-radius: initial;
@@ -129,6 +130,7 @@ html
                     box-shadow: initial;
                     background: initial;
                     page-break-after: always;
+
                 }
             }
             .a {
@@ -2599,103 +2601,6 @@ html
                                                 each text in step.textData
                                                     if !text.includes('질적')
                                                         !=text
-                        //-
-                            .row
-                                .col-md-12
-                                    table.table.table-bordered(style='font-size: 9pt;')
-                                        thead
-                                            tr
-                                                th.text-center 질적 해석
-                                        tbody
-                                            tr
-                                                td
-                                                    p ✽ 심리적 문제와 관련된 것으로 추정되는 최근 사건을 함께 고려하세요.
-                                                        br
-                                                        br
-                                                        br
-                                                        br
-                                                        br
-                                                        br
-        //-
-            .wide-page
-                .wide-subpage
-                    .row
-                        .col-md-12.text-center
-                            h3 진단적 인상과 치료적 고려사항
-                    .row
-                        .col-md-12
-                            table.table.table-striped.table-bordered(style='font-size: 9pt; table-layout: fixed;')
-                                thead
-                                    tr
-                                        th.text-center(style="width: 50%;") Diagnostic Features
-                                        th.text-center(style="width: 50%;") Treatment Considerations
-                                tbody
-                                    tr
-                                        td(style="width: 50%;")
-                                            p
-                                            br
-                                            br
-                                            br
-                                            br
-                                            br
-                                            br
-                                            br
-                                        td(style="width: 50%;")
-                                            p
-                                            br
-                                            br
-                                            br
-                                            br
-                                            br
-                                            br
-                                            br
-                    .row.mt-5
-                        .col-md-12.text-center
-                            h3 로르샤하 검사 결과의 요약
-                    .row
-                        .col-md-12
-                            table.table.table-striped.table-bordered(style='font-size: 9pt; table-layout: fixed;')
-                                tbody
-                                    tr
-                                        td
-                                            p
-                                                br
-                                                br
-                                                br
-                                                br
-                                                br
-                                                br
-                                                br
-                                                br
-                                                br
-                                                br
-                                                br
-                                                br
-                                                br
-                                                br
-                                                br
-                                                br
-
-                //- else
-                //-     .page
-                //-         .subpage
-                //-             .row
-                //-                 .col-md-12.text-center
-                //-                     h3=T.resultName
-                //-             .row
-                //-                 .col-md-12
-                //-                     each step in T.steps
-                //-                         if step.textData.length != 0 && !JSON.stringify(step.textData).includes('질적')
-                //-                             span(style="color: blue; font-size: 8pt;") [Step #{step.curStep}]
-                //-                         p(style="font-size: 8pt;")
-                //-                             if step.textData.length == 0
-                //-                             else
-                //-                                 each text in step.textData
-                //-                                     if !text.includes('질적')
-                //-                                         !=text
-                                
-                            
-                    
 
                     
         script(src="/js/jquery-2.1.1.js")
