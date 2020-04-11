@@ -11,12 +11,17 @@
         background-position: center !important;
         background-repeat: no-repeat !important;
         opacity: 0.1 !important;
-        top: 0 !important;
         left: 0 !important;
         bottom: 0 !important;
         right: 0 !important;
         position: absolute !important;
         z-index: 99 !important;
+    }
+    .page:not(.no-watermark):after {
+        top: 0 !important;
+    }
+    .wide-page:not(.no-watermark):after {
+        margin-top: 1cm !important;
     }
 	body {
 		font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
