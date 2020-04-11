@@ -1765,7 +1765,7 @@ html
                                                             p
                                                                 span Step 8: COP frequencies = [ #{upper.special_scores.COP} ]
                                                                 br
-                                                                span & AG frequencies = [ #{upper.special_scores.AG} ] & coding (질적 분석)
+                                                                span(style='margin-left: 42px;') & AG frequencies = [ #{upper.special_scores.AG} ] & coding (질적 분석)
                                                                 br
                                                                 span Step 9: PER = [ #{upper.special_scores.PER} ]
                                                                 br
@@ -2363,7 +2363,7 @@ html
                                             tr
                                                 td
                                                     .row
-                                                        .col-md-6
+                                                        .col-md-6(style='padding-right: 0;')
                                                             p
                                                                 span Step 1: 
                                                                     if lower.special_indices.OBSPositive == true
@@ -2385,7 +2385,7 @@ html
                                                                 br
                                                                 span Step 4: FD = [ #{lower.self_perception.FD} ] & Sum V(Vista) = [ #{lower.self_perception.SumV} ]
                                                                 br
-                                                                span (in relation to History) (질적 분석)
+                                                                span(style='margin-left: 42px;') (in relation to History) (질적 분석)
                                                                 br
                                                                 span Step 5: An + Xy = [ #{lower.self_perception.AnPlusXy} ]
                                                                 br
@@ -2393,7 +2393,7 @@ html
                                                                 br
                                                                 span Step 7: H : (H) + Hd + (Hd) = [ #{lower.self_perception.H} : #{lower.self_perception.Hrest} ]
                                                                 br
-                                                                span(style="display: inline-block;") Review codings for Human Content responses (질적 분석)
+                                                                span(style="display: inline-block; margin-left: 28px;") Review codings for Human Content responses (질적 분석)
                                                         .col-md-6
                                                             p
                                                                 span Step 8: Search for projections in: (질적 분석)
@@ -2560,16 +2560,18 @@ html
                                                             p
                                                                 span Step 1: D Score in relation to as and Adj es
                                                                 br
-                                                                span D = [ #{lower.core.D} ], Adj D = [ #{lower.core.AdjD} ], es - Adj es = [ #{lower.core.es - lower.core.Adjes}]
+                                                                span(style='margin-left: 42px;') D = [ #{lower.core.D} ], Adj D = [ #{lower.core.AdjD} ], es - Adj es = [ #{lower.core.es - lower.core.Adjes}]
                                                                 br
-                                                                span Step 2: Difference between D Score & Adj D Score AdjD - D = [ #{(lower.core.D - lower.core.AdjD).toFixed(0)} ]
+                                                                span Step 2: Difference between D Score 
+                                                                br
+                                                                span(style='margin-left: 42px;') & Adj D Score AdjD - D = [ #{(lower.core.D - lower.core.AdjD).toFixed(0)} ]
                                                                 br
                                                                 span Step 3: m = [ #{upper.determinants.m} ] & Sum Y = [ #{lower.core.SumY} ]
                                                         .col-md-6
                                                             p
                                                                 span Step 4: Sum T = [ #{lower.interpersonal.SumT} ], Sum V = [ #{lower.self_perception.SumV} ],
                                                                 br
-                                                                span Egocentricity Index = [ #{lower.self_perception.EgocentricityIndex} ] in relation to History
+                                                                span(style='margin-left: 42px;') Egocentricity Index = [ #{lower.self_perception.EgocentricityIndex} ] in relation to History
                                                                 br
                                                                 span Step 5: D Score = [ #{lower.core.D - lower.core.AdjD} ] (re Pure C, M-, no Form)
                                                                 br
@@ -2577,7 +2579,9 @@ html
                                                                 br
                                                                 span Step 7: Color-Shading Blends
                                                                 br
-                                                                span Y-Color-Shading Blends = [ #{lower.affection.Blends} ], Other Color-Shading Blends = [ #{OnlyShading} ]
+                                                                span(style='margin-left: 42px;') Y-Color-Shading Blends = [ #{lower.affection.Blends} ],
+                                                                br
+                                                                span(style='margin-left: 42px;') Other Color-Shading Blends = [ #{OnlyShading} ]
                                             tr
                                                 td
                                                     ul
