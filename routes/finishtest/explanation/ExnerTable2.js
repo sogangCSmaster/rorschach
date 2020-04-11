@@ -44,8 +44,9 @@ function step1({D, AdjD, es, Adjes, }) {
         }
     }
 
-    result.goNext = false;
-    result.nextStep = 2;
+    result.goNext = true;
+    result.textData.push('[해당 사항 없음]')
+    //result.nextStep = 2;
 
     return result;
 }

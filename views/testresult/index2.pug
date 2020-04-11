@@ -15,7 +15,24 @@ html
         link(href='/css/print.css', rel='stylesheet', media='print')
         //- link(rel="stylesheet" href="http://getbootstrap.com.vn/examples/equal-height-columns/equal-height-columns.css")
         style.
-
+            ul {
+                list-style: none;
+                margin-left: 0;
+                padding-left: 0;
+            }
+            li {
+                text-align: left;
+                padding-left: 1em;
+                text-indent: -1em;
+            }
+            .indent {
+                display: inline-block;
+                margin-left: 40px;
+            }
+            li:before {
+                content: '❊';
+                padding-right: 5px;
+            }
             .td-small {
                 padding-top: 2px !important;
                 padding-bottom: 2px !important;
@@ -63,6 +80,25 @@ html
                 border: 1px #FFFFFF solid;
                 height: 257mm;
                 outline: 2cm #FFFFFF solid;
+            }
+            .wide-page,
+            .page {
+                display: block;
+                position: relative;
+            }
+            .wide-page:not(.no-watermark):after,
+            .page:not(.no-watermark):after {
+                content: "";
+                background: url('/img/logo.jpg');
+                background-position: center;
+                background-repeat: no-repeat;
+                opacity: 0.1;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                position: absolute;
+                z-index: 99;
             }
 
             .col-6-print{
@@ -115,6 +151,28 @@ html
             
     body.gray-bg
         .book
+            .page.no-watermark
+                .subpage
+                    .row
+                        .col-md-12.text-center(style='margin-top: 150px;')
+                            img(src='/img/rias.jpg', style='max-width: 100%; height: 150px;')
+                        .col-md-12.text-center(style='margin-top: 50px;')
+                            h3(style='font-size: 40px;') 로르샤하 해석 지원 시스템
+                            h4(style='font-size: 20px;')
+                                | The Rorschach Interpretation
+                                br
+                                | Assistance System
+                        .col-md-12.text-center(style='margin-top: 30px;')
+                            table.table.table-bordered(style='width: 500px; margin: 0 auto;')
+                                tbody
+                                    tr
+                                        td(style='width: 100px;').text-center 검사기관
+                                        td.text-center= testconfig.comName_input
+                                    tr
+                                        td.text-center 검 사 자
+                                        td.text-center= testconfig.inspector 
+                        .col-md-12.text-right
+                            img(src='/img/logo.jpg', style='height: 100px; margin-top: 50px; margin-right: 50px;')
             .page
                 .subpage#page0
                     .row
@@ -1369,9 +1427,13 @@ html
                                         td.text-center #{testconfig.graduate}
                                         td.text-center 진 단
                                         td.text-center #{testconfig.diagnosis}
-                                    //- 
+                                    tr
                                         td.text-center 검사기관
-                                        td.text-center #{testconfig.comName_input}
+                                        td(colspan='5').text-center
+                                            = testconfig.comName_input 
+                                            | (검사자: 
+                                            = testconfig.inspector
+                                            | )
                     .row
                         .col-md-12
                             h4.text-danger 1. 로르샤하 검사의 타당성 검증
@@ -1708,8 +1770,13 @@ html
                                                                 span Step 10: Isolation Index = [ #{lower.interpersonal.ISOIndex} ]
                                             tr
                                                 td
-                                                    p ❊ 대인지각 중요변인: 소외지표(Isolation Index), 인간표상반응 (GHR : PHR)
-                                                    p ❊ 대인지각 관련개념: 대인관계(Interpersonal Relationships: Social Cognition, Social Skill), 자기중심성(Self-Centeredness), 관계적 자기(Relational Self), 의심과 방어(Suspiciousness & Defensiveness)
+                                                    ul
+                                                        li
+                                                            | 대인지각 중요변인: 소외지표(Isolation Index), 인간표상반응 (GHR : PHR)
+                                                        li
+                                                            | 대인지각 관련개념: 대인관계(Interpersonal Relationships: Social Cognition, Social Skill), 자기중심성(Self-Centeredness), 
+                                                            .indent
+                                                                | 관계적 자기(Relational Self), 의심과 방어(Suspiciousness & Defensiveness)
                             .row
                                 .col-md-12
                                     - var flag = true;
@@ -1727,11 +1794,14 @@ html
                                                         !=text
                             .row
                                 .col-md-12(style="font-size: 9pt;")
-                                    p ❊ 질적 분석할 단계
-                                        br
-                                        | Step 8: COP frequencies = [ #{upper.special_scores.COP} ] & AG frequencies = [ #{upper.special_scores.AG} ] & coding
-                                        br
-                                        | Step 11: Contents of M responses with pairs(2) = [ #{lower.information_processing.M} ] & Contents of FM responses with pairs(2) = [ #{upper.determinants.FM} ]
+                                    ul
+
+                                        li
+                                            | 질적 분석할 단계
+                                            br
+                                            | Step 8: COP frequencies = [ #{upper.special_scores.COP} ] & AG frequencies = [ #{upper.special_scores.AG} ] & coding
+                                            br
+                                            | Step 11: Contents of M responses with pairs(2) = [ #{lower.information_processing.M} ] & Contents of FM responses with pairs(2) = [ #{upper.determinants.FM} ]
                                 //-
                                     table.table.table-bordered(style='font-size: 9pt;')
                                         thead
@@ -1783,8 +1853,10 @@ html
                                                                         i.fa.fa-square-o
                                                                         |  CDI = [ #{lower.special_indices.CDI} ]
                                                                 br
-                                                                span Step 2: EB = [ #{(lower.core.EBLeft).toFixed(0)} : #{(lower.core.EBRight).toFixed(1)} ] & Lambda(L) = [ #{lower.core.Lambda} ]
-                                                                    br
+                                                                span Step 2: EB = [ #{(lower.core.EBLeft).toFixed(0)} : #{(lower.core.EBRight).toFixed(1)} ] 
+                                                                br
+                                                                span(style='margin-left: 42px;')
+                                                                    | & Lambda(L) = [ #{lower.core.Lambda} ]
                                                                     | ( 
                                                                     if lower.core.Lambda > 0.99
                                                                         i.fa.fa-check-square-o
@@ -1815,13 +1887,17 @@ html
                                                                 span Step 9: FC : CF + C = [ #{lower.affection.FCCFCLeft} : #{lower.affection.FCCFCRight} ]
                                                                 br
                                                                 span Step 10: Pure C = [ #{lower.affection.PureC} ] (질적 분석)
-                                                        .col-md-6
+                                                        .col-md-6(style='margin-left: -10px; padding-left: 0; padding-right: 0;')
                                                             p
-                                                                span Step 11: Space(S) responses = [ ]
+                                                                - var Scount = 0;
+                                                                each score in scores
+                                                                    if score.loc == 'WS' || score.loc == 'DS' || score.loc == 'DdS'
+                                                                        - Scount += 1;
+                                                                span Step 11: Space(S) responses = [ #{Scount} ]
                                                                 br
                                                                 span Step 12: Blends percentage = [ #{lower.affection.Blends} : #{lower.affection.R} (#{(lower.affection.Blends * 100 / lower.affection.R).toFixed(0)}%) ]
                                                                 br
-                                                                span & EBStyle(
+                                                                span(style='margin-left: 10px;') & EBStyle(
                                                                     if experienceClassification.copyingStyle=="Introversive" && experienceClassification.approachStyle=="True"
                                                                         i.fa.fa-check-square-o
                                                                     else
@@ -1848,11 +1924,14 @@ html
                                                                 //- span Step 14: 
                                             tr   
                                                 td
-                                                    p ❊ 정서 중요 변인: 정서비율(Affective Ratio: Afr), 형태-유채색 비율(FC : CF + C), 순수 유채색(PureC)
-                                                        br
-                                                        | ❊ 정서 관련 개념: 정서 기능(Affective Functioning), 문제해결과 대처 전략(Coping Strategy with Problem Solving), 정서적 감수성(Emotional Receptivity), 심리적 복잡성과 불안정성(Psychological Complexity & lability)
-                                                        br
-                                                        | ❊ 내인성 우울(Endogenous Depression), 반응성 우울(Reactive Depression), 양극성 특성(Bipolar Characteristics)
+                                                    ul
+                                                        li 정서 중요 변인: 정서비율(Affective Ratio: Afr), 형태-유채색 비율(FC : CF + C), 순수 유채색(PureC)
+                                                        li
+                                                            | 정서 관련 개념: 정서 기능(Affective Functioning), 문제해결과 대처 전략(Coping Strategy with Problem Solving),
+                                                            br
+                                                            .indent 정서적 감수성(Emotional Receptivity), 심리적 복잡성과 불안정성(Psychological Complexity & lability)
+                                                        li
+                                                            | 내인성 우울(Endogenous Depression), 반응성 우울(Reactive Depression), 양극성 특성(Bipolar Characteristics)
                                                                     
                             .row
                                 .col-md-12
@@ -1888,9 +1967,11 @@ html
                                                         !=text
                             .row
                                 .col-md-12(style='font-size: 9pt;')
-                                    p ❊ 질적 분석할 단계
-                                        br
-                                        | Step 10: Pure C = [ #{lower.affection.PureC} ]
+                                    ul
+                                        li
+                                            |질적 분석할 단계
+                                            br
+                                            | Step 10: Pure C = [ #{lower.affection.PureC} ]
                                 //-
                                     table.table.table-bordered(style='font-size: 9pt;')
                                         thead
@@ -1952,7 +2033,7 @@ html
                                                     .row
                                                         .col-md-6
                                                             p
-                                                                span Step 1: EB = [ #{(lower.core.EBLeft).toFixed(1)} : #{(lower.core.EBRight).toFixed(1)} ] & Lambda(L) = [ #{lower.core.Lambda} ] #{lower.core.LambdaHighOrLow}
+                                                                span Step 1: EB = [ #{(lower.core.EBLeft).toFixed(0)} : #{(lower.core.EBRight).toFixed(1)} ] & Lambda(L) = [ #{lower.core.Lambda} ] #{lower.core.LambdaHighOrLow}
                                                                 br
                                                                 span Step 2: EBPer = [ #{parseFloat(lower.core.EBPer).toFixed(1)} ]
                                                                 br
@@ -1989,9 +2070,14 @@ html
                                                                 span Step 11: Quality of M responses (질적 분석)
                                             tr
                                                 td
-                                                    p ❊ 관념화 중요변인: 가중특수점수(WSum6), 형태질 없는 인간운동(M none)
-                                                        br
-                                                        | ❊ 관념화 관련개념: 사고기능(Ideational Functioning), 사고 문제(Thinking Problems), 의사결정(Decision-Making) 문제해결과 대처전략(Coping Strategy with Problem Solving), 자아 손상(Ego Impairment)
+                                                    ul
+
+                                                        li
+                                                            | 관념화 중요변인: 가중특수점수(WSum6), 형태질 없는 인간운동(M none)
+                                                        li
+                                                            | 관념화 관련개념: 사고기능(Ideational Functioning), 사고 문제(Thinking Problems), 의사결정(Decision-Making),
+                                                            .indent
+                                                                | 문제해결과 대처전략(Coping Strategy with Problem Solving), 자아 손상(Ego Impairment)
                             .row
                                 .col-md-12
                                     - var flag = true;
@@ -2009,11 +2095,13 @@ html
                                                         !=text
                             .row
                                 .col-md-12(style="font-size: 9pt;")
-                                    p ❊ 질적 분석할 단계
-                                        br
-                                        | Step 9: Quality 6 Special Scores (연령과 지적기능 고려)
-                                        br
-                                        | Step 11: Quality of M responses (연령 고려)
+                                    ul
+                                        li
+                                            |  질적 분석할 단계
+                                            br
+                                            | Step 9: Quality 6 Special Scores (연령과 지적기능 고려)
+                                            br
+                                            | Step 11: Quality of M responses (연령 고려)
                                 //-
                                     table.table.table-bordered(style='font-size: 9pt;')
                                         thead
@@ -2075,7 +2163,13 @@ html
                                                                 br
                                                                 span Step 2: FQ none(FQx none) = [ #{upper.form_quality.FQx['none']} ]
                                                                 br
-                                                                span Step 3: X-% = [ #{lower.cognitive_mediation.Xminusper.toFixed(2)} ]
+                                                                span Step 3: X-% = [ #{lower.cognitive_mediation.Xminusper.toFixed(2)} ], FQx- frequence = [ #{upper.form_quality.FQx['-']} ],
+                                                                br
+                                                                - var DdSMinus = 0;
+                                                                each score in scores
+                                                                    if score.loc == 'DdS' && score.fq == '-'
+                                                                        - DdSMinus += 1
+                                                                span(style='margin-left: 42px;') FQxS- frequency = [ #{lower.cognitive_mediation.Sminus} ], FQxDd- frequence = [ #{upper.form_quality.FQx['-'] - upper.form_quality.WPlusD['-'] - DdSMinus } ]
                                                         .col-md-6
                                                             p
                                                                 span Step 3a: Homogeneity issues
@@ -2084,14 +2178,18 @@ html
                                                                 br
                                                                 span Step 4: Populars(P) = [ #{lower.cognitive_mediation.P} ]
                                                                 br
-                                                                span Step 5: FQ+ frequency = []
+                                                                span Step 5: FQ+ frequency = [#{upper.form_quality.FQx['+']}]
                                                                 br
                                                                 span Step 6: X+% = [ #{lower.cognitive_mediation.Xplusper} ] & Xu% = [ #{lower.cognitive_mediation.Xuper} ]
                                             tr
                                                 td
-                                                    p ❊ 인지적 중재 중요변인: 적절한 형태질(XA%), 일반적 위치의 적절한 형태질(WDA%), 왜곡된 형태질(X-%)
-                                                        br
-                                                        | ❊ 인지적 중재 관련개념: 사고기능(Ideational Functioning), 현실 검증 능력(Reality Testing), 판단력(Judgment), 관습적 행동(Conventional Behavior)
+                                                    ul
+                                                        li
+                                                            | 인지적 중재 중요변인: 적절한 형태질(XA%), 일반적 위치의 적절한 형태질(WDA%), 왜곡된 형태질(X-%)
+                                                        li
+                                                            | 인지적 중재 관련개념: 사고기능(Ideational Functioning), 현실 검증 능력(Reality Testing), 판단력(Judgment), 
+                                                            .indent
+                                                                | 관습적 행동(Conventional Behavior)
                             .row
                                 .col-md-12
                                     - var flag = true;
@@ -2109,9 +2207,11 @@ html
                                                         !=text
                             .row
                                 .col-md-12(style="font-size: 9pt;")
-                                    p ❊ 질적 분석할 단계
-                                        br
-                                        | Step 3b: Minus distortion levels (형태 왜곡 수준 분석)
+                                    ul
+                                        li
+                                            | 질적 분석할 단계
+                                            br
+                                            | Step 3b: Minus distortion levels (형태 왜곡 수준 분석)
                                 //-
                                     table.table.table-bordered(style='font-size: 9pt;')
                                         thead
@@ -2197,9 +2297,13 @@ html
                                                                 span Step 8: DQ sequencing (질적 분석)
                                             tr
                                                 td
-                                                    p ❊ 정보처리 중요변인: 기대지표(Aspirational Ratio: W:M), 처리 효율성(Processing Efficiency: Zd)
-                                                        br
-                                                        | ❊ 정보처리 관련개념: 사고기능(Ideational Functioning), 지각의 점검(Perceptual Monitoring), 동기(Motivation), 정보의 탐색(search of information)과 정보의 조직화(structuralization of information)
+                                                    ul
+                                                        li
+                                                            | 정보처리 중요변인: 기대지표(Aspirational Ratio: W:M), 처리 효율성(Processing Efficiency: Zd)
+                                                        li
+                                                            | 정보처리 관련개념: 사고기능(Ideational Functioning), 지각의 점검(Perceptual Monitoring), 동기(Motivation),
+                                                            .indent
+                                                                | 정보의 탐색(search of information)과 정보의 조직화(structuralization of information)
 
                             .row
                                 .col-md-12
@@ -2218,11 +2322,13 @@ html
                                                         !=text
                             .row
                                 .col-md-12(style="font-size: 9pt;")
-                                    p ❊ 질적 분석할 단계
-                                        br
-                                        | Step 3: Location Sequencing 
-                                        br
-                                        | Step 8: DQ sequencing 
+                                    ul
+                                        li
+                                            | 질적 분석할 단계
+                                            br
+                                            | Step 3: Location Sequencing 
+                                            br
+                                            | Step 8: DQ sequencing 
                                 //-
                                     table.table.table-bordered(style='font-size: 9pt;')
                                         thead
@@ -2290,7 +2396,7 @@ html
                                                             p
                                                                 span Step 8: Search for projections in: (질적 분석)
                                                                 br
-                                                                span(style='margin-left: 28px;') a: Minus responses(FQx-) = [ #{upper.dq.plusFQxminus} ]
+                                                                span(style='margin-left: 28px;') a: Minus responses(FQx-) = [ #{upper.form_quality.FQx['-']} ]
                                                                 br
                                                                 span(style='margin-left: 28px;') b: MOR responses = [ #{upper.special_scores.MOR} ]
                                                                 br
@@ -2305,9 +2411,11 @@ html
                                                                 span *윤색(각색: Embellishment): 꾸미는 말이 포함되어 있어 일반적   반응보다 더 내용이 풍부한 반응. 왜곡된 반응도 해당함.
                                             tr
                                                 td
-                                                    p ❊ 자기지각 영역의 중요변인: 자기중심지표(Egocentricity Index), 해부-엑스레이(An+Xy), 병적인 내용(MOR)
-                                                        br
-                                                        | ❊ 자기지각 영역의 관련개념: 자기개념(Self–Concept), 자존감(Self-Esteem), 자기성찰(Introspection)
+                                                    ul
+                                                        li
+                                                            | 자기지각 영역의 중요변인: 자기중심지표(Egocentricity Index), 해부-엑스레이(An+Xy), 병적인 내용(MOR)
+                                                        li
+                                                            | 자기지각 영역의 관련개념: 자기개념(Self–Concept), 자존감(Self-Esteem), 자기성찰(Introspection)
 
 
                             .row
@@ -2327,13 +2435,15 @@ html
                                                         !=text
                             .row
                                 .col-md-12(style="font-size: 9pt;")
-                                    p ❊ 질적 분석할 단계
-                                        br
-                                        | Step 4: FD  = [ #{upper.determinants.FD} ] & Sum V(Vista) = [ #{lower.self_perception.SumV} ] (in relation to History)
-                                        br
-                                        | Step 7: Review codings for Human Content reponses   
-                                        br
-                                        | Step 8: Searching for projected material 
+                                    ul
+                                        li
+                                            | 질적 분석할 단계
+                                            br
+                                            | Step 4: FD  = [ #{upper.determinants.FD} ] & Sum V(Vista) = [ #{lower.self_perception.SumV} ] (in relation to History)
+                                            br
+                                            | Step 7: Review codings for Human Content reponses   
+                                            br
+                                            | Step 8: Searching for projected material 
                                 //-
                                     table.table.table-bordered(style='font-size: 9pt;')
                                         thead
@@ -2404,11 +2514,14 @@ html
                                                                 span Step 5: eb = [ #{lower.core.ebLeft} : #{lower.core.ebRight} ]
                                             tr
                                                 td
-                                                    p ❊ 통제력 중요변인: 조정된 자원-스트레스 차이 점수(Adjusted Difference Score: Adj D), 대처결함지표(CDI)
-                                                        br
-                                                        | ❊ 통제력 관련개념: 전반적 적응 상태(General Adjustment Condition), 심리적 자원(Psychological Resources), 자아 강도(Ego Strength), 자기 조절(Self-Regulation), 스트레스 수준(Quantity of Stress), 정서의 통제(Emotional Control),  정서의 억제(Emotional Constraint)
-                                                        br
-                                                        | <span class='text-danger'>2차 사고과정(secondary process thinking) vs 1차 사고과정(primary process thinking)</span>
+                                                    ul
+                                                        li
+                                                            | 통제력 중요변인: 조정된 자원-스트레스 차이 점수(Adjusted Difference Score: Adj D), 대처결함지표(CDI)
+                                                        li
+                                                            | 통제력 관련개념: 전반적 적응 상태(General Adjustment Condition), 심리적 자원(Psychological Resources), 
+                                                            .indent 자아 강도(Ego Strength), 자기 조절(Self-Regulation), 스트레스 수준(Quantity of Stress),
+                                                            .indent 정서의 통제(Emotional Control),  정서의 억제(Emotional Constraint)
+                                                            .indent <span class='text-danger'>2차 사고과정(secondary process thinking) vs 1차 사고과정(primary process thinking)</span>
                             .row
                                 .col-md-12
                                     - var flag = true;
@@ -2465,7 +2578,11 @@ html
                                                                 span Y-Color-Shading Blends = [ #{lower.affection.Blends} ], Other Color-Shading Blends = [ #{OnlyShading} ]
                                             tr
                                                 td
-                                                    p ❊ 상황 관련 스트레스 개념: 생활사건(Life Event: Personal History), 자극 과부하(Stimulus Overload), 정서적 혼란(Emotional Confusion)
+                                                    ul
+                                                        li
+                                                            | 상황 관련 스트레스 개념: 생활사건(Life Event: Personal History), 자극 과부하(Stimulus Overload), 
+                                                            .indent
+                                                                | 정서적 혼란(Emotional Confusion)
                             .row
                                 .col-md-12
                                     h5 ❊ 심리적 문제와 관련된 것으로 추정되는 최근 사건을 함께 고려하세요.

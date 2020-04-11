@@ -57,6 +57,10 @@ router.route("/finishtest1")
         sql = "SELECT * FROM test WHERE id=?";
         var testconfig = await query.executeSQL(sql, [id]);
         testconfig = testconfig[0];
+        var birthday = moment(testconfig.birthday, 'YYYY-MM-DD').format('YYYY-MM-DD');
+        var testdate = moment(testconfig.testdate, 'YYYY-MM-DD').format('YYYY-MM-DD');
+        var age = testconfig.age || moment(testdate).diff(birthday, 'years');
+        testconfig.age = age;
         if(testconfig.sex=="male"){
             testconfig.sex="남";
         } else {
@@ -840,7 +844,10 @@ router.route("/finishtest1")
             indicators.blends = upper.blends;
 
             // var age = moment().diff(testconfig.birthday, 'years');
-            var age = testconfig.age;
+            var birthday = moment(testconfig.birthday, 'YYYY-MM-DD').format('YYYY-MM-DD');
+            var testdate = moment(testconfig.testdate, 'YYYY-MM-DD').format('YYYY-MM-DD');
+            var age = testconfig.age || moment(testdate).diff(birthday, 'years');
+            testconfig.age = age;
             indicators.age = age;
 
             var TESTRESULT = [];
