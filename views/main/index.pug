@@ -197,9 +197,15 @@ block content
                                         td.text-center=data.comName_input
                                         td.text-center
                                             if data.test=="test1"
-                                                a.btn.btn-success.btn-xs(href="/finishtest1?id="+data.id) 해석
+                                                if data.scoring
+                                                    a.btn.btn-success.btn-xs(href="/finishtest1?id="+data.id) 해석
+                                                else
+                                                    a.btn.btn-info.btn-xs(href="/scoring1/"+data.id) 임시저장 불러오기
                                             else if data.test=="test2"
-                                                a.btn.btn-success.btn-xs(href="/finishtest2?id="+data.id) 해석
+                                                if data.scoring
+                                                    a.btn.btn-success.btn-xs(href="/finishtest2?id="+data.id) 해석
+                                                else
+                                                    a.btn.btn-info.btn-xs(href="/scoring2/"+data.id) 임시저장 불러오기
                                         td.text-center
                                             button.delete.btn.btn-danger.btn-xs(data-id=data.id) 삭제
 

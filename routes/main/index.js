@@ -18,7 +18,7 @@ router.route("/")
         result = result.data;
         req.session.user = result;
 
-        var sql = "SELECT id, name, DATE_FORMAT(testdate, '%Y-%m-%d') as testdate, test, comName, comName_input FROM test WHERE memberID=?";
+        var sql = "SELECT test.id, test.name, DATE_FORMAT(testdate, '%Y-%m-%d') as testdate, test, comName, comName_input, scoring FROM test LEFT OUTER JOIN score ON score.id = test.id WHERE memberID=?";
         var datas = await query.executeSQL(sql, [m]);
 
         res.render('main/index', { datas, moment });

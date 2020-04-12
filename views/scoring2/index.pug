@@ -125,9 +125,11 @@ html
                         .hr-line-dashed
                         .row
                             .col-lg-1.col-lg-offset-11
-                                form.form(action="/finishtest2" method="POST" onsubmit='return stringifyForm()')
+                                button.btn.btn-info.btn-tempsave(type='button') 임시저장
+                                form.form.inline(action="/finishtest2" method="POST" onsubmit='return stringifyForm()')
                                     input(type="hidden" name="stringifyText")
                                     input(type="hidden" name="testID" value=session.insertId)
+                                    input(type='hidden', name='scoring', value='true')
                                     button.btn.btn-primary(type="submit") 채 점
 
         .modal.fade#detModal(tabindex='-1', role='dialog')
@@ -456,6 +458,14 @@ html
                 })
 
             })
+            function addCard(){
+                var a = $('#score-table').find('tr:eq(0)').clone()
+                $('#score-table').append(a);
+                a.show();
+                var index = $('#score-table tr').length - 1;
+                a.attr('data-index', index);
+                $('#score-table tr[data-index=' + index + '] .number').html((index));
+            }
             $(document).ready(function(){
               setTimeout(function() {
                 $('.animated').removeClass('animated'); // for sticky bug
@@ -498,23 +508,56 @@ html
                 })
 
                 // 카드 추가 버튼
-                $("#addReact").on('click', function(){
-                    var a = $('#score-table').find('tr:eq(0)').clone()
-                    $('#score-table').append(a);
-                    a.show();
-                    var index = $('#score-table tr').length - 1;
-                    a.attr('data-index', index);
-                    $('#score-table tr[data-index=' + index + '] .number').html((index));
-                });
+                $("#addReact").on('click', addCard);
             })
 
-        script.
+            var reverseNumberMapper = {
+                1: 'Ⅰ',
+                2: 'Ⅱ',
+                3: 'Ⅲ',
+                4: 'Ⅳ',
+                5: 'Ⅴ',
+                6: 'Ⅵ',
+                7: 'Ⅶ',
+                8: 'Ⅷ',
+                9: 'Ⅸ',
+                10: 'Ⅹ'
+            }
 
             var dets = [ ];
             var reacts = [ ];
             var scores = [ ];
             var currentModalIndex = -1;
 
+            var dbScores = JSON.parse(!{JSON.stringify(score)})
+            function loadScore() {
+                dbScores = dbScores.slice(1);
+                var tbody = $('#score-table')
+                for (var i = 0; i < dbScores.length - 1; i++) {
+                    addCard();
+                }
+                for (var i = 0; i < dbScores.length; i++) {
+                    var index = i + 1;
+                    var tr = tbody.find('tr[data-index=' + index + ']');
+                    console.log(reverseNumberMapper[dbScores[i].card]);
+                    tr.find('.card-select').val(reverseNumberMapper[dbScores[i].card]);
+                    tr.find('select[name=loc]').val(dbScores[i].loc);
+                    tr.find('select[name=dq]').val(dbScores[i].dq);
+                    tr.find('.select2').val(dbScores[i].select2);
+                    tr.find('.selectP').val(dbScores[i].p);
+                    changeZ(index)
+                    tr.find('.selectZ').val(dbScores[i].z);
+                    dets[index] = dbScores[i].det;
+                    parseDet(dets[index] || {}, index);
+                    reacts[index] = dbScores[i].react;
+                    parseReact(reacts[index] || {}, index);
+                    scores[index] = dbScores[i].score;
+                    parseScore(scores[index] || {}, index);
+                }
+            }
+            $(document).ready(function() {
+                loadScore();
+            })
 
             // CONTAM validation
             //
@@ -944,10 +987,28 @@ html
             }
         }
 
-        function stringifyForm() {
-            var result = confirm('채점을 하시면 코인이 차감되며 변경할 수 없습니다. 채점하시겠습니까?');
-            if(!result){
-                return false;
+        $('.btn-tempsave').click(function() {
+            stringifyForm(true);
+            $.ajax({
+                method: 'POST',
+                url: '#{tempsaveUrl}',
+                data: {
+                    stringifyText: $('input[name=stringifyText]').val(),
+                    scoring: 'false'
+                }
+            }).done(function(res) {
+                alert('임시저장 되었습니다.');
+            })
+        })
+
+        function stringifyForm(ignoreConfirm) {
+
+            if (!ignoreConfirm) {
+                var result = confirm('채점을 하시면 코인이 차감되며 변경할 수 없습니다. 채점하시겠습니까?');
+                if(!result){
+                    return false;
+                }
+
             }
             var rowSize = $('#score-table tr').length;
             var ret = [];

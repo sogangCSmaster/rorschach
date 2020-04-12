@@ -133,6 +133,7 @@ html
                                 form.form.inline(action="/finishtest1" method="POST" onsubmit='return stringifyForm()')
                                     input(type="hidden" name="stringifyText")
                                     input(type="hidden" name="testID" value=session.insertId)
+                                    input(type='hidden', name='scoring', value='true')
                                     button.btn.btn-primary(type="submit") 채 점
 
 
@@ -1093,9 +1094,10 @@ html
                 url: '#{tempsaveUrl}',
                 data: {
                     stringifyText: $('input[name=stringifyText]').val(),
+                    scoring: 'false',
                 }
             }).done(function(res) {
-                console.log(res);
+                alert('임시저장 되었습니다.');
             })
         })
         function stringifyForm(ignoreConfirm) {

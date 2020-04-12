@@ -231,7 +231,7 @@ html
                                             td= score.dq
                                             td.text-justify!= score.det
                                             td= score.fq
-                                            td= score['(2)']
+                                            td= score.select2
                                             td.text-justify= score.react
                                             td= score.p
                                             td= score.z
@@ -1714,6 +1714,7 @@ html
                                                 i.fa.fa-square-o(style="margin-right: 6px; font-size: 11pt;")
                                             | 임의 순서
                                     tr
+                                        - Order.order = Order.order.map((order) =>{ return order == '통제력' ? '통제력(내적변인-상황변인)' : order })
                                         td(colspan='2', style="font-weight: bold;") 군집별 해석 순서 : #{Order.order.join(' > ')}
 
 
@@ -1735,7 +1736,7 @@ html
                                             tr
                                                 td
                                                     .row
-                                                        .col-md-6
+                                                        .col-md-5
                                                             p
                                                                 span Step 1: 
                                                                 if lower.special_indices.CDIPositive == true
@@ -1761,7 +1762,7 @@ html
                                                                 span Step 6: Human Contents = [ #{lower.interpersonal.HumanCont} ] & Pure H = [ #{lower.interpersonal.PureH} ]
                                                                 br
                                                                 span Step 7: GHR : PHR = [ #{lower.interpersonal.GHR} : #{lower.interpersonal.PHR} ]
-                                                        .col-md-6
+                                                        .col-md-7
                                                             p
                                                                 span Step 8: COP frequencies = [ #{upper.special_scores.COP} ]
                                                                 br
@@ -1770,6 +1771,10 @@ html
                                                                 span Step 9: PER = [ #{upper.special_scores.PER} ]
                                                                 br
                                                                 span Step 10: Isolation Index = [ #{lower.interpersonal.ISOIndex} ]
+                                                                br
+                                                                span Step 11: Contents of M responses with pairs(2) = [ #{Mwith2} ] (질적 분석)
+                                                                br
+                                                                span(style='margin-left: 48px;') Contents of FM responses with pairs(2) = [ #{FMwith2} ] (질적 분석)
                                             tr
                                                 td
                                                     ul
@@ -1803,7 +1808,7 @@ html
                                             br
                                             | Step 8: COP frequencies = [ #{upper.special_scores.COP} ] & AG frequencies = [ #{upper.special_scores.AG} ] & coding
                                             br
-                                            | Step 11: Contents of M responses with pairs(2) = [ #{lower.information_processing.M} ] & Contents of FM responses with pairs(2) = [ #{upper.determinants.FM} ]
+                                            | Step 11: Contents of M responses with pairs(2) = [ #{Mwith2} ] & Contents of FM responses with pairs(2) = [ #{FMwith2} ]
                                 //-
                                     table.table.table-bordered(style='font-size: 9pt;')
                                         thead
@@ -1874,7 +1879,10 @@ html
                                                                         |  [Low]
                                                                     |  )
                                                                 br
-                                                                span Step 3: EBPer = [ #{parseFloat(lower.core.EBPer).toFixed(1)} ]
+                                                                if lower.core.EBPer == 'N/A'
+                                                                    span Step 3: EBPer = [ N/A ]
+                                                                else
+                                                                    span Step 3: EBPer = [ #{parseFloat(lower.core.EBPer).toFixed(1)} ]
                                                                 br
                                                                 span Step 4: Right Side eb = [ #{lower.core.ebRight} ] & variables related to it
                                                                 br
@@ -1921,9 +1929,19 @@ html
                                                                         i.fa.fa-square-o
                                                                     |  Avoidant)
                                                                 br
-                                                                //- span Step 13: Blends related to situational stress
-                                                                //- br
-                                                                //- span Step 14: 
+                                                                span Step 13: Blends related to situational stress
+                                                                br
+                                                                span(style='margin-left: 28px;') m blends = [ #{mBlends} ] & Y blends = [ #{YBlends} ], Re-Blends% = [ #{reBlendsPercent}% ]
+                                                                br
+                                                                span Step 14: Blend complexity (unusual complexity)
+                                                                br
+                                                                span(style='margin-left: 48px;') 3 determinants = [ #{_3Blends} ], 4 determinants = [ #{_4Blends} ]
+                                                                br
+                                                                span Step 15: Color-shading blends
+                                                                br
+                                                                span(style='margin-left: 48px;') Color + C', V, T = [ #{OtherColorShading} ], Color + Y = [ #{YColorShading} ]
+                                                                br
+                                                                span Step 16: Shading blends = [ #{shadingBlends} ]
                                             tr   
                                                 td
                                                     ul
@@ -2575,13 +2593,13 @@ html
                                                                 br
                                                                 span Step 5: D Score = [ #{lower.core.D - lower.core.AdjD} ] (re Pure C, M-, no Form)
                                                                 br
-                                                                span Step 6: Blends created by m or Y = [ ]
+                                                                span Step 6: Blends created by m or Y = [ #{blendsCreatedBymOrY} ] ( #{parseInt(blendsCreatedBymOrY * 100 / lower.core.R)}% )
                                                                 br
                                                                 span Step 7: Color-Shading Blends
                                                                 br
-                                                                span(style='margin-left: 42px;') Y-Color-Shading Blends = [ #{lower.affection.Blends} ],
+                                                                span(style='margin-left: 42px;') Y-Color-Shading Blends = [ #{YColorShading} ],
                                                                 br
-                                                                span(style='margin-left: 42px;') Other Color-Shading Blends = [ #{OnlyShading} ]
+                                                                span(style='margin-left: 42px;') Other Color-Shading Blends = [ #{OtherColorShading} ]
                                             tr
                                                 td
                                                     ul

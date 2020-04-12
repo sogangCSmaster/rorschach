@@ -84,6 +84,7 @@ router.route("/finishtest1")
 
         //testconfig => 이름, 검사주체 등 기본정보
         //score => 테스트
+        //
 
         var upper = {};
         upper.location_features = {};
@@ -383,11 +384,11 @@ router.route("/finishtest1")
         var result = await query.executeSQL(sql1, [testID]);
         if (result.length) {
             // 이미 있으면 update
-            var sql = "UPDATE score SET score=? WHERE id=?";
+            var sql = "UPDATE score SET score=?, scoring=1 WHERE id=?";
             await query.executeSQL(sql, [score, testID]);
         } else {
             // 없으면 insert 
-            var sql = "INSERT IGNORE INTO score (id, score) VALUES (?, ?)";
+            var sql = "INSERT IGNORE INTO score (id, score, scoring) VALUES (?, ?, 1)";
             await query.executeSQL(sql, [testID, score]);
         }
 
@@ -437,6 +438,28 @@ router.route("/finishtest1")
     
             //testconfig => 이름, 검사주체 등 기본정보
             //score => 테스트
+            var YColorShading = ColorShading.getYColorShadingBlends(score);
+            var OtherColorShading = ColorShading.getOtherColorShadingBlends(score);
+            var blendsCreatedBymOrY = ColorShading.getBlendsCreatedBymOrY(score);
+            var mBlends = ColorShading.getmBlends(score);
+            var YBlends = ColorShading.getYBlends(score);
+            var _3Blends = ColorShading.get3Blends(score);
+            var _4Blends = ColorShading.get4Blends(score);
+            var shadingBlends = ColorShading.getShadingBlends(score);
+            var reBlendsPercent = ColorShading.getReBlendsPercent(score);
+            var Mwith2 = 0;
+            var FMwith2 = 0;
+
+            //
+            score.forEach((score) => {
+                if (score && score.det && (score.det.active1 || score.det.passive1 || score.det['a-p1']) && score.select2) {
+                    Mwith2 += 1;
+                }
+                if (score && score.det && (score.det.active2 || score.det.passive2 || score.det['a-p2']) && score.select2) {
+                    FMwith2 += 1;
+                }
+            })
+            //
             var indicators = {};
             var upper = {};
             upper.location_features = {};
@@ -955,13 +978,22 @@ router.route("/finishtest1")
             }
             const OnlyShading = ColorShading.getOnlyShading(score);
 
-            res.render('testresult/index2', { testconfig, age, moment, upper, lower, SpecialIndices, step0, getExnerTable1, experienceClassification, Order, TESTRESULT, scores: score, OnlyShading });
+            res.render('testresult/index2', { testconfig, age, moment, upper, lower, SpecialIndices, step0, getExnerTable1, experienceClassification, Order, TESTRESULT, scores: score, OnlyShading, YColorShading, OtherColorShading, blendsCreatedBymOrY, reBlendsPercent, mBlends, YBlends, _3Blends, _4Blends, shadingBlends, Mwith2, FMwith2 });
         })
         .post(async(req, res, next) => {
             var { stringifyText, testID } = req.body;
             var score = stringifyText;
-            var sql = "INSERT IGNORE INTO score (id, score) VALUES (?, ?)";
-            query.executeSQL(sql, [testID, score]);
+            var sql1 = "SELECT id FROM score WHERE id=?";
+            var result = await query.executeSQL(sql1, [testID]);
+            if (result.length) {
+                // 이미 있으면 update
+                var sql = "UPDATE score SET score=?, scoring=1 WHERE id=?";
+                await query.executeSQL(sql, [score, testID]);
+            } else {
+                // 없으면 insert 
+                var sql = "INSERT IGNORE INTO score (id, score, scoring) VALUES (?, ?, 1)";
+                await query.executeSQL(sql, [testID, score]);
+            }
 
             // 코인 사용
             var api = config.api;
