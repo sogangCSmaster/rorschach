@@ -52,7 +52,7 @@ router.route("/finishtest1")
         }
 
         var { id } = req.query;
-        var sql = "SELECT id, score FROM score WHERE id=?";
+        var sql = "SELECT id, score, scoring FROM score WHERE id=?";
         var data = await query.executeSQL(sql, [id]);
         sql = "SELECT * FROM test WHERE id=?";
         var testconfig = await query.executeSQL(sql, [id]);
@@ -71,6 +71,9 @@ router.route("/finishtest1")
             return res.redirect("/scoring1");
         }
         data = data[0];
+        if (!data.scoring) {
+            return res.redirect('/scoring1/' + data.id);
+        }
         var score = data.score;
         score = JSON.parse(score);
         score = score.slice(1);
@@ -408,7 +411,7 @@ router.route("/finishtest1")
                 return res.redirect('/login');
             }
             var { id } = req.query;
-            var sql = "SELECT id, score FROM score WHERE id=?";
+            var sql = "SELECT id, score, scoring FROM score WHERE id=?";
             var data = await query.executeSQL(sql, [id]);
             sql = "SELECT * FROM test WHERE id=?";
             var testconfig = await query.executeSQL(sql, [id]);
@@ -425,6 +428,9 @@ router.route("/finishtest1")
             }
 
             data = data[0];
+            if (!data.scoring) {
+                return res.redirect('/scoring2/' + data.id);
+            }
             var score = data.score;
             score = JSON.parse(score);
             score = score.slice(1);

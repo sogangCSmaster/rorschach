@@ -14,10 +14,14 @@ router.route("/scoring1")
             return res.redirect("/");
         }
 
-        var sql = "SELECT id FROM score WHERE id =?";
+        var sql = "SELECT id, scoring FROM score WHERE id =?";
         var score = await query.executeSQL(sql, [insertId]);
         if (score.length) {
-            return res.redirect(`/scoring1/${insertId}`);
+            if (score[0].scoring) {
+                return res.redirect(`/finishtest1?id=${insertId}`);
+            } else {
+                return res.redirect(`/scoring1/${insertId}`);
+            }
         }
         var sql = "select score.id as id, test.name as name, test.sex as sex, test.testdate as testdate from score left join test on score.id=test.id";
         var datas = await query.executeSQL(sql);
@@ -53,6 +57,10 @@ router.route('/scoring1/:id(\\d+)')
         var sql2 = "SELECT id, score FROM score WHERE id = ?"
         var scores = await query.executeSQL(sql2, [insertId]);
         var score = scores[0] || { score: '[]' } ;
+        console.log(score);
+        if (score.scoring) {
+            return res.redirect(`/finishtest1?id=${score.id}`);
+        }
         score = score.score;
         console.log(score);
         var tempsaveUrl = `/scoring1/${insertId}`;
