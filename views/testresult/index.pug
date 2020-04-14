@@ -1,4 +1,8 @@
 doctype html
+mixin parseSign(value)
+    if value > 0
+        | +
+    = value
 html
     head
         meta(charset="utf-8")
@@ -287,24 +291,41 @@ html
                                         td(style="font-size: 7pt;")
                                             .text-center 조직화 활동
                                             div(style="margin-left: 10px;")
-                                                | Zf = #{upper.location_features.Zf}
+                                                span(style='display: inline-block; width: 30px;') Zf
+                                                | = #{upper.location_features.Zf}
                                                 br
-                                                | ZSum = #{(upper.location_features.ZSum).toFixed(1)}
+                                                span(style='display: inline-block; width: 30px;') ZSum
+                                                | = #{(upper.location_features.ZSum).toFixed(1)}
                                                 br
-                                                = upper.location_features.ZEst? 'ZEst = '+ (upper.location_features.ZEst) : 'Zest = ' + upper.location_features.ZEst
+                                                if upper.location_features.ZEst
+                                                    span(style='display: inline-block; width: 30px;') ZEst
+                                                    | = 
+                                                    +parseSign(upper.location_features.ZEst)
                                     tr
                                         td(style="font-size: 7pt;")
                                             .text-center 반응 위치
                                             div(style="margin-left: 10px;")
-                                                | W = #{upper.location_features.W}
-                                                span.pull-right ( Wv=#{upper.location_features.Wv} )
+                                                span(style='display: inline-block; width: 30px;') W
+                                                | = #{upper.location_features.W}
+                                                span(style='display: inline-block; width: 70px; float: right; text-align: right;')
+                                                    span(style='display: inline-block; width: 40px; float: left; text-align: left; padding-left: 5px;') ( Wv 
+                                                    span(style='float: left; text-align: left')
+                                                        | = #{upper.location_features.Wv}
+                                                    | )
                                                 br
-                                                | D = #{upper.location_features.D}
-                                                span.pull-right ( W+D=#{upper.location_features.WPlusD} )
+                                                span(style='display: inline-block; width: 30px;') D
+                                                | = #{upper.location_features.D}
+                                                span(style='display: inline-block; width: 70px; float: right; text-align: right;')
+                                                    span(style='display: inline-block; width: 40px; float: left; text-align: left; padding-left: 5px;') ( W+D
+                                                    span(style='float: left; text-align: left')
+                                                        | = #{upper.location_features.WPlusD}
+                                                    | )
                                                 br
-                                                | Dd = #{upper.location_features.Dd}
+                                                span(style='display: inline-block; width: 30px;') Dd
+                                                | = #{upper.location_features.Dd}
                                                 br
-                                                | S = #{upper.location_features.S}
+                                                span(style='display: inline-block; width: 30px;') S
+                                                | = #{upper.location_features.S}
                             
                             table.table.table-bordered
                                 thead
@@ -316,29 +337,37 @@ html
                                     tr
                                         td(style="font-size: 7pt;")
                                             div(style="margin-left: 10px;")
-                                                | + = #{upper.dq.plus} 
+                                                span(style='display: inline-block; width: 30px;') +
+                                                | = #{upper.dq.plus}
+                                                span(style='display: inline-block; width: 70px; float: right; text-align: right;')
+                                                    span(style='display: inline-block; width: 40px; float: left; text-align: left; padding-left: 5px;') ( FQx-
+                                                    span(style='float: left; text-align: left')
+                                                        | = #{upper.dq.plusFQxminus}
+                                                    | )
                                                 br
-                                                | o = #{upper.dq.o}
+                                                span(style='display: inline-block; width: 30px;') o
+                                                | = #{upper.dq.o}
+                                                span(style='display: inline-block; width: 70px; float: right; text-align: right;')
+                                                    span(style='display: inline-block; width: 40px; float: left; text-align: left; padding-left: 5px;') ( FQx-
+                                                    span(style='float: left; text-align: left')
+                                                        | = #{upper.dq.oFQxminus}
+                                                    | )
                                                 br
-                                                | v/o = #{upper.dq.VSlashPlus}
+                                                span(style='display: inline-block; width: 30px;') v/+
+                                                | = #{upper.dq.VSlashPlus}
+                                                span(style='display: inline-block; width: 70px; float: right; text-align: right;')
+                                                    span(style='display: inline-block; width: 40px; float: left; text-align: left; padding-left: 5px;') ( FQx-
+                                                    span(style='float: left; text-align: left')
+                                                        | = #{upper.dq.vSlashPlusFQxminus}
+                                                    | )
                                                 br
-                                                | v = #{upper.dq.v}
-                                                br
-                                                br
-                                                br
-                                                br
-                                                br
-                                                br
-                                                br
-                                        td(style='font-size: 7pt;')
-                                            div(style='margin-left: 10px;')
-                                                | (FQx- = #{upper.dq.plusFQxminus})
-                                                br
-                                                | (FQx- = #{upper.dq.oFQxminus})
-                                                br
-                                                | (FQx- = #{upper.dq.vSlashPlusFQxminus})
-                                                br
-                                                | (FQx- = #{upper.dq.vFQxminus})
+                                                span(style='display: inline-block; width: 30px;') v
+                                                | = #{upper.dq.v}
+                                                span(style='display: inline-block; width: 70px; float: right; text-align: right;')
+                                                    span(style='display: inline-block; width: 40px; float: left; text-align: left; padding-left: 5px;') ( FQx-
+                                                    span(style='float: left; text-align: left')
+                                                        | = #{upper.dq.vFQxminus}
+                                                    | )
                                                 br
                                                 br
                                                 br
@@ -358,92 +387,102 @@ html
                                 table.table.table-bordered(style='border-right: 0; margin: 0;border-bottom: 0;')
                                     tbody
                                         tr
-                                            td(style="font-size: 7pt; border-right: 0; border-bottom: 0;" colspan="1.5")
+                                            td(style="font-size: 7pt; border-right: 0; border-bottom: 0; height: 350px;" colspan="1.5")
                                                 .text-center 복합
                                                     br
                                                     | (Blends)
                                                 div
                                                     each blends in upper.blends
-                                                        p
+                                                        div
                                                             each blend, index in blends
                                                                 span !{blend}
                                                                 if index != blends.length - 1
                                                                     |.
                                                                 span &nbsp;
-                                                br
-                                                br
-                                                br
-                                                br
-                                                br
-                                                br
-                                                br
-                                                br
-                                                br
-                                                br
-                                                br
-                                                br
-                                                br
-                                                br
                             .col-md-4(style='margin: 0; padding: 0')
                                 table.table.table-bordered(style='margin-bottom: 0;')
                                     tbody
                                         tr
-                                            td(style="font-size: 7pt;" colspan="1.5")
+                                            td(style="font-size: 7pt; margin-right: 0;" colspan="1.5")
                                                 .text-center 전체
                                                     br
                                                     | (Total)
                                                 div
-                                                    | F = #{upper.determinants.F}
+                                                    span(style='display: inline-block; width: 15px;') F
+                                                    | = #{upper.determinants.F}
                                                     br
-                                                    | M = #{upper.determinants.M}
+                                                    span(style='display: inline-block; width: 15px;') M
+                                                    | = #{upper.determinants.M}
                                                     br
-                                                    | FM = #{upper.determinants.FM}
+                                                    span(style='display: inline-block; width: 15px;') FM
+                                                    | = #{upper.determinants.FM}
                                                     br
-                                                    | m = #{upper.determinants.m}
-                                                    br
-                                                    br
-                                                    | FC = #{upper.determinants.FC}
-                                                    br
-                                                    | CF = #{upper.determinants.CF}
-                                                    br
-                                                    | C = #{upper.determinants.C}
-                                                    br
-                                                    | Cn = #{upper.determinants.Cn}
+                                                    span(style='display: inline-block; width: 15px;') m
+                                                    | = #{upper.determinants.m}
                                                     br
                                                     br
-                                                    | FC' = #{upper.determinants.FCprime}
+                                                    span(style='display: inline-block; width: 15px;') FC
+                                                    | = #{upper.determinants.FC}
                                                     br
-                                                    | C'F = #{upper.determinants.CprimeF}
+                                                    span(style='display: inline-block; width: 15px;') CF
+                                                    | = #{upper.determinants.CF}
                                                     br
-                                                    | C' = #{upper.determinants.Cprime}
+                                                    span(style='display: inline-block; width: 15px;') C
+                                                    | = #{upper.determinants.C}
                                                     br
-                                                    br
-                                                    | FY = #{upper.determinants.FY}
-                                                    br
-                                                    | YF = #{upper.determinants.YF}
-                                                    br
-                                                    | Y = #{upper.determinants.Y}
-                                                    br
-                                                    | FT = #{upper.determinants.FT}
-                                                    br
-                                                    | TF = #{upper.determinants.TF}
-                                                    br
-                                                    | T = #{upper.determinants.T}
-                                                    br
-                                                    | FV = #{upper.determinants.FV}
-                                                    br
-                                                    | VF = #{upper.determinants.VF}
-                                                    br
-                                                    | V = #{upper.determinants.V}
-                                                    br
-                                                    | FD = #{upper.determinants.FD}
+                                                    span(style='display: inline-block; width: 15px;') Cn
+                                                    | = #{upper.determinants.Cn}
                                                     br
                                                     br
-                                                    | Fr = #{upper.determinants.Fr}
+                                                    span(style='display: inline-block; width: 15px;') FC'
+                                                    | = #{upper.determinants.FCprime}
                                                     br
-                                                    | rF = #{upper.determinants.rF}
+                                                    span(style='display: inline-block; width: 15px;') C'F
+                                                    | = #{upper.determinants.CprimeF}
                                                     br
-                                                    | (2) = #{upper.determinants.two}
+                                                    span(style='display: inline-block; width: 15px;') C'
+                                                    | = #{upper.determinants.Cprime}
+                                                    br
+                                                    br
+                                                    span(style='display: inline-block; width: 15px;') FY
+                                                    | = #{upper.determinants.FY}
+                                                    br
+                                                    span(style='display: inline-block; width: 15px;') YF
+                                                    | = #{upper.determinants.YF}
+                                                    br
+                                                    span(style='display: inline-block; width: 15px;') Y
+                                                    | = #{upper.determinants.Y}
+                                                    br
+                                                    span(style='display: inline-block; width: 15px;') FT
+                                                    | = #{upper.determinants.FT}
+                                                    br
+                                                    span(style='display: inline-block; width: 15px;') TF
+                                                    | = #{upper.determinants.TF}
+                                                    br
+                                                    span(style='display: inline-block; width: 15px;') T
+                                                    | = #{upper.determinants.T}
+                                                    br
+                                                    span(style='display: inline-block; width: 15px;') FV
+                                                    | = #{upper.determinants.FV}
+                                                    br
+                                                    span(style='display: inline-block; width: 15px;') VF
+                                                    | = #{upper.determinants.VF}
+                                                    br
+                                                    span(style='display: inline-block; width: 15px;') V
+                                                    | = #{upper.determinants.V}
+                                                    br
+                                                    span(style='display: inline-block; width: 15px;') FD
+                                                    | = #{upper.determinants.FD}
+                                                    br
+                                                    br
+                                                    span(style='display: inline-block; width: 15px;') Fr
+                                                    | = #{upper.determinants.Fr}
+                                                    br
+                                                    span(style='display: inline-block; width: 15px;') rF
+                                                    | = #{upper.determinants.rF}
+                                                    br
+                                                    span(style='display: inline-block; width: 15px;') (2)
+                                                    | = #{upper.determinants.two}
                                                     br
                                                     br
                                                     br
@@ -464,7 +503,8 @@ html
                                             div(style="margin-left: 0px;")
                                                 - var order = ['H', '(H)', 'Hd', '(Hd)', 'Hx', 'A', '(A)', 'Ad', '(Ad)', 'An', 'Xy', 'Bl', 'Sx', 'Sc', 'Art', 'Ay', 'Hh', 'Fd', 'Cg', 'Na', 'Bt', 'Ls', 'Ge', 'Cl', 'Fi', 'Ex', 'Id', 'P']
                                                 each key in order
-                                                    | &nbsp #{key} = #{upper.contents[key]}
+                                                    span(style='display: inline-block; width: 23px;') #{key}
+                                                    | = #{upper.contents[key]}
                                                     br
                                                     if key == 'Hx' || key=='(Ad)' || key == 'Sx' || key == 'Cg' || key == 'Ex'
                                                         br
@@ -531,27 +571,39 @@ html
                                         td.text-center(style="padding: 2px;" colspan="9") LV1
                                         td.text-center(style="padding: 2px;" colspan="9") LV2
                                     tr
-                                        td.text-center(style="padding: 2px;" colspan="6") DV
+                                        td.text-center(style="padding: 2px;" colspan="6")
+                                            span(style='display: inline-block; width: 50px;') DV
+                                            | =
                                         td.text-center(style="padding: 2px;" colspan="9") #{upper.special_scores.DV1} × 1 (#{upper.special_scores.DV1*1})
                                         td.text-center(style="padding: 2px;" colspan="9") #{upper.special_scores.DV2} × 2 (#{upper.special_scores.DV2*2})
                                     tr
-                                        td.text-center(style="padding: 2px;" colspan="6") INCOM
+                                        td.text-center(style="padding: 2px;" colspan="6")
+                                            span(style='display: inline-block; width: 50px;') INCOM
+                                            | =
                                         td.text-center(style="padding: 2px;" colspan="9") #{upper.special_scores.INCOM1} × 2 (#{upper.special_scores.INCOM1*2})
                                         td.text-center(style="padding: 2px;" colspan="9") #{upper.special_scores.INCOM2} × 4 (#{upper.special_scores.INCOM2*4})
                                     tr
-                                        td.text-center(style="padding: 2px;" colspan="6") DR
+                                        td.text-center(style="padding: 2px;" colspan="6")
+                                            span(style='display: inline-block; width: 50px;') DR
+                                            | =
                                         td.text-center(style="padding: 2px;" colspan="9") #{upper.special_scores.DR1} × 3 (#{upper.special_scores.DR1*3})
                                         td.text-center(style="padding: 2px;" colspan="9") #{upper.special_scores.DR2} × 6 (#{upper.special_scores.DR2*6})
                                     tr
-                                        td.text-center(style="padding: 2px;" colspan="6") FABCOM
+                                        td.text-center(style="padding: 2px;" colspan="6")
+                                            span(style='display: inline-block; width: 50px;') FABCOM
+                                            | =
                                         td.text-center(style="padding: 2px;" colspan="9") #{upper.special_scores.FABCOM1} × 4 (#{upper.special_scores.FABCOM1*4})
                                         td.text-center(style="padding: 2px;" colspan="9") #{upper.special_scores.FABCOM2} × 7 (#{upper.special_scores.FABCOM2*7})
                                     tr
-                                        td.text-center(style="padding: 2px;" colspan="6") ALOG
+                                        td.text-center(style="padding: 2px;" colspan="6")
+                                            span(style='display: inline-block; width: 50px;') ALOG
+                                            | =
                                         td.text-center(style="padding: 2px;" colspan="9") #{upper.special_scores.ALOG} × 5 (#{upper.special_scores.ALOG*5})
                                         td.text-center(style="padding: 2px;" colspan="9")
                                     tr
-                                        td.text-center(style="padding: 2px;" colspan="6") CONTAM
+                                        td.text-center(style="padding: 2px;" colspan="6")
+                                            span(style='display: inline-block; width: 50px;') CONTAM
+                                            | =
                                         td.text-center(style="padding: 2px;" colspan="9") #{upper.special_scores.CONTAM} × 7 (#{upper.special_scores.CONTAM*7})
                                         td.text-center(style="padding: 2px;" colspan="9")
                                 thead(style="font-size: 7pt")
@@ -559,28 +611,37 @@ html
                                         th.td-small.text-center(style="padding-top: 5px !important;" colspan="24") Sum6 = #{upper.special_scores.Sum6} &nbsp;&nbsp; WSum6 = #{upper.special_scores.WSum6}
                                 tbody(style="font-size: 7pt")
                                     tr
-                                        td.text-center(style="padding: 2px;" colspan="4") AG
-                                        td.text-center(style="padding: 2px;" colspan="8") #{upper.special_scores.AG}
-                                        td.text-center(style="padding: 2px;" colspan="4") AB
-                                        td.text-center(style="padding: 2px;" colspan="8") #{upper.special_scores.AB}
+                                        td.text-center(style="padding: 2px;" colspan="12")
+                                            span(style='display: inline-block; width: 25px;') AG
+                                            | = #{upper.special_scores.AG}
+                                        td.text-center(style="padding: 2px;" colspan="12") 
+                                            span(style='display: inline-block; width: 25px;') AB
+                                            | = #{upper.special_scores.AB}
                                     tr
-                                        td.text-center(style="padding: 2px;" colspan="4") COP
-                                        td.text-center(style="padding: 2px;" colspan="8") #{upper.special_scores.COP}
-                                        td.text-center(style="padding: 2px;" colspan="4") CP
-                                        td.text-center(style="padding: 2px;" colspan="8") #{upper.special_scores.CP}
+                                        td.text-center(style="padding: 2px;" colspan="12") 
+                                            span(style='display: inline-block; width: 25px;') COP
+                                            | = #{upper.special_scores.COP}
+                                        td.text-center(style="padding: 2px;" colspan="12") 
+                                            span(style='display: inline-block; width: 25px;') CP
+                                            | = #{upper.special_scores.CP}
                                     tr
-                                        td.text-center(style="padding: 2px;" colspan="4") GHR
-                                        td.text-center(style="padding: 2px;" colspan="8") #{upper.special_scores.GHR}
-                                        td.text-center(style="padding: 2px;" colspan="4") MOR
-                                        td.text-center(style="padding: 2px;" colspan="8") #{upper.special_scores.MOR}
+                                        td.text-center(style="padding: 2px;" colspan="12") 
+                                            span(style='display: inline-block; width: 25px;') GHR
+                                            | = #{upper.special_scores.GHR}
+                                        td.text-center(style="padding: 2px;" colspan="12") 
+                                            span(style='display: inline-block; width: 25px;') MOR
+                                            | = #{upper.special_scores.MOR}
                                     tr
-                                        td.text-center(style="padding: 2px;" colspan="4") PHR
-                                        td.text-center(style="padding: 2px;" colspan="8") #{upper.special_scores.PHR}
-                                        td.text-center(style="padding: 2px;" colspan="4") PSV
-                                        td.text-center(style="padding: 2px;" colspan="8") #{upper.special_scores.PSV}
+                                        td.text-center(style="padding: 2px;" colspan="12") 
+                                            span(style='display: inline-block; width: 25px;') PHR
+                                            | = #{upper.special_scores.PHR}
+                                        td.text-center(style="padding: 2px;" colspan="12") 
+                                            span(style='display: inline-block; width: 25px;') PSV
+                                            | = #{upper.special_scores.PSV}
                                     tr
-                                        td.text-center(style="padding: 2px;" colspan="4") PER
-                                        td.text-center(style="padding: 2px;" colspan="8") #{upper.special_scores.PER}
+                                        td.text-center(style="padding: 2px;" colspan="12") 
+                                            span(style='display: inline-block; width: 25px;') PER
+                                            | = #{upper.special_scores.PER}
                                         td.text-center(style="padding: 2px;" colspan="12") 
                                             
                     .row
@@ -598,27 +659,37 @@ html
                                         td.text-center(style="padding: 2px;") MQuality
                                         td.text-center(style="padding: 2px;") W+D
                                     tr
-                                        td.text-center(style="padding: 2px;") +
+                                        td.text-center(style="padding: 2px;")
+                                            span(style='display: inline-block; width: 30px;') +
+                                            | =
                                         td.text-center(style="padding: 2px;") #{upper.form_quality.FQx['+']}
                                         td.text-center(style="padding: 2px;") #{upper.form_quality.MQuality['+']}
                                         td.text-center(style="padding: 2px;") #{upper.form_quality.WPlusD['+']}
                                     tr
-                                        td.text-center(style="padding: 2px;") o
+                                        td.text-center(style="padding: 2px;")
+                                            span(style='display: inline-block; width: 30px;') o
+                                            | =
                                         td.text-center(style="padding: 2px;") #{upper.form_quality.FQx['o']}
                                         td.text-center(style="padding: 2px;") #{upper.form_quality.MQuality['o']}
                                         td.text-center(style="padding: 2px;") #{upper.form_quality.WPlusD['o']}
                                     tr
-                                        td.text-center(style="padding: 2px;") u
+                                        td.text-center(style="padding: 2px;")
+                                            span(style='display: inline-block; width: 30px;') u
+                                            | =
                                         td.text-center(style="padding: 2px;") #{upper.form_quality.FQx['u']}
                                         td.text-center(style="padding: 2px;") #{upper.form_quality.MQuality['u']}
                                         td.text-center(style="padding: 2px;") #{upper.form_quality.WPlusD['u']}
                                     tr
-                                        td.text-center(style="padding: 2px;") -
+                                        td.text-center(style="padding: 2px;")
+                                            span(style='display: inline-block; width: 30px;') -
+                                            | =
                                         td.text-center(style="padding: 2px;") #{upper.form_quality.FQx['-']}
                                         td.text-center(style="padding: 2px;") #{upper.form_quality.MQuality['-']}
                                         td.text-center(style="padding: 2px;") #{upper.form_quality.WPlusD['-']}
                                     tr
-                                        td.text-center(style="padding: 2px;") none
+                                        td.text-center(style="padding: 2px;")
+                                            span(style='display: inline-block; width: 30px;') none
+                                            | =
                                         td.text-center(style="padding: 2px;") #{upper.form_quality.FQx['none']}
                                         td.text-center(style="padding: 2px;") #{upper.form_quality.MQuality['none']}
                                         td.text-center(style="padding: 2px;") #{upper.form_quality.WPlusD['none']}
@@ -641,7 +712,9 @@ html
                                             | (CORE)
                                 tbody
                                     tr
-                                        td(colspan="8" ) R = #{lower.core.R}
+                                        td(colspan="8" )
+                                            span(style='display: inline-block; width: 15px;') R
+                                            | = #{lower.core.R}
                                         td(colspan="8") 
                                             | Lambda(L) = #{lower.core.Lambda}
                                         td(colspan='4')
@@ -659,31 +732,51 @@ html
                                                 i.fa.fa-square-o(style="margin-right: 6px; font-size: 11pt;")
                                                 | Low
                                     tr
-                                        td(colspan="8") EB=#{lower.core.EBLeft}:#{(lower.core.EBRight).toFixed(1)}
+                                        td(colspan="8")
+                                            span(style='display: inline-block; width: 15px;') EB
+                                            | = #{lower.core.EBLeft}:#{(lower.core.EBRight).toFixed(1)}
                                             br
-                                            | eb=#{lower.core.ebLeft}:#{lower.core.ebRight}
-                                        td(colspan="8") EA = #{lower.core.EA}
+                                            span(style='display: inline-block; width: 15px;') eb
+                                            | = #{lower.core.ebLeft}:#{lower.core.ebRight}
+                                        td(colspan="8") 
+                                            span(style='display: inline-block; width: 35px;') EA
+                                            | = #{lower.core.EA}
                                             br
-                                            | es = #{lower.core.es}
+                                            span(style='display: inline-block; width: 35px;') es
+                                            | = #{lower.core.es}
                                             br
-                                            | Adj es = #{lower.core.Adjes}
-                                        td(colspan="8") EBPer = #{lower.core.EBPer}
+                                            span(style='display: inline-block; width: 35px;') Adj es
+                                            | = #{lower.core.Adjes}
+                                        td(colspan="8") 
+                                            span(style='display: inline-block; width: 35px;') EBPer
+                                            | = #{lower.core.EBPer}
                                             br
-                                            | D = #{lower.core.D}
+                                            span(style='display: inline-block; width: 35px;') D
+                                            | = #{lower.core.D}
                                             br
-                                            | Adj D = #{lower.core.AdjD}
+                                            span(style='display: inline-block; width: 35px;') Adj D
+                                            | = #{lower.core.AdjD}
                                     tr
-                                        td(colspan="8") FM = #{lower.core.FM}
+                                        td(colspan="8") 
+                                            span(style='display: inline-block; width: 15px;') FM
+                                            | = #{lower.core.FM}
                                             br
-                                            | m = #{lower.core.m}
-                                        td(colspan="8") Sum C' = #{lower.core.SumCprime}
+                                            span(style='display: inline-block; width: 15px;') m
+                                            | = #{lower.core.m}
+                                        td(colspan="8")
+                                            span(style='display: inline-block; width: 35px;') Sum C'
+                                            | = #{lower.core.SumCprime}
                                             br
-                                            | Sum V = #{lower.core.SumV}
-                                        td(colspan="8") Sum T = #{lower.core.SumT}
+                                            span(style='display: inline-block; width: 35px;') Sum V
+                                            | = #{lower.core.SumV}
+                                        td(colspan="8")
+                                            span(style='display: inline-block; width: 35px;') Sum T
+                                            | = #{lower.core.SumT}
                                             br
-                                            | Sum Y = #{lower.core.SumY}
+                                            span(style='display: inline-block; width: 35px;') Sum Y
+                                            | = #{lower.core.SumY}
                         
-                        .col-md-3(style="padding-right: 2px; padding-left: 2px;")
+                        .col-md-3(style="padding-right: 2px; padding-left: 2px; width: 29.16%")
                             table.table.table-bordered.h-100(style="font-size: 7pt; height: 100%;")
                                 thead
                                     tr
@@ -692,34 +785,29 @@ html
                                             | (AFFECT)
                                 tbody
                                     tr
-                                        td(colspan="12").text-center FC : CF+C
+                                        td(colspan="20", style='padding-right: 0; padding-left: 4px')
+                                            span(style='display: inline-block; width: 100px;') FC : CF+C
+                                            | = #{lower.affection.FCCFCLeft} : #{lower.affection.FCCFCRight}
                                             br
-                                            | Pure C
+                                            span(style='display: inline-block; width: 100px;') Pure C
+                                            | = #{lower.affection.PureC}
                                             br
-                                            | SumC' : WSumC
+                                            span(style='display: inline-block; width: 100px;') SumC' : WSumC
+                                            | = #{lower.affection.SumCprime} : #{lower.affection.WSumC.toFixed(1)}
                                             br
-                                            | Affective Ratio (Afr)
+                                            span(style='display: inline-block; width: 100px;') Affective Ratio (Afr)
+                                            | = #{lower.affection.Afr}
                                             br
-                                            | S
+                                            span(style='display: inline-block; width: 100px;') S
+                                            | = #{lower.affection.S}
                                             br
-                                            | Blends : R
+                                            span(style='display: inline-block; width: 100px;') Blends : R
+                                            | = #{lower.affection.Blends} : #{lower.affection.R} (#{(lower.affection.Blends * 100 / lower.affection.R).toFixed(0)}%)
                                             br
-                                            | Color Projection (CP)
-                                        td(colspan="12") #{lower.affection.FCCFCLeft} : #{lower.affection.FCCFCRight}
-                                            br
-                                            | #{lower.affection.PureC}
-                                            br
-                                            | #{lower.affection.SumCprime} : #{lower.affection.WSumC.toFixed(1)}
-                                            br
-                                            | #{lower.affection.Afr}
-                                            br
-                                            | #{lower.affection.S}
-                                            br
-                                            | #{lower.affection.Blends} : #{lower.affection.R} (#{(lower.affection.Blends * 100 / lower.affection.R).toFixed(0)}%)
-                                            br
-                                            | #{lower.affection.CP}
+                                            span(style='display: inline-block; width: 100px;') Color Projection (CP)
+                                            | = #{lower.affection.CP}
 
-                        .col-md-4(style="padding-right: 2px; padding-left: 2px;")
+                        .col-md-4(style="padding-right: 2px; padding-left: 2px; width: 29.16%")
                             table.table.table-bordered.h-100(style="font-size: 7pt; height: 100%;")
                                 thead
                                     tr
@@ -728,39 +816,36 @@ html
                                             | (INTERPERSONAL PERCEPTION)
                                 tbody
                                     tr
-                                        td(colspan="12" style="width: 50%;") COP = #{lower.interpersonal.COP}
-                                        td(colspan="12" style="width: 50%;") AG = #{lower.interpersonal.AG}
-                                    tr
-                                        td(colspan="12") GHR : PHR
+                                        td(colspan="12")
+                                            span(style='display: inline-block; width: 100px;') COP
+                                            | = #{lower.interpersonal.COP}
                                             br
-                                            | active : passive(a:p)
+                                            span(style='display: inline-block; width: 100px;') AG
+                                            | = #{lower.interpersonal.AG}
                                             br
-                                            | Food (Fd)
+                                            span(style='display: inline-block; width: 100px;') GHR : PHR
+                                            | = #{lower.interpersonal.GHR} : #{lower.interpersonal.PHR}
                                             br
-                                            | SumT
+                                            span(style='display: inline-block; width: 100px;') active : passive (a:p)
+                                            | = #{lower.interpersonal.a} : #{lower.interpersonal.p}
                                             br
-                                            | Human Contents
+                                            span(style='display: inline-block; width: 100px;') Food (Fd)
+                                            | = #{lower.interpersonal.Food}
                                             br
-                                            | Pure H
+                                            span(style='display: inline-block; width: 100px;') SumT
+                                            | = #{lower.interpersonal.SumT}
                                             br
-                                            | PER
+                                            span(style='display: inline-block; width: 100px;') Human Contents
+                                            | = #{lower.interpersonal.HumanCont}
                                             br
-                                            | Isolation Index
-                                        td(colspan="12") #{lower.interpersonal.GHR} : #{lower.interpersonal.PHR}
+                                            span(style='display: inline-block; width: 100px;') Pure H
+                                            | = #{lower.interpersonal.PureH}
                                             br
-                                            | #{lower.interpersonal.a} : #{lower.interpersonal.p}
+                                            span(style='display: inline-block; width: 100px;') PER
+                                            | = #{lower.interpersonal.PER}
                                             br
-                                            | #{lower.interpersonal.Food}
-                                            br
-                                            | #{lower.interpersonal.SumT}
-                                            br
-                                            | #{lower.interpersonal.HumanCont}
-                                            br
-                                            | #{lower.interpersonal.PureH}
-                                            br
-                                            | #{lower.interpersonal.PER}
-                                            br
-                                            | #{lower.interpersonal.ISOIndex}
+                                            span(style='display: inline-block; width: 100px;') Isolation Index
+                                            | = #{lower.interpersonal.ISOIndex}
                     .row.display-flex
                         .col-md-3(style="padding-right: 2px; padding-left: 2px;")
                             table.table.table-bordered(style="font-size: 7pt; height: 100%; margin-bottom: 0;")
@@ -771,40 +856,33 @@ html
                                             | (IDEATION)
                                 tbody
                                     tr
-                                        td(colspan="16") active : passive(a:p)
+                                        td(colspan="16")
+                                            span(style='display: inline-block; width: 100px;') active : passive (a:p)
+                                            | = #{lower.ideation.a} : #{lower.ideation.p}
                                             br
-                                            | M<sup>a</sup> : M<sup>p</sup>
+                                            span(style='display: inline-block; width: 100px;') M<sup>a</sup> : M<sup>p</sup>
+                                            | = #{lower.ideation.Ma} : #{lower.ideation.Mp}
                                             br
-                                            | Intellectual Index
+                                            span(style='display: inline-block; width: 100px;') Intellectual Index
+                                            | = #{lower.ideation.twoABplusArtplusAy}
                                             br
-                                            | MOR
+                                            span(style='display: inline-block; width: 100px;') MOR
+                                            | = #{lower.ideation.MOR}
                                             br
-                                            | Sum6
+                                            span(style='display: inline-block; width: 100px;') Sum6
+                                            | = #{lower.ideation.Sum6}
                                             br
-                                            | Lv2 Special Scores
+                                            span(style='display: inline-block; width: 100px;') Lv2 Special Scores
+                                            | = #{lower.ideation.Lv2}
                                             br
-                                            | WSum6
+                                            span(style='display: inline-block; width: 100px;') WSum6
+                                            | = #{lower.ideation.WSum6}
                                             br
-                                            | M-
+                                            span(style='display: inline-block; width: 100px;') M-
+                                            | = #{lower.ideation.Mminus}
                                             br
-                                            | M none
-                                        td(colspan="8") #{lower.ideation.a} : #{lower.ideation.p}
-                                            br
-                                            | #{lower.ideation.Ma} : #{lower.ideation.Mp}
-                                            br
-                                            | #{lower.ideation.twoABplusArtplusAy}
-                                            br
-                                            | #{lower.ideation.MOR}
-                                            br
-                                            | #{lower.ideation.Sum6}
-                                            br
-                                            | #{lower.ideation.Lv2}
-                                            br
-                                            | #{lower.ideation.WSum6}
-                                            br
-                                            | #{lower.ideation.Mminus}
-                                            br
-                                            | #{lower.ideation.Mnone}
+                                            span(style='display: inline-block; width: 100px;') M none
+                                            | = #{lower.ideation.Mnone}
 
 
                         .col-md-3(style="padding-right: 2px; padding-left: 2px;")
@@ -816,33 +894,27 @@ html
                                             | (COGNITIVE MEDIATION)
                                 tbody
                                     tr
-                                        td(colspan="12") XA%
+                                        td(colspan="12") 
+                                            span(style='display: inline-block; width: 70px;') XA%
+                                            | = #{lower.cognitive_mediation.XAper}
                                             br
-                                            | XDA%
+                                            span(style='display: inline-block; width: 70px;') XDA%
+                                            | = #{lower.cognitive_mediation.WDAper}
                                             br
-                                            | X-%
+                                            span(style='display: inline-block; width: 70px;') X-%
+                                            | = #{lower.cognitive_mediation.Xminusper.toFixed(2)}
                                             br
-                                            | S-
+                                            span(style='display: inline-block; width: 70px;') S-
+                                            | = #{lower.cognitive_mediation.Sminus}
                                             br
-                                            | Popular (P)
+                                            span(style='display: inline-block; width: 70px;') Popular (P)
+                                            | = #{lower.cognitive_mediation.P}
                                             br
-                                            | X+%
+                                            span(style='display: inline-block; width: 70px;') X+%
+                                            | = #{lower.cognitive_mediation.Xplusper}
                                             br
-                                            | Xu%
-                                            
-                                        td(colspan="12") #{lower.cognitive_mediation.XAper}
-                                            br
-                                            | #{lower.cognitive_mediation.WDAper}
-                                            br
-                                            | #{lower.cognitive_mediation.Xminusper.toFixed(2)}
-                                            br
-                                            | #{lower.cognitive_mediation.Sminus}
-                                            br
-                                            | #{lower.cognitive_mediation.P}
-                                            br
-                                            | #{lower.cognitive_mediation.Xplusper}
-                                            br
-                                            | #{lower.cognitive_mediation.Xuper}
+                                            span(style='display: inline-block; width: 70px;') Xu%
+                                            | = #{lower.cognitive_mediation.Xuper}
 
 
                         .col-md-3(style="padding-right: 2px; padding-left: 2px;")
@@ -854,38 +926,27 @@ html
                                             | (INFORMATION PROCESSING)
                                 tbody
                                     tr
-                                        td(colspan="12") Zf
+                                        td(colspan="12")
+                                            span(style='display: inline-block; width: 60px;') Zf
+                                            | = #{lower.information_processing.Zf}
                                             br
-                                            | W : D : Dd
+                                            span(style='display: inline-block; width: 60px;') W : D : Dd
+                                            | = #{lower.information_processing.W} : #{lower.information_processing.D} : #{lower.information_processing.Dd}
                                             br
-                                            | W : M
+                                            span(style='display: inline-block; width: 60px;') W : M
+                                            | = #{lower.information_processing.W} : #{lower.information_processing.M}
                                             br
-                                            | Zd
+                                            span(style='display: inline-block; width: 60px;') Zd
+                                            | = #{lower.information_processing.Zd}
                                             br
-                                            | PSV
+                                            span(style='display: inline-block; width: 60px;') PSV
+                                            | = #{lower.information_processing.PSV}
                                             br
-                                            | DQ+
+                                            span(style='display: inline-block; width: 60px;') DQ+
+                                            | = #{lower.information_processing.DQplus}
                                             br
-                                            | DQv
-                                            
-                                        mixin parseSign(value)
-                                            if value > 0
-                                                | +
-                                            = value
-                                                
-                                        td(colspan="12") #{lower.information_processing.Zf}
-                                            br
-                                            | #{lower.information_processing.W} : #{lower.information_processing.D} : #{lower.information_processing.Dd}
-                                            br
-                                            | #{lower.information_processing.W} : #{lower.information_processing.M}
-                                            br
-                                            +parseSign(lower.information_processing.Zd)
-                                            br
-                                            | #{lower.information_processing.PSV}
-                                            br
-                                            | #{lower.information_processing.DQplus}
-                                            br
-                                            | #{lower.information_processing.DQv}
+                                            span(style='display: inline-block; width: 60px;') DQv
+                                            | = #{lower.information_processing.DQv}
 
 
                         .col-md-3(style="padding-right: 2px; padding-left: 2px;")
@@ -897,33 +958,27 @@ html
                                             | (SELF-PERCEPTION)
                                 tbody
                                     tr
-                                        td(colspan="12") Egocentricity Index
+                                        td(colspan="12")
+                                            span(style='display: inline-block; width: 90px;') Egocentricity Index
+                                            | = #{lower.self_perception.EgocentricityIndex}
                                             br
-                                            | Reflections (Fr+rf)
+                                            span(style='display: inline-block; width: 90px;') Reflections (Fr+rf)
+                                            | = #{lower.self_perception.Reflections}
                                             br
-                                            | SumV
+                                            span(style='display: inline-block; width: 90px;') SumV
+                                            | = #{lower.self_perception.SumV}
                                             br
-                                            | FD
+                                            span(style='display: inline-block; width: 90px;') FD
+                                            | = #{lower.self_perception.FD}
                                             br
-                                            | An+Xy
+                                            span(style='display: inline-block; width: 90px;') An+Xy
+                                            | = #{lower.self_perception.AnPlusXy}
                                             br
-                                            | MOR
+                                            span(style='display: inline-block; width: 90px;') MOR
+                                            | = #{lower.self_perception.MOR}
                                             br
-                                            | H : (H)+Hd+(Hd)
-                                            
-                                        td(colspan="12") #{lower.self_perception.EgocentricityIndex}
-                                            br
-                                            | #{lower.self_perception.Reflections}
-                                            br
-                                            | #{lower.self_perception.SumV}
-                                            br
-                                            | #{lower.self_perception.FD}
-                                            br
-                                            | #{lower.self_perception.AnPlusXy}
-                                            br
-                                            | #{lower.self_perception.MOR}
-                                            br
-                                            | #{lower.self_perception.H} : #{lower.self_perception.Hrest}
+                                            span(style='display: inline-block; width: 90px;') H : (H)+Hd+(Hd)
+                                            | = #{lower.self_perception.H} : #{lower.self_perception.Hrest}
 
                     .row
                         .col-md-12(style="padding-right: 2px; padding-left: 2px;")
@@ -972,7 +1027,6 @@ html
                                             else
                                                 i.fa.fa-square-o(style="margin-right: 6px; font-size: 11pt;")
                                                 | OBS = NO
-                                        
 
                                             
             .page
