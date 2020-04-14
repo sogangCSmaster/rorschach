@@ -115,7 +115,7 @@ block content
                     span.label.label-success.pull-right=session.user.coin1
                     h5 RIAS-I (구조요약)
                 .ibox-content
-                    h2.no-margins=session.user.useCount1
+                    h2.no-margins=session.user.useCount1 + "/" + session.user.coin1
                     small 사용현황
                     .progress.progress-mini
                         .progress-bar(style='width:'+(Math.ceil(Number(session.user.useCount1)/Number(session.user.coin1))).toString()+"%;")
@@ -125,7 +125,7 @@ block content
                     span.label.label-info.pull-right=session.user.coin2
                     h5 RIAS-II (자동해석)
                 .ibox-content
-                    h2.no-margins=session.user.useCount2
+                    h2.no-margins=session.user.useCount2 + "/" + session.user.coin2
                     small 사용현황
                     .progress.progress-mini
                         .progress-bar(style='width:'+(Math.ceil(Number(session.user.useCount2)/Number(session.user.coin2))).toString()+"%;")
