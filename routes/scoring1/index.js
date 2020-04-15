@@ -23,11 +23,9 @@ router.route("/scoring1")
                 return res.redirect(`/scoring1/${insertId}`);
             }
         }
-        var sql = "select score.id as id, test.name as name, test.sex as sex, test.testdate as testdate from score left join test on score.id=test.id";
-        var datas = await query.executeSQL(sql);
         var tempsaveUrl = `/scoring1/${insertId}`;
 
-        res.render('scoring1/index', { datas, tempsaveUrl, score: '[]' });
+        res.render('scoring1/index', { tempsaveUrl, score: '[]' });
     })
     .post(async(req, res, next) => {
         var { insertId } = req.session;
@@ -50,9 +48,6 @@ router.route('/scoring1/:id(\\d+)')
         if (!insertId) {
             return res.redirect('/')
         }
-        var sql = "select score.id as id, test.name as name, test.sex as sex, test.testdate as testdate from score left join test on score.id=test.id";
-
-        var datas = await query.executeSQL(sql);
 
         var sql2 = "SELECT id, score FROM score WHERE id = ?"
         var scores = await query.executeSQL(sql2, [insertId]);
@@ -65,7 +60,7 @@ router.route('/scoring1/:id(\\d+)')
         console.log(score);
         var tempsaveUrl = `/scoring1/${insertId}`;
 
-        res.render('scoring1/index', { datas, score, tempsaveUrl });
+        res.render('scoring1/index', { score, tempsaveUrl });
     })
     .post(async(req, res, next) => {
         var { stringifyText: score, testID, scoring } = req.body;

@@ -22,11 +22,9 @@ router.route("/scoring2")
                 return res.redirect(`/scoring2/${insertId}`);
             }
         }
-        var sql = "select score.id, test.name, test.sex, test.testdate from score left join test on score.id=test.id";
-        var datas = await query.executeSQL(sql);
         var tempsaveUrl = `/scoring2/${insertId}`;
 
-        res.render('scoring2/index', { datas, tempsaveUrl, score: '[]' });
+        res.render('scoring2/index', { tempsaveUrl, score: '[]' });
         // res.render('scoring2/index');
     })
     .post(async(req, res, next) => {
@@ -50,9 +48,6 @@ router.route('/scoring2/:id(\\d+)')
         if (!insertId) {
             return res.redirect('/')
         }
-        var sql = "select score.id as id, test.name as name, test.sex as sex, test.testdate as testdate from score left join test on score.id=test.id";
-
-        var datas = await query.executeSQL(sql);
 
         var sql2 = "SELECT id, score, scoring FROM score WHERE id = ?"
         var scores = await query.executeSQL(sql2, [insertId]);
@@ -63,7 +58,7 @@ router.route('/scoring2/:id(\\d+)')
         score = score.score;
         var tempsaveUrl = `/scoring2/${insertId}`;
 
-        res.render('scoring2/index', { datas, score, tempsaveUrl });
+        res.render('scoring2/index', { score, tempsaveUrl });
     })
     .post(async(req, res, next) => {
         var { stringifyText: score, testID, scoring } = req.body;
