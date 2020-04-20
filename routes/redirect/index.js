@@ -13,7 +13,7 @@ router.route("/redirect")
         }
     })
     .post(async(req, res, next) => {
-        var { user, password, test } = req.body;
+        var { user, password } = req.body;
 
         var { user, password } = req.body;
         var api = config.api;
