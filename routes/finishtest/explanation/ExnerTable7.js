@@ -53,7 +53,7 @@ function step2({ Reflections }){
     result.curStep = 2;
 
     if(Reflections>0){
-        result.textData.push(`잠정 결과] 반사(Reflection) 반응을 고려할 때, 수검자의 세계관은 과장된 자존감과 과대한 자기중심성에 의해 지배되는 경향이 있을 것이다.`);
+        result.textData.push(`[잠정 결과] 반사(Reflection) 반응을 고려할 때, 수검자의 세계관은 과장된 자존감과 과대한 자기중심성에 의해 지배되는 경향이 있을 것이다.`);
         result.textData.push(`자기애 특성은 성격의 기본적인 특징으로, 개인의 과대한 자존심은 자주 재확인과 강화를 요구하기 때문에 의사결정과 행동에 높은 영향을 미친다. 이러한 특징을 가진 청소년과 성인은 깊이 있고 의미 있는 대인관계를 만들고 유지하는 데 어려움이 있을 수 있다.`);
         result.textData.push(`어떤 경우에는 자기점검이 유발될 수도 있다. 만약 자기점검이 나타나면, 자기에게 높은 가치가 있다는 것과 아마도 그 근거가 확실하지 않을지도 모른다는 인식 사이에서 몸부림치는 내적 갈등이 발생할 수 있다.`);
         result.textData.push(`만약 수검자의 과대한 자존감에 환경이 확신을 제공하지 않는다면, 수검자는 비사회적 또는 반사회적 태세를 상당히 쉽게 표출할 것이다.`);
@@ -170,13 +170,14 @@ function step6({ MOR, Reflections }) {
     result.textData = [];
     result.curStep = 6;
 
+    console.log('ref', Reflections)
     if (MOR == 2) {
-        result.textData.push(`[잠정 결과1a] 병적인 내용(MOR)을 고려할 때, 수검자의 자기개념에 아마도 자기에 대한 비관적 관점을 촉진하는 어떤 부정적 특징이 포함되어 있을 것이다.`);
+        result.textData.push(`[잠정 결과1a] 병적인 내용(MOR)을 고려할 때, 수검자의 자기개념에 아마도 자기에 대한 비관적 관점을 촉진하는 어떤 부정적 특징이 포함되어 있을 것이다.</br>`);
         if (Reflections >= 1) {
             result.textData.push(`[잠정 결과1b] 반사(Reflection) 반응을 고려할 때, 수검자는 자기가치(self-value)에 관련된 갈등을 겪고 있을 것이다. 또는 높게 평가된 자기개념을 훼손하는 상황적 사건을 최근에 겪었을 것이다.`);
         }
     } else if (MOR >= 3) {
-        result.textData.push(`[잠정 결과2a] 병적인 내용(MOR)을 고려할 때, 수검자의 자기개념에는 부정적인 속성이 두드러질 것이다. 일반적으로, 수검자의 사고에는 예상보다 더 많은 자기에 대한 비관적 관점이 자주 포함될 것이다.`);
+        result.textData.push(`[잠정 결과2a] 병적인 내용(MOR)을 고려할 때, 수검자의 자기개념에는 부정적인 속성이 두드러질 것이다. 일반적으로, 수검자의 사고에는 예상보다 더 많은 자기에 대한 비관적 관점이 자주 포함될 것이다.</br>`);
         if (Reflections >= 1) {
             result.textData.push(`[잠정 결과2b] 반사(Reflection) 반응을 고려할 때, 수검자는 자기개념이나 자기가치에 관련된 현저한 갈등을 겪고 있을 수 있다. 또는 괴롭거나 무력한 인상을 과장되게 표현하려고 시도하는 것일 수 있다.`);
         }
@@ -189,20 +190,36 @@ function step6({ MOR, Reflections }) {
 
 // Interpersonal
 // lower_section self_perception
-function step7({ HumanCont, H, Hrest, R, step7b }) {
+function step7({ HumanCont, H, Hrest, R, step7b, approachStyle, copyingStyle }) {
     var result = {};
     result.textData = [];
     result.curStep = 7;
 
     // 7a
     if (HumanCont >= 3) {
-        if ((H >= Hrest + 2) ||
-            (R >= 17 && R <= 27 && H >= Hrest) ||
-            ((R < 17 || R > 27) && (H >= Hrest || H == Hrest - 1))
+        if (
+            (approachStyle == 'True' && copyingStyle == 'Introversive' && H >= Hrest + 2) ||
+            ((copyingStyle == 'Avoidant' || (approachStyle == 'True' && (copyingStyle == 'Extratensive' || copyingStyle == 'Ambitent'))) && ((R >= 17 && R <= 27 && H >= Hrest) || ((R < 17 || R > 27) && (H >= Hrest || H == Hrest-1))))
         ) {
             result.textData.push(`[7a.잠정 결과1] [정상범주] [Pure H ≥ Other H] 인간내용(Pure H : Other H)과 경험유형(EBstyle)을 고려할 때, 수검자의 자기개념은 상상보다 경험에 더 많이 근거하고 있을 것이다.`);
             result.textData.push(`사회적 상호작용은 아마도 자기개념을 형성하는 데 상당히 이바지했을 것이다.`);
             result.textData.push(`이러한 결과를 보이는 수검자가 반드시 정확하거나 현실적인 자기개념 또는 자기가치(self-value)를 보이는 것은 아니다.`);
+        }
+        if (copyingStyle == 'Introversive' && approachStyle == 'True' && Hrest >= H+3) {
+            ok = true;
+        }
+        if (copyingStyle == 'Avoidant' || (approachStyle =='True' && (copyingStyle == 'Extratensive' || copyingStyle == 'Ambitent'))) {
+            var ok = false;
+            if (R >= 17 && R <= 27 && H < Hrest) {
+                ok = true;
+            } else if ((R < 17 || R > 27 ) && (Hrest > H)) {
+                ok = true;
+            }
+        }
+        if (ok) {
+            result.textData.push(`[7a.잠정 결과2] <span style='color: blue'>[Pure H < Other H]</span> 인간내용(Pure H : Other H)과 경험유형(EBstyle)을 고려할 때, 수검자의 자기개념 또는 자기가치(self-value)는 대부분 상상적 인상이나 현실 경험의 왜곡에 근거하는 경향을 보일 것이다.`);
+            result.textData.push(`이러한 결과를 보이는 수검자는 대개 성숙하지 않고, 빈번하게 자신에 대한 인식이 매우 왜곡되어 있을 것이다.`);
+            result.textData.push(`이렇게 일반적인 수준보다 더 제한적인 자기인식은 때때로 의사결정과 문제해결 활동에서 매우 부정적인 결과를 낳을 수 있다. 그리고 다른 사람에 관련된 잠재적 어려움을 만들 수도 있다.</br>`);
         }
     }
 

@@ -44,7 +44,7 @@ function step1({D, AdjD, es, Adjes, }) {
         }
     }
 
-    result.goNext = false;
+    result.goNext = true;
     result.nextStep = 2;
 
     return result;
@@ -213,10 +213,11 @@ function step6({ blends, R }) {
     result.textData = [];
     result.curStep = 6;
     var countmY = 0;
-    var totalBlends = R;
+    var totalBlends = 0;
     for(var i=0;i<blends.length;i++){
         for(var l=0; l<blends[i].length;l++){
             if(blends[i][l] && blends[i][l].length >= 2){
+                totalBlends += 1;
                 if(blends[i][l].includes('m') || blends[i][l].includes('Y')){
                     countmY += 1;
                     break;

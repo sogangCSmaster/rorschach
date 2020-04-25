@@ -265,6 +265,7 @@ router.route("/finishtest1")
 
         lower.special_indices = {};
         lower.special_indices.SCONPositive = special_indices.getSCONPositive(score, age);
+            console.log('age', age);
         lower.special_indices.SCON = special_indices.getSCON(score, age);
         lower.special_indices.PTIPositive = special_indices.getPTIPositive(score);
         lower.special_indices.PTI = special_indices.getPTI(score);
@@ -418,8 +419,12 @@ router.route("/finishtest1")
             var data = await query.executeSQL(sql, [id]);
             sql = "SELECT * FROM test WHERE id=?";
             var testconfig = await query.executeSQL(sql, [id]);
-            var age = testconfig.age || moment(testdate).diff(birthday, 'years');
             testconfig = testconfig[0];
+
+            var birthday = moment(testconfig.birthday, 'YYYY-MM-DD').format('YYYY-MM-DD');
+            var testdate = moment(testconfig.testdate, 'YYYY-MM-DD').format('YYYY-MM-DD');
+            var age = testconfig.age || moment(testdate).diff(birthday, 'years');
+            console.log(age);
             if(testconfig.sex=="male"){
                 testconfig.sex="남";
             } else {

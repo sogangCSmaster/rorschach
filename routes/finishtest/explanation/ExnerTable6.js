@@ -116,7 +116,6 @@ function step2({ EBPer, copyingStyle, approachStyle }){
     result.textData = [];
     result.curStep = 2;
 
-    console.log(EBPer)
 
     if(approachStyle=="True"){
         if(copyingStyle=="Introversive"){
@@ -163,6 +162,7 @@ function step3({ a, p }){
     result.textData = [];
     result.curStep = 3;
 
+    console.log('a', a, 'p', p)
     if((a+p==4) && (a==0|| p==0)){
         result.textData.push(`[잠정 결과1] 능동과 수동 운동 비율[a:p]을 고려할 때, 수검자의 생각이나 가치관은 대부분의 다른 사람들보다 대개 더 많이 확고하고 유연하지 않을 것이다. 수검자의 가치관이 경직되어 있어서 상황에 따라 유연하게 접근하기 어려울 수 있다. `);
         result.nextStep = 4;
@@ -227,6 +227,7 @@ function step5({ FM, m, Lambda}){
     result.textData = [];
     result.curStep = 5;
 
+    console.log('asdasd', FM, m, Lambda)
     if(3<=FM+m && FM+m<=6){
         if(FM>m){
             result.textData.push(`[잠정 결과1a] [정상범주] 스트레스 유형 비율(eb)의 좌항(FM+m)을 고려할 때, 수검자의 관념적 주의 초점에 영향을 미치는 주변적 관념은 일반적인 수준일 것이다. 이 경우 충족되지 않은 욕구로 인해 발생하는 주변적 사고(FM)는 2개 이하일 것이다. `);
@@ -286,7 +287,7 @@ function step5({ FM, m, Lambda}){
         }
     }
 
-    if((FM+m==7 && FM<=3) || (FM+m>=8 || FM<=4)){
+    if((FM+m==7 && FM<=3) || (FM+m>=8 && FM<=4)){
         result.textData.push(`[잠정 결과4] 스트레스 유형 비율(eb)의 좌항(FM+m)을 고려할 때, 수검자는 관념의 주의 초점에 영향을 미치는 주변적 관념을 예기치 않은 상황에 관련된 스트레스로 인해 현저하게 경험하고 있을 것이다. `);
         result.textData.push(`대개, 증가한 주변적 정신 활동의 상태는 일시적이지만, 주변적 사고가 증가해 있는 동안 줄곧 주의와 집중 활동이 저하된다는 점을 중요하게 보아야 한다. `);
         result.nextStep = 6;
@@ -359,7 +360,7 @@ function step8({ t6step8: step8 }){
 
     // To do
     if (step8 == '1a') {
-        result.textData.push(`[장점 결과1a] [정상범주] 6개의 결정적 특수점수(Six Critical Special Score)의 빈도와 가중치를 부여한 6개의 결정적 특수점수의 합(WSum6)을 고려할 때, 수검자는 인지적 오류나 관념적 어긋남을 뚜렷하게 보이지 않을 것이다. 다시 말해서 개념적 사고의 명료성은 적절할 것이다.`);
+        result.textData.push(`[잠정 결과1a] [정상범주] 6개의 결정적 특수점수(Six Critical Special Score)의 빈도와 가중치를 부여한 6개의 결정적 특수점수의 합(WSum6)을 고려할 때, 수검자는 인지적 오류나 관념적 어긋남을 뚜렷하게 보이지 않을 것이다. 다시 말해서 개념적 사고의 명료성은 적절할 것이다.`);
     }
     if (step8 == '1b') {
         result.textData.push(`[잠정 결과1b] [정상범주] 6개의 결정적 특수점수(Six Critical Special Score)의 빈도와 가중치를 부여한 6개의 결정적 특수점수의 합(WSum6)을 고려할 때, 수검자는 인지적 오류나 관념적 어긋남을 뚜렷하게 보이지 않을 것이다. 다시 말해서 개념적 사고의 명료성은 적절할 것이다.`);

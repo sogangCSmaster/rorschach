@@ -45,8 +45,9 @@ function t6step8(scores, { age, WSum6, R }) {
     }
   });
 
+
   if (age >= 14 && WSum6 <= 6) {
-    if ((DV1 + DR1 + INCOM1) == 1) {
+    if (DV1 <= 1 && DR1 <= 1 && INCOM1 <= 1) {
       return '1a';
     }
     if (FABCOM1 && ALOG && !CONTAM && !DV2 && !DR2 && !INCOM2 && !FABCOM2) {

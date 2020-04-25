@@ -108,10 +108,10 @@ function checkFQminus3andPureF(scores) {
       }
     }
   })
-  if (FQminus > 3 || pureF > FQminus / 2) {
+  if (FQminus > 3 && pureF > FQminus / 2) {
     if (lambda > 0.99) {
       return 1;
-    } else {
+    } else if (lambda < 1.00) {
       return 2;
     }
   } else {
@@ -165,10 +165,12 @@ function checkFQminus3(scores) {
       }
     }
   }
-  if (firstCard > FQminus / 2) {
-    return 1;
-  } else if (lastCard > FQminus / 2) {
-    return 2;
+    if (FQminus > 3) {
+      if (firstCard > FQminus / 2) {
+        return 1;
+      } else if (lastCard > FQminus / 2) {
+        return 2;
+      }
   }
   return 0;
 }

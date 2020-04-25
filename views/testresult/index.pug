@@ -403,8 +403,8 @@ html
                                 table.table.table-bordered(style='margin-bottom: 0;')
                                     tbody
                                         tr
-                                            td(style="font-size: 7pt; margin-right: 0;" colspan="1.5")
-                                                .text-center 전체
+                                            td(style="font-size: 7pt; margin-right: 0; padding-right: 0; padding-left: 8px;" colspan="1.5")
+                                                .text-center(style='padding-right: 8px;') 전체
                                                     br
                                                     | (Total)
                                                 div
@@ -988,14 +988,14 @@ html
                                         th.text-center(colspan="4")
                                             if lower.special_indices.SCONPositive == true
                                                 i.fa.fa-check-square-o(style="margin-right: 6px; font-size: 11pt;")
-                                                | S-CON = YES
+                                                | S-CON = YES(#{lower.special_indices.SCON})
                                             else
                                                 if lower.special_indices.SCON == -1
                                                     i.fa.fa-square-o(style="margin-right: 6px; font-size: 11pt;")
                                                     | S-CON = N/A
                                                 else
                                                     i.fa.fa-square-o(style="margin-right: 6px; font-size: 11pt;")
-                                                    | S-CON = NO
+                                                    | S-CON = NO(#{lower.special_indices.SCON})
                                         th.text-center(colspan="4")
                                             if lower.special_indices.PTI>=4
                                                 i.fa.fa-check-square-o(style="margin-right: 6px; font-size: 11pt;")
