@@ -111,22 +111,23 @@ function step1({EA, EBLeft, EBRight, Lambda, copyingStyle, approachStyle}){
     return result;
 }
 
-function step2({ EBper, copyingStyle, approachStyle }){
+function step2({ EBPer, copyingStyle, approachStyle }){
     var result = {};
     result.textData = [];
     result.curStep = 2;
 
+    console.log(EBPer)
 
     if(approachStyle=="True"){
         if(copyingStyle=="Introversive"){
-            if(EBper<2.5){
+            if(EBPer<2.5){
                 result.textData.push(`[잠정 결과1a] 지배적 경험유형(EBPer)을 고려할 때, 수검자는 유연한 진성 내향형(flexible True Introversive)의 대처방식(coping style)을 가지고 있을 것이다. 수검자는 의사결정과정에서 다양한 대안을 검토하는 동안 판단을 미루는 지연 전략을 포함하는 관념적 접근을 주로 사용하지만, 상황에 따라 감정이 의사결정에 크게 기여 하는 직관적 접근을 사용하는 유연한 접근법을 사용할 것이다. `);
                 result.nextStep = 3;
                 result.goNext = false;
                 return result;
             }
 
-            if(EBper>=2.5){
+            if(EBPer>=2.5){
                 result.textData.push(`[잠정 결과1b] 지배적 경험유형(EBPer)을 고려할 때, 수검자는 지배적 진성 내향형(pervasive True Introversive)의 대처방식(coping style)을 가지고 있을 것이다. 수검자는 의사결정과정에서 현저하게 관념적 접근을 사용하고 있어서, 정서의 영향이 현저한 직관적 접근이나 시행착오 접근이 필요한 상황에서도 정서는 매우 제한적인 역할만 이행하는 유연하지 않은 접근법을 사용할 것이다. `);
                 result.nextStep = 3;
                 result.goNext = false;
@@ -135,13 +136,13 @@ function step2({ EBper, copyingStyle, approachStyle }){
         }
 
         if(copyingStyle=="Extratensive"){
-            if(EBper<2.5){
+            if(EBPer<2.5){
                 result.textData.push(`[잠정 결과2a] 지배적 경험유형(EBPer)을 고려할 때, 수검자는 유연한 진성 외향형(flexible True Extratensive)의 대처방식(coping style)을 가지고 있을 것이다. 수검자는 의사결정과정에서 시행착오 방식을 포함하는 직관적 접근을 주로 사용하지만, 상황에 따라 감정을 한쪽으로 미뤄두고 다양한 대안을 신중하게 고려하는 관념적 접근을 사용하는 유연한 접근법을 사용할 것이다. `);
                 result.nextStep = 3;
                 result.goNext = false;
                 return result;
             }
-            if(EBper>=2.5){
+            if(EBPer>=2.5){
                 result.textData.push(`[잠정 결과2b] 지배적 경험유형(EBPer)을 고려할 때, 수검자는 지배적 진성 외향형(pervasive True Extratensive)의 대처방식(coping style)을 가지고 있을 것이다. 수검자는 의사결정과정에서 현저하게 직관적인 접근을 사용하고 있어서, 직관적인 접근이 효과적이지(effective) 않은 상황에서도 감정이 사고방식에 상당한 영향을 미치는 유연하지 않은 접근법을 사용할 것이다. `);
                 result.nextStep = 3;
                 result.goNext = false;
@@ -351,7 +352,7 @@ function step7({ twoABplusArtplusAy }){
     return result;
 }
 
-function step8({ step8 }){
+function step8({ t6step8: step8 }){
     var result = {};
     result.curStep = 8;
     result.textData = [];

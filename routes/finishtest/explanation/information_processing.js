@@ -15,10 +15,11 @@ function nextStep(stepNum, result, scores) {
     return eval(`nextStep(${step.nextStep}, result, scores)`);
 }
 
-function step1({ L, Zf }) {
+function step1({ Lambda: L, Zf }) {
     var result = {};
     result.textData = [];
     result.curStep = 1;
+    console.log('L', L, 'Zf', Zf);
     if (L <= 0.99) {
         if (Zf >= 14) {
             result.textData.push('[잠정 결과1a] 조직화(Z)를 고려할 때, 수검자는 반점 영역을 처리하는데 일상적인 것보다 더 많은 노력을 들일 것이다.');
@@ -47,12 +48,13 @@ function step1({ L, Zf }) {
     return result;
 }
 
-function step2({ Dd, W, D }) {
+function step2({ Dd, W, information_processing_D: D }) {
     var result = {};
     result.textData = [];
     result.curStep = 2;
+    console.log('Dd', Dd, 'W', W, 'D', D)
     if (Dd <= 3) {
-        if (D >= 1.3 * W || D <= 1.6 * W) {
+        if (W >= D * 1.3 &&   W <= 1.6 * D) {
             result.textData.push('[잠정 결과1] [정상범주] 반응 위치 비율(W:D:Dd)을 고려할 때, 수검자가 들이는 처리 노력이나 처리 전략은 대부분의 다른 사람들에서 예상할 수 있는 범주에 있을 것이다. 이 결과는 잠정적이므로 3단계(step3)에서 다루는 위치 계열에 따라 노력이나 동기를 더 확인할 필요가 있다.');
         } else if (W > D) {
             result.textData.push('[잠정 결과2a] 반응 위치 비율(W:D:Dd)을 고려할 때, 수검자가 들이는 처리 노력이나 처리 전략이 여느 때와 무언가 다를 것이다. 수검자는 처리 노력을 많이 들일 것이다. 이러한 경향성은 전체 반응(W)이 8개를 초과할 경우 더 명확할 것이다.');
@@ -197,6 +199,7 @@ function step7({ age, dqplus, dqVSlashPlus, dqv, copyingStyle }) {
     result.curStep = 7;
 
     // 13세 이상 청소년
+    console.log(age, dqplus, dqVSlashPlus, dqv, copyingStyle)
     if(age>=13){
         var averageDQplus = [];
 
@@ -206,7 +209,7 @@ function step7({ age, dqplus, dqVSlashPlus, dqv, copyingStyle }) {
             averageDQplus = [5, 8];
         }
 
-        if(copyingStyle=="Interversive" || copyingStyle=="Ambitent"){
+        if(copyingStyle=="Introversive" || copyingStyle=="Ambitent"){
             averageDQv = [0, 1];
         } else if(copyingStyle=="Extratensive"){
             averageDQv = [1, 2]

@@ -15,12 +15,12 @@ function nextStep(stepNum, result, scores) {
     return eval(`nextStep('${step.nextStep}', result, scores)`);
 }
 
-function step1({ CDIpositive, CDI }) {
+function step1({ CDIPositive }) {
     var result = {};
     result.textData = [];
     result.curStep = 1;
 
-    if (CDI >= 4) {
+    if (CDIPositive) {
         result.textData.push(`[잠정 결과] 대처결함지표(CDI)를 고려할 때, 수검자는 예상보다 사회적으로 성숙하지 않았을 것이다. 수검자는 환경과 상호작용할 때 어려움을 자주 경험하는 경향을 보일 수 있다. 특히, 대인 영역에서 그러한 경향이 뚜렷할 수 있다.
 - 수검자는 사회기술이 제한되어 있어서 친밀하고 성숙한 관계를 만들고 유지하는 데 어려움을 겪을 것이다. 그리고 다른 사람의 욕구나 관심에 민감하지 않은 경향을 보일 수 있다.`);
         result.textData.push(`다른 사람과 관계는 일반적인 것보다 더 피상적이고, 유지되기 쉽지 않을 수 있다. 이러한 사람은 다른 사람들과 거리를 두거나, 서툴거나, 다른 사람을 다룰 때 무력한 것으로 비춰질 것이다.
@@ -35,12 +35,12 @@ function step1({ CDIpositive, CDI }) {
     return result;
 }
 
-function step2({ HVIpositive }) {
+function step2({ HVIPositive }) {
     var result = {};
     result.textData = [];
     result.curStep = 2;
 
-    if (HVIpositive) {
+    if (HVIPositive) {
         result.textData.push(`[잠정 결과] 과경계지표(HVI)를 고려할 때, 수검자의 심리구조에 과잉경계 유형이 핵심요소로 자리 잡고 있을 것이다. 관념화(ideation)와 자기지각(self-perception) 군집에서 다루었듯이 수검자는 환경에 부정적이거나 신뢰하지 않는 태도가 있기에, 준비 상태를 지속하여 유지하기 위해 상당한 에너지(energy)를 사용할 것이다.`)
         result.textData.push(`수검자는 다른 사람과 관계에서 지나치게 조심스럽고 신중한 경향을 보일 수 있다. 과잉경계하는 사람들은 자신을 매우 취약하다고 느끼는 경향이 있다. 수검자는 행동을 구성하고 이행하는 데 매우 조심스러울 수 있다.`);
         result.textData.push(`수검자는 개인적 공간에 대한 주제에 몰두하고, 대인관계에서 매우 경계하는 모습을 보일 것이다. 일반적으로 관계가 자신에 의해 통제되고 있다는 느낌을 받지 못한다면, 친밀한 관계를 지속하지 않을 수 있다.`);
@@ -67,7 +67,7 @@ function step3({ a, p }) {
     return result;
 }
 
-function step4({ age, Fd }) {
+function step4({ age, Food: Fd }) {
     var result = {};
     result.textData = [];
     result.curStep = 4;
@@ -149,9 +149,9 @@ function step6({ Hrest, H, R, copyingStyle, approachStyle }) {
         // R check
         if (R >= Rconditions[i][0] && R <= Rconditions[i][1]) {
             // 진성 내향형
+            var cond1 = eval(approachStyle + copyingStyle + '[i][0]');
+            var cond2 = eval(approachStyle + copyingStyle + '[i][1]');
             if (approachStyle == 'True' && copyingStyle == 'Introversive') {
-                var cond1 = eval(approachStyle + copyingStyle + '[i][0]');
-                var cond2 = eval(approachStyle + copyingStyle + '[i][1]');
 
                 // 예상 범위
                 if (HumanCont >= cond1 && HumanCont <= cond2 && H > HumanCont / 2) {
@@ -195,6 +195,7 @@ function step6({ Hrest, H, R, copyingStyle, approachStyle }) {
                     result.textData.push(`[잠정 결과1] [정상범주] 순수 인간 내용(Pure H) 반응을 고려할 때, 수검자는 대부분의 다른 사람들만큼 다른 사람에게 관심을 보일 것이다. 그리고 현실에 근거하여 다른 사람을 개념화할 것이다.`);
                     return result;
                 }
+                console.log('HumanCont', HumanCont, 'cond1', cond1, 'cond2', cond2, 'H', H, 'HumanCont/2', HumanCont/2)
                 if (HumanCont >= cond1 && HumanCont <= cond2 && H < HumanCont / 2) {
                     result.textData.push(`[잠정 결과2] 순수 인간 내용(Pure H) 반응을 고려할 때, 수검자는 대부분의 다른 사람들만큼 다른 사람에게 관심을 보일 것이다. 하지만 수검자는 다른 사람을 아주 잘 이해하지는 못할 것이다. 수검자는 다른 사람의 (의도를) 잘못 읽는 경향을 보일 수 있고, 자주 사회적 표현(gesture)을 잘못 해석할 수 있다.`);
                     result.textData.push(`때때로, 이러한 수검자는 합리적인 것보다 자신의 관계에 대한 기대가 더 클 수 있다. 다른 경우에는, 수검자의 이해 결여는 잠재적으로 다른 사람들로부터 소외시키는 사회적 실수로 이어질 수 있다.`);

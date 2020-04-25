@@ -608,6 +608,7 @@ html
                     tr.find('.card-select').val(reverseNumberMapper[dbScores[i].card]);
                     tr.find('select[name=loc]').val(dbScores[i].loc);
                     tr.find('select[name=dq]').val(dbScores[i].dq);
+                    tr.find('select[name=fq]').val(dbScores[i].fq);
                     tr.find('.select2').val(dbScores[i].select2);
                     tr.find('.selectP').val(dbScores[i].p);
                     changeZ(index)
@@ -620,7 +621,7 @@ html
                     parseScore(scores[index] || {}, index);
                 }
             }
-            $(document).ready(function() {
+            $(window).load(function() {
                 loadScore();
             })
 

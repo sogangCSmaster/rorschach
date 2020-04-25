@@ -44,9 +44,8 @@ function step1({D, AdjD, es, Adjes, }) {
         }
     }
 
-    result.goNext = true;
-    result.textData.push('[해당 사항 없음]')
-    //result.nextStep = 2;
+    result.goNext = false;
+    result.nextStep = 2;
 
     return result;
 }
@@ -80,7 +79,8 @@ function step3({ m, SumY }) {
     var result = { };
     result.textData = [];
     result.curStep = 3;
-    if (Math.abs(m - SumY) >= 3 && (m <= 3*SumY || SumY <= 3*m)) {
+    console.log('m', m, 'SumY', SumY)
+    if (Math.abs(m - SumY) >= 3 && ((m > SumY  && m <= 3 * SumY) || (SumY >m && SumY <= 3 * m))) {
         result.textData.push('[잠정 결과1] 침투적 사고(m)와 무력감(SumY)의 비율을 고려할 때, 상황 관련 스트레스가 사고와 정서에 모두 영향을 미치는 것으로 볼 수 있다. 의식 밖에 있는 침투적 사고로 인해 주의집중력이 저하되고, 무력감이나 무능감에 관련된 감정으로 인해 걱정, 불안, 슬픔 등을 경험할 수 있다. 한쪽 값이 다른 쪽보다 2점을 초과하여 크다면, 그 값을 통해 스트레스의 영향에 대한 의미 있는 실마리를 얻을 수 있다.');
         result.goNext = false;
         result.nextStep = 4;
@@ -108,7 +108,7 @@ function step4({ SumT, SumV, EgocentricityIndex }) {
     var result = {};
     result.textData = [];
     result.curStep = 4;
-    if ((SumT == 1 && SumV == 0) || (SumV >= 1 && EgocentricityIndex <= 0.32)) {
+    if ((SumT == 1 && SumV == 0) || ((SumT <= 1) && (SumV >= 1 && EgocentricityIndex <= 0.32))) {
         result.textData.push('[잠정 결과1] 안정적 특성에 가까운 지표인 재질(Texture)반응과 차원(Vista)반응을 고려할 때, 개인력에서 재질반응(정서적 상실)이나 차원반응(죄책감, 후회)을 증가시키는 심리적 외상사건이 있을 가능성이 적고 일반적 통제능력(Adj D) 지표는 적절하게 산출되었을 것이며, 수검자의 통제능력(D & Adj D) 지표 사이의 점수 차이는 타당하며 다시 검토할 필요가 없을 것이다.');
         result.nextStep = 5;
         result.goNext = false;
@@ -130,51 +130,71 @@ function step5({ D, PureC, Mminus, Mnone }) {
     var result = {};
     result.textData = [];
     result.curStep = 5;
+    console.log('D', D, 'PureC', PureC, 'Mminus', Mminus, 'Mnone', Mnone)
     if (D >= 0) {
         result.textData.push('[잠정 결과1] 상황관련 스트레스에 영향받는 현재 통제능력(D)이 균형 상태(D = 0) 이상이라는 것은 상황적 스트레스의 영향이 존재하지만 아마도 심하지는 않을 것이다.<br/>');
         result.textData.push('수검자는 어떤 상황적 스트레스를 겪고 있으며, 현재 통제능력은 일반적 통제능력보다 낮아진 상태일 것이라는 1단계의 기본 가정(disorganization)이 성립할 것이다.<br/>');
         result.textData.push('하지만 통제능력의 저하로 인해 충동성을 보일 것이라는 1단계의 2차 가정(impulsiveness)은 성립하지 않을 것이다.');
         result.goNext = false;
         result.nextStep = 6;
+        var ok = false;
         if (PureC > 0) {
             result.textData.push('[잠정 결과1a] 일반적으로 조절되지 않은 정서를 반영하는 지표(Pure C)는 충동성이 아니라 가용 자원이 정서 조절이나 억제에 사용되지 않는다는 것을 의미한다. 그러므로 정서가 평소보다 통제되지 않을 것이다.<br/>');
             result.textData.push('[정서]군집에서 구체적으로 다룬다.');
+            ok = true;
         }
         if (Mminus > 0 || Mnone > 0) {
             result.textData.push('[잠정 결과1b] 일반적으로 통제되지 않은 생각을 반영하는 지표(M- , M none)는 상황 요인에 의한 관념의 통제 저하(loss of ideational control)를 의미하지 않는다. 대신에 [관념화] 군집에서 다루는 지속적인 사고의 문제를 의심할 수 있다.');
             result.textData.push('[관념화]군집에서 구체적으로 다룬다.');
+            ok = true;
         }
-        return result;
+        if (ok) {
+            return result;
+        }
     }
 
     if (D < 0) {
-        result.textData.push('[잠정 결과2a] 상황관련 스트레스에 영향을 받는 현재 통제능력(D)이 음수라면, 수검자가 효과적으로(effectively) 반응할 수 있는 것보다 많은 내적 요구를 경험하는 과부하 상태라는 것을 의미한다.');
-        result.textData.push('통제능력이 감소하고 의사결정을 내리거나 행동을 이행하는 데 어려움을 겪을 수 있고, 충동적인 경향을 보일 수 있다.');
         result.goNext = false;
         result.nextStep = 6;
+        var ok = false;
         if (PureC > 0) {
+            result.textData.push('[잠정 결과2a] 상황관련 스트레스에 영향을 받는 현재 통제능력(D)이 음수라면, 수검자가 효과적으로(effectively) 반응할 수 있는 것보다 많은 내적 요구를 경험하는 과부하 상태라는 것을 의미한다.');
+            result.textData.push('통제능력이 감소하고 의사결정을 내리거나 행동을 이행하는 데 어려움을 겪을 수 있고, 충동적인 경향을 보일 수 있다.');
             result.textData.push('[잠정 결과2a1] 일반적으로 조절되지 않은 정서를 반영하는 지표(Pure C)는 정서에서 충동성이 매우 뚜렷하게 나타난다는 것을 의미한다.');
+            ok = true;
         }
         if (Mminus > 0 || Mnone > 0) {
+            result.textData.push('[잠정 결과2a] 상황관련 스트레스에 영향을 받는 현재 통제능력(D)이 음수라면, 수검자가 효과적으로(effectively) 반응할 수 있는 것보다 많은 내적 요구를 경험하는 과부하 상태라는 것을 의미한다.');
+            result.textData.push('통제능력이 감소하고 의사결정을 내리거나 행동을 이행하는 데 어려움을 겪을 수 있고, 충동적인 경향을 보일 수 있다.');
             result.textData.push('[잠정 결과2a2] 일반적으로 통제되지 않은 생각을 반영하는 지표(M- , M none)는 과부하 상태로 인해 관념의 통제가 손상되었을 가능성을 의미한다.');
+            ok = true;
         }
-        return result;
+        if (ok) {
+            return result;
+        }
     }
 
     if (D == -1) {
-        result.textData.push('[잠정 결과2b] 상황관련 스트레스에 영향받는 현재 통제능력(D)이 –1일 경우, 수검자는 친숙하고 구조화되어 있고 이해하기 쉬운 환경에서는 충분히 기능할 것이다.');
-        result.textData.push('상황이 더 복잡해지고 모호해지면 수검자는 혼란(disorganization)되고, 충동적 사고와 충동적 행동에 대한 취약성이 증가할 것이다. 이러한 취약성은 가용 자원(EA)이 정상집단의 예상범주보다 낮으면 현저하게 증가한다.');
         result.goNext = false;
         result.nextStep = 6;
 
+        var ok = false;
         if (PureC > 0) {
+            result.textData.push('[잠정 결과2b] 상황관련 스트레스에 영향받는 현재 통제능력(D)이 –1일 경우, 수검자는 친숙하고 구조화되어 있고 이해하기 쉬운 환경에서는 충분히 기능할 것이다.');
+            result.textData.push('상황이 더 복잡해지고 모호해지면 수검자는 혼란(disorganization)되고, 충동적 사고와 충동적 행동에 대한 취약성이 증가할 것이다. 이러한 취약성은 가용 자원(EA)이 정상집단의 예상범주보다 낮으면 현저하게 증가한다.');
             result.textData.push('[잠정 결과2b1] 일반적으로 조절되지 않은 정서를 반영하는 지표(Pure C)가 있다면, 정서적 충동성이 나타날 가능성이 크며, 그러한 특징은 잘 통제되지 않은 행동으로 나타날 수 있다.');
+            ok = true;
         }
         if (Mminus > 0 || Mnone > 0) {
+            result.textData.push('[잠정 결과2b] 상황관련 스트레스에 영향받는 현재 통제능력(D)이 –1일 경우, 수검자는 친숙하고 구조화되어 있고 이해하기 쉬운 환경에서는 충분히 기능할 것이다.');
+            result.textData.push('상황이 더 복잡해지고 모호해지면 수검자는 혼란(disorganization)되고, 충동적 사고와 충동적 행동에 대한 취약성이 증가할 것이다. 이러한 취약성은 가용 자원(EA)이 정상집단의 예상범주보다 낮으면 현저하게 증가한다.');
             result.textData.push('[잠정 결과2b2] 일반적으로 통제되지 않은 생각을 반영하는 지표(M-, M none)가 있다면, 상황적 스트레스가 판단을 흐리게 하고, 이상한 생각을 만들어 낸다는 잠정적 가설을 세울 수 있다.');
             result.textData.push('[관념화] 군집에서 구체적으로 다룬다.');
+            ok = true;
         }
-        return result;
+        if (ok) {
+            return result;
+        }
     }
     if (D <= -2) {
         result.textData.push('[잠정 결과2c] 상황관련 스트레스에 영향받는 현재 통제능력(D)이 –2 이하일 경우, 수검자가 통제 어려움을 겪을 가능성이 매우 크다. 가용 자원(EA)에 상관없이 심리적 혼란(disorganization)을 겪을 가능성이 클 것이다. 관념적 충동성과 행동적 충동성이 발생하기 쉽다.');
@@ -188,15 +208,15 @@ function step5({ D, PureC, Mminus, Mnone }) {
     return result;
 }
 
-function step6({ blends }) {
+function step6({ blends, R }) {
     var result = {};
     result.textData = [];
     result.curStep = 6;
     var countmY = 0;
-    var totalBlends = blends.length;
+    var totalBlends = R;
     for(var i=0;i<blends.length;i++){
         for(var l=0; l<blends[i].length;l++){
-            if(blends[i][l]){
+            if(blends[i][l] && blends[i][l].length >= 2){
                 if(blends[i][l].includes('m') || blends[i][l].includes('Y')){
                     countmY += 1;
                     break;
@@ -204,7 +224,6 @@ function step6({ blends }) {
             }
         }
     }
-    
     var percentage = (countmY / totalBlends) * 100;
 
     if(percentage<20){
@@ -237,34 +256,10 @@ function step6({ blends }) {
     return result;
 }
 
-function step7({ blends }) {
+function step7({ yColorBlends, otherColorBlends }) {
     var result = {};
     result.textData = [];
     result.curStep = 7;
-    var yColorBlends = 0;
-    var otherColorBlends = 0;
-
-    for(var i=0;i<blends.length;i++){
-        for(var l=0; l<blends[i].length;l++){
-            if(blends[i][l]){
-                if(blends[i][l].includes('Y')){
-                    yColorBlends += 1;
-                    break;
-                }
-            }
-        }
-    }
-
-    for(var i=0;i<blends.length;i++){
-        for(var l=0; l<blends[i].length;l++){
-            if(blends[i][l]){
-                if(blends[i][l].includes('T') || blends[i][l].includes('V') || blends[i][l].includes("C'")){
-                    otherColorBlends += 1;
-                    break;
-                }
-            }
-        }
-    }
 
     if(yColorBlends==1 && otherColorBlends==0){
         result.textData.push(`[잠정 결과1] 색채-음영 복합반응을 통해 볼 때, 상황적 스트레스에 의해 정서적 혼란(confusion)이 약간 유발된 것으로 보인다. <br/>

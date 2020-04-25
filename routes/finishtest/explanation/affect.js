@@ -1,5 +1,5 @@
 function caculateAffect(DEPI, CDI, Lambda, M, EBLeft, EBRight, WSumC, EA, EBPer, FM, m, SumCprime, SumT, SumV, SumY, Afr, twoABplusArtplusAy, CP, FC, CF, C, age, copyingStyle, approachStyle, PureC, S, approach, Blends, R, t3step13, t3step14, AchromaticTextureAndVista, ChromaticDiffuse, OnlyShading){
-    var IntellectualIndex = twoABplusArtplusAy;
+   var IntellectualIndex = twoABplusArtplusAy;
     var result = [];
     var nextStep = 1;
     if(nextStep==1){
@@ -374,19 +374,19 @@ function step4(FM, m, SumCprime, SumT, SumV, SumY){
         }
         if(SumCprime>=3){
             textData.push(`[잠정 결과2a] 심리적 고통을 반영하는 eb 우항의 SumC’ 점수를 고려할 때, 수검자는 감정을 내재화하는 경향이 뚜렷할 것이다. 정서표출을 억제하고 그로 인한 영향을 억누르는 경향으로 인해 불편해지거나(irritating) 부정적 감정을 느낄 것으로 보인다.`);
-            textData.push(`\n`);
+            textData.push(`</br>`);
         }
         if(SumT>=2){
             textData.push(`[잠정 결과2b] 심리적 고통을 반영하는 eb 우항의 SumT 점수를 고려할 때, 수검자가 최근에 정서적으로 중요한 대상을 상실한 개인력이 없다면, 만성적으로 외로움을 느끼고 있거나, 정서적으로 빈곤한(emotional neediness) 상태일 수 있다.`);
-            textData.push(`\n`);
+            textData.push(`</br>`);
         }
         if(SumV>=1){
             textData.push(`[잠정 결과2c] 심리적 고통을 반영하는 eb 우항의 SumV 점수를 고려할 때, 수검자가 최근에 후회나 죄책감을 느끼고 있다는 개인력이 없다면, 지속하여 자신을 질책하거나, 비하하는 경향을 보이고, 그로 인해 부정적 감정이 생겨나거나 마음이 어지럽혀지는(disquieting) 것일 수 있다.`);
-            textData.push(`\n`);
+            textData.push(`</br>`);
         }
         if(SumY>=3){
             textData.push(`[잠정 결과2d] 심리적 고통을 반영하는 eb 우항의 SumY 점수를 고려할 때, 수검자는 스트레스 상황을 해결할 수 없다는 무력감으로 인해 부정적 감정을 겪고 있을 것이다.`);
-            textData.push(`\n`);
+            textData.push(`</br>`);
         }
         result.curStep = 4;
         result.textData = textData;
@@ -934,6 +934,7 @@ function step14({ t3step14 }) {
 
     // 결정인이 3개인 복합반응이 전체 복합반 수의 1/4를 초과하는 경우
     // 결정인이 4개 이상인 복합 반응이 1개 이상인 경우
+    console.log('t3',t3step14)
     if (t3step14 == 1 || t3step14 == 2) {
         result.textData.push(`[잠정 결과] 복잡한 복합반응을 통해 볼 때, 수검자의 심리기능이 때때로 지나치게 복잡해지는 것으로 볼 수 있다. 12단계의 해석적 가정을 수정할 필요가 있다.`);
         result.textData.push(`복잡성의 증가는 대부분 정서경험으로 인해 나타난다. 이것이 반드시 불리한 점(liability)은 아니지만, 가용 자원이 제한되어 있거나 통제나 조절의 문제가 있는 경우 역기능의 원인이 되기 쉽다.`);
@@ -951,6 +952,7 @@ function step15({ AchromaticTextureAndVista, approachStyle, copyingStyle, lambda
     result.goNext = false;
 
     // Color-Shading: t3step15
+    console.log(AchromaticTextureAndVista, approachStyle, copyingStyle, lambda, ChromaticDiffuse)
     if (AchromaticTextureAndVista == 1) {
         if (
             (approachStyle == 'True' && copyingStyle == 'Extratensive') ||

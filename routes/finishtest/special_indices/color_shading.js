@@ -14,6 +14,7 @@ function getBlends(scores) {
 exports.getBlends = getBlends;
 
 function getChromaticDiffuse(scores) {
+    /*
     let count = 0;
     scores.forEach((score) => {
         if (score && score.det &&
@@ -24,10 +25,13 @@ function getChromaticDiffuse(scores) {
         }
     })
     return count;
+    */
+    return getYColorShadingBlends(scores);
 }
 exports.getChromaticDiffuse = getChromaticDiffuse;
 
 function getAchromaticTextureAndVista(scores) {
+    /*
     let count = 0;
     scores.forEach((score) => {
         if (score && score.det &&
@@ -38,11 +42,13 @@ function getAchromaticTextureAndVista(scores) {
             count += 1;
         }
     })
-    return count;
+    */
+    return getOtherColorShadingBlends(scores)
 }
 exports.getAchromaticTextureAndVista = getAchromaticTextureAndVista;
 
 function getOnlyShading(scores) {
+    /*
     let count = 0;
     scores.forEach((score) => {
         if (score && score.det && 
@@ -69,6 +75,8 @@ function getOnlyShading(scores) {
         }
     });
     return count;
+    */
+    return getShadingBlends(scores);
 }
 exports.getOnlyShading = getOnlyShading;
 
@@ -97,7 +105,7 @@ exports.getOtherColorShadingBlends = getOtherColorShadingBlends;
 function getBlendsCreatedBymOrY(scores) {
     let count = 0;
     scores.forEach((score) => {
-        if (score && score.det && Object.keys(score.det).length >= 2 && (score.det.active3 || score.det.passive3 || score.det['a-p3']) && (score.det.diffuse1 || score.det.diffuse2 || score.det.diffuse3)) {
+        if (score && score.det && Object.keys(score.det).length >= 2 && (score.det.active3 || score.det.passive3 || score.det['a-p3'] || score.det.diffuse1 || score.det.diffuse2 || score.det.diffuse3)) {
             count += 1;
         }
     })

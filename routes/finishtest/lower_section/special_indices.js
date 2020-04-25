@@ -58,8 +58,11 @@ function getCDIPositive(scores) {
 }
 exports.getCDIPositive = getCDIPositive;
 
-function getSCON(scores) {
+function getSCON(scores, age) {
   let count = 0;
+  if (age < 14) { 
+      return -1;
+  }
   count += S_Constellation.getFVPlusVFPlusVPlusFDChecked(scores);
   count += S_Constellation.getColorShadingBlendsChecked(scores);
   count += S_Constellation.getEgoChecked(scores);
@@ -76,7 +79,10 @@ function getSCON(scores) {
 }
 exports.getSCON = getSCON;
 
-function getSCONPositive(scores) {
+function getSCONPositive(scores, age) {
+  if (age < 14) {
+    return false;
+  }
   return S_Constellation.getUp8Checked(scores);
 }
 exports.getSCONPositive = getSCONPositive;

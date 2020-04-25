@@ -195,6 +195,8 @@ function step3a({ checkFQminus, checkFQminusSpaceHalf, checkFQminusMovementHalf,
     result.textData = [];
     result.curStep = '3a';
 
+    console.log(checkFQminus, checkFQminusSpaceHalf, checkFQminusMovementHalf, checkFQminusF, checkFQminus3andPureF, checkFQminus3, checkHomogeneousContent)
+
     if(checkFQminus){
         result.textData.push(`[잠정 결과1] 적절하지 않은 형태(FQx-)를 고려할 때, 수검자가 보이는 중재 활동의 기능 이상은 검사 상황에 대한 반작용일 것이다. 검사 과제의 특성을 제대로 이해하지 못하여 불안해하거나 매우 거부적인 태도(FQx S-)로 수행한 것일 수 있다. 이 경우에 기능 이상은 일시적일 것이다.`);
         result.textData.push(`검사 결과를 일반화하는 과정에서 왜곡된 형태 비율(X-%)을 그대로 사용할 경우, 수검자가 친숙한 상황에서도 기능 이상을 보일 것이라고 과대 추정할 수도 있다. 그러므로 검사 상황(의뢰 사유, 수검자의 편견 등), 수검자의 개인력 등을 고려하여 기능 이상이 일시적인지, 또는 친숙하지 않은 상황이나 원치 않은 요구를 받는 상황에서 기능 이상이 반복적으로 나타나는지 확인해야 한다. <br/><br/>`);
@@ -266,7 +268,7 @@ function step4({ R, P, age }){
         if(age>=13){
             pAverage = [5, 7];
         }
-        if(age<12){
+        if(age<=12){
             pAverage = [4, 7];
         }
     }

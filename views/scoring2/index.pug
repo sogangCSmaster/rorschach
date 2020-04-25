@@ -543,19 +543,21 @@ html
                     tr.find('.card-select').val(reverseNumberMapper[dbScores[i].card]);
                     tr.find('select[name=loc]').val(dbScores[i].loc);
                     tr.find('select[name=dq]').val(dbScores[i].dq);
+                    tr.find('select[name=fq]').val(dbScores[i].fq);
                     tr.find('.select2').val(dbScores[i].select2);
                     tr.find('.selectP').val(dbScores[i].p);
-                    changeZ(index)
-                    tr.find('.selectZ').val(dbScores[i].z);
                     dets[index] = dbScores[i].det;
                     parseDet(dets[index] || {}, index);
                     reacts[index] = dbScores[i].react;
                     parseReact(reacts[index] || {}, index);
                     scores[index] = dbScores[i].score;
                     parseScore(scores[index] || {}, index);
+                    changeZ(index)
+                    console.log(dbScores[i]);
+                    tr.find('.selectZ').val(dbScores[i].z);
                 }
             }
-            $(document).ready(function() {
+            $(window).load(function() {
                 loadScore();
             })
 

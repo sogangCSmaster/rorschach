@@ -264,8 +264,8 @@ router.route("/finishtest1")
         lower.self_perception.Hrest = self_perception.getHrest(score);
 
         lower.special_indices = {};
-        lower.special_indices.SCONPositive = special_indices.getSCONPositive(score);
-        lower.special_indices.SCON = special_indices.getSCON(score);
+        lower.special_indices.SCONPositive = special_indices.getSCONPositive(score, age);
+        lower.special_indices.SCON = special_indices.getSCON(score, age);
         lower.special_indices.PTIPositive = special_indices.getPTIPositive(score);
         lower.special_indices.PTI = special_indices.getPTI(score);
         lower.special_indices.DEPIPositive = special_indices.getDEPIPositive(score);
@@ -279,19 +279,22 @@ router.route("/finishtest1")
 
         var SpecialIndices = {};
         SpecialIndices.S_Constellation = {};
-        SpecialIndices.S_Constellation.Up8Checked = S_Constellation.getUp8Checked(score);
-        SpecialIndices.S_Constellation.SumVplusFD = S_Constellation.getFVPlusVFPlusVPlusFDChecked(score);
-        SpecialIndices.S_Constellation.ColorShadingBlends = S_Constellation.getColorShadingBlendsChecked(score);
-        SpecialIndices.S_Constellation.Ego = S_Constellation.getEgoChecked(score);
-        SpecialIndices.S_Constellation.MOR = S_Constellation.getMORChecked(score);
-        SpecialIndices.S_Constellation.Zd = S_Constellation.getZdChecked(score);
-        SpecialIndices.S_Constellation.es = S_Constellation.getesChecked(score);
-        SpecialIndices.S_Constellation.CF = S_Constellation.getCFChecked(score);
-        SpecialIndices.S_Constellation.XPlus = S_Constellation.getXplusperChecked(score);
-        SpecialIndices.S_Constellation.S = S_Constellation.getSChecked(score);
-        SpecialIndices.S_Constellation.P = S_Constellation.getPChecked(score);
-        SpecialIndices.S_Constellation.PureH = S_Constellation.getPureHChecked(score);
-        SpecialIndices.S_Constellation.R = S_Constellation.getRChecked(score);
+        if (age >= 14) {
+            SpecialIndices.S_Constellation.Up8Checked = S_Constellation.getUp8Checked(score);
+            SpecialIndices.S_Constellation.SumVplusFD = S_Constellation.getFVPlusVFPlusVPlusFDChecked(score);
+            SpecialIndices.S_Constellation.ColorShadingBlends = S_Constellation.getColorShadingBlendsChecked(score);
+            SpecialIndices.S_Constellation.Ego = S_Constellation.getEgoChecked(score);
+            SpecialIndices.S_Constellation.MOR = S_Constellation.getMORChecked(score);
+            SpecialIndices.S_Constellation.Zd = S_Constellation.getZdChecked(score);
+            SpecialIndices.S_Constellation.es = S_Constellation.getesChecked(score);
+            SpecialIndices.S_Constellation.CF = S_Constellation.getCFChecked(score);
+            SpecialIndices.S_Constellation.XPlus = S_Constellation.getXplusperChecked(score);
+            SpecialIndices.S_Constellation.S = S_Constellation.getSChecked(score);
+            SpecialIndices.S_Constellation.P = S_Constellation.getPChecked(score);
+            SpecialIndices.S_Constellation.PureH = S_Constellation.getPureHChecked(score);
+            SpecialIndices.S_Constellation.R = S_Constellation.getRChecked(score);
+
+        }
 
         SpecialIndices.PTI = {};
         SpecialIndices.PTI.XAper = PTI.getXAperChecked(score);
@@ -415,6 +418,7 @@ router.route("/finishtest1")
             var data = await query.executeSQL(sql, [id]);
             sql = "SELECT * FROM test WHERE id=?";
             var testconfig = await query.executeSQL(sql, [id]);
+            var age = testconfig.age || moment(testdate).diff(birthday, 'years');
             testconfig = testconfig[0];
             if(testconfig.sex=="male"){
                 testconfig.sex="남";
@@ -468,6 +472,8 @@ router.route("/finishtest1")
             //
             var indicators = {};
             var upper = {};
+            indicators.yColorBlends = YColorShading;
+            indicators.otherColorBlends = OtherColorShading;
             upper.location_features = {};
             upper.location_features.Zf = location_features.getZf(score);
             indicators.Zf = upper.location_features.Zf;
@@ -478,7 +484,6 @@ router.route("/finishtest1")
             upper.location_features.W = location_features.getW(score);
             indicators.W = upper.location_features.W;
             upper.location_features.D = location_features.getD(score);
-            indicators.D = upper.location_features.D;
             upper.location_features.Dd = location_features.getDd(score);
             indicators.Dd = upper.location_features.Dd;
             upper.location_features.S = location_features.getS(score);
@@ -546,9 +551,13 @@ router.route("/finishtest1")
     
             upper.dq = {};
             upper.dq.plus = dq.getPlus(score);
+            upper.dq.plusFQxminus = dq.getPlusFQxminus(score);
             upper.dq.o = dq.getO(score);
+            upper.dq.oFQxminus = dq.getOFQxminus(score);
             upper.dq.VSlashPlus = dq.getVSlashPlus(score);
+            upper.dq.vSlashPlusFQxminus = dq.getVSlashPlusFQxminus(score);
             upper.dq.v = dq.getV(score);
+            upper.dq.vFQxminus = dq.getVFQxminus(score);
             indicators.dqplus = upper.dq.plus;
             indicators.dqo = upper.dq.o;
             indicators.dqVSlashPlus = upper.dq.VSlashPlus;
@@ -741,7 +750,7 @@ router.route("/finishtest1")
             lower.information_processing.W = information_processing.getW(score);
             indicators.W = lower.information_processing.W;
             lower.information_processing.D = information_processing.getD(score);
-            indicators.D = lower.information_processing.D;
+            indicators.information_processing_D = lower.information_processing.D;
             lower.information_processing.Dd = information_processing.getDd(score);
             indicators.Dd = lower.information_processing.Dd;
             lower.information_processing.M = information_processing.getM(score);
@@ -774,8 +783,8 @@ router.route("/finishtest1")
             indicators.Hrest = lower.self_perception.Hrest;
     
             lower.special_indices = {};
-            lower.special_indices.SCONPositive = special_indices.getSCONPositive(score);
-            lower.special_indices.SCON = special_indices.getSCON(score);
+            lower.special_indices.SCONPositive = special_indices.getSCONPositive(score, age);
+            lower.special_indices.SCON = special_indices.getSCON(score, age);
             lower.special_indices.PTIPositive = special_indices.getPTIPositive(score);
             lower.special_indices.PTI = special_indices.getPTI(score);
             lower.special_indices.DEPIPositive = special_indices.getDEPIPositive(score);
@@ -792,25 +801,26 @@ router.route("/finishtest1")
             indicators.DEPIPositive = lower.special_indices.DEPIPositive;
             indicators.CDIPositive = lower.special_indices.CDIPositive;
             indicators.HVIPositive = lower.special_indices.HVIPositive;
-            indicators.OBSPositive = lower.special_indices.OBS;
+            indicators.OBSPositive = lower.special_indices.OBSPositive;
     
             var SpecialIndices = {};
             SpecialIndices.S_Constellation = {};
-            SpecialIndices.S_Constellation.Up8Checked = S_Constellation.getUp8Checked(score);
-            SpecialIndices.S_Constellation.SumVplusFD = S_Constellation.getFVPlusVFPlusVPlusFDChecked(score);
-            SpecialIndices.S_Constellation.ColorShadingBlends = S_Constellation.getColorShadingBlendsChecked(score);
-            SpecialIndices.S_Constellation.Ego = S_Constellation.getEgoChecked(score);
-            SpecialIndices.S_Constellation.MOR = S_Constellation.getMORChecked(score);
-            SpecialIndices.S_Constellation.Zd = S_Constellation.getZdChecked(score);
-            SpecialIndices.S_Constellation.es = S_Constellation.getesChecked(score);
-            SpecialIndices.S_Constellation.CF = S_Constellation.getCFChecked(score);
-            SpecialIndices.S_Constellation.XPlus = S_Constellation.getXplusperChecked(score);
-            SpecialIndices.S_Constellation.S = S_Constellation.getSChecked(score);
-            SpecialIndices.S_Constellation.P = S_Constellation.getPChecked(score);
-            SpecialIndices.S_Constellation.PureH = S_Constellation.getPureHChecked(score);
-            SpecialIndices.S_Constellation.R = S_Constellation.getRChecked(score);
+            if (age >= 14) {
+                SpecialIndices.S_Constellation.Up8Checked = S_Constellation.getUp8Checked(score);
+                SpecialIndices.S_Constellation.SumVplusFD = S_Constellation.getFVPlusVFPlusVPlusFDChecked(score);
+                SpecialIndices.S_Constellation.ColorShadingBlends = S_Constellation.getColorShadingBlendsChecked(score);
+                SpecialIndices.S_Constellation.Ego = S_Constellation.getEgoChecked(score);
+                SpecialIndices.S_Constellation.MOR = S_Constellation.getMORChecked(score);
+                SpecialIndices.S_Constellation.Zd = S_Constellation.getZdChecked(score);
+                SpecialIndices.S_Constellation.es = S_Constellation.getesChecked(score);
+                SpecialIndices.S_Constellation.CF = S_Constellation.getCFChecked(score);
+                SpecialIndices.S_Constellation.XPlus = S_Constellation.getXplusperChecked(score);
+                SpecialIndices.S_Constellation.S = S_Constellation.getSChecked(score);
+                SpecialIndices.S_Constellation.P = S_Constellation.getPChecked(score);
+                SpecialIndices.S_Constellation.PureH = S_Constellation.getPureHChecked(score);
+                SpecialIndices.S_Constellation.R = S_Constellation.getRChecked(score);
+            }
 
-            indicators.MOR = SpecialIndices.S_Constellation.MOR;
     
             SpecialIndices.PTI = {};
             SpecialIndices.PTI.XAper = PTI.getXAperChecked(score);
@@ -901,7 +911,7 @@ router.route("/finishtest1")
                     const OnlyShading = ColorShading.getOnlyShading(score);
 
 
-                    steps = affect.caculateAffect(lower.special_indices.DEPI, lower.special_indices.CDI, lower.core.Lambda, upper.determinants.M, lower.core.EBLeft, lower.core.EBRight, lower.affection.WSumC, lower.core.EA, lower.core.EBPer, lower.core.FM, lower.core.m, lower.core.SumCprime, lower.core.SumT, lower.core.SumV, lower.core.SumY, lower.affection.Afr, lower.ideation.twoABplusArtplusAy, upper.special_scores.CP, upper.determinants.FC, upper.determinants.CF, upper.determinants.C, age, experienceClassification.copyingStyle, experienceClassification.approachStyle, lower.affection.PureC, upper.location_features.S, upper.approach, lower.affection.Blends, lower.affection.R, AchromaticTextureAndVista, ChromaticDiffuse, OnlyShading);
+                    steps = affect.caculateAffect(lower.special_indices.DEPI, lower.special_indices.CDI, lower.core.Lambda, upper.determinants.M, lower.core.EBLeft, lower.core.EBRight, lower.affection.WSumC, lower.core.EA, lower.core.EBPer, lower.core.FM, lower.core.m, lower.core.SumCprime, lower.core.SumT, lower.core.SumV, lower.core.SumY, lower.affection.Afr, lower.ideation.twoABplusArtplusAy, upper.special_scores.CP, upper.determinants.FC, upper.determinants.CF, upper.determinants.C, age, experienceClassification.copyingStyle, experienceClassification.approachStyle, lower.affection.PureC, upper.location_features.S, upper.approach, lower.affection.Blends, lower.affection.R, t3step13, t3step14, AchromaticTextureAndVista, ChromaticDiffuse, OnlyShading);
                     TESTRESULT.push({resultName, steps});
                 }
 

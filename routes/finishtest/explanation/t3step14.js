@@ -4,6 +4,7 @@ function t3step14(scores) {
     let det3Blends = 0;
     let det4UpBlends = 0;
 
+    console.log('blends', blends)
     scores.forEach((score) => {
         if (score.det && Object.keys(score.det).length == 3) {
             det3Blends += 1;

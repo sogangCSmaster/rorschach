@@ -108,7 +108,7 @@ function checkFQminus3andPureF(scores) {
       }
     }
   })
-  if (FQminus > 3 && pureF > FQminus / 2) {
+  if (FQminus > 3 || pureF > FQminus / 2) {
     if (lambda > 0.99) {
       return 1;
     } else {

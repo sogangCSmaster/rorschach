@@ -56,8 +56,10 @@ html
             .page {
                 width: 210mm;
                 min-height: 297mm;
-                padding: 20mm;
+                display: block;
                 margin: 10mm auto;
+                box-sizing: border-box;
+                padding: 20mm;
                 border: 1px #D3D3D3 solid;
                 border-radius: 5px;
                 background: white;
@@ -68,6 +70,7 @@ html
                 min-height: 297mm;
                 padding: 10mm;
                 margin: 10mm auto;
+                box-sizing: border-box;
                 border: 1px #D3D3D3 solid;
                 border-radius: 5px;
                 background: white;
@@ -1025,8 +1028,12 @@ html
                                                 i.fa.fa-check-square-o(style="margin-right: 6px; font-size: 11pt;")
                                                 | S-CON = YES
                                             else
-                                                i.fa.fa-square-o(style="margin-right: 6px; font-size: 11pt;")
-                                                | S-CON = NO
+                                                if lower.special_indices.SCON == -1
+                                                    i.fa.fa-square-o(style="margin-right: 6px; font-size: 11pt;")
+                                                    | S-CON = N/A
+                                                else
+                                                    i.fa.fa-square-o(style="margin-right: 6px; font-size: 11pt;")
+                                                    | S-CON = NO
                                         th.text-center(colspan="4")
                                             if lower.special_indices.PTI>=4
                                                 i.fa.fa-check-square-o(style="margin-right: 6px; font-size: 11pt;")
@@ -1706,8 +1713,13 @@ html
                                                 i.fa.fa-check-square-o(style="margin-right: 6px; font-size: 11pt;")
                                                 | S-CON = YES
                                             else
-                                                i.fa.fa-square-o(style="margin-right: 6px; font-size: 11pt;")
-                                                | S-CON = NO
+                                                if lower.special_indices.SCON == -1
+
+                                                    i.fa.fa-square-o(style="margin-right: 6px; font-size: 11pt;")
+                                                    | S-CON = N/A
+                                                else
+                                                    i.fa.fa-square-o(style="margin-right: 6px; font-size: 11pt;")
+                                                    | S-CON = NO
                                         th.text-center(colspan="4")
                                             if lower.special_indices.PTI>=4
                                                 i.fa.fa-check-square-o(style="margin-right: 6px; font-size: 11pt;")
@@ -1751,6 +1763,10 @@ html
                                     tr
                                         td(colspan='2')
                                             | 핵심변인 : 
+                                            if Order.mainCheck
+                                                i.fa.fa-check-square-o(style="margin-right: 6px; font-size: 11pt;")
+                                            else
+                                                i.fa.fa-square-o(style="margin-right: 6px; font-size: 11pt;")
                                             if Order.main.length == 0
                                                 | 해당 사항 없음
                                             else
@@ -1758,12 +1774,16 @@ html
                                     tr
                                         td
                                             | 제 3변인 : 
+                                            if Order.thirdCheck
+                                                i.fa.fa-check-square-o(style="margin-right: 6px; font-size: 11pt;")
+                                            else
+                                                i.fa.fa-square-o(style="margin-right: 6px; font-size: 11pt;")
                                             if Order.thirdParty.length == 0
                                                 | 해당 사항 없음
                                             else
                                                 | #{Order.thirdParty.join(', ')}
                                         td(width='15%') 
-                                            if Order.main.length == 0 && Order.thirdParty.length == 0
+                                            if Order.randomCheck
                                                 i.fa.fa-check-square-o(style="margin-right: 6px; font-size: 11pt;")
                                             else
                                                 i.fa.fa-square-o(style="margin-right: 6px; font-size: 11pt;")
@@ -1810,7 +1830,7 @@ html
                                                                 br
                                                                 span Step 3: active : passive (a:p) = [ #{lower.interpersonal.a} : #{lower.interpersonal.p} ]
                                                                 br
-                                                                sapn Step 4: Food(Fd) responses =  [ #{upper.determinants.FD} ]
+                                                                sapn Step 4: Food(Fd) responses =  [ #{upper.contents.Fd} ]
                                                                 br
                                                                 span Step 5: Sum T =  [ #{lower.core.SumT} ]
                                                                 br
@@ -1842,8 +1862,10 @@ html
                             .row
                                 .col-md-12
                                     - var flag = true;
-                                    each step in T.steps
-                                        if step.textData.length != 0 && !JSON.stringify(step.textData).includes('질적')
+                                    - var steps = T.steps.filter((step) => { return step.textData.length });
+                                    - steps1 = steps.splice(0, 5);
+                                    each step in steps1
+                                        if step.textData.length != 0 && !JSON.stringify(step.textData).includes('[질적 분석]')
                                             if flag
                                                 | &#x27B2;
                                                 - flag = false
@@ -1852,18 +1874,50 @@ html
                                             if step.textData.length == 0
                                             else
                                                 each text in step.textData
-                                                    if !text.includes('질적')
+                                                    if !text.includes('[질적 분석]')
                                                         !=text
-                            .row
-                                .col-md-12(style="font-size: 9pt;")
-                                    ul
+                            if steps.length == 0
+                                .row
+                                    .col-md-12(style="font-size: 9pt;")
+                                        ul
 
-                                        li
-                                            | 질적 분석할 단계
-                                            br
-                                            | Step 8: COP frequencies = [ #{upper.special_scores.COP} ] & AG frequencies = [ #{upper.special_scores.AG} ] & coding
-                                            br
-                                            | Step 11: Contents of M responses with pairs(2) = [ #{Mwith2} ] & Contents of FM responses with pairs(2) = [ #{FMwith2} ]
+                                            li
+                                                | 질적 분석할 단계
+                                                br
+                                                | Step 8: COP frequencies = [ #{upper.special_scores.COP} ] & AG frequencies = [ #{upper.special_scores.AG} ] & coding
+                                                br
+                                                | Step 11: Contents of M responses with pairs(2) = [ #{Mwith2} ] & Contents of FM responses with pairs(2) = [ #{FMwith2} ]
+
+                    if steps.length > 0
+                        .wide-page
+                            .wide-subpage
+                                .row
+                                    .col-md-12
+                                        each step in steps
+                                            if step.textData.length != 0 && !JSON.stringify(step.textData).includes('[질적 분석]')
+                                                if flag
+                                                    | &#x27B2;
+                                                    - flag = false
+                                                span(style="color: blue; font-size: 8pt;") [Step #{step.curStep}]
+                                            p(style="font-size: 8pt;")
+                                                if step.textData.length == 0
+                                                else
+                                                    each text in step.textData
+                                                        if !text.includes('[질적 분석]')
+                                                            !=text
+
+
+
+                                .row
+                                    .col-md-12(style="font-size: 9pt;")
+                                        ul
+
+                                            li
+                                                | 질적 분석할 단계
+                                                br
+                                                | Step 8: COP frequencies = [ #{upper.special_scores.COP} ] & AG frequencies = [ #{upper.special_scores.AG} ] & coding
+                                                br
+                                                | Step 11: Contents of M responses with pairs(2) = [ #{Mwith2} ] & Contents of FM responses with pairs(2) = [ #{FMwith2} ]
                                 //-
                                     table.table.table-bordered(style='font-size: 9pt;')
                                         thead
@@ -2012,7 +2066,7 @@ html
                                 .col-md-12
                                     - var flag = true;
                                     each step in stepLeft
-                                        if step.textData.length != 0 && !JSON.stringify(step.textData).includes('질적')
+                                        if step.textData.length != 0 && !JSON.stringify(step.textData).includes('[질적 분석]')
                                             if flag
                                                 | &#x27B2;
                                                 - flag = false
@@ -2021,7 +2075,7 @@ html
                                             if step.textData.length == 0
                                             else
                                                 each text in step.textData
-                                                    if !text.includes('질적')
+                                                    if !text.includes('[질적 분석]')
                                                         !=text
                     .wide-page
                         .wide-subpage
@@ -2029,7 +2083,7 @@ html
                                 .col-md-12
                                     - var flag = true;
                                     each step in steps
-                                        if step.textData.length != 0 && !JSON.stringify(step.textData).includes('질적')
+                                        if step.textData.length != 0 && !JSON.stringify(step.textData).includes('[질적 분석]')
                                             if flag
                                                 | &#x27B2;
                                                 - flag = false
@@ -2038,7 +2092,7 @@ html
                                             if step.textData.length == 0
                                             else
                                                 each text in step.textData
-                                                    if !text.includes('질적')
+                                                    if !text.includes('[질적 분석]')
                                                         !=text
                             .row
                                 .col-md-12(style='font-size: 9pt;')
@@ -2156,8 +2210,10 @@ html
                             .row
                                 .col-md-12
                                     - var flag = true;
-                                    each step in T.steps
-                                        if step.textData.length != 0 && !JSON.stringify(step.textData).includes('질적')
+                                    - var steps = T.steps.filter((step) => step.textData.length);
+                                    - var steps1 = steps.splice(0, 5)
+                                    each step in steps1
+                                        if step.textData.length != 0 && !JSON.stringify(step.textData).includes('[질적 분석]')
                                             if flag
                                                 | &#x27B2;
                                                 - flag = false
@@ -2166,17 +2222,44 @@ html
                                             if step.textData.length == 0
                                             else
                                                 each text in step.textData
-                                                    if !text.includes('질적')
+                                                    if !text.includes('[질적 분석] ')
                                                         !=text
-                            .row
-                                .col-md-12(style="font-size: 9pt;")
-                                    ul
-                                        li
-                                            |  질적 분석할 단계
-                                            br
-                                            | Step 9: Quality 6 Special Scores (연령과 지적기능 고려)
-                                            br
-                                            | Step 11: Quality of M responses (연령 고려)
+                            if steps.length == 0
+                                .row
+                                    .col-md-12(style="font-size: 9pt;")
+                                        ul
+                                            li
+                                                |  질적 분석할 단계
+                                                br
+                                                | Step 9: Quality 6 Special Scores (연령과 지적기능 고려)
+                                                br
+                                                | Step 11: Quality of M responses (연령 고려)
+                    if steps.length > 0
+                        .wide-page
+                            .wide-subpage
+                                .row
+                                    .col-md-12
+                                        each step in steps
+                                            if step.textData.length != 0 && !JSON.stringify(step.textData).includes('[질적 분석]')
+                                                if flag
+                                                    | &#x27B2;
+                                                    - flag = false
+                                                span(style="color: blue; font-size: 8pt;") [Step #{step.curStep}]
+                                            p(style="font-size: 8pt;")
+                                                if step.textData.length == 0
+                                                else
+                                                    each text in step.textData
+                                                        if !text.includes('[질적 분석] ')
+                                                            !=text
+                                .row
+                                    .col-md-12(style="font-size: 9pt;")
+                                        ul
+                                            li
+                                                |  질적 분석할 단계
+                                                br
+                                                | Step 9: Quality 6 Special Scores (연령과 지적기능 고려)
+                                                br
+                                                | Step 11: Quality of M responses (연령 고려)
                                 //-
                                     table.table.table-bordered(style='font-size: 9pt;')
                                         thead
@@ -2269,7 +2352,7 @@ html
                                 .col-md-12
                                     - var flag = true;
                                     each step in T.steps
-                                        if step.textData.length != 0 && !JSON.stringify(step.textData).includes('질적')
+                                        if step.textData.length != 0 && !JSON.stringify(step.textData).includes('[질적 분석]')
                                             if flag
                                                 | &#x27B2;
                                                 - flag = false
@@ -2278,7 +2361,7 @@ html
                                             if step.textData.length == 0
                                             else
                                                 each text in step.textData
-                                                    if !text.includes('질적')
+                                                    if !text.includes('[질적 분석]')
                                                         !=text
                             .row
                                 .col-md-12(style="font-size: 9pt;")
@@ -2384,7 +2467,7 @@ html
                                 .col-md-12
                                     - var flag = true;
                                     each step in T.steps
-                                        if step.textData.length != 0 && !JSON.stringify(step.textData).includes('질적')
+                                        if step.textData.length != 0 && !JSON.stringify(step.textData).includes('[질적 분석]')
                                             if flag
                                                 | &#x27B2;
                                                 - flag = false
@@ -2393,7 +2476,7 @@ html
                                             if step.textData.length == 0
                                             else
                                                 each text in step.textData
-                                                    if !text.includes('질적')
+                                                    if !text.includes('[질적 분석]')
                                                         !=text
                             .row
                                 .col-md-12(style="font-size: 9pt;")
@@ -2475,7 +2558,7 @@ html
                                                                 br
                                                                 span(style='margin-left: 28px;') b: MOR responses = [ #{upper.special_scores.MOR} ]
                                                                 br
-                                                                span(style='margin-left: 28px;') c: M responses = [ #{lower.information_processing.M}]
+                                                                span(style='margin-left: 28px;') c: M responses = [ #{lower.information_processing.M} ]
                                                                 br
                                                                 span(style='margin-left: 42px;') & Human Content responses = [ #{lower.interpersonal.HumanCont} ]
                                                                 br
@@ -2497,7 +2580,7 @@ html
                                 .col-md-12
                                     - var flag = true;
                                     each step in T.steps
-                                        if step.textData.length != 0 && !JSON.stringify(step.textData).includes('질적')
+                                        if step.textData.length != 0 && !JSON.stringify(step.textData).includes('[질적 분석]')
                                             if flag
                                                 | &#x27B2;
                                                 - flag = false
@@ -2506,7 +2589,7 @@ html
                                             if step.textData.length == 0
                                             else
                                                 each text in step.textData
-                                                    if !text.includes('질적')
+                                                    if !text.includes('[질적 분석]')
                                                         !=text
                             .row
                                 .col-md-12(style="font-size: 9pt;")
@@ -2601,7 +2684,7 @@ html
                                 .col-md-12
                                     - var flag = true;
                                     each step in T.steps
-                                        if step.textData.length != 0 && !JSON.stringify(step.textData).includes('질적')
+                                        if step.textData.length != 0 && !JSON.stringify(step.textData).includes('[질적 분석]')
                                             if flag
                                                 | &#x27B2;
                                                 - flag = false
@@ -2610,7 +2693,7 @@ html
                                             if step.textData.length == 0
                                             else
                                                 each text in step.textData
-                                                    if !text.includes('질적')
+                                                    if !text.includes('[질적 분석]')
                                                         !=text
                 if T.resultName == '평소 통제능력보다 낮은 현재 통제능력을 유발하는 상황 관련 스트레스 평가'
                     .wide-page
@@ -2633,7 +2716,7 @@ html
                                                             p
                                                                 span Step 1: D Score in relation to as and Adj es
                                                                 br
-                                                                span(style='margin-left: 42px;') D = [ #{lower.core.D} ], Adj D = [ #{lower.core.AdjD} ], es - Adj es = [ #{lower.core.es - lower.core.Adjes}]
+                                                                span(style='margin-left: 42px;') D = [ #{lower.core.D} ], Adj D = [ #{lower.core.AdjD} ], es - Adj es = [ #{lower.core.es - lower.core.Adjes} ]
                                                                 br
                                                                 span Step 2: Difference between D Score 
                                                                 br
@@ -2667,7 +2750,7 @@ html
                                     h5 ❊ 심리적 문제와 관련된 것으로 추정되는 최근 사건을 함께 고려하세요.
                                     - var flag = true;
                                     each step in T.steps
-                                        if step.textData.length != 0 && !JSON.stringify(step.textData).includes('질적')
+                                        if step.textData.length != 0 && !JSON.stringify(step.textData).includes('[질적 분석]')
                                             if flag
                                                 | &#x27B2;
                                                 - flag = false
@@ -2676,7 +2759,7 @@ html
                                             if step.textData.length == 0
                                             else
                                                 each text in step.textData
-                                                    if !text.includes('질적')
+                                                    if !text.includes('[질적 분석]')
                                                         !=text
 
                     

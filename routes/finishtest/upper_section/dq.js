@@ -38,6 +38,7 @@ function getOFQxminus(scores) {
       FQminus += 1;
     }
   });
+    console.log('asdasdasdasd', FQminus)
   return FQminus;
 }
 exports.getOFQxminus = getOFQxminus;

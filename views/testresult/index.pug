@@ -990,8 +990,12 @@ html
                                                 i.fa.fa-check-square-o(style="margin-right: 6px; font-size: 11pt;")
                                                 | S-CON = YES
                                             else
-                                                i.fa.fa-square-o(style="margin-right: 6px; font-size: 11pt;")
-                                                | S-CON = NO
+                                                if lower.special_indices.SCON == -1
+                                                    i.fa.fa-square-o(style="margin-right: 6px; font-size: 11pt;")
+                                                    | S-CON = N/A
+                                                else
+                                                    i.fa.fa-square-o(style="margin-right: 6px; font-size: 11pt;")
+                                                    | S-CON = NO
                                         th.text-center(colspan="4")
                                             if lower.special_indices.PTI>=4
                                                 i.fa.fa-check-square-o(style="margin-right: 6px; font-size: 11pt;")

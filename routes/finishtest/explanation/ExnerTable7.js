@@ -20,6 +20,7 @@ function step1({ OBSPositive, HVIPositive }){
     result.textData = [];
     result.curStep = 1;
 
+
     if(OBSPositive){
         result.textData.push(`[잠정 결과1] 강박지표(OBS)를 고려할 때, 수검자는 완벽주의에 몰두하는 강박적인 경향을 보일 것이다. 이것이 수검자의 특정한 자기개념을 형성하는 성격의 유형적 특징일 것이다. `);
         result.textData.push(`강박성에 대한 이론은 다양하지만, 다음의 공통적인 가정을 모두 공유한다. 강박적인 사람은 자신이 어떤 요구에 대처하거나 목표를 달성하는 과정에서 적절하게 행동할 수 있는지 의문을 가지기 때문에, 안전하지 않다는 느낄 것이다. 완벽을 추구하는 것은 안전하지 않다는 걱정을 통제하는 방법이며, 더욱이 적절하지 않다는 느낌을 확신시켜주는 섬뜩한 실수를 회피하는 방법이다.`);
@@ -207,20 +208,21 @@ function step7({ HumanCont, H, Hrest, R, step7b }) {
 
     // 7b, 7a 에서 이동해온다.
     var [cond1, cond2, cond3, cond4, cond5] = step7b;
+    console.log('cond1', cond1, 'cond2', cond2, 'cond3', cond3, 'cond4', cond4, 'cond5', cond5)
     if (cond1) {
-        result.textData.push(`[7b.잠정 결과1] 인간 내용 반응이 포함된 반응의 결정인 형태질(FQx)을 고려할 때, 수검자는 혼란되어(confused) 있거나 자기개념에 대하여 왜곡된 관념을 가지고 있을 것이다.`);
+        result.textData.push(`[7b.잠정 결과1] 인간 내용 반응이 포함된 반응의 결정인 형태질(FQx)을 고려할 때, 수검자는 혼란되어(confused) 있거나 자기개념에 대하여 왜곡된 관념을 가지고 있을 것이다.</br>`);
     }
     if (cond2) {
-        result.textData.push(`[7b.잠정 결과2] 인간 내용 반응이 있는 반응에 포함된 인지적 특수점수(DV, DR, INCOM, ALOG, CONTAM)를 고려할 때, 수검자의 자기에 대한 사고에 인지적 어긋남이나 기능 이상이 영향을 주어 왜곡이 나타날 수 있다.`);
+        result.textData.push(`[7b.잠정 결과2] 인간 내용 반응이 있는 반응에 포함된 인지적 특수점수(DV, DR, INCOM, ALOG, CONTAM)를 고려할 때, 수검자의 자기에 대한 사고에 인지적 어긋남이나 기능 이상이 영향을 주어 왜곡이 나타날 수 있다.</br>`);
     }
     if (cond3) {
-        result.textData.push(`[7b.잠정 결과3] 인간 내용 반응이 있는 반응에 포함된 병적인 내용(MOR)을 고려할 때, 수검자의 자기개념에는 손상된 느낌이 포함되어 있을 것이다.`);
+        result.textData.push(`[7b.잠정 결과3] 인간 내용 반응이 있는 반응에 포함된 병적인 내용(MOR)을 고려할 때, 수검자의 자기개념에는 손상된 느낌이 포함되어 있을 것이다.</br>`);
     }
     if (cond4) {
-        result.textData.push(`[7b.잠정 결과4] 인간 경험(Hx) 반응을 고려할 때, 수검자는 자기개념 또는 자기가치(self-value)의 문제를 지나치게 지적인(intellectualized) 방식으로 다루려 시도하고, 현실을 무시할지도 모른다.`);
+        result.textData.push(`[7b.잠정 결과4] 인간 경험(Hx) 반응을 고려할 때, 수검자는 자기개념 또는 자기가치(self-value)의 문제를 지나치게 지적인(intellectualized) 방식으로 다루려 시도하고, 현실을 무시할지도 모른다.</br>`);
     }
     if (cond5) {
-        result.textData.push(`[7b.잠정 결과5] 인간 경험(Hx) 반응과 추상(AB) 반응을 고려할 때, 수검자는 자주 관념적 충동 조절 문제를 보일 것이다. 그 결과로 많은 자기개념의 특징이 심하게 왜곡될 것이다.`);
+        result.textData.push(`[7b.잠정 결과5] 인간 경험(Hx) 반응과 추상(AB) 반응을 고려할 때, 수검자는 자주 관념적 충동 조절 문제를 보일 것이다. 그 결과로 많은 자기개념의 특징이 심하게 왜곡될 것이다.</br>`);
     }
     result.nextStep = 8;
     result.goNext = false;
