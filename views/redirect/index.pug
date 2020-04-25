@@ -18,9 +18,7 @@ html
                         h5 채점 프로그램을 사용하기 위하여 비밀번호를 한번 더 입력해 주세요.
                         form.m-t(role="form" action="/redirect" method="POST")
                             .form-group
-                                input(type="text" class="form-control" value=m disabled)
-                                input(type="hidden" name="user" value=m)
+                                input(type="text" class="form-control" value=m disabled name="user")
                             .form-group
                                 input(type="password" class="form-control" placeholder="비밀번호 입력" required="" name="password")
-                                input(type="hidden" name="test" value=test)
                             button(type="submit" class="btn btn-primary block full-width m-b") 로그인

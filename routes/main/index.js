@@ -18,7 +18,7 @@ router.route("/")
         result = result.data;
         req.session.user = result;
 
-        var sql = "SELECT test.id, test.name, DATE_FORMAT(testdate, '%Y-%m-%d') as testdate, test, comName, comName_input, scoring FROM test LEFT OUTER JOIN score ON score.id = test.id WHERE memberID=?";
+        var sql = "SELECT test.id, test.name, DATE_FORMAT(testdate, '%Y-%m-%d') as testdate, test, comName, comName_input, scoring FROM test LEFT OUTER JOIN score ON score.id = test.id WHERE memberID=? ORDER BY test.id DESC";
         var datas = await query.executeSQL(sql, [m]);
 
         res.render('main/index', { datas, moment });
@@ -45,6 +45,7 @@ router.route("/")
         } else if(searchfor=="comName"){
             sql = sql + "comName_input like ?";
         }
+        sql = sql + " ORDER BY test.id DESC"
         var temp = "%" + searchtext + "%"
         var datas = await query.executeSQL(sql, [m, start, end, temp]);
 

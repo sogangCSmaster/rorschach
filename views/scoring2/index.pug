@@ -32,17 +32,6 @@ html
             .row
                 .col-md-12
                     .ibox-title
-                        h5 기존에 입력한 데이터 불러오기
-                    .ibox-content
-                        form.form-group(method="POST" action="/scoring1")
-                            select.form-control(name="id")
-                                each data in datas
-                                    option(value=data.id)=data.name + " " + data.sex + " " + data.testdate
-                               
-                            button.btn.btn-primary.mt-3(style="margin-top: 10px;") 입력
-            .row
-                .col-md-12
-                    .ibox-title
                         h5 등록번호 : #{session.insertId}   
                     .ibox-content
                         table#card-table.table.table-sm.table-striped.table-bordered

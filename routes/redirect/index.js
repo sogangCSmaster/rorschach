@@ -13,18 +13,20 @@ router.route("/redirect")
         }
     })
     .post(async(req, res, next) => {
-        var { user, password, test } = req.body;
-        console.warn(req.body);
+        var { user, password } = req.body;
+
+        var { user, password } = req.body;
         var api = config.api;
         api = api + `/memberList.php?m=${user}&p=${password}`;
         
         var result = await axios.get(api);
         result = result.data;
-        console.warn(result);
         if(result.memberID==""){
             return res.redirect("/login");
         } else {
             req.session.user = result;
+            req.session.m = user;
+            req.session.p = password;
             return res.redirect("/");
         }
     })
