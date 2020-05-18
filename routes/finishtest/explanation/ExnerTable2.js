@@ -79,7 +79,6 @@ function step3({ m, SumY }) {
     var result = { };
     result.textData = [];
     result.curStep = 3;
-    console.log('m', m, 'SumY', SumY)
     if (Math.abs(m - SumY) >= 3 && ((m > SumY  && m <= 3 * SumY) || (SumY >m && SumY <= 3 * m))) {
         result.textData.push('[잠정 결과1] 침투적 사고(m)와 무력감(SumY)의 비율을 고려할 때, 상황 관련 스트레스가 사고와 정서에 모두 영향을 미치는 것으로 볼 수 있다. 의식 밖에 있는 침투적 사고로 인해 주의집중력이 저하되고, 무력감이나 무능감에 관련된 감정으로 인해 걱정, 불안, 슬픔 등을 경험할 수 있다. 한쪽 값이 다른 쪽보다 2점을 초과하여 크다면, 그 값을 통해 스트레스의 영향에 대한 의미 있는 실마리를 얻을 수 있다.');
         result.goNext = false;

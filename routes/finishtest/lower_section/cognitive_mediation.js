@@ -3,7 +3,8 @@ const form_quality = require('../upper_section/form_quality.js');
 
 function getXAper(scores) {
   const FQx = form_quality.getFQx(scores);
-  return ((FQx['+'] + FQx['o'] + FQx['u']) / core.getR(scores)).toFixed(2);
+  //return ((FQx['+'] + FQx['o'] + FQx['u']) / core.getR(scores)).toFixed(2);
+  return roundTo((FQx['+'] + FQx['o'] + FQx['u']) / core.getR(scores), 2);
 }
 exports.getXAper = getXAper;
 
@@ -20,7 +21,8 @@ function getWDAper(scores) {
     }
   })
   const WPlusD = form_quality.getWPlusD(scores);
-  return ((WPlusD['+'] + WPlusD['o'] + WPlusD['u']) / count).toFixed(2);
+  return roundTo((WPlusD['+'] + WPlusD['o'] + WPlusD['u']) / count, 2);
+  //return ((WPlusD['+'] + WPlusD['o'] + WPlusD['u']) / count).toFixed(2);
 }
 exports.getWDAper = getWDAper;
 
@@ -58,12 +60,14 @@ exports.getP = getP;
 
 function getXplusper(scores) {
   const FQx = form_quality.getFQx(scores);
-  return ((FQx['+'] + FQx['o']) / core.getR(scores)).toFixed(2);
+  return roundTo((FQx['+'] + FQx['o']) / core.getR(scores), 2);
+  //return ((FQx['+'] + FQx['o']) / core.getR(scores)).toFixed(2);
 }
 exports.getXplusper = getXplusper;
 
 function getXuper(scores) {
   const FQx = form_quality.getFQx(scores);
-  return (FQx['u'] / core.getR(scores)).toFixed(2);
+  return roundTo(FQx['u'] / core.getR(scores), 2);
+  //return (FQx['u'] / core.getR(scores)).toFixed(2);
 }
 exports.getXuper = getXuper;

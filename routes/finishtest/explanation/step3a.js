@@ -108,7 +108,9 @@ function checkFQminus3andPureF(scores) {
       }
     }
   })
+    console.log('FQminus', FQminus, pureF, FQminus / 2)
   if (FQminus > 3 && pureF > FQminus / 2) {
+      console.log('lambda', lambda)
     if (lambda > 0.99) {
       return 1;
     } else if (lambda < 1.00) {

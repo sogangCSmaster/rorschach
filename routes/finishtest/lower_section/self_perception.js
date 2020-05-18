@@ -4,7 +4,8 @@ const contents = require('../upper_section/contents.js');
 const special_scores = require('../upper_section/special_scores.js');
 
 function getEgocentricityIndex(scores) {
-  return ((getReflections(scores) * 3 + single.get2(scores)) / core.getR(scores)).toFixed(2);
+  return roundTo((getReflections(scores) * 3 + single.get2(scores)) / core.getR(scores), 2);
+  //return ((getReflections(scores) * 3 + single.get2(scores)) / core.getR(scores)).toFixed(2);
 }
 exports.getEgocentricityIndex = getEgocentricityIndex;
 

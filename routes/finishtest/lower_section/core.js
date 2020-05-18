@@ -74,7 +74,8 @@ function getLambda(scores) {
   } else if (R - F == 0) {
     return 'Very High';
   } else {
-    return (F / (R - F)).toFixed(2)
+    //return (F / (R - F)).toFixed(2)
+    return roundTo(F / (R - F), 2);
   }
 }
 exports.getLambda = getLambda;
@@ -194,10 +195,12 @@ function getEBPer(scores) {
 
   if (EA >= 4.0 && lambda < 1.0) {
     if (4.0 <= EA && EA < 10 && Math.abs(getEBLeft(scores) - getEBRight(scores)) > 2.0) {
-      var res = (Math.max(getEBLeft(scores), getEBRight(scores)) / Math.min(getEBLeft(scores), getEBRight(scores))).toFixed(1);
+      //var res = (Math.max(getEBLeft(scores), getEBRight(scores)) / Math.min(getEBLeft(scores), getEBRight(scores))).toFixed(1);
+      var res = roundTo(Math.max(getEBLeft(scores), getEBRight(scores)) / Math.min(getEBLeft(scores), getEBRight(scores)), 1);
       return res;
     } else if (10 <= EA && Math.abs(getEBLeft(scores) - getEBRight(scores) > 2.5)) {
-      var res = (Math.max(getEBLeft(scores), getEBRight(scores)) / Math.min(getEBLeft(scores), getEBRight(scores))).toFixed(1);
+      var res = roundTo(Math.max(getEBLeft(scores), getEBRight(scores)) / Math.min(getEBLeft(scores), getEBRight(scores)), 1);
+      //var res = (Math.max(getEBLeft(scores), getEBRight(scores)) / Math.min(getEBLeft(scores), getEBRight(scores))).toFixed(1);
       return res;
     } else {
       return 'N/A';

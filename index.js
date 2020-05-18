@@ -48,6 +48,18 @@ app.use((req,res,next) => {
 });
 
 
+function roundTo(n, digits) {
+    if (digits === undefined) {
+        digits = 0;
+    }
+
+    var multiplicator = Math.pow(10, digits);
+    n = parseFloat((n * multiplicator).toFixed(11));
+    res = Math.round(n) / multiplicator;
+    return res.toFixed(digits);
+}
+app.locals.roundTo = roundTo;
+global.roundTo = roundTo;
 const main = require('./routes/main');
 const redirect = require('./routes/redirect');
 const login = require('./routes/login');

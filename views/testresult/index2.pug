@@ -333,7 +333,8 @@ html
                                                 | = #{upper.location_features.Zf}
                                                 br
                                                 span(style='display: inline-block; width: 30px;') ZSum
-                                                | = #{(upper.location_features.ZSum).toFixed(1)}
+                                                //-| = #{(upper.location_features.ZSum).toFixed(1)}
+                                                | = #{roundTo(upper.location_features.ZSum, 1)}
                                                 br
                                                 if upper.location_features.ZEst
                                                     span(style='display: inline-block; width: 30px;') ZEst
@@ -772,7 +773,8 @@ html
                                     tr
                                         td(colspan="8")
                                             span(style='display: inline-block; width: 15px;') EB
-                                            | = #{lower.core.EBLeft}:#{(lower.core.EBRight).toFixed(1)}
+                                            //-| = #{lower.core.EBLeft}:#{(lower.core.EBRight).toFixed(1)}
+                                            | = #{lower.core.EBLeft}:#{roundTo(lower.core.EBRight, 1)}
                                             br
                                             span(style='display: inline-block; width: 15px;') eb
                                             | = #{lower.core.ebLeft}:#{lower.core.ebRight}
@@ -831,7 +833,8 @@ html
                                             | = #{lower.affection.PureC}
                                             br
                                             span(style='display: inline-block; width: 100px;') SumC' : WSumC
-                                            | = #{lower.affection.SumCprime} : #{lower.affection.WSumC.toFixed(1)}
+                                            //-| = #{lower.affection.SumCprime} : #{lower.affection.WSumC.toFixed(1)}
+                                            | = #{lower.affection.SumCprime} : #{roundTo(lower.affection.WSumC, 1)}
                                             br
                                             span(style='display: inline-block; width: 100px;') Affective Ratio (Afr)
                                             | = #{lower.affection.Afr}
@@ -840,7 +843,8 @@ html
                                             | = #{lower.affection.S}
                                             br
                                             span(style='display: inline-block; width: 100px;') Blends : R
-                                            | = #{lower.affection.Blends} : #{lower.affection.R} (#{(lower.affection.Blends * 100 / lower.affection.R).toFixed(0)}%)
+                                            //-| = #{lower.affection.Blends} : #{lower.affection.R} (#{(lower.affection.Blends * 100 / lower.affection.R).toFixed(0)}%)
+                                            | = #{lower.affection.Blends} : #{lower.affection.R} (#{roundTo(lower.affection.Blends * 100 / lower.affection.R, 0)}%)
                                             br
                                             span(style='display: inline-block; width: 100px;') Color Projection (CP)
                                             | = #{lower.affection.CP}
@@ -940,7 +944,8 @@ html
                                             | = #{lower.cognitive_mediation.WDAper}
                                             br
                                             span(style='display: inline-block; width: 70px;') X-%
-                                            | = #{lower.cognitive_mediation.Xminusper.toFixed(2)}
+                                            //-| = #{lower.cognitive_mediation.Xminusper.toFixed(2)}
+                                            | = #{roundTo(lower.cognitive_mediation.Xminusper, 2)}
                                             br
                                             span(style='display: inline-block; width: 70px;') S-
                                             | = #{lower.cognitive_mediation.Sminus}
@@ -975,7 +980,8 @@ html
                                             | = #{lower.information_processing.W} : #{lower.information_processing.M}
                                             br
                                             span(style='display: inline-block; width: 60px;') Zd
-                                            | = #{lower.information_processing.Zd}
+                                            | = 
+                                            + parseSign(lower.information_processing.Zd)
                                             br
                                             span(style='display: inline-block; width: 60px;') PSV
                                             | = #{lower.information_processing.PSV}
@@ -1971,7 +1977,8 @@ html
                                                                         i.fa.fa-square-o
                                                                         |  CDI = [ #{lower.special_indices.CDI} ]
                                                                 br
-                                                                span Step 2: EB = [ #{(lower.core.EBLeft).toFixed(0)} : #{(lower.core.EBRight).toFixed(1)} ] 
+                                                                //-span Step 2: EB = [ #{(lower.core.EBLeft).toFixed(0)} : #{(lower.core.EBRight).toFixed(1)} ] 
+                                                                span Step 2: EB = [ #{roundTo(lower.core.EBLeft, 0)} : #{roundTo(lower.core.EBRight, 1)} ] 
                                                                 br
                                                                 span(style='margin-left: 42px;')
                                                                     | & Lambda(L) = [ #{lower.core.Lambda} ]
@@ -1993,11 +2000,13 @@ html
                                                                 if lower.core.EBPer == 'N/A'
                                                                     span Step 3: EBPer = [ N/A ]
                                                                 else
-                                                                    span Step 3: EBPer = [ #{parseFloat(lower.core.EBPer).toFixed(1)} ]
+                                                                    //-span Step 3: EBPer = [ #{parseFloat(lower.core.EBPer).toFixed(1)} ]
+                                                                    span Step 3: EBPer = [ #{roundTo(parseFloat(lower.core.EBPer), 1)} ]
                                                                 br
                                                                 span Step 4: Right Side eb = [ #{lower.core.ebRight} ] & variables related to it
                                                                 br
-                                                                span Step 5: SumC' : WSumC = [ #{lower.core.SumCprime} : #{lower.affection.WSumC.toFixed(1)} ]
+                                                                //-span Step 5: SumC' : WSumC = [ #{lower.core.SumCprime} : #{lower.affection.WSumC.toFixed(1)} ]
+                                                                span Step 5: SumC' : WSumC = [ #{lower.core.SumCprime} : #{roundTo(lower.affection.WSumC, 1)} ]
                                                                 br
                                                                 span Step 6: Affective Ratio(Afr) = [ #{lower.affection.Afr} ]
                                                                 br
@@ -2016,7 +2025,8 @@ html
                                                                         - Scount += 1;
                                                                 span Step 11: Space(S) responses = [ #{Scount} ]
                                                                 br
-                                                                span Step 12: Blends percentage = [ #{lower.affection.Blends} : #{lower.affection.R} (#{(lower.affection.Blends * 100 / lower.affection.R).toFixed(0)}%) ]
+                                                                //-span Step 12: Blends percentage = [ #{lower.affection.Blends} : #{lower.affection.R} (#{(lower.affection.Blends * 100 / lower.affection.R).toFixed(0)}%) ]
+                                                                span Step 12: Blends percentage = [ #{lower.affection.Blends} : #{lower.affection.R} (#{roundTo(lower.affection.Blends * 100 / lower.affection.R, 0)}%) ]
                                                                 br
                                                                 span(style='margin-left: 10px;') & EBStyle(
                                                                     if experienceClassification.copyingStyle=="Introversive" && experienceClassification.approachStyle=="True"
@@ -2164,12 +2174,14 @@ html
                                                     .row
                                                         .col-md-6
                                                             p
-                                                                span Step 1: EB = [ #{(lower.core.EBLeft).toFixed(0)} : #{(lower.core.EBRight).toFixed(1)} ] & Lambda(L) = [ #{lower.core.Lambda} ] #{lower.core.LambdaHighOrLow}
+                                                                //-span Step 1: EB = [ #{(lower.core.EBLeft).toFixed(0)} : #{(lower.core.EBRight).toFixed(1)} ] & Lambda(L) = [ #{lower.core.Lambda} ] #{lower.core.LambdaHighOrLow}
+                                                                span Step 1: EB = [ #{roundTo(lower.core.EBLeft, 0)} : #{roundTo(lower.core.EBRight, 1)} ] & Lambda(L) = [ #{lower.core.Lambda} ] #{lower.core.LambdaHighOrLow}
                                                                 br
                                                                 if lower.core.EBPer == 'N/A'
                                                                     span Step 2: EBPer = [ N/A ]
                                                                 else
-                                                                    span Step 2: EBPer = [ #{parseFloat(lower.core.EBPer).toFixed(1)} ]
+                                                                    //-span Step 2: EBPer = [ #{parseFloat(lower.core.EBPer).toFixed(1)} ]
+                                                                    span Step 2: EBPer = [ #{roundTo(parseFloat(lower.core.EBPer), 1)} ]
                                                                 br
                                                                 span Step 3: active : passive (a:p) = [ #{lower.interpersonal.a} : #{lower.interpersonal.p} ]
                                                                 br
@@ -2326,7 +2338,8 @@ html
                                                                 br
                                                                 span Step 2: FQ none(FQx none) = [ #{upper.form_quality.FQx['none']} ]
                                                                 br
-                                                                span Step 3: X-% = [ #{lower.cognitive_mediation.Xminusper.toFixed(2)} ], FQx- frequence = [ #{upper.form_quality.FQx['-']} ],
+                                                                //-span Step 3: X-% = [ #{lower.cognitive_mediation.Xminusper.toFixed(2)} ], FQx- frequence = [ #{upper.form_quality.FQx['-']} ],
+                                                                span Step 3: X-% = [ #{roundTo(lower.cognitive_mediation.Xminusper, 2)} ], FQx- frequence = [ #{upper.form_quality.FQx['-']} ],
                                                                 br
                                                                 - var DdSMinus = 0;
                                                                 each score in scores
@@ -2680,10 +2693,12 @@ html
                                                                         i.fa.fa-square-o
                                                                     |  CDI = [#{lower.special_indices.CDI}]
                                                                 br
-                                                                span Step 2: EA = [ #{lower.core.EA.toFixed(1)} ]
+                                                                //-span Step 2: EA = [ #{lower.core.EA.toFixed(1)} ]
+                                                                span Step 2: EA = [ #{roundTo(lower.core.EA, 1)} ]
                                                                 br
                                                                 span 
-                                                                    |Step 3: EB = [ #{lower.core.EBLeft.toFixed(1)} : #{lower.core.EBRight.toFixed(1)} ] 
+                                                                    //-|Step 3: EB = [ #{lower.core.EBLeft.toFixed(1)} : #{lower.core.EBRight.toFixed(1)} ] 
+                                                                    |Step 3: EB = [ #{roundTo(lower.core.EBLeft, 1)} : #{roundTo(lower.core.EBRight, 1)} ] 
                                                                     br
                                                                 span(style='margin-left: 40px;')
                                                                     |& Lambda(L) = [ #{lower.core.Lambda} ]
@@ -2757,7 +2772,8 @@ html
                                                                 br
                                                                 span Step 2: Difference between D Score 
                                                                 br
-                                                                span(style='margin-left: 42px;') & Adj D Score AdjD - D = [ #{(lower.core.D - lower.core.AdjD).toFixed(0)} ]
+                                                                //-span(style='margin-left: 42px;') & Adj D Score AdjD - D = [ #{(lower.core.D - lower.core.AdjD).toFixed(0)} ]
+                                                                span(style='margin-left: 42px;') & Adj D Score AdjD - D = [ #{roundTo(lower.core.D - lower.core.AdjD, 0)} ]
                                                                 br
                                                                 span Step 3: m = [ #{upper.determinants.m} ] & Sum Y = [ #{lower.core.SumY} ]
                                                         .col-md-6

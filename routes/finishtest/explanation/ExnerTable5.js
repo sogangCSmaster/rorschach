@@ -144,7 +144,13 @@ function step3({ fqx_minus, Xminusper }) {
     result.textData = [];
     result.curStep = 3;
 
-    if(Xminusper < 0.15){
+    if (parseFloat(Xminusper) == 0 && parseFloat(fqx_minus) == 0) {
+        result.textData.push(`[잠정 결과0] 왜곡된 형태 비율(X-%)을 고려할 때, 수검자의 중재 활동에서 기능 이상은 뚜렷하지 않을 것이다. 대부분의 검사기록에서 적절하지 않은 형태(FQx-) 반응이 나타는 점을 고려하면, 수검자는 반응과정에서 적절하고 정확하게 반응하려는 경향을 뚜렷하게 가지고 있을 것이다.`);
+        result.goNext = false;
+        result.nextStep = '4';
+        return result;
+    }
+    if(Xminusper < 0.15 && fqx_minus >= 1 && fqx_minus <= 3){
         result.textData.push(`[잠정 결과1] [정상범주] 왜곡된 형태 비율(X-%)을 고려할 때, 수검자의 중재 활동에서 기능 이상은 대부분의 다른 사람보다 더 많이 발생하지 않을 것이다.`);
         result.textData.push(`적절하지 않은 형태(FQx-) 반응은 대부분의 검사기록에서 나타난다. 그러므로 현재 검사 결과에서 나타난 반응은 인과관계가 뚜렷하지 않은 우연 수준에서 발생한 결과일 수 있다. 이러한 결과가 분노, 거부 등의 감정이 뚜렷하게 영향을 주어 야기된 것이라는 것을 배제하기 위해 적절하지 않은 공간(FQx S-) 반응을 다시 검토할 필요가 있다.`);
         result.goNext = false;
@@ -265,10 +271,10 @@ function step4({ R, P, age }){
     var pAverage = [];
 
     if(17<=R && R<=27){
-        if(age>=13){
+        if(age>=12){
             pAverage = [5, 7];
         }
-        if(age<=12){
+        if(age<12){
             pAverage = [4, 7];
         }
     }

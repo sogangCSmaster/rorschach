@@ -37,7 +37,8 @@ function getM(scores) {
 exports.getM = getM;
 
 function getZd(scores) {
-  return (location_features.getZSum(scores) - location_features.getZEst(scores)).toFixed(1);
+  //return (location_features.getZSum(scores) - location_features.getZEst(scores)).toFixed(1);
+  return roundTo(location_features.getZSum(scores) - location_features.getZEst(scores), 1);
 }
 exports.getZd = getZd;
 

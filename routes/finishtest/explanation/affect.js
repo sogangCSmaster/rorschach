@@ -193,8 +193,6 @@ function step1(DEPI, CDI){
 function step2(M, WSumC, Lambda, EBLeft, EBRight, EA){
     var result = {};
     var textData = [];
-    console.log('EA', EA, EBLeft, EBRight)
-    console.log('M', M, WSumC, Lambda)
     if((EA<=10 && (EBLeft>=2 || EBRight>=2)) || (EA>10 && (EBLeft>=2.5 || EBRight>=2.5))){
         if(M < WSumC){
             if(Lambda<1){
@@ -335,8 +333,7 @@ function step3(M, WSumC, Lambda, EBPer){
             return result;
         }
     }
-    console.log('M', M, 'WSumC', WSumC, 'Lambda', Lambda)
-    if(M<WSumC && Lambda<=0.99){
+    if(M>WSumC && Lambda<=0.99){
         if(EBPer<2.5){
             textData.push(`[잠정 결과3] 지배적 경험유형(EBPer)을 고려할 때, 수검자는 유연한(flexible) 진성 내향형(True Introversive)의 대처방식을 가지고 있는 것으로 볼 수 있다. 문제해결과 의사결정에서 사고자원을 주로 사용하기 때문에 사고과정에 감정의 영향이 적으며, 주로 관념적 접근을 사용한다. 때로는 감정이 사고과정에 영향을 주어 시행착오 방식에서 볼 수 있는 직관적인 의사결정을 할 수도 있다. 감정을 활용하는데 유연한 모습을 어느 정도 가지고 있을 수 있다.`);
             result.curStep = 3;
@@ -858,7 +855,8 @@ function step11(S, approach){
 function step12(copyingStyle, approachStyle, Blends, R){
     var result = {};
     var textData = [];
-    var percentage = ((Blends/R) * 100).toFixed(3);
+    var percentage = roundTo(Blends/R * 100, 3);
+    //var percentage = ((Blends/R) * 100).toFixed(3);
     var average = [];
     if(approachStyle=="True" && copyingStyle=="Extratensive"){
         average = [19, 33];

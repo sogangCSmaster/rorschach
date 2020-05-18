@@ -60,7 +60,7 @@ router.route('/scoring1/:id(\\d+)')
         console.log(score);
         var tempsaveUrl = `/scoring1/${insertId}`;
 
-        res.render('scoring1/index', { score, tempsaveUrl });
+        res.render('scoring1/index', { score, tempsaveUrl, insertId });
     })
     .post(async(req, res, next) => {
         var { stringifyText: score, testID, scoring } = req.body;

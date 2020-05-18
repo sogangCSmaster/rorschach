@@ -295,7 +295,8 @@ html
                                                 | = #{upper.location_features.Zf}
                                                 br
                                                 span(style='display: inline-block; width: 30px;') ZSum
-                                                | = #{(upper.location_features.ZSum).toFixed(1)}
+                                                //| = #{(upper.location_features.ZSum).toFixed(1)}
+                                                | = #{roundTo(upper.location_features.ZSum, 1)}
                                                 br
                                                 if upper.location_features.ZEst
                                                     span(style='display: inline-block; width: 30px;') ZEst
@@ -734,7 +735,8 @@ html
                                     tr
                                         td(colspan="8")
                                             span(style='display: inline-block; width: 15px;') EB
-                                            | = #{lower.core.EBLeft}:#{(lower.core.EBRight).toFixed(1)}
+                                            //-| = #{lower.core.EBLeft}:#{(lower.core.EBRight).toFixed(1)}
+                                            | = #{lower.core.EBLeft}:#{roundTo(lower.core.EBRight, 1)}
                                             br
                                             span(style='display: inline-block; width: 15px;') eb
                                             | = #{lower.core.ebLeft}:#{lower.core.ebRight}
@@ -793,7 +795,8 @@ html
                                             | = #{lower.affection.PureC}
                                             br
                                             span(style='display: inline-block; width: 100px;') SumC' : WSumC
-                                            | = #{lower.affection.SumCprime} : #{lower.affection.WSumC.toFixed(1)}
+                                            //-| = #{lower.affection.SumCprime} : #{lower.affection.WSumC.toFixed(1)}
+                                            | = #{lower.affection.SumCprime} : #{roundTo(lower.affection.WSumC, 1)}
                                             br
                                             span(style='display: inline-block; width: 100px;') Affective Ratio (Afr)
                                             | = #{lower.affection.Afr}
@@ -802,7 +805,8 @@ html
                                             | = #{lower.affection.S}
                                             br
                                             span(style='display: inline-block; width: 100px;') Blends : R
-                                            | = #{lower.affection.Blends} : #{lower.affection.R} (#{(lower.affection.Blends * 100 / lower.affection.R).toFixed(0)}%)
+                                            //-| = #{lower.affection.Blends} : #{lower.affection.R} (#{(lower.affection.Blends * 100 / lower.affection.R).toFixed(0)}%)
+                                            | = #{lower.affection.Blends} : #{lower.affection.R} (#{roundTo(lower.affection.Blends * 100 / lower.affection.R, 0)}%)
                                             br
                                             span(style='display: inline-block; width: 100px;') Color Projection (CP)
                                             | = #{lower.affection.CP}
@@ -902,7 +906,8 @@ html
                                             | = #{lower.cognitive_mediation.WDAper}
                                             br
                                             span(style='display: inline-block; width: 70px;') X-%
-                                            | = #{lower.cognitive_mediation.Xminusper.toFixed(2)}
+                                            //-| = #{lower.cognitive_mediation.Xminusper.toFixed(2)}
+                                            | = #{roundTo(lower.cognitive_mediation.Xminusper, 2)}
                                             br
                                             span(style='display: inline-block; width: 70px;') S-
                                             | = #{lower.cognitive_mediation.Sminus}
@@ -937,7 +942,8 @@ html
                                             | = #{lower.information_processing.W} : #{lower.information_processing.M}
                                             br
                                             span(style='display: inline-block; width: 60px;') Zd
-                                            | = #{lower.information_processing.Zd}
+                                            | = 
+                                            +parseSign(lower.information_processing.Zd)
                                             br
                                             span(style='display: inline-block; width: 60px;') PSV
                                             | = #{lower.information_processing.PSV}

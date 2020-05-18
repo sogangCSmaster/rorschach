@@ -52,7 +52,6 @@ function step2({ Dd, W, information_processing_D: D }) {
     var result = {};
     result.textData = [];
     result.curStep = 2;
-    console.log('Dd', Dd, 'W', W, 'D', D)
     if (Dd <= 3) {
         if (W >= D * 1.3 &&   W <= 1.6 * D) {
             result.textData.push('[잠정 결과1] [정상범주] 반응 위치 비율(W:D:Dd)을 고려할 때, 수검자가 들이는 처리 노력이나 처리 전략은 대부분의 다른 사람들에서 예상할 수 있는 범주에 있을 것이다. 이 결과는 잠정적이므로 3단계(step3)에서 다루는 위치 계열에 따라 노력이나 동기를 더 확인할 필요가 있다.');
@@ -97,33 +96,49 @@ function step3({  }) {
     return result;
 }
 
-function step4({W, M, Zf, }) {
+function step4({age, W, M, Zf, copyingStyle}) {
     var result = {};
     result.textData = [];
     result.curStep = 4;
-    if (W > M) {
-        if (W / M == 1.5 || W / M == 2 || W / M == 3) {
+    if (age >= 15 && W > M) {
+        if (
+            (W/M == 1.5 && copyingStyle == 'Introversive') || 
+            (W/M == 2 && copyingStyle == 'Ambitent') ||
+            (W/M == 3 && copyingStyle == 'Extratensive')
+        ) {
             result.textData.push('잠정 결과1a] 처리 노력에 영향을 주는 동기 수준을 결정하는 ‘어떤 행동이 어떤 결과를 가져올 것이라는 믿음’을 반영하는 기대 비율(Aspirational Ratio)과 결과를 얻는데 필요한 가용 자원을 반영하는 경험유형(EBstyle)을 고려할 때, 수검자는 자신이 가지고 있는 성취역량(가용 자원)에 비해 높은 성취목표(기대수준)를 가지고 있을 것이다. <br/>');
             result.textData.push('성취목표(기대수준)와 성취역량(가용 자원)이 일치하는 것이 적절한 상태이다. 하지만, 수검자는 낮은 자원 수준에도 불구하고 높은 목표를 가지고 있으므로 실패나 좌절의 경험을 자주 겪을 것이다. 이러한 경향은 특히, 발달질(DQ)에서 DQ+의 빈도가 낮으면 더 명확해질 것이다.<br/>');
             result.textData.push('자기 지각 영역에서 자기 효능감에 관련하여 개념화를 할 수도 있다.<br/>');
             result.textData.push('* 기준을 초과하지 않는 점수는 목표와 능력이 균형을 이루는 것이 아니라, 단지 해석적 의미가 없다는 것을 뜻한다.<br/>');
-        } else if ((W / M >= 5 && W / M <= 8) || (W / M == 4) || (W / M == 3)) {
+            result.goNext = false;
+            result.nextStep = 5;
+            return result;
+        }
+    }
+    if (age <= 17) {
+        if (
+            (W > M) ||
+            (age >=5 && age <=6 &&  W/M >= 5) ||
+            (age >=7 && age <= 8 && W/M >= 4) ||
+            (age >= 9 && age <= 11 && W/M >=4) ||
+            (age >=12 && age <=14 && W/M >= 3)
+        ) {
             result.textData.push('[잠정 결과1b] 처리 노력에 영향을 주는 동기 수준을 결정하는 ‘어떤 행동이 어떤 결과를 가져올 것이라는 믿음’을 반영하는 기대 비율(Aspirational Ratio)에서 성취역량(가용 자원)에 비해 높은 성취목표(기대수준)를 가지고 있는 것으로 나타나지만, 수검자의 연령을 고려하면 적절한 수준으로 볼 수 있다.<br/>');
             result.textData.push('아동과 어린 청소년의 경우, 현실적인 역량보다 자신의 능력 수준을 지나치게 높게 평가하고, 그것에 근거하여 상당히 높은 목표를 설정하는 경향이 있다. 하지만 어린 수검자는 그러한 목표에 큰 가치를 부여하지 않는다.<br/>');
             result.textData.push('그렇기에 낮은 자원 수준으로 인해 실패를 겪더라도 크게 신경을 쓰지 않으며, 그로 인한 좌절을 경험하는 기간도 짧을 것이다.<br/>');
+            result.goNext = false;
+            result.nextStep = 5;
+            return result;
         }
-        result.goNext = false;
-        result.nextStep = 5;
-        return result;
     }
 
     if (W < M) {
-        if (W / M == 0.75 && Zf >= 11) {
+        if (W / M == 0.75 && Zf >= 11 && copyingStyle == 'Introversive') {
             result.textData.push('[잠정 결과2a] 처리 노력에 영향을 주는 동기 수준을 결정하는 ‘어떤 행동이 어떤 결과를 가져올 것이라는 믿음’을 반영하는 기대 비율(Aspirational Ratio)과 결과를 얻는데 필요한 가용 자원을 반영하는 경험유형(EBstyle)을 고려할 때, 수검자는 자신이 가지고 있는 성취역량(가용 자원)에 비해 낮은 성취목표(기대수준)를 가지고 있을 것이다. 이러한 결과를 보이는 수검자는 성취목표를 설정하는 데 있어서 신중하고 조심스러울 것이다.<br/>');
             result.goNext = false;
             result.nextStep = 5;
             return result;
-        } else if (W / M == 1.2 && Zf < 11) {
+        } else if (W / M == 1.2 && Zf < 11 && (copyingStyle == 'Ambitent' || copyingStyle == 'Extratensive')) {
             result.textData.push('[잠정 결과2b] 처리 노력에 영향을 주는 동기 수준을 결정하는 ‘어떤 행동이 어떤 결과를 가져올 것이라는 믿음’을 반영하는 기대 비율(Aspirational Ratio)과 결과를 얻는데 필요한 가용 자원을 반영하는 경험유형(EBstyle)을 고려할 때, 수검자는 자신이 가지고 있는 성취역량(가용 자원)에 비해 낮은 성취목표(기대수준)를 가지고 있을 것이다. 이러한 결과를 보이는 수검자는 성취목표를 설정하는데 지나치게 노력을 아끼고 열의가 없을 것이다. 이러한 경향은 회피 유형(Avoidant style)의 검사 결과에서 자주 나타날 수 있다.');
             result.goNext = false;
             result.nextStep = 5;
@@ -198,11 +213,11 @@ function step7({ age, dqplus, dqVSlashPlus, dqv, copyingStyle }) {
     result.textData = [];
     result.curStep = 7;
 
-    // 13세 이상 청소년
-    console.log(age, dqplus, dqVSlashPlus, dqv, copyingStyle)
-    if(age>=13){
-        var averageDQplus = [];
-
+    // 12세 이상 청소년
+    var averageDQplus = [];
+    var sum = dqv + dqVSlashPlus;
+    var sumaverage = 0;
+    if (age >= 12) {
         if(copyingStyle=="Introversive"){
             averageDQplus = [7, 10];
         } else if (copyingStyle=="Extratensive" || copyingStyle=="Ambitent"){
@@ -214,131 +229,73 @@ function step7({ age, dqplus, dqVSlashPlus, dqv, copyingStyle }) {
         } else if(copyingStyle=="Extratensive"){
             averageDQv = [1, 2]
         }
-
-        var sum = dqv + dqVSlashPlus;
-        var sumaverage = 0;
+    }
+    if (age >= 10) {
         if(copyingStyle=="Introversive" || copyingStyle=="Ambitent"){
             sumaverage = 1;
         } else {
             sumaverage = 2;
         }
-
-        if(averageDQplus[0]<=dqplus && dqplus<=averageDQplus[1]){
-            if(sum<=sumaverage){
-                result.textData.push(`[잠정 결과1] [정상범주] 발달질(DQ)의 분포를 고려할 때, 수검자가 보이는 처리의 질(quality)은 대개 매우 적절할 것이다. <br />`)
-                result.nextStep = 8;
-                result.goNext = false;
-                return result;
-            }
-
-            if(sum>sumaverage){
-                result.textData.push(`[잠정 결과2] 발달질(DQ)의 분포를 고려할 때, 수검자가 보이는 처리의 질(quality)은 대개 적절할 것이다. 하지만, 때때로 처리활동이 불안정해져서 적절하지 않거나 성숙하지 않은 수준으로 약해질 수 있다.<br/>`)
-                result.textData.push(`이러한 결과는 아동에서는 흔하게 나타나지만, 청소년이나 성인에서는 흔하지 않다. 정교하지 않은 처리는 입력된 정보가 자주 느슨하거나 흠결 있게 해석되는 원인이나, 적응 어려움의 전조가 될 수 있다.`);
-                result.nextStep = 8;
-                result.goNext = false;
-                return result;
-            }
-
+    }
+    if (age < 12) {
+        averageDQplus = [5, 8];
+    }
+    if (age < 10) {
+        averageDQv = [4, 4];
+        sumaverage = 5;
+    }
+    if(averageDQplus[0]<=dqplus && dqplus<=averageDQplus[1]){
+        if(sum<=sumaverage){
+            result.textData.push(`[잠정 결과1] [정상범주] 발달질(DQ)의 분포를 고려할 때, 수검자가 보이는 처리의 질(quality)은 대개 매우 적절할 것이다. <br />`)
+            result.nextStep = 8;
+            result.goNext = false;
+            return result;
         }
 
-        if(dqplus>averageDQplus[1]){
-            if(sum<=sumaverage){
-                result.textData.push(`[잠정 결과3] 발달질(DQ)의 분포를 고려할 때, 수검자가 보이는 처리의 질(quality)은 양호할 것이고, 아마도 더 정확히 말하면 복잡할 것이다. <br/>`);
-                result.textData.push(`학력 수준이 높은 수검자에서 흔하게 나타나며, 더 능률적인(efficient) 인지 기능이나 더 효과적인(effective) 형태의 적응을 의미하지는 않는다. 이것은 단순히 처리의 질(quality)이 높다는 것을 의미할 뿐이다. <br/>`);
-
-                result.nextStep = 8;
-                result.goNext = false;
-                return result;
-            }
-
-            if(sum>sumaverage){
-                result.textData.push(`[잠정 결과4] 발달질(DQ)의 분포를 고려할 때, 수검자가 보이는 처리의 질(quality)은 대개 매우 양호할 것이고, 아마도 더 정확히 말하면 복잡할 것이다. 또한, 때때로 처리 활동의 질(quality)에 심한 결함이 생기거나, 처리 결과의 형태가 성숙하지 않을 수 있다.<br/>`);
-                result.textData.push(`어떤 종류의 현저한 심리적 혼란(disarray)이 있는 사람에서 흔하게 나타난다. 처리의 문제는 새로 입력된 정보를 해석하거나, 개념을 형성하고 응용하는데 잠재적 문제를 만들 수 있다.`);
-                result.nextStep = 8;
-                result.goNext = false;
-                return result;
-            }
+        if(sum>sumaverage){
+            result.textData.push(`[잠정 결과2] 발달질(DQ)의 분포를 고려할 때, 수검자가 보이는 처리의 질(quality)은 대개 적절할 것이다. 하지만, 때때로 처리활동이 불안정해져서 적절하지 않거나 성숙하지 않은 수준으로 약해질 수 있다.<br/>`)
+            result.textData.push(`이러한 결과는 아동에서는 흔하게 나타나지만, 청소년이나 성인에서는 흔하지 않다. 정교하지 않은 처리는 입력된 정보가 자주 느슨하거나 흠결 있게 해석되는 원인이나, 적응 어려움의 전조가 될 수 있다.`);
+            result.nextStep = 8;
+            result.goNext = false;
+            return result;
         }
-
-        if(dqplus<averageDQplus[0]){
-            if(sum<=sumaverage){
-                result.textData.push(`[잠정 결과5] 발달질(DQ)의 분포를 고려할 때, 수검자가 보이는 처리의 질(quality)은 아마도 적절할 것이다. 하지만, 일반적인 것보다 더 조심스러워하고 처리 노력을 아낄(economical) 것이다. 이러한 결과는 회피 유형(avoidant style)에서 가장 흔하게 나타난다. 회피 유형은 수검자의 심리 활동의 관리(directing)에서 매우 지배적인 역할을 할 것이다.`);
-                result.nextStep = 9;
-                result.goNext = false;
-                return result;
-            }
-
-            if(sum>sumaverage){
-                result.textData.push(`[잠정 결과6] 발달질(DQ)의 분포를 고려할 때, 수검자가 보이는 처리의 질(quality)은 자주 적절하지 않을 것이다. 특히, 복잡한 상황에 놓이면 그러한 경향이 뚜렷할 것이다. 느슨하거나 결함 있는 처리는 자주 적응 어려움으로 이어질 것이다.`);
-                result.nextStep = 8;
-                result.goNext = false;
-                return result;
-            }
-        }
-
-
 
     }
 
-    if(age<=12){
-        var averageDQplus = [5, 8];
-        var sum = dqv + dqVSlashPlus;
+    if(dqplus>averageDQplus[1]){
+        if(sum<=sumaverage){
+            result.textData.push(`[잠정 결과3] 발달질(DQ)의 분포를 고려할 때, 수검자가 보이는 처리의 질(quality)은 양호할 것이고, 아마도 더 정확히 말하면 복잡할 것이다. <br/>`);
+            result.textData.push(`학력 수준이 높은 수검자에서 흔하게 나타나며, 더 능률적인(efficient) 인지 기능이나 더 효과적인(effective) 형태의 적응을 의미하지는 않는다. 이것은 단순히 처리의 질(quality)이 높다는 것을 의미할 뿐이다. <br/>`);
 
-        if(averageDQplus[0]<=dqplus && dqplus<=averageDQplus[1]){
-            if(sum==5){
-                result.textData.push(`[잠정 결과1] [정상범주] 발달질(DQ)의 분포를 고려할 때, 수검자가 보이는 처리의 질(quality)은 대개 매우 적절할 것이다. <br />`)
-                result.nextStep = 8;
-                result.goNext = false;
-                return result;
-            }
-
-            if(sum>5){
-                result.textData.push(`[잠정 결과2] 발달질(DQ)의 분포를 고려할 때, 수검자가 보이는 처리의 질(quality)은 대개 적절할 것이다. 하지만, 때때로 처리활동이 불안정해져서 적절하지 않거나 성숙하지 않은 수준으로 약해질 수 있다.<br/>`)
-                result.textData.push(`이러한 결과는 아동에서는 흔하게 나타나지만, 청소년이나 성인에서는 흔하지 않다. 정교하지 않은 처리는 입력된 정보가 자주 느슨하거나 흠결 있게 해석되는 원인이나, 적응 어려움의 전조가 될 수 있다.`);
-                result.nextStep = 8;
-                result.goNext = false;
-                return result;
-            }
-
+            result.nextStep = 8;
+            result.goNext = false;
+            return result;
         }
 
-        if(dqplus>averageDQplus[1]){
-            if(sum==5){
-                result.textData.push(`[잠정 결과3] 발달질(DQ)의 분포를 고려할 때, 수검자가 보이는 처리의 질(quality)은 양호할 것이고, 아마도 더 정확히 말하면 복잡할 것이다. <br/>`);
-                result.textData.push(`학력 수준이 높은 수검자에서 흔하게 나타나며, 더 능률적인(efficient) 인지 기능이나 더 효과적인(effective) 형태의 적응을 의미하지는 않는다. 이것은 단순히 처리의 질(quality)이 높다는 것을 의미할 뿐이다. <br/>`);
-
-                result.nextStep = 8;
-                result.goNext = false;
-                return result;
-            }
-
-            if(sum>5){
-                result.textData.push(`[잠정 결과4] 발달질(DQ)의 분포를 고려할 때, 수검자가 보이는 처리의 질(quality)은 대개 매우 양호할 것이고, 아마도 더 정확히 말하면 복잡할 것이다. 또한, 때때로 처리 활동의 질(quality)에 심한 결함이 생기거나, 처리 결과의 형태가 성숙하지 않을 수 있다.<br/>`);
-                result.textData.push(`어떤 종류의 현저한 심리적 혼란(disarray)이 있는 사람에서 흔하게 나타난다. 처리의 문제는 새로 입력된 정보를 해석하거나, 개념을 형성하고 응용하는데 잠재적 문제를 만들 수 있다.`);
-                result.nextStep = 8;
-                result.goNext = false;
-                return result;
-            }
-        }
-
-        if(dqplus<averageDQplus[0]){
-            if(sum==5){
-                result.textData.push(`[잠정 결과5] 발달질(DQ)의 분포를 고려할 때, 수검자가 보이는 처리의 질(quality)은 아마도 적절할 것이다. 하지만, 일반적인 것보다 더 조심스러워하고 처리 노력을 아낄(economical) 것이다. 이러한 결과는 회피 유형(avoidant style)에서 가장 흔하게 나타난다. 회피 유형은 수검자의 심리 활동의 관리(directing)에서 매우 지배적인 역할을 할 것이다.`);
-                result.nextStep = 9;
-                result.goNext = false;
-                return result;
-            }
-
-            if(sum>5){
-                result.textData.push(`[잠정 결과6] 발달질(DQ)의 분포를 고려할 때, 수검자가 보이는 처리의 질(quality)은 자주 적절하지 않을 것이다. 특히, 복잡한 상황에 놓이면 그러한 경향이 뚜렷할 것이다. 느슨하거나 결함 있는 처리는 자주 적응 어려움으로 이어질 것이다.`);
-                result.nextStep = 8;
-                result.goNext = false;
-                return result;
-            }
+        if(sum>sumaverage){
+            result.textData.push(`[잠정 결과4] 발달질(DQ)의 분포를 고려할 때, 수검자가 보이는 처리의 질(quality)은 대개 매우 양호할 것이고, 아마도 더 정확히 말하면 복잡할 것이다. 또한, 때때로 처리 활동의 질(quality)에 심한 결함이 생기거나, 처리 결과의 형태가 성숙하지 않을 수 있다.<br/>`);
+            result.textData.push(`어떤 종류의 현저한 심리적 혼란(disarray)이 있는 사람에서 흔하게 나타난다. 처리의 문제는 새로 입력된 정보를 해석하거나, 개념을 형성하고 응용하는데 잠재적 문제를 만들 수 있다.`);
+            result.nextStep = 8;
+            result.goNext = false;
+            return result;
         }
     }
 
+    if(dqplus<averageDQplus[0]){
+        if(sum<=sumaverage){
+            result.textData.push(`[잠정 결과5] 발달질(DQ)의 분포를 고려할 때, 수검자가 보이는 처리의 질(quality)은 아마도 적절할 것이다. 하지만, 일반적인 것보다 더 조심스러워하고 처리 노력을 아낄(economical) 것이다. 이러한 결과는 회피 유형(avoidant style)에서 가장 흔하게 나타난다. 회피 유형은 수검자의 심리 활동의 관리(directing)에서 매우 지배적인 역할을 할 것이다.`);
+            result.nextStep = 9;
+            result.goNext = false;
+            return result;
+        }
 
+        if(sum>sumaverage){
+            result.textData.push(`[잠정 결과6] 발달질(DQ)의 분포를 고려할 때, 수검자가 보이는 처리의 질(quality)은 자주 적절하지 않을 것이다. 특히, 복잡한 상황에 놓이면 그러한 경향이 뚜렷할 것이다. 느슨하거나 결함 있는 처리는 자주 적응 어려움으로 이어질 것이다.`);
+            result.nextStep = 8;
+            result.goNext = false;
+            return result;
+        }
+    }
     result.goNext = false;
     result.nextStep = 8;
     return result;

@@ -150,8 +150,7 @@ function getReBlendsPercent(scores) {
             }
         }
     })
-    console.lo
-    return parseInt((blends - (m + Y - 1)) * 100 / scores.length)
+    return roundTo((blends - (m + Y - 1)) * 100 / scores.length, 0)
 }
 exports.getReBlendsPercent = getReBlendsPercent
 
