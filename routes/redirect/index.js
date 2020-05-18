@@ -5,12 +5,7 @@ const axios = require('axios');
 
 router.route("/redirect")
     .get(async(req, res, next)=> {
-        try{
-            var { m, test } = req.query;
-            res.render('redirect/index', {m, test});
-        } catch(err){
-            next(err);
-        }
+        res.redirect("/login");
     })
     .post(async(req, res, next) => {
         var { user, password } = req.body;
