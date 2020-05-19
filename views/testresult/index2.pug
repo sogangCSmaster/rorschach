@@ -1782,14 +1782,16 @@ html
                                     tr
                                         td
                                             | 제 3변인 : 
-                                            if Order.thirdCheck
-                                                i.fa.fa-check-square-o(style="margin-right: 6px; font-size: 11pt;")
-                                            else
-                                                i.fa.fa-square-o(style="margin-right: 6px; font-size: 11pt;")
+                                            each third, index in Order.thirdParty
+                                                if index != 0
+                                                    | ,
+                                                if Order.thirdChecked[index]
+                                                    i.fa.fa-check-square-o(style="margin-right: 6px; font-size: 11pt;")
+                                                else
+                                                    i.fa.fa-square-o(style="margin-right: 6px; font-size: 11pt;")
+                                                | #{third}
                                             if Order.thirdParty.length == 0
                                                 | 해당 사항 없음
-                                            else
-                                                | #{Order.thirdParty.join(', ')}
                                         td(width='15%') 
                                             if Order.randomCheck
                                                 i.fa.fa-check-square-o(style="margin-right: 6px; font-size: 11pt;")
@@ -2354,7 +2356,7 @@ html
                                                                 br
                                                                 span Step 4: Populars(P) = [ #{lower.cognitive_mediation.P} ]
                                                                 br
-                                                                span Step 5: FQ+ frequency = [#{upper.form_quality.FQx['+']}]
+                                                                span Step 5: FQ+ frequency = [ #{upper.form_quality.FQx['+']} ]
                                                                 br
                                                                 span Step 6: X+% = [ #{lower.cognitive_mediation.Xplusper} ] & Xu% = [ #{lower.cognitive_mediation.Xuper} ]
                                             tr
@@ -2369,7 +2371,9 @@ html
                             .row
                                 .col-md-12
                                     - var flag = true;
-                                    each step in T.steps
+                                    - var steps = T.steps.filter((step) => { return step.textData.length });
+                                    - steps1 = steps.splice(0, 5);
+                                    each step in steps1
                                         if step.textData.length != 0 && !JSON.stringify(step.textData).includes('[질적 분석]')
                                             if flag
                                                 | &#x27B2;
@@ -2381,13 +2385,39 @@ html
                                                 each text in step.textData
                                                     if !text.includes('[질적 분석]')
                                                         !=text
-                            .row
-                                .col-md-12(style="font-size: 9pt;")
-                                    ul
-                                        li
-                                            | 질적 분석할 단계
-                                            br
-                                            | Step 3b: Minus distortion levels (형태 왜곡 수준 분석)
+                            if steps.length == 0
+                                .row
+                                    .col-md-12(style="font-size: 9pt;")
+                                        ul
+                                            li
+                                                | 질적 분석할 단계
+                                                br
+                                                | Step 3b: Minus distortion levels (형태 왜곡 수준 분석)
+                    if steps.length > 0 
+                        .wide-page
+                            .wide-subpage
+                                .row
+                                    .col-md-12
+                                        each step in steps
+                                            if step.textData.length != 0 && !JSON.stringify(step.textData).includes('[질적 분석]')
+                                                if flag
+                                                    | &#x27B2;
+                                                    - flag = false
+                                                span(style="color: blue; font-size: 8pt;") [Step #{step.curStep}]
+                                            p(style="font-size: 8pt;")
+                                                if step.textData.length == 0
+                                                else
+                                                    each text in step.textData
+                                                        if !text.includes('[질적 분석]')
+                                                            !=text
+                                .row
+                                    .col-md-12(style="font-size: 9pt;")
+                                        ul
+                                            li
+                                                | 질적 분석할 단계
+                                                br
+                                                | Step 3b: Minus distortion levels (형태 왜곡 수준 분석)
+
                                 //-
                                     table.table.table-bordered(style='font-size: 9pt;')
                                         thead
@@ -2448,7 +2478,7 @@ html
                                                         else
                                                             i.fa.fa-square-o
                                                             |  HVI = [ No ] 
-                                                        | EB = [ #{lower.core.EBLeft} : #{lower.core.EBRight} ]
+                                                        | EB = [ #{lower.core.EBLeft} : #{roundTo(lower.core.EBRight, 1)} ]
                                                     .row
                                                         .col-md-6
                                                             p
@@ -2691,7 +2721,7 @@ html
                                                                         i.fa.fa-check-square-o
                                                                     else
                                                                         i.fa.fa-square-o
-                                                                    |  CDI = [#{lower.special_indices.CDI}]
+                                                                    |  CDI = [ #{lower.special_indices.CDI} ]
                                                                 br
                                                                 //-span Step 2: EA = [ #{lower.core.EA.toFixed(1)} ]
                                                                 span Step 2: EA = [ #{roundTo(lower.core.EA, 1)} ]
@@ -2773,7 +2803,7 @@ html
                                                                 span Step 2: Difference between D Score 
                                                                 br
                                                                 //-span(style='margin-left: 42px;') & Adj D Score AdjD - D = [ #{(lower.core.D - lower.core.AdjD).toFixed(0)} ]
-                                                                span(style='margin-left: 42px;') & Adj D Score AdjD - D = [ #{roundTo(lower.core.D - lower.core.AdjD, 0)} ]
+                                                                span(style='margin-left: 42px;') & Adj D Score AdjD - D = [ #{roundTo(lower.core.AdjD - lower.core.D, 0)} ]
                                                                 br
                                                                 span Step 3: m = [ #{upper.determinants.m} ] & Sum Y = [ #{lower.core.SumY} ]
                                                         .col-md-6

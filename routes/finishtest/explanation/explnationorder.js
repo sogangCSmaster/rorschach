@@ -226,7 +226,7 @@ function getOrder(PTI, DEPI, CDI, D, AdjD, Lambda, Reflections, copyingStyle, p,
     if (order.length < 7 && thirdOrder.length > 0) {
         uniquePush(order, thirdOrder);
     } else {
-        thirdChecked.map((t) => false);
+        thirdChecked = thirdChecked.map((t) => false);
     }
     result.order = order;
     result.thirdChecked = thirdChecked;

@@ -44,6 +44,7 @@ function step1({D, AdjD, es, Adjes, }) {
         }
     }
 
+    result.textData = ['해당 사항 없음.']
     result.goNext = true;
     result.nextStep = 2;
 

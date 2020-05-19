@@ -58,8 +58,10 @@ function t6step8(scores, { age, WSum6, R }) {
     if (age >= 5 && age <= 7) {
         WSum6Condition = 12;
     }
+    
+    console.log('age', age, WSum6, WSum6Condition, DV1, DR1, INCOM1, DV2, DR2, INCOM2)
 
-    if (age >= 14 && WSum6 <= WSum6Condition && DV1 && DR1 && INCOM1 && !DV2 && !DR2 && !INCOM2) {
+    if (age >= 14 && WSum6 <= WSum6Condition && (DV1 || DR1 || INCOM1) && !DV2 && !DR2 && !INCOM2) {
         return '1a';
     }
     if (age >= 5 && age <= 13 && WSum6 <= WSum6Condition && !CONTAM) {
