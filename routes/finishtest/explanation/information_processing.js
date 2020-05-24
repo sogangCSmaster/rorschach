@@ -284,7 +284,7 @@ function step7({ age, dqplus, dqVSlashPlus, dqv, copyingStyle }) {
     if(dqplus<averageDQplus[0]){
         if(sum<=sumaverage){
             result.textData.push(`[잠정 결과5] 발달질(DQ)의 분포를 고려할 때, 수검자가 보이는 처리의 질(quality)은 아마도 적절할 것이다. 하지만, 일반적인 것보다 더 조심스러워하고 처리 노력을 아낄(economical) 것이다. 이러한 결과는 회피 유형(avoidant style)에서 가장 흔하게 나타난다. 회피 유형은 수검자의 심리 활동의 관리(directing)에서 매우 지배적인 역할을 할 것이다.`);
-            result.nextStep = 9;
+            result.nextStep = 8;
             result.goNext = false;
             return result;
         }
