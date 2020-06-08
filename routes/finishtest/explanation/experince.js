@@ -32,7 +32,7 @@ function getExperience(EBLeft, EBRight, EA, L, EBPer){
         } else if(EBPer >= 2/5){
             dominantStyle = "Pervasive";
         }
-    } else if(L > 99){
+    } else if(L > 0.99){
         approachStyle = "Avoidant";
     }
 

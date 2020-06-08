@@ -1,3 +1,5 @@
+// Situationally related stress
+//
 function calculateExnerTable2(scores) {
     var result = [];
     var step = 1;

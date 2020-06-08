@@ -1,3 +1,4 @@
+// Interpersonal Perception and Behavior
 function calculateExnerTable8(scores) {
     var result = [];
     var step = 1;
@@ -145,6 +146,7 @@ function step6({ Hrest, H, R, copyingStyle, approachStyle }) {
     var AvoidantIntroversive = [[2, 5], [4, 7], [5, 9]];
     var AvoidantExtratensive = [[2, 5], [4, 7], [5, 9]];
     var AvoidantAmbitent = [[2, 5], [4, 7], [5, 9]];
+    var Avoidant = [[2, 5], [4, 7], [5, 9]];
 
     for (var i = 0; i < 3; i++) {
         // R check

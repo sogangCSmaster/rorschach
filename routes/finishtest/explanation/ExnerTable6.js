@@ -1,3 +1,5 @@
+// Ideation
+
 function calculateExnerTable6(scores) {
     var result = [];
     var step = 1;
@@ -94,6 +96,7 @@ function step1({EA, EBLeft, EBRight, Lambda, copyingStyle, approachStyle}){
         result.textData.push(`[예외 1] 가용 자원(EA)이 지나치게 낮아 가용 자원비율(EB)에 따른 문제해결과 의사결정에서 대처방식(coping style)을 분류할 수 없다. 이러한 특징은 대개 회피 유형(avoidant style)에서 주로 나타난다. `);
         result.nextStep = 3;
         result.goNext = false;
+        result.exception = 1;
         return result;
     }
     if(EBLeft==0 && EBRight>3.5){
@@ -102,6 +105,7 @@ function step1({EA, EBLeft, EBRight, Lambda, copyingStyle, approachStyle}){
         result.textData.push(`이러한 정서적 범람(flooding)은 일상적이지 않은 강렬한 정서를 수검자가 효과적으로 (effectively) 다루지 못할 때 일시적으로 발생한다. `);
         result.nextStep = 3;
         result.goNext = false;
+        result.exception = 2;
         return result;
     }
 
@@ -110,6 +114,7 @@ function step1({EA, EBLeft, EBRight, Lambda, copyingStyle, approachStyle}){
     result.goNext = false;
     return result;
 }
+exports.step1 = step1;
 
 function step2({ EBPer, copyingStyle, approachStyle }){
     var result = {};
@@ -305,6 +310,11 @@ function step6({ Ma, Mp }){
     var result = {};
     result.textData = [];
     result.curStep = 6;
+    if (Ma + Mp < 2) {
+        result.nextStep = 7;
+        result.goNext = false;
+        return result;
+    }
     if(Ma+1==Mp){
         result.textData.push(`[잠정 결과1] 의식적 사고를 반영하는 인간 운동의 능동-수동 비율(Ma : Mp)을 고려할 때, 수검자는 더 자주 명백하게 다른 사람에 비해 스트레스 상황에서 현실을 환상으로 대체하는 경향을 보일 것이다. `);
         result.textData.push(`효과적인(effective) 방어전략일 수 있으며, 다른 사람에게 현저하게 의존적이라는 증거가 없다면 불리한 점(liability)으로 고려하지 않아도 된다. 수검자가 다른 사람에게 일상적이지 않은 의존 경향을 보인다면, 환상의 지나친 사용은 그러한 의존 경향을 악화시킬 뿐이다. `);

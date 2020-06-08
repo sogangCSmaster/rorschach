@@ -1,3 +1,4 @@
+// self perception
 function calculateExnerTable7(scores) {
     var result = [];
     var step = 1;

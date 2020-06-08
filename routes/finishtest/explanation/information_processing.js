@@ -1,3 +1,6 @@
+const { step1: ideation_step1 } = require('./ExnerTable6');
+const { step2: affect_step2 } = require('./affect');
+
 function calculateExnerTable4(scores) {
     var result = [];
     var step = 1;
@@ -208,10 +211,20 @@ function step6({ PSV }) {
     return result;
 }
 
-function step7({ age, dqplus, dqVSlashPlus, dqv, copyingStyle }) {
+
+function step7({ EA, EBLeft, EBRight, Lambda, age, dqplus, dqVSlashPlus, dqv, copyingStyle, approachStyle, M, WSumC }) {
     var result = {};
     result.textData = [];
     result.curStep = 7;
+
+    const { exception: ideation_exception } = ideation_step1({ EA, EBLeft, EBRight, Lambda, copyingStyle, approachStyle });
+    const { exception: affect_exception } = affect_step2(M, WSumC, Lambda, EBLeft, EBRight, EA, copyingStyle, approachStyle);
+
+    if (ideation_exception == 1 || ideation_exception == 2 || affect_exception == '1' || affect_exception == '2a' || affect_exception == '2b') {
+        result.nextStep = 8;
+        result.goNext = false;
+        return result;
+    }
 
     // 12세 이상 청소년
     var averageDQplus = [];

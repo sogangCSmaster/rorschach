@@ -286,6 +286,7 @@ function step2(M, WSumC, Lambda, EBLeft, EBRight, EA, copyingStyle, approachStyl
         result.textData = textData;
         result.nextStep = 4;
         result.goNext = false;
+        result.exception = '1';
         return result;
     }
     if(M==0 && WSumC>3.5){
@@ -293,6 +294,7 @@ function step2(M, WSumC, Lambda, EBLeft, EBRight, EA, copyingStyle, approachStyl
         textData.push(`매우 강한 정서가 사고과정에 영향을 주어 의사결정에 필요한 주의와 집중력을 손상시킬 것이다. 이러한 강렬한 정서는 상당한 혼란(disruptive)을 유발하고, 관념적 충동성이나 행동적 충동성을 유발할 수 있다.`);
         textData.push(`이러한 정서적 범람(emotional flooding)은 일상적이지 않은 강렬한 정서를 수검자가 효과적으로(effectively) 다루지 못할 때 일시적으로 발생한다. 그렇기에 정서에 관련된 다른 정보를 해석할 때는 이러한 맥락에서 이루어지어야 한다.`);
         textData.push(`정서와 관련된 변인은 현재 수검자의 정서 상태에 대한 정보를 제공하지만, 이를 통해 현재 수검자의 정서 상태가 일시적인지 지속적인 특성인 파악하는 것은 어렵다.`);
+        result.exception = '2a';
         result.curStep = 2;
         result.textData = textData;
         result.nextStep = 4;
@@ -306,6 +308,7 @@ function step2(M, WSumC, Lambda, EBLeft, EBRight, EA, copyingStyle, approachStyl
         textData.push(`불안정성(lability)은 정서가 대부분의 심리 기능을 지배하는 상황을 말한다. 이러한 불안정성은 현실의 상황을 고려하지 않고 압도된 정서를 경감시키는 방향으로 의사결정을 하도록 강제하거나 행동하도록 밀어붙일 수 있다.`);
         textData.push(`과도한 억제를 지속하고 있다면 정서 관련 자료를 신중하게 해석해야 한다. 정서와 관련된 변인은 현재 수검자의 정서 상태에 대한 정보를 제공하지만, 이를 통해 현재 수검자의 정서 상태가 일시적인지 지속적인 특성인 파악하는 것은 어렵다.`);
         result.curStep = 2;
+        result.exception = '2b';
         result.textData = textData;
         result.nextStep = 4;
         result.goNext = false;
@@ -318,6 +321,7 @@ function step2(M, WSumC, Lambda, EBLeft, EBRight, EA, copyingStyle, approachStyl
     result.textData= textData;
     return result;
 }
+exports.step2 = step2;
 
 function step3(M, WSumC, Lambda, EBPer){
     var result = {};
