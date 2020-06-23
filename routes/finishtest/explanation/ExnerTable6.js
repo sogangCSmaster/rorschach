@@ -407,7 +407,7 @@ function step9(){
     result.curStep = 9;
     result.textData = [];
 
-    result.textData.push(`[질적 해석]<br/><br/><br/><br/><br/><br/><br/><br/><br/>`);
+    //result.textData.push(`[질적 해석]<br/><br/><br/><br/><br/><br/><br/><br/><br/>`);
 
     result.nextStep = 10;
     result.goNext = false;
@@ -462,7 +462,7 @@ function step11(){
     result.textData = [];
     result.curStep = 11;
 
-    result.textData.push(`[질적 해석]<br/><br/><br/><br/><br/><br/><br/><br/><br/>`);
+    //result.textData.push(`[질적 해석]<br/><br/><br/><br/><br/><br/><br/><br/><br/>`);
 
     result.goNext = true;
     result.nextStep = 11;

@@ -82,6 +82,7 @@ exports.getLambda = getLambda;
 
 function getLambdaHighOrLow(scores) {
   const lambda = getLambda(scores);
+    console.log('la;sldkjasdjsakldjaslkdjsakldasambda', lambda);
   if (lambda === 'Very Low') {
     return 'Low';
   } else if (lambda === 'Very High') {

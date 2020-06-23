@@ -79,7 +79,7 @@ html
             .wide-subpage {
                 padding: 0.2cm;
                 border: 1px #FFFFFF solid;
-                height: 257mm;
+                height: 277mm;
                 outline: 1cm #FFFFFF solid;
             }
             .subpage {
@@ -339,7 +339,7 @@ html
                                                 if upper.location_features.ZEst
                                                     span(style='display: inline-block; width: 30px;') ZEst
                                                     | = 
-                                                    +parseSign(upper.location_features.ZEst)
+                                                    = upper.location_features.ZEst
                                     tr
                                         td(style="font-size: 7pt;")
                                             .text-center 반응 위치
@@ -780,7 +780,7 @@ html
                                             | = #{lower.core.ebLeft}:#{lower.core.ebRight}
                                         td(colspan="8") 
                                             span(style='display: inline-block; width: 35px;') EA
-                                            | = #{lower.core.EA}
+                                            | = #{roundTo(lower.core.EA, 1)}
                                             br
                                             span(style='display: inline-block; width: 35px;') es
                                             | = #{lower.core.es}
@@ -1203,6 +1203,7 @@ html
                                                     i.fa.fa-square-o
                                                 | &nbsp;(Sum Level2 Special Score > 2) and (FABCOM Level2 > 0)
                                             p
+                                                span(style='margin-left: -6px;') *
                                                 if SpecialIndices.PTI.R
                                                     i.fa.fa-check-square-o
                                                     - PTITotal += 1;
@@ -1247,12 +1248,14 @@ html
                                                     i.fa.fa-square-o
                                                 | &nbsp;(Color-Shading Blends > 0) or (S > 2)
                                             p
+                                                span(style='margin-left: -6px;') *
                                                 if SpecialIndices.DEPI.Ego
                                                     i.fa.fa-check-square-o
                                                 else
                                                     i.fa.fa-square-o
                                                 | &nbsp;(Egocentricity Index > 0.44 and Reflection(Fr+rF) = 0) or (Egocentricity Index < 0.33)
                                             p
+                                                span(style='margin-left: -6px;') *
                                                 if SpecialIndices.DEPI.Afr
                                                     i.fa.fa-check-square-o
                                                 else
@@ -1696,13 +1699,15 @@ html
                                                     else if experienceClassification.copyingStyle == 'Ambitent'
                                                         | 양향형
                                             else
-                                                | 회피&nbsp;
+                                                | 회피
                                                 if experienceClassification.copyingStyle =='Introversive'
-                                                    | 내향형
+                                                    | &nbsp;내향형
                                                 else if experienceClassification.copyingStyle == 'Extratensive'
-                                                    | 외향형
+                                                    | &nbsp;외향형
                                                 else if experienceClassification.copyingStyle == 'Ambitent'
-                                                    | 양향형
+                                                    | &nbsp;양향형
+                                                else
+                                                    | 형
 
 
                     if experienceClassification.approachStyle == "" && experienceClassification.copyingStyle == "" && experienceClassification.dominantStyle == ""
@@ -1869,35 +1874,35 @@ html
                                                             | 대인지각 관련개념: 대인관계(Interpersonal Relationships: Social Cognition, Social Skill), 자기중심성(Self-Centeredness), 
                                                             .indent
                                                                 | 관계적 자기(Relational Self), 의심과 방어(Suspiciousness & Defensiveness)
-                            .row
-                                .col-md-12
-                                    - var flag = true;
-                                    - var steps = T.steps.filter((step) => { return step.textData.length });
-                                    - steps1 = steps.splice(0, 5);
-                                    each step in steps1
+                            - var flag = true;
+                            - var steps = T.steps.filter((step) => { return step.textData.length });
+                            - steps1 = steps//.splice(0, 5);
+                            each step in steps1
+                                .row
+                                    .col-md-12
                                         if step.textData.length != 0 && !JSON.stringify(step.textData).includes('[질적 분석]')
                                             if flag
                                                 | &#x27B2;
                                                 - flag = false
-                                            span(style="color: blue; font-size: 8pt;") [Step #{step.curStep}]
-                                        p(style="font-size: 8pt;")
+                                        p(style="font-size: 11pt; line-height: 160%;")
+                                            span(style="color: blue; font-size: 11pt; line-height: 160%;") [Step #{step.curStep}]
                                             if step.textData.length == 0
                                             else
                                                 each text in step.textData
                                                     if !text.includes('[질적 분석]')
                                                         !=text
-                            if steps.length == 0
-                                .row
-                                    .col-md-12(style="font-size: 9pt;")
-                                        ul
+                            .row
+                                .col-md-12(style="font-size: 11pt; line-height: 160%;")
+                                    ul
 
-                                            li
-                                                | 질적 분석할 단계
-                                                br
-                                                | Step 8: COP frequencies = [ #{upper.special_scores.COP} ] & AG frequencies = [ #{upper.special_scores.AG} ] & coding
-                                                br
-                                                | Step 11: Contents of M responses with pairs(2) = [ #{Mwith2} ] & Contents of FM responses with pairs(2) = [ #{FMwith2} ]
+                                        li
+                                            | 질적 분석할 단계
+                                            br
+                                            | Step 8: COP frequencies = [ #{upper.special_scores.COP} ] & AG frequencies = [ #{upper.special_scores.AG} ] & coding
+                                            br
+                                            | Step 11: Contents of M responses with pairs(2) = [ #{Mwith2} ] & Contents of FM responses with pairs(2) = [ #{FMwith2} ]
 
+                //-
                     if steps.length > 0
                         .wide-page
                             .wide-subpage
@@ -1908,8 +1913,8 @@ html
                                                 if flag
                                                     | &#x27B2;
                                                     - flag = false
-                                                span(style="color: blue; font-size: 8pt;") [Step #{step.curStep}]
-                                            p(style="font-size: 8pt;")
+                                            p(style="font-size: 11pt; line-height: 160%;")
+                                                span(style="color: blue; font-size: 11pt; line-height: 160%;") [Step #{step.curStep}]
                                                 if step.textData.length == 0
                                                 else
                                                     each text in step.textData
@@ -1945,7 +1950,7 @@ html
                                                         br
                 if T.resultName == "Affect 정서 자원이 사용되는 방식, 정서 상태, 정서의 역기능 평가"
                     - var steps = T.steps;
-                    - var stepLeft = steps.splice(0, 5);
+                    - var stepLeft = steps;//.splice(0, 5);
                     .wide-page
                         .wide-subpage
                             .row
@@ -2076,40 +2081,23 @@ html
                                                         li
                                                             | 내인성 우울(Endogenous Depression), 반응성 우울(Reactive Depression), 양극성 특성(Bipolar Characteristics)
                                                                     
-                            .row
-                                .col-md-12
-                                    - var flag = true;
-                                    each step in stepLeft
+                            - var flag = true;
+                            each step in stepLeft
+                                .row
+                                    .col-md-12
                                         if step.textData.length != 0 && !JSON.stringify(step.textData).includes('[질적 분석]')
                                             if flag
                                                 | &#x27B2;
                                                 - flag = false
-                                            span(style="color: blue; font-size: 8pt;") [Step #{step.curStep}]
-                                        p(style="font-size: 8pt;")
-                                            if step.textData.length == 0
-                                            else
-                                                each text in step.textData
-                                                    if !text.includes('[질적 분석]')
-                                                        !=text
-                    .wide-page
-                        .wide-subpage
-                            .row
-                                .col-md-12
-                                    - var flag = true;
-                                    each step in steps
-                                        if step.textData.length != 0 && !JSON.stringify(step.textData).includes('[질적 분석]')
-                                            if flag
-                                                | &#x27B2;
-                                                - flag = false
-                                            span(style="color: blue; font-size: 8pt;") [Step #{step.curStep}]
-                                        p(style="font-size: 8pt;")
+                                        p(style="font-size: 11pt; line-height: 160%;")
+                                            span(style="color: blue; font-size: 11pt; line-height: 160%;") [Step #{step.curStep}]
                                             if step.textData.length == 0
                                             else
                                                 each text in step.textData
                                                     if !text.includes('[질적 분석]')
                                                         !=text
                             .row
-                                .col-md-12(style='font-size: 9pt;')
+                                .col-md-12(style='font-size: 11pt; line-height: 160%;')
                                     ul
                                         li
                                             |질적 분석할 단계
@@ -2226,33 +2214,33 @@ html
                                                             | 관념화 관련개념: 사고기능(Ideational Functioning), 사고 문제(Thinking Problems), 의사결정(Decision-Making),
                                                             .indent
                                                                 | 문제해결과 대처전략(Coping Strategy with Problem Solving), 자아 손상(Ego Impairment)
-                            .row
-                                .col-md-12
-                                    - var flag = true;
-                                    - var steps = T.steps.filter((step) => step.textData.length);
-                                    - var steps1 = steps.splice(0, 5)
-                                    each step in steps1
+                            - var flag = true;
+                            - var steps = T.steps.filter((step) => step.textData.length);
+                            - var steps1 = steps;//.splice(0, 5)
+                            each step in steps1
+                                .row
+                                    .col-md-12
                                         if step.textData.length != 0 && !JSON.stringify(step.textData).includes('[질적 분석]')
                                             if flag
                                                 | &#x27B2;
                                                 - flag = false
-                                            span(style="color: blue; font-size: 8pt;") [Step #{step.curStep}]
-                                        p(style="font-size: 8pt;")
+                                        p(style="font-size: 11pt; line-height: 160%;")
+                                            span(style="color: blue; font-size: 11pt; line-height: 160%;") [Step #{step.curStep}]
                                             if step.textData.length == 0
                                             else
                                                 each text in step.textData
                                                     if !text.includes('[질적 분석] ')
                                                         !=text
-                            if steps.length == 0
-                                .row
-                                    .col-md-12(style="font-size: 9pt;")
-                                        ul
-                                            li
-                                                |  질적 분석할 단계
-                                                br
-                                                | Step 9: Quality 6 Special Scores (연령과 지적기능 고려)
-                                                br
-                                                | Step 11: Quality of M responses (연령 고려)
+                            .row
+                                .col-md-12(style="font-size: 11pt; line-height: 160%;")
+                                    ul
+                                        li
+                                            |  질적 분석할 단계
+                                            br
+                                            | Step 9: Quality 6 Special Scores (연령과 지적기능 고려)
+                                            br
+                                            | Step 11: Quality of M responses (연령 고려)
+                //-
                     if steps.length > 0
                         .wide-page
                             .wide-subpage
@@ -2263,15 +2251,15 @@ html
                                                 if flag
                                                     | &#x27B2;
                                                     - flag = false
-                                                span(style="color: blue; font-size: 8pt;") [Step #{step.curStep}]
-                                            p(style="font-size: 8pt;")
+                                            p(style="font-size: 11pt; line-height: 160%;")
+                                                span(style="color: blue; font-size: 11pt; line-height: 160%;") [Step #{step.curStep}]
                                                 if step.textData.length == 0
                                                 else
                                                     each text in step.textData
                                                         if !text.includes('[질적 분석] ')
                                                             !=text
                                 .row
-                                    .col-md-12(style="font-size: 9pt;")
+                                    .col-md-12(style="font-size: 11pt; line-height: 160%;")
                                         ul
                                             li
                                                 |  질적 분석할 단계
@@ -2368,31 +2356,31 @@ html
                                                             | 인지적 중재 관련개념: 사고기능(Ideational Functioning), 현실 검증 능력(Reality Testing), 판단력(Judgment), 
                                                             .indent
                                                                 | 관습적 행동(Conventional Behavior)
-                            .row
-                                .col-md-12
-                                    - var flag = true;
-                                    - var steps = T.steps.filter((step) => { return step.textData.length });
-                                    - steps1 = steps.splice(0, 5);
-                                    each step in steps1
+                            - var flag = true;
+                            - var steps = T.steps.filter((step) => { return step.textData.length });
+                            - steps1 = steps;//.splice(0, 5);
+                            each step in steps1
+                                .row
+                                    .col-md-12
                                         if step.textData.length != 0 && !JSON.stringify(step.textData).includes('[질적 분석]')
                                             if flag
                                                 | &#x27B2;
                                                 - flag = false
-                                            span(style="color: blue; font-size: 8pt;") [Step #{step.curStep}]
-                                        p(style="font-size: 8pt;")
+                                        p(style="font-size: 11pt; line-height: 160%;")
+                                            span(style="color: blue; font-size: 11pt; line-height: 160%;") [Step #{step.curStep}]
                                             if step.textData.length == 0
                                             else
                                                 each text in step.textData
                                                     if !text.includes('[질적 분석]')
                                                         !=text
-                            if steps.length == 0
-                                .row
-                                    .col-md-12(style="font-size: 9pt;")
-                                        ul
-                                            li
-                                                | 질적 분석할 단계
-                                                br
-                                                | Step 3b: Minus distortion levels (형태 왜곡 수준 분석)
+                            .row
+                                .col-md-12(style="font-size: 11pt; line-height: 160%;")
+                                    ul
+                                        li
+                                            | 질적 분석할 단계
+                                            br
+                                            | Step 3b: Minus distortion levels (형태 왜곡 수준 분석)
+                //-
                     if steps.length > 0 
                         .wide-page
                             .wide-subpage
@@ -2403,8 +2391,8 @@ html
                                                 if flag
                                                     | &#x27B2;
                                                     - flag = false
-                                                span(style="color: blue; font-size: 8pt;") [Step #{step.curStep}]
-                                            p(style="font-size: 8pt;")
+                                            p(style="font-size: 11pt; line-height: 160%;")
+                                                span(style="color: blue; font-size: 11pt; line-height: 160%;") [Step #{step.curStep}]
                                                 if step.textData.length == 0
                                                 else
                                                     each text in step.textData
@@ -2519,15 +2507,15 @@ html
                                             if flag
                                                 | &#x27B2;
                                                 - flag = false
-                                            span(style="color: blue; font-size: 8pt;") [Step #{step.curStep}]
-                                        p(style="font-size: 8pt;")
+                                        p(style="font-size: 11pt; line-height: 160%;")
+                                            span(style="color: blue; font-size: 11pt; line-height: 160%;") [Step #{step.curStep}]
                                             if step.textData.length == 0
                                             else
                                                 each text in step.textData
                                                     if !text.includes('[질적 분석]')
                                                         !=text
                             .row
-                                .col-md-12(style="font-size: 9pt;")
+                                .col-md-12(style="font-size: 11pt; line-height: 160%;")
                                     ul
                                         li
                                             | 질적 분석할 단계
@@ -2624,35 +2612,35 @@ html
                                                             | 자기지각 영역의 관련개념: 자기개념(Self–Concept), 자존감(Self-Esteem), 자기성찰(Introspection)
 
 
-                            .row
-                                .col-md-12
-                                    - var flag = true;
-                                    - var steps = T.steps.filter((t) => t.textData.length)
-                                    - var steps1 = steps.splice(0, 5)
-                                    each step in steps1
+                            - var flag = true;
+                            - var steps = T.steps.filter((t) => t.textData.length)
+                            - var steps1 = steps;//.splice(0, 5)
+                            each step in steps1
+                                .row
+                                    .col-md-12
                                         if step.textData.length != 0 && !JSON.stringify(step.textData).includes('[질적 분석]')
                                             if flag
                                                 | &#x27B2;
                                                 - flag = false
-                                            span(style="color: blue; font-size: 8pt;") [Step #{step.curStep}]
-                                        p(style="font-size: 8pt;")
+                                        p(style="font-size: 11pt; line-height: 160%;")
+                                            span(style="color: blue; font-size: 11pt; line-height: 160%;") [Step #{step.curStep}]
                                             if step.textData.length == 0
                                             else
                                                 each text in step.textData
                                                     if !text.includes('[질적 분석]')
                                                         !=text
-                            if steps.length == 0
-                                .row
-                                    .col-md-12(style="font-size: 9pt;")
-                                        ul
-                                            li
-                                                | 질적 분석할 단계
-                                                br
-                                                | Step 4: FD  = [ #{upper.determinants.FD} ] & Sum V(Vista) = [ #{lower.self_perception.SumV} ] (in relation to History)
-                                                br
-                                                | Step 7: Review codings for Human Content reponses   
-                                                br
-                                                | Step 8: Searching for projected material 
+                            .row
+                                .col-md-12(style="font-size: 11pt; line-height: 160%;")
+                                    ul
+                                        li
+                                            | 질적 분석할 단계
+                                            br
+                                            | Step 4: FD  = [ #{upper.determinants.FD} ] & Sum V(Vista) = [ #{lower.self_perception.SumV} ] (in relation to History)
+                                            br
+                                            | Step 7: Review codings for Human Content reponses   
+                                            br
+                                            | Step 8: Searching for projected material 
+                //-
                     if steps.length > 0
                         .wide-page
                             .wide-subpage
@@ -2663,15 +2651,15 @@ html
                                                 if flag
                                                     | &#x27B2;
                                                     - flag = false
-                                                span(style="color: blue; font-size: 8pt;") [Step #{step.curStep}]
-                                            p(style="font-size: 8pt;")
+                                            p(style="font-size: 11pt; line-height: 160%;")
+                                                span(style="color: blue; font-size: 11pt; line-height: 160%;") [Step #{step.curStep}]
                                                 if step.textData.length == 0
                                                 else
                                                     each text in step.textData
                                                         if !text.includes('[질적 분석]')
                                                             !=text
                                 .row
-                                    .col-md-12(style="font-size: 9pt;")
+                                    .col-md-12(style="font-size: 11pt; line-height: 160%;")
                                         ul
                                             li
                                                 | 질적 분석할 단계
@@ -2728,7 +2716,7 @@ html
                                                                 br
                                                                 span 
                                                                     //-|Step 3: EB = [ #{lower.core.EBLeft.toFixed(1)} : #{lower.core.EBRight.toFixed(1)} ] 
-                                                                    |Step 3: EB = [ #{roundTo(lower.core.EBLeft, 1)} : #{roundTo(lower.core.EBRight, 1)} ] 
+                                                                    |Step 3: EB = [ #{roundTo(lower.core.EBLeft, 0)} : #{roundTo(lower.core.EBRight, 1)} ] 
                                                                     br
                                                                 span(style='margin-left: 40px;')
                                                                     |& Lambda(L) = [ #{lower.core.Lambda} ]
@@ -2770,8 +2758,8 @@ html
                                             if flag
                                                 | &#x27B2;
                                                 - flag = false
-                                            span(style="color: blue; font-size: 8pt;") [Step #{step.curStep}]
-                                        p(style="font-size: 8pt;")
+                                        p(style="font-size: 11pt; line-height: 160%;")
+                                            span(style="color: blue; font-size: 11pt; line-height: 160%;") [Step #{step.curStep}]
                                             if step.textData.length == 0
                                             else
                                                 each text in step.textData
@@ -2837,8 +2825,8 @@ html
                                             if flag
                                                 | &#x27B2;
                                                 - flag = false
-                                            span(style="color: blue; font-size: 8pt;") [Step #{step.curStep}]
-                                        p(style="font-size: 8pt;")
+                                        p(style="font-size: 11pt; line-height: 160%;")
+                                            span(style="color: blue; font-size: 11pt; line-height: 160%;") [Step #{step.curStep}]
                                             if step.textData.length == 0
                                             else
                                                 each text in step.textData
@@ -2864,6 +2852,37 @@ html
         script(src="/js/plugins/clockpicker/clockpicker.js")
         script(src="http://html2canvas.hertzen.com/dist/html2canvas.min.js")
         script.
+            var max_pages = 100;
+            var page_count = 0;
+            function snipMe() {
+                page_count++;
+                if (page_count > max_pages) {
+                    return;
+                }
+                var long = $(this)[0].scrollHeight - Math.ceil($(this).innerHeight());
+                var children = $(this).children().toArray(); // Save elements in this page to children[] array
+                var removed = [];
+                // Loop while this page is longer than an A4 page
+                while (long > 0 && children.length > 0) {
+                    var child = children.pop(); // Remove last array element from the children[] array 
+                    $(child).detach();  // JQuery Method detach() removes the "child" element from DOM for the current page
+                    removed.push(child);  // Add element that was removed to the end of "removed" array
+                    long = $(this)[0].scrollHeight - Math.ceil($(this).innerHeight()); // Compute current size of the page 
+                }
+                // If elements were removed from the page 
+                if (removed.length > 0) {
+                    var rev_removed = removed.reverse();  // Reverse the order of the removed array
+                    var a4 = $('<div class="wide-subpage"></div>'); // Start a new page
+                    var a4cover = $('<div class="wide-page"></div>');
+                    a4.append(rev_removed); // Add elements removed from last page to the new page
+                    a4cover.append(a4);
+                    a4cover.insertAfter($(this).parent()); // Add the ne wpage to the document
+                    snipMe.call(a4cover[0]); // Recursively call myself to adjust the remainder of the pages
+                }
+            }
             $(document).ready(function(){
+                $('.wide-subpage').each(function() {
+                    snipMe.call(this);
+                });
                 window.print();
             })

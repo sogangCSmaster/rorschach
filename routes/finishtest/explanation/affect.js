@@ -4,7 +4,9 @@ function caculateAffect(DEPI, CDI, Lambda, M, EBLeft, EBRight, WSumC, EA, EBPer,
     var nextStep = 1;
     if(nextStep==1){
         var STEP1 = step1(DEPI, CDI);
-        result.push(STEP1);
+        if (STEP1.textData.length !== 0) {
+            result.push(STEP1);
+        }
         if(STEP1.goNext==true){
             return result;
         }
@@ -375,6 +377,7 @@ function step3(M, WSumC, Lambda, EBPer){
 function step4(FM, m, SumCprime, SumT, SumV, SumY){
     var result = {};
     var textData = [];
+    console.log('FM+m', FM + m, SumCprime + SumT + SumV + SumY)
     if(FM+m>SumCprime+SumT+SumV+SumY){
         if(SumCprime<=2 && SumT==1 && SumV==0 && SumY<=2){
             textData.push(`[잠정 결과1] 심리적 고통을 반영하는 eb의 우항 점수를 고려할 때, 부정적 정서 상태를 유발하는 원인이 드러나지 않으므로, 정서적 고통을 유발하는 어떠한 원인을 가정할 필요가 없다.`);
@@ -411,6 +414,7 @@ function step4(FM, m, SumCprime, SumT, SumV, SumY){
         textData.push(`수검자가 경험하는 정서적 불편의 원인은 eb의 우항을 구성하는 어떤 지표가 정상범주를 이탈하는지를 통해 탐색할 수 있다.<br/>`);
         textData.push(`* 정상범주: SumC’< 3, SumT= 1, SumV= 0, SumY < 2.`);
         textData.push(`<br/>`);
+        /*
         if(SumCprime>=3){
             textData.push(`[잠정 결과2a] 심리적 고통을 반영하는 eb 우항의 SumC’ 점수를 고려할 때, 수검자는 감정을 내재화하는 경향이 뚜렷할 것이다. 정서표출을 억제하고 그로 인한 영향을 억누르는 경향으로 인해 불편해지거나(irritating) 부정적 감정을 느낄 것으로 보인다.`);
             textData.push(`<br/>`);
@@ -426,7 +430,7 @@ function step4(FM, m, SumCprime, SumT, SumV, SumY){
         if(SumY>=3){
             textData.push(`[잠정 결과2d] 심리적 고통을 반영하는 eb 우항의 SumY 점수를 고려할 때, 수검자는 스트레스 상황을 해결할 수 없다는 무력감으로 인해 부정적 감정을 겪고 있을 것이다.`);
             textData.push(`<br/>`);
-        }
+        }*/
         result.curStep = 4;
         result.textData = textData;
         result.nextStep = 5;
@@ -438,6 +442,7 @@ function step4(FM, m, SumCprime, SumT, SumV, SumY){
         textData.push(`수검자가 경험하는 정서적 불편의 원인은 eb의 우항을 구성하는 어떤 지표가 정상범주를 이탈하는지를 통해 탐색할 수 있다.<br/>`);
         textData.push(`* 정상범주: SumC’< 3, SumT= 1, SumV= 0, SumY < 2.`);
         textData.push(`<br/>`);
+        /*
         if(SumCprime>=3){
             textData.push(`[잠정 결과2a] 심리적 고통을 반영하는 eb 우항의 SumC’ 점수를 고려할 때, 수검자는 감정을 내재화하는 경향이 뚜렷할 것이다. 정서표출을 억제하고 그로 인한 영향을 억누르는 경향으로 인해 불편해지거나(irritating) 부정적 감정을 느낄 것으로 보인다.`);
             textData.push(`<br/>`);
@@ -453,7 +458,7 @@ function step4(FM, m, SumCprime, SumT, SumV, SumY){
         if(SumY>=3){
             textData.push(`[잠정 결과2d] 심리적 고통을 반영하는 eb 우항의 SumY 점수를 고려할 때, 수검자는 스트레스 상황을 해결할 수 없다는 무력감으로 인해 부정적 감정을 겪고 있을 것이다.`);
             textData.push(`<br/>`);
-        }
+        }*/
         result.curStep = 4;
         result.textData = textData;
         result.nextStep = 5;
@@ -772,7 +777,7 @@ function step9(FC, CF, C, PureC){
 
 function step10(){
     var result = {};
-    var textData = ["질적분석<br/><br/><br/><br/><br/>"]
+    //var textData = ["질적분석<br/><br/><br/><br/><br/>"]
     result.curStep = 10;
     result.textData = textData;
     result.nextStep = 11;

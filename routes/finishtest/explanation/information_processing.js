@@ -91,7 +91,7 @@ function step3({  }) {
     var result = {};
     result.textData = [];
     result.curStep = 3;
-    result.textData.push('[질적 해석]<br/><br/><br/><br/><br/><br/><br/><br/>');
+    //result.textData.push('[질적 해석]<br/><br/><br/><br/><br/><br/><br/><br/>');
 
 
     result.goNext = false;
@@ -318,7 +318,7 @@ function step8() {
     var result = {};
     result.textData = [];
     result.curStep = 8;
-    result.textData.push('[질적 해석]<br/><br/><br/><br/><br/><br/><br/><br/>');
+    //result.textData.push('[질적 해석]<br/><br/><br/><br/><br/><br/><br/><br/>');
 
     result.goNext = true;
     result.nextStep = 8;

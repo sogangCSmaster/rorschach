@@ -371,9 +371,32 @@ router.route("/finishtest1")
               })
               .join(',');
             score.score = score.score || {};
-            score.score = Object.keys(score.score).map((key) => {
+            var first = Object.keys(score.score).filter((key) => {
+                if (key == 'GHR' || key == 'PHR') {
+                    return true;
+                } else {
+                    return false;
+                }
+            }).map((key) => {
                 return score.score[key].value;
             }).join(',');
+            score.score = Object.keys(score.score).filter((key) => {
+                if (key !== 'GHR' && key !== 'PHR') {
+                    return true;
+                } else {
+                    return false;
+                }
+            }).map((key) => {
+                return score.score[key].value;
+            }).join(',');
+            var merged = [];
+            if (first) {
+                merged.push(first);
+            }
+            if (score.score) {
+                merged.push(score.score);
+            }
+            score.score = merged.join(',');
             return score;
         });
         // length 50 채움
@@ -629,6 +652,8 @@ router.route("/finishtest1")
             indicators.R = lower.core.R;
             lower.core.Lambda = core.getLambda(score);
             indicators.Lambda = lower.core.Lambda;
+            lower.core.LambdaHighOrLow = core.getLambdaHighOrLow(score);
+            indicators.LambdaHighOrLow = lower.core.LambdaHighOrLow;
             lower.core.EBLeft = core.getEBLeft(score);
             indicators.EBLeft = lower.core.EBLeft;
             lower.core.ebLeft = core.getebLeft(score);
@@ -988,9 +1013,32 @@ router.route("/finishtest1")
                       return score.react[key].value;
                   }).join(',');
                 score.score = score.score || {};
-                score.score = Object.keys(score.score).map((key) => {
+                var first = Object.keys(score.score).filter((key) => {
+                    if (key == 'GHR' || key == 'PHR') {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }).map((key) => {
                     return score.score[key].value;
                 }).join(',');
+                score.score = Object.keys(score.score).filter((key) => {
+                    if (key !== 'GHR' && key !== 'PHR') {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }).map((key) => {
+                    return score.score[key].value;
+                }).join(',');
+                var merged = [];
+                if (first) {
+                    merged.push(first);
+                }
+                if (score.score) {
+                    merged.push(score.score);
+                }
+                score.score = merged.join(',');
                 return score;
             });
             // length 50 채움

@@ -301,7 +301,7 @@ html
                                                 if upper.location_features.ZEst
                                                     span(style='display: inline-block; width: 30px;') ZEst
                                                     | = 
-                                                    +parseSign(upper.location_features.ZEst)
+                                                    = upper.location_features.ZEst
                                     tr
                                         td(style="font-size: 7pt;")
                                             .text-center 반응 위치
@@ -742,7 +742,7 @@ html
                                             | = #{lower.core.ebLeft}:#{lower.core.ebRight}
                                         td(colspan="8") 
                                             span(style='display: inline-block; width: 35px;') EA
-                                            | = #{lower.core.EA}
+                                            | = #{roundTo(lower.core.EA, 1)}
                                             br
                                             span(style='display: inline-block; width: 35px;') es
                                             | = #{lower.core.es}
@@ -1165,6 +1165,7 @@ html
                                                     i.fa.fa-square-o
                                                 | &nbsp;(Sum Level2 Special Score > 2) and (FABCOM Level2 > 0)
                                             p
+                                                span(style='margin-left: -6px;') *
                                                 if SpecialIndices.PTI.R
                                                     i.fa.fa-check-square-o
                                                     - PTITotal += 1;
@@ -1209,12 +1210,14 @@ html
                                                     i.fa.fa-square-o
                                                 | &nbsp;(Color-Shading Blends > 0) or (S > 2)
                                             p
+                                                span(style='margin-left: -6px;') *
                                                 if SpecialIndices.DEPI.Ego
                                                     i.fa.fa-check-square-o
                                                 else
                                                     i.fa.fa-square-o
                                                 | &nbsp;(Egocentricity Index > 0.44 and Reflection(Fr+rF) = 0) or (Egocentricity Index < 0.33)
                                             p
+                                                span(style='margin-left: -6px;') *
                                                 if SpecialIndices.DEPI.Afr
                                                     i.fa.fa-check-square-o
                                                 else

@@ -150,7 +150,11 @@ function getReBlendsPercent(scores) {
             }
         }
     })
-    return roundTo((blends - (m + Y - 1)) * 100 / scores.length, 0)
+    if (m+Y == 0) {
+        return roundTo((blends) * 100 / scores.length, 0)
+    } else {
+        return roundTo((blends - (m + Y - 1)) * 100 / scores.length, 0)
+    }
 }
 exports.getReBlendsPercent = getReBlendsPercent
 

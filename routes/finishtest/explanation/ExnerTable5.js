@@ -96,24 +96,24 @@ function step1({ XAper, WDAper }) {
             result.textData.push(`[잠정 결과7a] 확장된 적합한 형태 비율(XA%)과 흔한 영역의 적합한 형태 비율(WDA%)을 고려할 때, 수검자의 중재 활동이 상당히 손상되었을 것이다. `);
             result.textData.push(`수검자는 일상적으로 심리적 측면을 관리하는 데 지속적이고 광범위한(pervasive) 어려움을 겪을 것이다. 때때로 정신증적 수준의 혼란(disturbance)을 겪을 것이다.`);
             result.textData.push(`흔한 영역의 적합한 형태 비율(WDA%)이 낮을수록 정신증적 상태의 가능성이 명확해지고, 일상생활에서 다른 사람의 도움이나 감독이 필요한 정도가 증가할 수 있다. <br/>`);
-            result.textData.push(`정신증적 과정(psychotic-like process)이 존재할 경우 흔하게 나타나지만, 중재 활동에 관련된 모든 자료를 살펴보지 않고 결론은 내리는 것은 적절하지 않다.<br/><br/>`);
+            result.textData.push(`정신증적 과정(psychotic-like process)이 존재할 경우 흔하게 나타나지만, 중재 활동에 관련된 모든 자료를 살펴보지 않고 결론은 내리는 것은 적절하지 않다.<br/>`);
 
         }
         if(0.65<=WDAper && WDAper<=0.74){
-            result.textData.push(`[잠정결과7a1] 중재 활동의 기능 이상이 심하고, 현실검증능력도 현저하게 영향을 받을 것이다.<br/>`);
+            result.textData.push(`[잠정결과7a1] 중재 활동의 기능 이상이 심하고, 현실검증능력도 현저하게 영향을 받을 것이다.<br/><br/>`);
         } else if(WDAper<0.65){
-            result.textData.push(`[잠정결과7a2] 중재 활동의 기능 이상이 극심하고, 현실검증능력도 현저하게 손상되었을 것이다<br/>`);
+            result.textData.push(`[잠정결과7a2] 중재 활동의 기능 이상이 극심하고, 현실검증능력도 현저하게 손상되었을 것이다<br/><br/>`);
         }
         if (stat == '7a') {
             result.nextStep = 2;
             result.goNext = false;
-            return result;
         }
 
-        result.textData.push(`[잠정 결과7b] 확장된 적합한 형태 비율(XA%)과 흔한 영역의 적합한 형태 비율(WDA%)의 점수 차이를 통해, 수검자의 현실검증능력 손상이 일상 기능에 미치는 영향의 정도를 파악할 수 있다.<br/>`);
         if((WDAper-XAper) >= 0.1){
+            result.textData.push(`[잠정 결과7b] 확장된 적합한 형태 비율(XA%)과 흔한 영역의 적합한 형태 비율(WDA%)의 점수 차이를 통해, 수검자의 현실검증능력 손상이 일상 기능에 미치는 영향의 정도를 파악할 수 있다.<br/>`);
             result.textData.push(`[잠정결과7b1] 단서가 덜 명확한 상황에서 중재 활동의 기능 장애가 현저해질 것이다.<br/>`);
-        } else if((WDAper-XAper) <0.1){
+        } else if((WDAper-XAper) <0.1 && (WDAper-XAper) > 0){
+            result.textData.push(`[잠정 결과7b] 확장된 적합한 형태 비율(XA%)과 흔한 영역의 적합한 형태 비율(WDA%)의 점수 차이를 통해, 수검자의 현실검증능력 손상이 일상 기능에 미치는 영향의 정도를 파악할 수 있다.<br/>`);
             result.textData.push(`[잠정결과7b2] 현실검증능력의 손상이 전반적이어서 명확한 원위적 특징(단서)에 상관없이 중재 활동에 기능장애가 나타날 것이다.<br/>`);
         }
     }
@@ -263,7 +263,7 @@ function step3b({}){
     var result = {};
     result.textData = [];
     result.curStep = '3b';
-    result.textData.push(`[질적 해석]<br/><br/><br/><br/><br/><br/><br/>`);
+    //result.textData.push(`[질적 해석]<br/><br/><br/><br/><br/><br/><br/>`);
     result.nextStep = '4';
     result.goNext = false;
     return result;

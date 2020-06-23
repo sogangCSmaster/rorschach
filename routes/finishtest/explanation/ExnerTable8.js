@@ -344,7 +344,7 @@ function step11({}) {
     result.curStep = 11;
     result.nextStep = 11;
     result.goNext = true;
-    result.textData.push('[질적 해석]<br/><br/><br/><br/><br/><br/><br/><br/>');
+    //result.textData.push('[질적 해석]<br/><br/><br/><br/><br/><br/><br/><br/>');
     return result;
 }
 

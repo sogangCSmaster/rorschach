@@ -251,7 +251,7 @@ function step8({}) {
     var result = {};
     result.textData = [];
     result.curStep = 8;
-    result.textData.push('[질적 해석]<br/><br/><br/><br/><br/><br/><br/><br/>');
+    //result.textData.push('[질적 해석]<br/><br/><br/><br/><br/><br/><br/><br/>');
     result.nextStep = 8;
     result.goNext = true;
     return result;
