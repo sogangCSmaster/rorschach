@@ -6,6 +6,14 @@ block head
     //- link(href="/css/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet")
     link(rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css")
     link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css")
+    style.
+        .col-form-label {
+            padding-top: calc(.375rem + 1px);
+            padding-bottom: calc(.375rem + 1px);
+            margin-bottom: 0;
+            font-size: inherit;
+            line-height: 1.5;
+        }
 
 block script
     script(src="/js/plugins/fullcalendar/moment.min.js")
@@ -26,7 +34,8 @@ block script
             if(useCount1>=coin1){
                 return alert('코인1이 부족합니다.');
             } else {
-                return location.href = '/test1';
+                return window.open('/test1', '_blank');
+                //- return location.href = '/test1';
             }
         })
     script.
@@ -42,7 +51,8 @@ block script
             if(useCount2>=coin2){
                 return alert('코인2이 부족합니다.');
             } else {
-                return location.href = '/test2';
+                return window.open('/test2', '_blank');
+                //- return location.href = '/test2';
             }
         })
     script.
@@ -97,18 +107,8 @@ block script
 
 block content
     .row
-        .col-lg-3
-            .ibox.float-e-margins
-                .ibox-title
-                    h5=session.user.memberID
-                .ibox-content
-                    h1.no-margins=session.user.name
-        .col-lg-3
-            .ibox.float-e-margins
-                .ibox-title
-                    h5 상호
-                .ibox-content
-                    h1.no-margins=session.user.comName
+        .col-lg-6.text-center
+            img.img-responsive(src="/rorlogo.png")
         .col-lg-3
             .ibox.float-e-margins
                 .ibox-title
@@ -145,7 +145,7 @@ block content
                                         tbody
                                             tr
                                                 td.text-center
-                                                    button#rors1button.btn.btn-w-m.btn-primary.btn-block(type="button") 구조요약
+                                                    button#rors1button.btn.btn-w-m.btn-success.btn-block.btn-outline(type="button") 구조요약
                                                 td.text-center
                                                     button#rors2button.btn.btn-w-m.btn-primary.btn-block.btn-outline(type="button") 자동해석
                         .col-lg-6
@@ -156,10 +156,15 @@ block content
         .col-lg-12
             .ibox.float-e-margins
                 .ibox-title
-                    h5 검사
+                    h5 검사 결과 목록
+                    .ibox-tools
+                        a.text-dark(href="/" style="color: black;") 새로고침
+                            i.fa.fa-refresh(style="margin-left: 5px;")
                 .ibox-content
                     form.row.form-group(method="POST" action="/")
-                        .col-lg-3.col-lg-offset-3.form-group
+                        .col-lg-offset-2.col-lg-1.text-right.float-right
+                            label.col-form-label.float-right.text-right 검사 기간
+                        .col-lg-3.form-group
                             .input-daterange.input-group
                                 input#startDate.input-sm.form-control(type="text" name="start" value="2019-01-01")
                                 span.input-group-addon ~
@@ -168,44 +173,45 @@ block content
                             select.form-control(name="searchfor")
                                 option(value="name") 수검자
                                 option(value="comName") 검사기관
+                                option(value="inspector") 검사자
                         .col-lg-3
                             input.form-control(name="searchtext" type="text" placeholder="검색")
                         .col-lg-1
                             button.btn.btn-primary.btn-block(type="submit") 검색
 
                     .row
-                        table.table.table-striped.table-sm
-                            thead
-                                tr
-                                    th.text-center(scope="col") 번호
-                                    th.text-center(scope="col") 수검자
-                                    th.text-center(scope="col") 검사일
-                                    th.text-center(scope="col")="구조요약 & 해석보고서"
-                                    th.text-center(scope="col") 검사기관
-                                    th.text-center(scope="col") 해석
-                                    th.text-center(scope="col") 삭제
-                            tbody
-                                each data in datas
+                        .col-md-12
+                            table.table.table-striped.table-sm
+                                thead
                                     tr
-                                        td.text-center=data.id
-                                        td.text-center=data.name
-                                        td.text-center=data.testdate
-                                        if data.test=="test1"
-                                            td.text-center 구조요약
-                                        else if data.test=="test2"
-                                            td.text-center 구조요약 & 해석보고서
-                                        td.text-center=data.comName_input
-                                        td.text-center
+                                        th.text-center(scope="col") 번호
+                                        th.text-center(scope="col") 수검자
+                                        th.text-center(scope="col") 검사일
+                                        th.text-center(scope="col") 채점 방식
+                                        th.text-center(scope="col") 검사자
+                                        th.text-center(scope="col") 검사기관
+                                        th.text-center(scope="col") 진행 상태
+                                tbody
+                                    each data in datas
+                                        tr
+                                            td.text-center=data.id
+                                            td.text-center=data.name
+                                            td.text-center=data.testdate
                                             if data.test=="test1"
-                                                if data.scoring
-                                                    a.btn.btn-success.btn-xs(href="/finishtest1?id="+data.id target="_blank") 해석
-                                                else
-                                                    a.btn.btn-info.btn-xs(href="/scoring1/"+data.id target="_blank") 임시저장 불러오기
+                                                td.text-center RIAS-I<br/>(구조요약)
                                             else if data.test=="test2"
-                                                if data.scoring
-                                                    a.btn.btn-success.btn-xs(href="/finishtest2?id="+data.id target="_blank") 해석
-                                                else
-                                                    a.btn.btn-info.btn-xs(href="/scoring2/"+data.id target="_blank") 임시저장 불러오기
-                                        td.text-center
-                                            button.delete.btn.btn-danger.btn-xs(data-id=data.id) 삭제
+                                                td.text-center RIAS-II<br/>(자동해석)
+                                            td.text-center=data.inspector
+                                            td.text-center=data.comName_input
+                                            td.text-center
+                                                if data.test=="test1"
+                                                    if data.scoring
+                                                        a.btn.btn-success.btn-xs(href="/finishtest1?id="+data.id target="_blank") 결과 확인
+                                                    else
+                                                        a.btn.btn-info.btn-xs(href="/scoring1/"+data.id target="_blank") 임시 저장
+                                                else if data.test=="test2"
+                                                    if data.scoring
+                                                        a.btn.btn-success.btn-xs(href="/finishtest2?id="+data.id target="_blank") 결과 확인
+                                                    else
+                                                        a.btn.btn-info.btn-xs(href="/scoring2/"+data.id target="_blank") 임시 저장
 
