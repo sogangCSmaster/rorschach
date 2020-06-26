@@ -464,6 +464,9 @@ html
         script(src='/js/plugins/stickytableheaders/jquery.stickytableheaders.min.js')
         script.
             $(document).ready(function() {
+                $('select').on('change', function() {
+                    $(this).blur();
+                })
                 $(document).on('click', '#score-table td', function() {
                     $('#score-table td').removeClass('cell-selected');
                     clickedCell = $(this);

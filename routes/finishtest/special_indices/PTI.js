@@ -21,11 +21,19 @@ function getLevel2Checked(scores) {
 }
 exports.getLevel2Checked = getLevel2Checked;
 
-function getRChecked(scores) {
+function getRChecked(scores, age) {
   // (R < 17 and WSUM6 > 12) or  (R > 16 and WSUM6 > 17)
   const R = core.getR(scores);
   const WSum6 = ideation.getWSum6(scores);
-  return (R < 17 && WSum6 > 12) || (R > 16 && WSum6 > 17);
+  if (age >= 5 && age <= 7) {
+    return (R < 17 && WSum6 > 16) || (R > 16 && WSum6 > 20);
+  } else if (age >= 8 && age <= 10) {
+    return (R < 17 && WSum6 > 15) || (R > 16 && WSum6 > 19);
+  } else if (age >= 11 && age <= 13) {
+    return (R < 17 && WSum6 > 14) || (R > 16 && WSum6 > 18);
+  } else {
+    return (R < 17 && WSum6 > 12) || (R > 16 && WSum6 > 17);
+  }
 }
 exports.getRChecked = getRChecked;
 

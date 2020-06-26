@@ -301,24 +301,24 @@ router.route("/finishtest1")
         SpecialIndices.PTI.XAper = PTI.getXAperChecked(score);
         SpecialIndices.PTI.Xminusper = PTI.getXminusperChecked(score);
         SpecialIndices.PTI.Level2 = PTI.getLevel2Checked(score);
-        SpecialIndices.PTI.R = PTI.getRChecked(score);
+        SpecialIndices.PTI.R = PTI.getRChecked(score, age);
         SpecialIndices.PTI.M = PTI.getMChecked(score);
 
         SpecialIndices.DEPI = {};
-        SpecialIndices.DEPI.Up5Checked = DEPI.getUp5Checked(score);
+        SpecialIndices.DEPI.Up5Checked = DEPI.getUp5Checked(score, age);
         SpecialIndices.DEPI.FV = DEPI.getFVChecked(score);
         SpecialIndices.DEPI.ColorShadingBlends = DEPI.getColorShadingBlendsChecked(score);
-        SpecialIndices.DEPI.Ego = DEPI.getEgoChecked(score);
-        SpecialIndices.DEPI.Afr = DEPI.getAfrChecked(score);
+        SpecialIndices.DEPI.Ego = DEPI.getEgoChecked(score, age);
+        SpecialIndices.DEPI.Afr = DEPI.getAfrChecked(score, age);
         SpecialIndices.DEPI.SumShading = DEPI.getSumShadingChecked(score);
         SpecialIndices.DEPI.MOR = DEPI.getMORChecked(score);
         SpecialIndices.DEPI.COP = DEPI.getCOPChecked(score);
 
         SpecialIndices.CDI = {};
-        SpecialIndices.CDI.Up4Checked = CDI.getUp4Checked(score);
+        SpecialIndices.CDI.Up4Checked = CDI.getUp4Checked(score, age);
         SpecialIndices.CDI.EA = CDI.getEAChecked(score);
         SpecialIndices.CDI.COP = CDI.getCOPChecked(score);
-        SpecialIndices.CDI.WSumC = CDI.getWSumCChecked(score);
+        SpecialIndices.CDI.WSumC = CDI.getWSumCChecked(score, age);
         SpecialIndices.CDI.Passive = CDI.getPassiveChecked(score);
         SpecialIndices.CDI.SumT = CDI.getSumTChecked(score);
 
@@ -856,24 +856,24 @@ router.route("/finishtest1")
             SpecialIndices.PTI.XAper = PTI.getXAperChecked(score);
             SpecialIndices.PTI.Xminusper = PTI.getXminusperChecked(score);
             SpecialIndices.PTI.Level2 = PTI.getLevel2Checked(score);
-            SpecialIndices.PTI.R = PTI.getRChecked(score);
+            SpecialIndices.PTI.R = PTI.getRChecked(score, age);
             SpecialIndices.PTI.M = PTI.getMChecked(score);
     
             SpecialIndices.DEPI = {};
-            SpecialIndices.DEPI.Up5Checked = DEPI.getUp5Checked(score);
+            SpecialIndices.DEPI.Up5Checked = DEPI.getUp5Checked(score, age);
             SpecialIndices.DEPI.FV = DEPI.getFVChecked(score);
             SpecialIndices.DEPI.ColorShadingBlends = DEPI.getColorShadingBlendsChecked(score);
-            SpecialIndices.DEPI.Ego = DEPI.getEgoChecked(score);
-            SpecialIndices.DEPI.Afr = DEPI.getAfrChecked(score);
+            SpecialIndices.DEPI.Ego = DEPI.getEgoChecked(score, age);
+            SpecialIndices.DEPI.Afr = DEPI.getAfrChecked(score, age);
             SpecialIndices.DEPI.SumShading = DEPI.getSumShadingChecked(score);
             SpecialIndices.DEPI.MOR = DEPI.getMORChecked(score);
             SpecialIndices.DEPI.COP = DEPI.getCOPChecked(score);
     
             SpecialIndices.CDI = {};
-            SpecialIndices.CDI.Up4Checked = CDI.getUp4Checked(score);
+            SpecialIndices.CDI.Up4Checked = CDI.getUp4Checked(score, age);
             SpecialIndices.CDI.EA = CDI.getEAChecked(score);
             SpecialIndices.CDI.COP = CDI.getCOPChecked(score);
-            SpecialIndices.CDI.WSumC = CDI.getWSumCChecked(score);
+            SpecialIndices.CDI.WSumC = CDI.getWSumCChecked(score, age);
             SpecialIndices.CDI.Passive = CDI.getPassiveChecked(score);
             SpecialIndices.CDI.SumT = CDI.getSumTChecked(score);
     

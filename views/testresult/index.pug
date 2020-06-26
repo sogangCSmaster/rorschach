@@ -301,7 +301,7 @@ html
                                                 if upper.location_features.ZEst
                                                     span(style='display: inline-block; width: 30px;') ZEst
                                                     | = 
-                                                    = upper.location_features.ZEst
+                                                    | #{roundTo(upper.location_features.ZEst, 1)}
                                     tr
                                         td(style="font-size: 7pt;")
                                             .text-center 반응 위치
@@ -521,7 +521,7 @@ html
                                 tbody
                                     tr
                                         td.text-center(style="font-size: 7pt; padding: 2px;" colspan="1") 카드
-                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3") 위치 & 발달질(DQ)
+                                        td.text-center(style="font-size: 7pt; padding: 2px;" colspan="3") 위치와 발달질
                                     tr
                                         td.text-center(style="font-size: 7pt; padding: 2px;" colspan="1") Ⅰ
                                         td(style="font-size: 7pt; padding: 2px;" colspan="3")= upper.approach[1].slice(0, 6).join(', ')
@@ -1171,7 +1171,14 @@ html
                                                     - PTITotal += 1;
                                                 else
                                                     i.fa.fa-square-o
-                                                | &nbsp;{(R < 17) and (WSum6 > 12)} or {(R > 16) and (WSum6 > 17)}
+                                                if testconfig.age >= 5 && testconfig.age <= 7
+                                                    | &nbsp;{(R < 17) and (WSum6 > 16)} or {(R > 16) and (WSum6 > 20)}
+                                                else if testconfig.age >= 8 && testconfig.age <= 10
+                                                    | &nbsp;{(R < 17) and (WSum6 > 15)} or {(R > 16) and (WSum6 > 19)}
+                                                else if testconfig.age >= 11 && testconfig.age <= 13
+                                                    | &nbsp;{(R < 17) and (WSum6 > 14)} or {(R > 16) and (WSum6 > 18)}
+                                                else
+                                                    | &nbsp;{(R < 17) and (WSum6 > 12)} or {(R > 16) and (WSum6 > 17)}
                                             p
                                                 if SpecialIndices.PTI.M
                                                     i.fa.fa-check-square-o
@@ -1215,14 +1222,46 @@ html
                                                     i.fa.fa-check-square-o
                                                 else
                                                     i.fa.fa-square-o
-                                                | &nbsp;(Egocentricity Index > 0.44 and Reflection(Fr+rF) = 0) or (Egocentricity Index < 0.33)
+                                                if testconfig.age == 5
+                                                    | &nbsp;(Egocentricity Index > 0.83 and Reflection(Fr+rF) = 0) or (Egocentricity Index < 0.55)
+                                                else if testconfig.age == 6
+                                                    | &nbsp;(Egocentricity Index > 0.82 and Reflection(Fr+rF) = 0) or (Egocentricity Index < 0.52)
+                                                else if testconfig.age == 7
+                                                    | &nbsp;(Egocentricity Index > 0.77 and Reflection(Fr+rF) = 0) or (Egocentricity Index < 0.52)
+                                                else if testconfig.age == 8
+                                                    | &nbsp;(Egocentricity Index > 0.74 and Reflection(Fr+rF) = 0) or (Egocentricity Index < 0.48)
+                                                else if testconfig.age == 9
+                                                    | &nbsp;(Egocentricity Index > 0.69 and Reflection(Fr+rF) = 0) or (Egocentricity Index < 0.45)
+                                                else if testconfig.age == 10
+                                                    | &nbsp;(Egocentricity Index > 0.63 and Reflection(Fr+rF) = 0) or (Egocentricity Index < 0.45)
+                                                else if testconfig.age == 11
+                                                    | &nbsp;(Egocentricity Index > 0.58 and Reflection(Fr+rF) = 0) or (Egocentricity Index < 0.45)
+                                                else if testconfig.age == 12
+                                                    | &nbsp;(Egocentricity Index > 0.58 and Reflection(Fr+rF) = 0) or (Egocentricity Index < 0.38)
+                                                else if testconfig.age == 13
+                                                    | &nbsp;(Egocentricity Index > 0.56 and Reflection(Fr+rF) = 0) or (Egocentricity Index < 0.38)
+                                                else if testconfig.age == 14
+                                                    | &nbsp;(Egocentricity Index > 0.54 and Reflection(Fr+rF) = 0) or (Egocentricity Index < 0.37)
+                                                else if testconfig.age == 15
+                                                    | &nbsp;(Egocentricity Index > 0.50 and Reflection(Fr+rF) = 0) or (Egocentricity Index < 0.33)
+                                                else if testconfig.age == 16
+                                                    | &nbsp;(Egocentricity Index > 0.48 and Reflection(Fr+rF) = 0) or (Egocentricity Index < 0.33)
+                                                else
+                                                    | &nbsp;(Egocentricity Index > 0.44 and Reflection(Fr+rF) = 0) or (Egocentricity Index < 0.33)
                                             p
                                                 span(style='margin-left: -6px;') *
                                                 if SpecialIndices.DEPI.Afr
                                                     i.fa.fa-check-square-o
                                                 else
                                                     i.fa.fa-square-o
-                                                | &nbsp;(Affective Ratio(Afr) < 0.46) or (Blends < 4)
+                                                if testconfig.age >= 5 && testconfig.age <= 6
+                                                    | &nbsp;(Affective Ratio(Afr) < 0.57) or (Blends < 4)
+                                                else if testconfig.age >= 7 && testconfig.age <= 9
+                                                    | &nbsp;(Affective Ratio(Afr) < 0.55) or (Blends < 4)
+                                                else if testconfig.age >= 10 && testconfig.age <= 13
+                                                    | &nbsp;(Affective Ratio(Afr) < 0.53) or (Blends < 4)
+                                                else
+                                                    | &nbsp;(Affective Ratio(Afr) < 0.46) or (Blends < 4)
                                             p
                                                 if SpecialIndices.DEPI.SumShading
                                                     i.fa.fa-check-square-o
@@ -1273,7 +1312,14 @@ html
                                                     i.fa.fa-check-square-o
                                                 else
                                                     i.fa.fa-square-o
-                                                | &nbsp;(WSumC < 2.5) or *(Affective Ratio(Afr) < 0.46)
+                                                if testconfig.age >= 5 && testconfig.age <= 6
+                                                    | &nbsp;(WSumC < 2.5) or *(Affective Ratio(Afr) < 0.57)
+                                                else if testconfig.age >= 7 && testconfig.age <= 9
+                                                    | &nbsp;(WSumC < 2.5) or *(Affective Ratio(Afr) < 0.55)
+                                                else if testconfig.age >= 10 && testconfig.age <= 13
+                                                    | &nbsp;(WSumC < 2.5) or *(Affective Ratio(Afr) < 0.53)
+                                                else
+                                                    | &nbsp;(WSumC < 2.5) or *(Affective Ratio(Afr) < 0.46)
                                             p
                                                 if SpecialIndices.CDI.Passive
                                                     i.fa.fa-check-square-o

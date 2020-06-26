@@ -3,11 +3,11 @@ const interpersonal = require('../lower_section/interpersonal.js');
 const affection = require('../lower_section/affection.js');
 const ideation = require('../lower_section/ideation.js');
 
-function getUp4Checked(scores) {
+function getUp4Checked(scores, age) {
   let checked = 0;
   checked += getEAChecked(scores);
   checked += getCOPChecked(scores);
-  checked += getWSumCChecked(scores);
+  checked += getWSumCChecked(scores, age);
   checked += getPassiveChecked(scores);
   checked += getSumTChecked(scores);
 
@@ -28,9 +28,17 @@ function getCOPChecked(scores) {
 }
 exports.getCOPChecked = getCOPChecked;
 
-function getWSumCChecked(scores) {
+function getWSumCChecked(scores, age) {
   // WSumC < 0.25 or AFr < 0.46
-  return affection.getWSumC(scores) < 0.25 || affection.getAfr(scores) < 0.46;
+    if (age >= 5 && age <= 6) {
+      return affection.getWSumC(scores) < 0.25 || affection.getAfr(scores) < 0.57;
+    } else if (age >= 7 && age <= 9) {
+      return affection.getWSumC(scores) < 0.25 || affection.getAfr(scores) < 0.55;
+    } else if (age >= 10 && age <= 13) {
+      return affection.getWSumC(scores) < 0.25 || affection.getAfr(scores) < 0.53;
+    } else {
+      return affection.getWSumC(scores) < 0.25 || affection.getAfr(scores) < 0.46;
+    }
 }
 exports.getWSumCChecked = getWSumCChecked;
 
