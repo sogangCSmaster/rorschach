@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const puppeteer = require('puppeteer');
 const query = require('../query');
 const axios = require('axios');
 const config = require('../../config.json');
@@ -45,9 +46,8 @@ const { t3step14: step14 } = require('./explanation/t3step14');
 const { t6step8: step8 } = require('./explanation/t6step8');
 const ColorShading = require('./special_indices/color_shading');
 
-router.route("/finishtest1")
-    .get(async(req, res, next) => {
-        if(!req.session.user){
+async function finishtest1(req, res, next) {
+        if(!req.download && !req.session.user){
             return res.redirect('/login');
         }
 
@@ -57,6 +57,7 @@ router.route("/finishtest1")
         sql = "SELECT * FROM test WHERE id=?";
         var testconfig = await query.executeSQL(sql, [id]);
         testconfig = testconfig[0];
+
         var birthday = moment(testconfig.birthday, 'YYYY-MM-DD').format('YYYY-MM-DD');
         var testdate = moment(testconfig.testdate, 'YYYY-MM-DD').format('YYYY-MM-DD');
         var age = testconfig.age || moment(testdate).diff(birthday, 'years');
@@ -406,7 +407,39 @@ router.route("/finishtest1")
 
         res.render('testresult/index', { testconfig, moment, upper, lower, SpecialIndices, scores: score });
 
+    }
+
+router.route('/downloadtest1')
+    .get(async (req, res, next) => {
+        const { id, session_id } = req.query;
+        var sql = "SELECT id, score, scoring FROM score WHERE id=?";
+        var data = await query.executeSQL(sql, [id]);
+        sql = "SELECT * FROM test WHERE id=?";
+        var testconfig = await query.executeSQL(sql, [id]);
+        testconfig = testconfig[0];
+        
+        var filename = '구조요약-' + testconfig.name + '-' + id + '.pdf';
+        const browser = await puppeteer.launch();
+        const page = await browser.newPage();
+        page.setViewport({ width: 1920, height: 1080, deviceScaleFactor: 1 })
+        await page.goto(`${req.protocol}://${req.hostname}/finishtest1?id=${id}&session_id=${session_id}`, { waitUntil: 'networkidle2' });
+        await page.pdf({ path: '/tmp/' + filename, format: 'A4' });
+        res.download('/tmp/' + filename);
     })
+router.route("/finishtest1")
+    .get(async (req, res, next) => {
+        var sql = 'SELECT session_id FROM sessions WHERE session_id=?';
+        const { session_id } = req.query;
+        var result = await query.executeSQL(sql, [session_id]);
+        console.log(result);
+        if (result.length) {
+            req.download = true;
+            next();
+        } else {
+            next('authorization error');
+        }
+    })
+    .get(finishtest1)
     .post(async(req, res, next) => {
         var { stringifyText, testID } = req.body;
         var score = stringifyText;
@@ -432,9 +465,8 @@ router.route("/finishtest1")
         res.redirect(`/finishtest1?id=${testID}`);
     })
 
-    router.route("/finishtest2")
-        .get(async(req, res, next) => {
-            if(!req.session.user){
+    async function finishtest2(req, res, next) {
+            if(!req.download && !req.session.user){
                 return res.redirect('/login');
             }
             var { id } = req.query;
@@ -1048,7 +1080,21 @@ router.route("/finishtest1")
             const OnlyShading = ColorShading.getOnlyShading(score);
 
             res.render('testresult/index2', { testconfig, age, moment, upper, lower, SpecialIndices, step0, getExnerTable1, experienceClassification, Order, TESTRESULT, scores: score, OnlyShading, YColorShading, OtherColorShading, blendsCreatedBymOrY, reBlendsPercent, mBlends, YBlends, _3Blends, _4Blends, shadingBlends, Mwith2, FMwith2 });
+        }
+    router.route("/finishtest2")
+        .get(async (req, res, next) => {
+            var sql = 'SELECT session_id FROM sessions WHERE session_id=?';
+            const { session_id } = req.query;
+            var result = await query.executeSQL(sql, [session_id]);
+            console.log(result);
+            if (result.length) {
+                req.download = true;
+                next();
+            } else {
+                next('authorization error');
+            }
         })
+        .get(finishtest2)
         .post(async(req, res, next) => {
             var { stringifyText, testID } = req.body;
             var score = stringifyText;
@@ -1074,4 +1120,21 @@ router.route("/finishtest1")
             res.redirect(`/finishtest2?id=${testID}`);
         })
 
+router.route('/downloadtest2')
+    .get(async (req, res, next) => {
+        const { id, session_id } = req.query;
+        var sql = "SELECT id, score, scoring FROM score WHERE id=?";
+        var data = await query.executeSQL(sql, [id]);
+        sql = "SELECT * FROM test WHERE id=?";
+        var testconfig = await query.executeSQL(sql, [id]);
+        testconfig = testconfig[0];
+        
+        var filename = '자동해석-' + testconfig.name + '-' + id + '.pdf';
+        const browser = await puppeteer.launch();
+        const page = await browser.newPage();
+        page.setViewport({ width: 1920, height: 1080, deviceScaleFactor: 1 })
+        await page.goto(`${req.protocol}://${req.hostname}/finishtest2?id=${id}&session_id=${session_id}`, { waitUntil: 'networkidle2' });
+        await page.pdf({ path: '/tmp/' + filename, format: 'A4' });
+        res.download('/tmp/' + filename);
+    })
 module.exports = router;

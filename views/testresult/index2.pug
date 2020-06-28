@@ -129,6 +129,8 @@ html
                 }
                 .page,
                 .wide-page {
+                    width: 210mm;
+                    height: 297mm;
                     margin: 0;
                     border: initial;
                     border-radius: initial;
@@ -137,8 +139,7 @@ html
                     box-shadow: initial;
                     background: initial;
                     page-break-after: always;
-
-                }
+                },
             }
             .a {
                 text-indent: 2em;
@@ -2908,6 +2909,7 @@ html
                     return;
                 }
                 var long = $(this)[0].scrollHeight - Math.ceil($(this).innerHeight());
+                //console.log($(this)[0].scrollHeight, Math.ceil($(this).innerHeight()))
                 var children = $(this).children().toArray(); // Save elements in this page to children[] array
                 var removed = [];
                 // Loop while this page is longer than an A4 page
@@ -2933,5 +2935,5 @@ html
                 $('.wide-subpage').each(function() {
                     snipMe.call(this);
                 });
-                window.print();
+                //window.print();
             })

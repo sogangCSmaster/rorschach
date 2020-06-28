@@ -214,4 +214,9 @@ block content
                                                         a.btn.btn-success.btn-xs(href="/finishtest2?id="+data.id target="_blank") 결과 확인
                                                     else
                                                         a.btn.btn-info.btn-xs(href="/scoring2/"+data.id target="_blank") 임시 저장
+                                            td.text-center
+                                                if data.test=="test1" && data.scoring
+                                                    a.btn.btn-danger.btn-xs(href="/downloadtest1?id="+data.id+"&session_id="+session_id target="_blank") PDF 저장
+                                                else if data.test=="test2" && data.scoring
+                                                    a.btn.btn-danger.btn-xs(href="/downloadtest2?id="+data.id+"&session_id="+session_id target="_blank") PDF 저장
 
