@@ -432,9 +432,10 @@ router.route("/finishtest1")
         var sql = 'SELECT session_id FROM sessions WHERE session_id=?';
         const { session_id } = req.query;
         var result = await query.executeSQL(sql, [session_id]);
-        console.log(result);
         if (result.length) {
             req.download = true;
+            next();
+        } else if (req.session.user) {
             next();
         } else {
             next('authorization error');
@@ -1090,6 +1091,9 @@ router.route("/finishtest1")
             console.log(result);
             if (result.length) {
                 req.download = true;
+                next();
+            
+            } else if (req.session.user) {
                 next();
             } else {
                 next('authorization error');
