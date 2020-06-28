@@ -190,10 +190,10 @@ html
                     .container-fluid
                         .row
                             .col-md-12.text-center
-                                h6 NO : #{testconfig.id} &nbsp&nbsp&nbsp&nbsp 이름 : #{testconfig.name} &nbsp&nbsp&nbsp&nbsp 성별 : #{testconfig.sex} &nbsp&nbsp&nbsp&nbsp 생년월일 : #{moment(testconfig.birthday).format('YYYY년 MM월 DD일')}(만 #{testconfig.age}세) &nbsp&nbsp&nbsp&nbsp 검사일 : #{moment(testconfig.testdate).format('YYYY년 MM월 DD일')}
+                                h6(style='font-size: 11px;') NO : #{testconfig.id} &nbsp&nbsp&nbsp&nbsp 이름 : #{testconfig.name} &nbsp&nbsp&nbsp&nbsp 성별 : #{testconfig.sex} &nbsp&nbsp&nbsp&nbsp 생년월일 : #{moment(testconfig.birthday).format('YYYY년 MM월 DD일')}(만 #{testconfig.age}세) &nbsp&nbsp&nbsp&nbsp 검사일 : #{moment(testconfig.testdate).format('YYYY년 MM월 DD일')}
                     .row
                         .col-md-12.text-center
-                            table.table.table-bordered
+                            table.table.table-bordered.table-minh
                                 thead
                                     tr(style='font-size: 7px;')
                                         th.text-center(style='width: 35px;') 카드
@@ -208,8 +208,8 @@ html
                                         th.text-center(style='width: 50px;')  Z
                                         th.text-center(style='min-width: 100px;')  특수점수
                                 tbody
-                                    each score, index in scores.slice(0, 25)
-                                        tr(style='font-size: 7px;')
+                                    each score, index in scores.slice(0, 27)
+                                        tr(style='font-size: 11px;')
                                             td
                                                 if score.card==1
                                                     = "Ⅰ"
@@ -243,7 +243,7 @@ html
                                             td= score.p
                                             td= score.z
                                             td.text-justify= score.score
-            if scores[25].card
+            if scores[27].card
                 .page
                     .subpage#page0
                         .row
@@ -252,10 +252,10 @@ html
                         .container-fluid
                             .row
                                 .col-md-12.text-center
-                                    h6 NO : #{testconfig.id} &nbsp&nbsp&nbsp&nbsp 이름 : #{testconfig.name} &nbsp&nbsp&nbsp&nbsp 성별 : #{testconfig.sex} &nbsp&nbsp&nbsp&nbsp 생년월일 : #{moment(testconfig.birthday).format('YYYY년 MM월 DD일')}(만 #{testconfig.age}세) &nbsp&nbsp&nbsp&nbsp 검사일 : #{moment(testconfig.testdate).format('YYYY년 MM월 DD일')}
+                                    h6(style='font-size: 11px;') NO : #{testconfig.id} &nbsp&nbsp&nbsp&nbsp 이름 : #{testconfig.name} &nbsp&nbsp&nbsp&nbsp 성별 : #{testconfig.sex} &nbsp&nbsp&nbsp&nbsp 생년월일 : #{moment(testconfig.birthday).format('YYYY년 MM월 DD일')}(만 #{testconfig.age}세) &nbsp&nbsp&nbsp&nbsp 검사일 : #{moment(testconfig.testdate).format('YYYY년 MM월 DD일')}
                         .row
                             .col-md-12.text-center
-                                table.table.table-bordered
+                                table.table.table-bordered.table-minh
                                     thead
                                         tr(style='font-size: 7px;')
                                             th.text-center(style='width: 35px;') 카드
@@ -270,8 +270,8 @@ html
                                             th.text-center(style='width: 50px;')  Z
                                             th.text-center(style='min-width: 100px;')  특수점수
                                     tbody
-                                        each score, index in scores.slice(26)
-                                            tr(style='font-size: 7px;')
+                                        each score, index in scores.slice(27)
+                                            tr(style='font-size: 11px;')
                                                 td
                                                     if score.card==1
                                                         = "Ⅰ"
@@ -1526,12 +1526,12 @@ html
                                         th.text-center(colspan="24") RIAS Ⅱ 자동해석 보고서
                                 tbody
                                     tr
-                                        td.text-center 이 름
-                                        td.text-center #{testconfig.name}
-                                        td.text-center 성 별
-                                        td.text-center #{testconfig.sex}
-                                        td.text-center 채점 번호
-                                        td.text-center 
+                                        td.text-center(style='min-width: 60px;') 이 름
+                                        td.text-center(style='min-width: 140px;') #{testconfig.name}
+                                        td.text-center(style='min-width: 30px') 성 별
+                                        td.text-center(style='min-width: 100px') #{testconfig.sex}
+                                        td.text-center(style='min-width: 70px;') 채점 번호
+                                        td.text-center(style='min-width: 57px;')
                                     tr
                                         td.text-center 생년월일
                                         td.text-center #{moment(testconfig.birthday).format('YYYY년 MM월 DD일')}
