@@ -419,11 +419,12 @@ router.route('/downloadtest1')
         testconfig = testconfig[0];
         
         var filename = '구조요약-' + testconfig.name + '-' + id + '.pdf';
-        const browser = await puppeteer.launch();
+        const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
         const page = await browser.newPage();
         page.setViewport({ width: 1920, height: 1080, deviceScaleFactor: 1 })
         await page.goto(`${req.protocol}://${req.hostname}/finishtest1?id=${id}&session_id=${session_id}`, { waitUntil: 'networkidle2' });
         await page.pdf({ path: '/tmp/' + filename, format: 'A4' });
+        await browser.close();
         res.download('/tmp/' + filename);
     })
 router.route("/finishtest1")
@@ -1130,11 +1131,12 @@ router.route('/downloadtest2')
         testconfig = testconfig[0];
         
         var filename = '자동해석-' + testconfig.name + '-' + id + '.pdf';
-        const browser = await puppeteer.launch();
+        const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
         const page = await browser.newPage();
         page.setViewport({ width: 1920, height: 1080, deviceScaleFactor: 1 })
         await page.goto(`${req.protocol}://${req.hostname}/finishtest2?id=${id}&session_id=${session_id}`, { waitUntil: 'networkidle2' });
         await page.pdf({ path: '/tmp/' + filename, format: 'A4' });
+        await browser.close();
         res.download('/tmp/' + filename);
     })
 module.exports = router;
