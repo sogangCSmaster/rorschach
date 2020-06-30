@@ -777,9 +777,10 @@ function step9(FC, CF, C, PureC){
 
 function step10(){
     var result = {};
+    result.textData = [];
     //var textData = ["질적분석<br/><br/><br/><br/><br/>"]
     result.curStep = 10;
-    result.textData = textData;
+    //result.textData = textData;
     result.nextStep = 11;
     result.goNext = false;
     return result;

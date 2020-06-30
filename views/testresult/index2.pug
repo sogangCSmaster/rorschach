@@ -1565,8 +1565,8 @@ html
                             table.table.table-bordered(style="font-size: 8pt;")
                                 thead
                                     tr
-                                        th.text-center(colspan="1") 전체 반응 수 (R = <span style="color: red;">#{step0.R.R}</span>)
-                                        th.text-center(colspan="1") Lambda (L = <span style="color: red;">#{step0.L.L}</span>)
+                                        th.text-center(colspan="1") 전체 반응 수 (R = <span class="text-danger">#{step0.R.R}</span>)
+                                        th.text-center(colspan="1") Lambda (L = <span class="text-danger">#{step0.L.L}</span>)
                                 tbody
                                     tr
                                         td(colspan="1")
@@ -1932,9 +1932,9 @@ html
                                                 | &#x27B2;
                                                 - flag = false
                                         p(style="font-size: 11pt; line-height: 160%;")
-                                            span(style="color: blue; font-size: 11pt; line-height: 160%;") [Step #{step.curStep}]
                                             if step.textData.length == 0
                                             else
+                                                span.text-blue(style="color: blue; font-size: 11pt; line-height: 160%;") [Step #{step.curStep}]
                                                 each text in step.textData
                                                     if !text.includes('[질적 분석]')
                                                         !=text
@@ -2137,9 +2137,9 @@ html
                                                 | &#x27B2;
                                                 - flag = false
                                         p(style="font-size: 11pt; line-height: 160%;")
-                                            span(style="color: blue; font-size: 11pt; line-height: 160%;") [Step #{step.curStep}]
                                             if step.textData.length == 0
                                             else
+                                                span.text-blue(style="color: blue; font-size: 11pt; line-height: 160%;") [Step #{step.curStep}]
                                                 each text in step.textData
                                                     if !text.includes('[질적 분석]')
                                                         !=text
@@ -2272,9 +2272,9 @@ html
                                                 | &#x27B2;
                                                 - flag = false
                                         p(style="font-size: 11pt; line-height: 160%;")
-                                            span(style="color: blue; font-size: 11pt; line-height: 160%;") [Step #{step.curStep}]
                                             if step.textData.length == 0
                                             else
+                                                span.text-blue(style="color: blue; font-size: 11pt; line-height: 160%;") [Step #{step.curStep}]
                                                 each text in step.textData
                                                     if !text.includes('[질적 분석] ')
                                                         !=text
@@ -2414,9 +2414,9 @@ html
                                                 | &#x27B2;
                                                 - flag = false
                                         p(style="font-size: 11pt; line-height: 160%;")
-                                            span(style="color: blue; font-size: 11pt; line-height: 160%;") [Step #{step.curStep}]
                                             if step.textData.length == 0
                                             else
+                                                span.text-blue(style="color: blue; font-size: 11pt; line-height: 160%;") [Step #{step.curStep}]
                                                 each text in step.textData
                                                     if !text.includes('[질적 분석]')
                                                         !=text
@@ -2555,9 +2555,9 @@ html
                                                 | &#x27B2;
                                                 - flag = false
                                         p(style="font-size: 11pt; line-height: 160%;")
-                                            span(style="color: blue; font-size: 11pt; line-height: 160%;") [Step #{step.curStep}]
                                             if step.textData.length == 0
                                             else
+                                                span.text-blue(style="color: blue; font-size: 11pt; line-height: 160%;") [Step #{step.curStep}]
                                                 each text in step.textData
                                                     if !text.includes('[질적 분석]')
                                                         !=text
@@ -2670,9 +2670,9 @@ html
                                                 | &#x27B2;
                                                 - flag = false
                                         p(style="font-size: 11pt; line-height: 160%;")
-                                            span(style="color: blue; font-size: 11pt; line-height: 160%;") [Step #{step.curStep}]
                                             if step.textData.length == 0
                                             else
+                                                span.text-blue(style="color: blue; font-size: 11pt; line-height: 160%;") [Step #{step.curStep}]
                                                 each text in step.textData
                                                     if !text.includes('[질적 분석]')
                                                         !=text
@@ -2806,9 +2806,9 @@ html
                                         | &#x27B2;
                                         - flag = false
                                 p(style="font-size: 11pt; line-height: 160%;")
-                                    span(style="color: blue; font-size: 11pt; line-height: 160%;") [Step #{step.curStep}]
                                     if step.textData.length == 0
                                     else
+                                        span.text-blue(style="color: blue; font-size: 11pt; line-height: 160%;") [Step #{step.curStep}]
                                         each text in step.textData
                                             if !text.includes('[질적 분석]')
                                                 !=text
@@ -2875,9 +2875,9 @@ html
                                                 | &#x27B2;
                                                 - flag = false
                                         p(style="font-size: 11pt; line-height: 160%;")
-                                            span(style="color: blue; font-size: 11pt; line-height: 160%;") [Step #{step.curStep}]
                                             if step.textData.length == 0
                                             else
+                                                span.text-blue(style="color: blue; font-size: 11pt; line-height: 160%;") [Step #{step.curStep}]
                                                 each text in step.textData
                                                     if !text.includes('[질적 분석]')
                                                         !=text

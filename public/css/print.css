@@ -1,4 +1,25 @@
 @media print {
+    html, body {
+      -webkit-print-color-adjust: exact !important;
+    }
+    .text-danger {
+        color: #ed5565 !important;
+        -webkit-print-color-adjust: exact;
+    }
+    .text-warning {
+        color: #f8ac59 !important;
+        -webkit-print-color-adjust: exact;
+    }
+    .text-blue {
+        color: blue !important;
+        -webkit-print-color-adjust: exact;
+    }
+    td.bg-warning {
+        background-color: #f8ac59 !important;
+        color: #ffffff !important;
+        -webkit-print-color-adjust: exact !important;
+        color-adjust: exact !important;
+    }
     .wide-page,
     .page {
         display: block !important;
@@ -31,7 +52,7 @@
 	* {
 		color: #676a6c !important;
 	}
-	.table.table-bordered > thead > tr > th, .table-bordered > thead > tr > td {
+	.table.table-bordered > thead > tr > th, .table-bordered > thead > tr > td:not(.bg-warning) {
 		background-color: #F5F5F6 !important;
 		border-bottom-width: 1px;
 	}
