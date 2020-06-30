@@ -22,7 +22,7 @@ html
                         form.m-t.form-horizontal(role="form" action="/test1" method="POST")
                             .hr-line-dashed
                             .form-group
-                                label.col-sm-1.control-label 이름
+                                label.col-sm-1.control-label <span style="color: red;">*</span> 이름
                                 .col-sm-2
                                     input.form-control(type="text" placeholder="이름" name="name" required)
                                 label.col-sm-1.control-label 성별
@@ -46,12 +46,12 @@ html
                                 .col-sm-3
                                     input.form-control(type="text" placeholder="진단명" name="diagnosis")
                             .form-group
-                                label.col-sm-1.control-label 생년월일 (필수)
+                                label.col-sm-1.control-label <span style="color: red;">*</span> 생년월일
                                 .col-sm-2
-                                    input#birthday.form-control(type="text" readonly="readonly" required name="birthday")
-                                label.col-sm-1.control-label 검사일자
+                                    input#birthday.form-control(type="text" required name="birthday" autocomplete="off")
+                                label.col-sm-1.control-label <span style="color: red;">*</span> 검사일자
                                 .col-sm-2
-                                    input#today.form-control(type="text" readonly="readonly" value=moment().format('YYYY-MM-DD') name="testdate")
+                                    input#today.form-control(type="text" value=moment().format('YYYY-MM-DD') name="testdate" required autocomplete="off")
                                 label.col-sm-1.control-label 검사기관
                                 .col-sm-2
                                     input.form-control(type="text" placeholder="검사기관" value=session.user.comName name="comName_input")
@@ -63,7 +63,7 @@ html
                                 .col-sm-4.col-sm-offset-1
                                     a.btn.btn-white(href="/") 취소
                                     button.btn.btn-primary(type="submit") 저장 후 다음
-                                
+                                    span.m-l-md(style="color: red;") * 필수 항목
 
                             
         script(src="/js/jquery-2.1.1.js")
