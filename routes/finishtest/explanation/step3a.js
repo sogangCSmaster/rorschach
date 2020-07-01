@@ -124,6 +124,7 @@ exports.checkFQminus3andPureF = checkFQminus3andPureF;
 
 function checkHomogeneousContent(scores) {
   var checkDict = {};
+
   scores.forEach((score) => {
     if (score.fq == '-') {
       if (score.react) {
@@ -139,12 +140,36 @@ function checkHomogeneousContent(scores) {
   });
 
   var homoCont = false;
-  Object.keys(checkDict).forEach((key) => {
-    if (checkDict[key] >= 2) {
-      homoCont = true;
+    /* 사람반응과 동물 반응 검사 */
+    var total1 = checkDict['H'] + checkDict['(H)'] + checkDict['Hd'] + checkDict['(Hd)'] + checkDict['(Hx)'] + checkDict['A'] + checkDict['(A)'] + checkDict['Ad'] + checkDict['(Ad)'];
+    if (total1 >= 2) {
+        return true;
     }
-  });
-  return homoCont;
+    /* 신체 반응 */
+    var total2 = checkDict['An'] + checkDict['Xy'];
+    if (total2 >= 2) {
+        return true;
+    } else if (checkDict['Bl'] >= 2 || checkDict['Sx'] >= 2) {
+        return true;
+    }
+
+    /* 자연 반응 */
+    var total3 = checkDict['Na'] + checkDict['Bt'] + checkDict['Ls'] + checkDict['Cl'];
+    var total4 = checkDict['Ex'] + checkDict['Fi'];
+    if (total3 >= 2) {
+        return true;
+    } else if (total4 >= 2) {
+        return true;
+    } 
+
+    /* 문명 반응 */
+    var total5 = checkDict['Art'] + checkDict['Ay'];
+    if (total5 >= 2) {
+        return true;
+    } else if (checkDict['Sc'] >= 2 || checkDict['Fd'] >= 2 || checkDict['Hh'] >= 2 || checkDict['Cg'] >= 2) {
+        return true;
+    }
+    return false;
 }
 exports.checkHomogeneousContent = checkHomogeneousContent;
 
