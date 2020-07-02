@@ -16,7 +16,11 @@ function t3step13(scores) {
             mOrYBlends += 1;
         }
     })
-    return roundTo((blends - mOrYBlends + 1) / R * 100, 3);
+    if (mOrYBlends  == 0) {
+        return roundTo(blends / R * 100, 3);
+    } else {
+        return roundTo((blends - mOrYBlends + 1) / R * 100, 3);
+    }
 }
 
 exports.t3step13 = t3step13;
