@@ -36,4 +36,16 @@ html
                                 .col-sm-10
                                     input(type="password" class="form-control" placeholder="비밀번호 입력" required="" name="password")
                             button(type="submit" class="btn btn-primary block full-width m-b") 로그인
-                            
+        script.
+            function msieversion() {
+                var ua = window.navigator.userAgent;
+                var msie = ua.indexOf("MSIE ");
+
+                if (msie > 0) {
+                    alert('로샤 채점 프로그램은 크롬에 최적화되어 있습니다.');
+                } else {
+                    console.warn('Good browser');
+                }
+
+                return false;
+            }
