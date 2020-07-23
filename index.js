@@ -69,6 +69,8 @@ const scoring1 = require('./routes/scoring1');
 const finishtest = require('./routes/finishtest');
 const deletion = require('./routes/delete');
 const scoring2 = require('./routes/scoring2');
+const checkcoin = require('./routes/checkcoin');
+app.use(checkcoin);
 app.use(scoring2);
 app.use(test2);
 app.use(deletion)

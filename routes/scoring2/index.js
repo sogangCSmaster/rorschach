@@ -83,7 +83,7 @@ router.route('/scoring2/:id(\\d+)')
         }
         var api = config.api;
         var { m } = req.session;
-        api = api + `/coinProcess.php?m=${m}&c=RORS&n=${testID}&p=add`;
+        api = api + `/coinProcess.php?m=${m}&c=RORS2&n=${testID}&p=add`;
         await axios.get(api);
         res.json({success: true});
     })

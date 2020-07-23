@@ -38,36 +38,89 @@ block script
         msieversion()
     script.
         $("#rors1button").on('click', function(){
-            var user = !{JSON.stringify(session)};
-            user = user.user;
-            var coin1 = user.coin1;
-            var useCount1 = user.useCount1;
-
-            coin1 = Number(coin1);
-            useCount1 = Number(useCount1);
-            if(useCount1>=coin1){
-                return alert('코인1이 부족합니다.');
-            } else {
-                return window.open('/test1', '_blank');
-                //- return location.href = '/test1';
-            }
+            $.ajax({
+                method: "GET",
+                url: "/checkcoin"
+            }).done(function(res){
+                var { coin1, useCount1 } = res;
+                coin1 = Number(coin1);
+                useCount1 = Number(useCount1);
+                if(useCount1>=coin1){
+                    return alert('코인1이 부족합니다.');
+                } else {
+                    return window.open('/test1', '_blank');
+                    //- return location.href = '/test1';
+                }    
+            })
+        })
+    script.
+        $(".temp1").on('click', function(){
+            var ele = $(this);
+            var target = ele.attr('target');
+            $.ajax({
+                method: "GET",
+                url: "/checkcoin"
+            }).done(function(res){
+                var { coin1, useCount1 } = res;
+                coin1 = Number(coin1);
+                useCount1 = Number(useCount1);
+                if(useCount1>=coin1){
+                    return alert('코인1이 부족합니다.');
+                } else {
+                    return window.open(target, '_blank');
+                    //- return location.href = '/test1';
+                }    
+            })
+        })
+    script.
+        $(".temp2").on('click', function(){
+            var ele = $(this);
+            var target = ele.attr('target');
+            $.ajax({
+                method: "GET",
+                url: "/checkcoin"
+            }).done(function(res){
+                var { coin2, useCount2 } = res;
+                coin2 = Number(coin2);
+                useCount2 = Number(useCount2);
+                if(useCount2>=coin2){
+                    return alert('코인1이 부족합니다.');
+                } else {
+                    return window.open(target, '_blank');
+                    //- return location.href = '/test1';
+                }    
+            })
         })
     script.
         $("#rors2button").on('click', function(){
-            var user = !{JSON.stringify(session)};
-            user = user.user;
-            var coin2 = user.coin2;
-            var useCount2 = user.useCount2;
+            $.ajax({
+                method: "GET",
+                url: "/checkcoin"
+            }).done(function(res){
+                var { coin2, useCount2 } = res;
+                coin2 = Number(coin2);
+                useCount2 = Number(useCount2);
+                if(useCount2>=coin2){
+                    return alert('코인2가 부족합니다.');
+                } else {
+                    return window.open('/test2', '_blank');
+                    //- return location.href = '/test1';
+                }    
+            })
+            //- var user = !{JSON.stringify(session)};
+            //- user = user.user;
+            //- var coin2 = user.coin2;
+            //- var useCount2 = user.useCount2;
 
-            coin2 = Number(coin2);
-            useCount2 = Number(useCount2);
+            //- coin2 = Number(coin2);
+            //- useCount2 = Number(useCount2);
 
-            if(useCount2>=coin2){
-                return alert('코인2이 부족합니다.');
-            } else {
-                return window.open('/test2', '_blank');
-                //- return location.href = '/test2';
-            }
+            //- if(useCount2>=coin2){
+            //-     return alert('코인2이 부족합니다.');
+            //- } else {
+            //-     return window.open('/test2', '_blank');
+            //-     //- return location.href = '/test2';
+            //- }
         })
     script.
         $(".delete").on('click', function(){
@@ -223,12 +276,12 @@ block content
                                                     if data.scoring
                                                         a.btn.btn-danger.btn-xs(href="/downloadtest1?id="+data.id+"&session_id="+session_id target="_blank") 결과 확인
                                                     else
-                                                        a.btn.btn-info.btn-xs(href="/scoring1/"+data.id target="_blank") 임시 저장
+                                                        button.btn.btn-info.btn-xs.temp1(target="/scoring1/"+data.id) 임시 저장
                                                 else if data.test=="test2"
                                                     if data.scoring
                                                         a.btn.btn-danger.btn-xs(href="/downloadtest2?id="+data.id+"&session_id="+session_id target="_blank") 결과 확인
                                                     else
-                                                        a.btn.btn-info.btn-xs(href="/scoring2/"+data.id target="_blank") 임시 저장
+                                                        button.btn.btn-info.btn-xs.temp2(target="/scoring2/"+data.id) 임시 저장
                                             //- td.text-center
                                                 if data.test=="test1"
                                                     if data.scoring
