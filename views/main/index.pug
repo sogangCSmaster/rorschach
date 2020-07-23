@@ -257,8 +257,8 @@ block content
                                         th.text-center(scope="col") 채점 방식
                                         th.text-center(scope="col") 검사자
                                         th.text-center(scope="col") 검사기관
-                                        th.text-center(scope="col") 진행 상태
-                                        //- th.text-center(scope="col") PDF
+                                        th.text-center(scope="col") 결과확인
+                                        th.text-center(scope="col") PDF
                                 tbody
                                     each data in datas
                                         tr
@@ -274,14 +274,25 @@ block content
                                             td.text-center
                                                 if data.test=="test1"
                                                     if data.scoring
-                                                        a.btn.btn-danger.btn-xs(href="/downloadtest1?id="+data.id+"&session_id="+session_id target="_blank") 결과 확인
+                                                        a.btn.btn-success.btn-xs(href="/finishtest1?id="+data.id target="_blank") 결과 확인
                                                     else
-                                                        button.btn.btn-info.btn-xs.temp1(target="/scoring1/"+data.id) 임시 저장
+                                                        a.btn.btn-info.btn-xs(href="/scoring1/"+data.id target="_blank") 임시 저장
                                                 else if data.test=="test2"
                                                     if data.scoring
-                                                        a.btn.btn-danger.btn-xs(href="/downloadtest2?id="+data.id+"&session_id="+session_id target="_blank") 결과 확인
+                                                        a.btn.btn-success.btn-xs(href="/finishtest2?id="+data.id target="_blank") 결과 확인
                                                     else
-                                                        button.btn.btn-info.btn-xs.temp2(target="/scoring2/"+data.id) 임시 저장
+                                                        a.btn.btn-info.btn-xs(href="/scoring2/"+data.id target="_blank") 임시 저장
+                                            td.text-center
+                                                if data.test=="test1"
+                                                    if data.scoring
+                                                        a.btn.btn-danger.btn-xs(href="/downloadtest1?id="+data.id+"&session_id="+session_id target="_blank") PDF 저장
+                                                    else
+                                                        button.btn.btn-danger.btn-xs(href="/downloadtest1?id="+data.id+"&session_id="+session_id target="_blank" disabled) PDF 저장
+                                                else if data.test=="test2"
+                                                    if data.scoring
+                                                        a.btn.btn-danger.btn-xs(href="/downloadtest2?id="+data.id+"&session_id="+session_id target="_blank") PDF 저장
+                                                    else
+                                                        button.btn.btn-danger.btn-xs(href="/downloadtest2?id="+data.id+"&session_id="+session_id target="_blank" disabled) PDF 저장
                                             //- td.text-center
                                                 if data.test=="test1"
                                                     if data.scoring
