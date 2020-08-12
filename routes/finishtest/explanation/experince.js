@@ -36,6 +36,11 @@ function getExperience(EBLeft, EBRight, EA, L, EBPer){
         approachStyle = "Avoidant";
     }
 
+    if (approachStyle == "True" && copyingStyle == "") {
+        approachStyle = "";
+    }
+
+
     return { copyingStyle, dominantStyle, approachStyle };
 
 }

@@ -140,6 +140,7 @@ function step6({ Hrest, H, R, copyingStyle, approachStyle }) {
     // approachStyle: 진성(True), 회피(Avoidant)
 
     var Rconditions = [[14, 16], [17, 27], [28, 55]];
+    var True = [[14, 16], [17, 27], [28, 55]];
     var TrueIntroversive = [[4, 6], [5, 8], [7, 11]];
     var TrueExtratensive = [[2, 4], [3, 6], [4, 7]];
     var TrueAmbitent = [[2, 5], [4, 7], [5, 9]];
