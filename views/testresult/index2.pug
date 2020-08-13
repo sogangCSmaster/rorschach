@@ -1745,7 +1745,7 @@ html
                                                         | 외향형
                                                     else if experienceClassification.copyingStyle == 'Ambitent'
                                                         | 양향형
-                                            else
+                                            else if experienceClassification.approachStyle == "Avoidant"
                                                 | 회피
                                                 if experienceClassification.copyingStyle =='Introversive'
                                                     | &nbsp;내향형
@@ -1755,6 +1755,8 @@ html
                                                     | &nbsp;양향형
                                                 else
                                                     | 형
+                                            else
+                                                | 해당사항없음
 
 
                     if experienceClassification.approachStyle == "" && experienceClassification.copyingStyle == "" && experienceClassification.dominantStyle == ""

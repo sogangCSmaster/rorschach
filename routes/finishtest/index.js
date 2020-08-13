@@ -935,7 +935,7 @@ router.route("/finishtest1")
             SpecialIndices.OBS.FQplusChecked = OBS.getFQplusChecked3(score);
 
             
-            var experienceClassification = experience.getExperience(lower.core.EBLeft, lower.core.EBRight, lower.core.EA, lower.core.Lambda, lower.core.EBPer);
+            var experienceClassification = experience.getExperience(lower.core.EBLeft, lower.core.EBRight, lower.core.EA, lower.core.Lambda, lower.core.EBPer, SpecialIndices.PTI.M, SpecialIndices.CDI.WSumC);
             indicators.copyingStyle = experienceClassification.copyingStyle;
             indicators.approachStyle = experienceClassification.approachStyle;
             indicators.dominantStyle = experienceClassification.dominantStyle;
