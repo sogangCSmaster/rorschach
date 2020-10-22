@@ -266,7 +266,7 @@ async function finishtest1(req, res, next) {
 
         lower.special_indices = {};
         lower.special_indices.SCONPositive = special_indices.getSCONPositive(score, age);
-            console.log('age', age);
+            // console.log('age', age);
         lower.special_indices.SCON = special_indices.getSCON(score, age);
         lower.special_indices.PTIPositive = special_indices.getPTIPositive(score);
         lower.special_indices.PTI = special_indices.getPTI(score);
@@ -347,11 +347,11 @@ async function finishtest1(req, res, next) {
         SpecialIndices.OBS.FQplusChecked = OBS.getFQplusChecked3(score);
 
         
-        console.log(score);
+        // console.log(score);
         // parse score to pdf format
         score = score.map((score) => {
             score.det = score.det || {};
-            console.log(score.det);
+            // console.log(score.det);
             score.det = Object.keys(score.det)
               .filter((key) => {
                 return key != '(2)';
@@ -360,7 +360,7 @@ async function finishtest1(req, res, next) {
                   return score.det[key].value;
               })
               .join('.');
-            console.log(score.det);
+            // console.log(score.det);
 
             score.react = score.react || {};
             score.react = Object.keys(score.react)
@@ -481,7 +481,7 @@ router.route("/finishtest1")
             var birthday = moment(testconfig.birthday, 'YYYY-MM-DD').format('YYYY-MM-DD');
             var testdate = moment(testconfig.testdate, 'YYYY-MM-DD').format('YYYY-MM-DD');
             var age = testconfig.age || moment(testdate).diff(birthday, 'years');
-            console.log(age);
+            // console.log(age);
             if(testconfig.sex=="male"){
                 testconfig.sex="남";
             } else {
@@ -500,6 +500,9 @@ router.route("/finishtest1")
             var score = data.score;
             score = JSON.parse(score);
             score = score.slice(1);
+
+            console.warn(score.length);
+            
 
             score = score.map((s) => {
                 if (s.det && Object.keys(s.det).length) {
@@ -955,7 +958,7 @@ router.route("/finishtest1")
 
             var TESTRESULT = [];
             var resultName = "";
-            console.warn(scoreOrder);
+            
             for(var i=0; i< scoreOrder.length; i++){
                 if(scoreOrder[i]=='통제력'){
                     resultName = "Control and Stress Tolerance 통제 능력과 스트레스 저항력 평가";
@@ -1076,11 +1079,12 @@ router.route("/finishtest1")
                 return score;
             });
             // length 50 채움
+            // console.warn(score.length);
             for (var i = score.length; i <= 50; i++) {
                 score.push({});
             }
             const OnlyShading = ColorShading.getOnlyShading(score);
-
+            
             res.render('testresult/index2', { testconfig, age, moment, upper, lower, SpecialIndices, step0, getExnerTable1, experienceClassification, Order, TESTRESULT, scores: score, OnlyShading, YColorShading, OtherColorShading, blendsCreatedBymOrY, reBlendsPercent, mBlends, YBlends, _3Blends, _4Blends, shadingBlends, Mwith2, FMwith2 });
         }
     router.route("/finishtest2")
@@ -1088,7 +1092,7 @@ router.route("/finishtest1")
             var sql = 'SELECT session_id FROM sessions WHERE session_id=?';
             const { session_id } = req.query;
             var result = await query.executeSQL(sql, [session_id]);
-            console.log(result);
+            // console.log(result);
             if (result.length) {
                 req.download = true;
                 next();
