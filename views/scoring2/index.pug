@@ -114,7 +114,7 @@ html
                         .hr-line-dashed
                         .row
                             .col-lg-2.col-lg-offset-10.text-right
-                                button.btn.btn-info.btn-tempsave(type='button') 임시저장
+                                //- button.btn.btn-info.btn-tempsave(type='button') 임시저장
                                 form.form.inline(action="/finishtest2" method="POST" onsubmit='return stringifyForm()')
                                     input(type="hidden" name="stringifyText")
                                     input(type="hidden" name="testID" value=session.insertId || insertId)

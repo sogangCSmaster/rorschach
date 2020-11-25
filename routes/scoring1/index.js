@@ -83,10 +83,10 @@ router.route('/scoring1/:id(\\d+)')
             scoring = scoring == 'true' ? 1 : 0;
             await query.executeSQL(sql, [updateId, score, scoring])
         }
-        var api = config.api;
-        var { m } = req.session;
-        api = api + `/coinProcess.php?m=${m}&c=RORS&n=${testID}&p=add`;
-        await axios.get(api);
+        // var api = config.api;
+        // var { m } = req.session;
+        // api = api + `/coinProcess.php?m=${m}&c=RORS&n=${testID}&p=add`;
+        // await axios.get(api);
         res.json({success: true});
     })
 module.exports = router
