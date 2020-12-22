@@ -29,15 +29,15 @@ function getCOPChecked(scores) {
 exports.getCOPChecked = getCOPChecked;
 
 function getWSumCChecked(scores, age) {
-  // WSumC < 0.25 or AFr < 0.46
+  // WSumC < 2.5 or AFr < 0.46
     if (age >= 5 && age <= 6) {
-      return affection.getWSumC(scores) < 0.25 || affection.getAfr(scores) < 0.57;
+      return affection.getWSumC(scores) < 2.5 || affection.getAfr(scores) < 0.57;
     } else if (age >= 7 && age <= 9) {
-      return affection.getWSumC(scores) < 0.25 || affection.getAfr(scores) < 0.55;
+      return affection.getWSumC(scores) < 2.5 || affection.getAfr(scores) < 0.55;
     } else if (age >= 10 && age <= 13) {
-      return affection.getWSumC(scores) < 0.25 || affection.getAfr(scores) < 0.53;
+      return affection.getWSumC(scores) < 2.5 || affection.getAfr(scores) < 0.53;
     } else {
-      return affection.getWSumC(scores) < 0.25 || affection.getAfr(scores) < 0.46;
+      return affection.getWSumC(scores) < 2.5 || affection.getAfr(scores) < 0.46;
     }
 }
 exports.getWSumCChecked = getWSumCChecked;
