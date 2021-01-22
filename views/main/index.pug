@@ -23,6 +23,20 @@ block script
     script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js")
     script(src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js")
     script.
+        if ('URLSearchParams' in window) {
+            var searchParams = new URLSearchParams(window.location.search);
+            var nocoin1 = searchParams.get('nocoin1');
+            var nocoin2 = searchParams.get('nocoin2');
+            if (nocoin1) {
+                alert("코인1이 부족합니다.");
+                window.location.search="";
+            }
+            if (nocoin2) {
+                alert("코인2가 부족합니다.");
+                window.location.search="";
+            }
+        }
+    script.
         function msieversion() {
             var ua = window.navigator.userAgent;
             var msie = ua.indexOf("MSIE ");

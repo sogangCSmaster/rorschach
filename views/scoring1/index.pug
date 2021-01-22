@@ -117,7 +117,7 @@ html
                         .hr-line-dashed
                         .row
                             .col-lg-2.col-lg-offset-10.text-right
-                                //- button.btn.btn-info.btn-tempsave(type='button') 임시저장
+                                button.btn.btn-info.btn-tempsave(type='button') 임시저장
                                 form.form.inline(action="/finishtest1" method="POST" onsubmit='return stringifyForm()')
                                     input(type="hidden" name="stringifyText")
                                     input(type="hidden" name="testID" value=session.insertId || insertId)
@@ -310,6 +310,15 @@ html
                                 table.table.table-striped.table-bordered.table-hover-cells(style='margin-bottom: 0;')
                                     tbody
                                         tr
+                                            td.text-center.r-form(style='cursor: pointer;font-size: 12pt; font-weight: bold;', data-rkey='Fi', data-rvalue='Fi') Fi
+                                        tr
+                                            td.text-center.r-form(style='cursor: pointer;font-size: 12pt; font-weight: bold;', data-rkey='Ex', data-rvalue='Ex') Ex
+                                table.table.table-striped.table-bordered.table-hober-cells(style='margin-bottom: 0;')
+                                    thead
+                                        tr
+                                            th 문명 반응
+                                    tbody
+                                        tr
                                             td.text-center.r-form(style='cursor: pointer;font-size: 12pt; font-weight: bold;', data-rkey='Art', data-rvalue='Art') Art
                                         tr
                                             td.text-center.r-form(style='cursor: pointer;font-size: 12pt; font-weight: bold;', data-rkey='Ay', data-rvalue='Ay') Ay
@@ -321,10 +330,6 @@ html
                                             td.text-center.r-form(style='cursor: pointer;font-size: 12pt; font-weight: bold;', data-rkey='Cg', data-rvalue='Cg') Cg
                                         tr
                                             td.text-center.r-form(style='cursor: pointer;font-size: 12pt; font-weight: bold;', data-rkey='Fd', data-rvalue='Fd') Fd
-                                        tr
-                                            td.text-center.r-form(style='cursor: pointer;font-size: 12pt; font-weight: bold;', data-rkey='Fi', data-rvalue='Fi') Fi
-                                        tr
-                                            td.text-center.r-form(style='cursor: pointer;font-size: 12pt; font-weight: bold;', data-rkey='Ex', data-rvalue='Ex') Ex
                                 
                                 table.table.table-striped.table-bordered.table-hover-cells
                                     thead
@@ -913,11 +918,13 @@ html
             '7D+': 30, '7Dv/+': 30, '7Dd+': 30, '7Ddv/+': 30,
             '7Ds+': 31, '7Dsv/+': 31, '7DdS+': 31, '7DdSv/+': 31,
             '8Wo': 32, '8W+': 32, '8Wv/+': 32, '8WSo': 32, '8WS+': 32, '8WSv/+': 32,
-            '8DSo': 29,'8DdSo': 29,
+            //'8DSo': 29,'8DdSo': 29,
+            '8DSo': 32,'8DdSo': 32,
             '8D+': 33, '8Dv/+': 33, '8Dd+': 33, '8Ddv/+': 33,
             '8Ds+': 34, '8Dsv/+': 34, '8DdS+': 34, '8DdSv/+': 34,
             '9Wo': 35, '9W+': 35, '9Wv/+': 35, '9WSo': 35, '9WS+': 35, '9WSv/+': 35,
-            '9DSo': 15, '9DdSo': 15,
+            //'9DSo': 15, '9DdSo': 15,
+            '9DSo': 35, '9DdSo': 35,
             '9D+': 36, '9Dv/+': 36, '9Dd+': 36, '9Ddv/+': 38,
             '9Ds+': 37, '9Dsv/+': 37, '9DdS+': 37, '9DdSv/+': 37,
             '10Wo': 38, '10W+': 38, '10Wv/+': 38,
@@ -926,6 +933,52 @@ html
             '10Ds+': 41, '10Dsv/+': 41, '10DdS+': 41, '10DdSv/+': 41
         }
 
+        var reactionScore = {
+            1: ['ZW(1.0)', 'ZA(4.0)', 'ZD(6.0)', 'ZS(3.5)'],
+            2: ['ZW(1.0)', 'ZA(4.0)', 'ZD(6.0)', 'ZS(3.5)'],
+            3: ['ZW(1.0)', 'ZA(4.0)', 'ZD(6.0)', 'ZS(3.5)'],
+            4: ['ZW(1.0)', 'ZA(4.0)', 'ZD(6.0)', 'ZS(3.5)'],
+            5: ['ZW(1.0)', 'ZA(4.0)', 'ZD(6.0)', 'ZS(3.5)'],
+            6: ['ZW(4.5)', 'ZA(3.0)', 'ZD(5.5)', 'ZS(4.5)'],
+            7: ['ZW(4.5)', 'ZA(3.0)', 'ZD(5.5)', 'ZS(4.5)'],
+            42: ['ZW(4.5)', 'ZA(3.0)', 'ZD(5.5)', 'ZS(4.5)'],
+            8: ['ZW(4.5)', 'ZA(3.0)', 'ZD(5.5)', 'ZS(4.5)'],
+            9: ['ZW(4.5)', 'ZA(3.0)', 'ZD(5.5)', 'ZS(4.5)'],
+            10: ['ZW(5.5)', 'ZA(3.0)', 'ZD(4.0)', 'ZS(4.5)'],
+            11: ['ZW(5.5)', 'ZA(3.0)', 'ZD(4.0)', 'ZS(4.5)'],
+            12: ['ZW(5.5)', 'ZA(3.0)', 'ZD(4.0)', 'ZS(4.5)'],
+            42: ['ZW(5.5)', 'ZA(3.0)', 'ZD(4.0)', 'ZS(4.5)'],
+            13: ['ZW(2.0)', 'ZA(4.0)', 'ZD(3.5)', 'ZS(5.0)'],
+            14: ['ZW(2.0)', 'ZA(4.0)', 'ZD(3.5)', 'ZS(5.0)'],
+            15: ['ZW(2.0)', 'ZA(4.0)', 'ZD(3.5)', 'ZS(5.0)'],
+            16: ['ZW(2.0)', 'ZA(4.0)', 'ZD(3.5)', 'ZS(5.0)'],
+            17: ['ZW(2.0)', 'ZA(4.0)', 'ZD(3.5)', 'ZS(5.0)'],
+            18: ['ZW(1.0)', 'ZA(2.5)', 'ZD(5.0)', 'ZS(4.0)'],
+            19: ['ZW(1.0)', 'ZA(2.5)', 'ZD(5.0)', 'ZS(4.0)'],
+            20: ['ZW(1.0)', 'ZA(2.5)', 'ZD(5.0)', 'ZS(4.0)'],
+            21: ['ZW(1.0)', 'ZA(2.5)', 'ZD(5.0)', 'ZS(4.0)'],
+            22: ['ZW(1.0)', 'ZA(2.5)', 'ZD(5.0)', 'ZS(4.0)'],
+            23: ['ZW(2.5)', 'ZA(2.5)', 'ZD(6.0)', 'ZS(6.5)'],
+            24: ['ZW(2.5)', 'ZA(2.5)', 'ZD(6.0)', 'ZS(6.5)'],
+            25: ['ZW(2.5)', 'ZA(2.5)', 'ZD(6.0)', 'ZS(6.5)'],
+            26: ['ZW(2.5)', 'ZA(2.5)', 'ZD(6.0)', 'ZS(6.5)'],
+            27: ['ZW(2.5)', 'ZA(2.5)', 'ZD(6.0)', 'ZS(6.5)'],
+            28: ['ZW(2.5)', 'ZA(1.0)', 'ZD(3.0)', 'ZS(4.0)'],
+            29: ['ZW(2.5)', 'ZA(1.0)', 'ZD(3.0)', 'ZS(4.0)'],
+            30: ['ZW(2.5)', 'ZA(1.0)', 'ZD(3.0)', 'ZS(4.0)'],
+            31: ['ZW(2.5)', 'ZA(1.0)', 'ZD(3.0)', 'ZS(4.0)'],
+            32: ['ZW(4.5)', 'ZA(3.0)', 'ZD(3.0)', 'ZS(4.0)'],
+            33: ['ZW(4.5)', 'ZA(3.0)', 'ZD(3.0)', 'ZS(4.0)'],
+            34: ['ZW(4.5)', 'ZA(3.0)', 'ZD(3.0)', 'ZS(4.0)'],
+            35: ['ZW(5.5)', 'ZA(2.5)', 'ZD(4.5)', 'ZS(5.0)'],
+            36: ['ZW(5.5)', 'ZA(2.5)', 'ZD(4.5)', 'ZS(5.0)'],
+            37: ['ZW(5.5)', 'ZA(2.5)', 'ZD(4.5)', 'ZS(5.0)'],
+            38: ['ZW(5.5)', 'ZA(4.0)', 'ZD(4.5)', 'ZS(6.0)'],
+            39: ['ZW(5.5)', 'ZA(4.0)', 'ZD(4.5)', 'ZS(6.0)'],
+            40: ['ZW(5.5)', 'ZA(4.0)', 'ZD(4.5)', 'ZS(6.0)'],
+            41: ['ZW(5.5)', 'ZA(4.0)', 'ZD(4.5)', 'ZS(6.0)'],
+        };
+        /*
         var reactionScore = {
             1: ['ZW(1.0)'],
             2: ['ZA(4.0)'],
@@ -970,6 +1023,7 @@ html
             41: ['ZA(4.0)', 'ZD(4.5)', 'ZS(6.0)'],
             42: ['ZS(4.5)']
         }
+        */
 
         var numberMapper = {
             'Ⅰ': 1,

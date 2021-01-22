@@ -412,11 +412,14 @@ async function finishtest1(req, res, next) {
 router.route('/downloadtest1')
     .get(async (req, res, next) => {
         const { id, session_id } = req.query;
-        var sql = "SELECT id, score, scoring FROM score WHERE id=?";
+        var sql = "SELECT id, score, scoring FROM score WHERE id=? AND scoring=1";
         var data = await query.executeSQL(sql, [id]);
         sql = "SELECT * FROM test WHERE id=?";
         var testconfig = await query.executeSQL(sql, [id]);
         testconfig = testconfig[0];
+        if (!testconfig) {
+            return res.redirect('/');
+        }
         
         var filename = '구조요약-' + testconfig.name + '-' + id + '.pdf';
         const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
@@ -445,6 +448,8 @@ router.route("/finishtest1")
     .post(async(req, res, next) => {
         var { stringifyText, testID } = req.body;
         var score = stringifyText;
+
+
         var sql1 = "SELECT id FROM score WHERE id=?";
         var result = await query.executeSQL(sql1, [testID]);
         if (result.length) {
@@ -461,7 +466,14 @@ router.route("/finishtest1")
         var api = config.api;
         var { m } = req.session;
         api = api + `/coinProcess.php?m=${m}&c=RORS&n=${testID}&p=add`;
-        axios.get(api);
+        var response = await axios.get(api);
+        if (response.data == "er:01") {
+            var sql = "UPDATE score SET scoring=1 WHERE id=?";
+            await query.executeSQL(sql, [testID]);
+            res.redirect('/?nocoin1=true');
+            return;
+        }
+
 
 
         res.redirect(`/finishtest1?id=${testID}`);
@@ -1107,6 +1119,8 @@ router.route("/finishtest1")
         .post(async(req, res, next) => {
             var { stringifyText, testID } = req.body;
             var score = stringifyText;
+
+
             var sql1 = "SELECT id FROM score WHERE id=?";
             var result = await query.executeSQL(sql1, [testID]);
             if (result.length) {
@@ -1123,7 +1137,14 @@ router.route("/finishtest1")
             var api = config.api;
             var { m } = req.session;
             api = api + `/coinProcess.php?m=${m}&c=RORS2&n=${testID}&p=add`;
-            axios.get(api);
+            var response = await axios.get(api);
+            if (response.data == "er:01") {
+                var sql = "UPDATE score SET scoring=0 WHERE id=?";
+                await query.executeSQL(sql, [testID]);
+                res.redirect('/?nocoin2=true');
+                return;
+            }
+
 
 
             res.redirect(`/finishtest2?id=${testID}`);
@@ -1132,11 +1153,15 @@ router.route("/finishtest1")
 router.route('/downloadtest2')
     .get(async (req, res, next) => {
         const { id, session_id } = req.query;
-        var sql = "SELECT id, score, scoring FROM score WHERE id=?";
+        var sql = "SELECT id, score, scoring FROM score WHERE id=? AND scoring=1";
         var data = await query.executeSQL(sql, [id]);
         sql = "SELECT * FROM test WHERE id=?";
         var testconfig = await query.executeSQL(sql, [id]);
         testconfig = testconfig[0];
+
+        if (!testconfig) {
+            return res.redirect('/');
+        }
         
         var filename = '자동해석-' + testconfig.name + '-' + id + '.pdf';
         const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
